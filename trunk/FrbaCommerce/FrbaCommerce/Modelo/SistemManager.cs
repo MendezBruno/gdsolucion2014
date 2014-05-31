@@ -5,6 +5,7 @@ using System.Text;
 using System.Security.Cryptography;
 using FrbaCommerce.Modelo.Datos;
 using Sistema;
+using System.Windows.Forms;
 
 namespace FrbaCommerce.Modelo
 {
@@ -49,5 +50,8 @@ namespace FrbaCommerce.Modelo
         {
             throw new NotImplementedException();
         }
+        
     }
 }
+
+

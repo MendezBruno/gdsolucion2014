@@ -195,7 +195,6 @@
     <Compile Include="Modelo\TipoPublicacion.cs" />
     <Compile Include="Modelo\tipoUsuario.cs" />
     <Compile Include="Modelo\VisibilidadPublicacion.cs" />
-    <Compile Include="SistemManagerSingleton.cs" />
     <Compile Include="Modelo\SqlHelper.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Program.cs" />
