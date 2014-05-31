@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Modelo.Datos
 {
@@ -15,7 +16,17 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void darAlta(SistemManager cManager,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir, string nPiso,string depto ,string localidad, string codPostal, string ciudad, string fecNac)
         {
-            throw new NotImplementedException();
+            try
+            {
+             //   String ComandoInsert = @"INSERT INTO Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
+             //   SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+                //  MyCmd.ExecuteScalar();
+          //      MyCmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni, string mail, System.Windows.Forms.DataGridView dataGridView)

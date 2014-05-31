@@ -92,7 +92,7 @@
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(188, 21);
             this.comboBoxRol.TabIndex = 7;
-            this.comboBoxRol.SelectedIndexChanged += new System.EventHandler(this.comboBoxRol_SelectedIndexChanged);
+            
             // 
             // buttonRegistrar
             // 

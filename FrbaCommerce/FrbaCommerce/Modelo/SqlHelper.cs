@@ -68,6 +68,22 @@ namespace FrbaCommerce.Modelo
             
         }
 
+        public void errorDeSql(SqlException ex)
+        {
+            //MessageBox.Show(ex.Number.ToString());
+            switch (ex.Number)
+            {
+                case 8152:
+                    MessageBox.Show("Cantidad de caracteres excedidos en el nombre del Rol");
+                    break;
+                case 2627:
+                    MessageBox.Show("Rol Ya Creado");
+                    break;
+                default:
+                    break;
+            }
+        }
+
         
     }
 }
