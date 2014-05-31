@@ -70,7 +70,7 @@ namespace FrbaCommerce.Modelo.Datos
             dataGridViewFR.DataSource = tabla;
             adapComando.Update(tabla);
             dataGridViewFR.Columns[0].Visible = true;
-            dataGridViewFR.Columns[0].DisplayIndex = 2;
+            dataGridViewFR.Columns[0].DisplayIndex = 1;
             adapComando.Update(tabla);
         }
 
