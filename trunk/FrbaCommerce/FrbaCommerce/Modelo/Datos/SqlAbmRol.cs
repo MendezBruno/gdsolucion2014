@@ -29,7 +29,7 @@ namespace FrbaCommerce.Modelo.Datos
                     if (chekBox.Checked)
                     {
                        // ComandoInsert = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES('" + nombreRol + "','" + chekBox.Name + "')";
-                        ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES ('" + nombreRol + "','" + chekBox.Name.ToString() + "')";
+                        ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
                         MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                      //   MyCmd2.ExecuteScalar();
                         MyCmd2.ExecuteNonQuery();
@@ -56,9 +56,9 @@ namespace FrbaCommerce.Modelo.Datos
         }
      
 
-        internal void Buscar(SistemManager cManager, string NombreRol, string Funcionalidad, DataGridView gridViewFR)
+        internal void Buscar(SistemManager cManager, DataGridView gridViewFR)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT DISTINCT * FROM Funcionalidad_Rol as F WHERE F.Rol_Nombre LIKE '%' + '" + NombreRol + "'+ '%' AND Funcionalidad_Tipo LIKE '%' +'" + Funcionalidad + "'+ '%'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Rol_Nombre FROM Rol", cManager.conexion.conn);
             adaptarTablaAlComando(adapComando, gridViewFR, true);
             
         }
@@ -121,73 +121,41 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void modificarRol(SistemManager cManager, string p, Control.ControlCollection controlCollection, Sistema.Rol rolActual)
         {
+
             String ComandoInsertar;
-            String ComandoBorrar = @"DELETE FROM Funcionalidad_Rol WHERE Rol_Nombre='" + p + "'";
-            SqlCommand MyCmd = new SqlCommand(ComandoBorrar, cManager.conexion.conn);
+            String ComandoBorrar = "DELETE FROM Funcionalidad_Rol WHERE Rol_ID=(SELECT Rol_ID FROM Rol WHERE Rol_Nombre= '" + p + "')";
+            SqlCommand MyCmd;
+
+            if (p != rolActual.getNombre())
+            {
+
+                ComandoInsertar = "UPDATE Rol SET Rol_Nombre =  '" + p + "' WHERE Rol_Nombre ='" + rolActual.getNombre() + "'";
+                MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                MyCmd.ExecuteNonQuery();
+
+
+            }
+
+
+
+
+
+            MyCmd = new SqlCommand(ComandoBorrar, cManager.conexion.conn);
             MyCmd.ExecuteNonQuery();
+
             foreach (CheckBox chekBox in controlCollection)
             {
                 if (chekBox.Checked == true)
                 {
-                    ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES ('" + p + "','" + chekBox.Name.ToString() + "')";
-                    SqlCommand Cmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
-                    Cmd.ExecuteNonQuery();
+                    ComandoInsertar = "INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES ((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + p + "'),'" + chekBox.Name.ToString() + "')";
+                    MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                    MyCmd.ExecuteNonQuery();
                 }
+
             }
+
+
         }
-        /* 
-         internal void modificarRol(SistemManager cManager, string nombreRol, Control.ControlCollection funcionalidades, Sistema.Rol rolActual)
-         {
-             string ComandoInsert;
-             try
-             {
-                
-                  
-                 foreach (CheckBox chekBox in funcionalidades)
-                 {
-                     if (chekBox.Checked)
-                     {
-                         if (!rolActual.poseeFuncionalidad(chekBox.Name))
-                         {
-                             ComandoInsert = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES('" + nombreRol + "','" + chekBox.Name + "')";
-                             SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-                             MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-                             MyCmd.ExecuteScalar();
-                             MyCmd.Dispose();
-                         }
-
-                     }
-                     else
-                     {
-                         if (rolActual.poseeFuncionalidad(chekBox.Name))
-                         {
-                             ComandoInsert = @"DELETE FROM Funcionalidad_Rol WHERE Rol_Nombre='" + nombreRol + "' AND Funcionalidad_Tipo='" + chekBox.Name + "'";
-                             SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-                             MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-                             MyCmd.ExecuteScalar();
-                             MyCmd.Dispose();
-                         }
-                     }
-
-                 }
-                 MessageBox.Show("Rol actualizado correctamente");
-             }
-             catch (SqlException ex)
-             {
-                 //MessageBox.Show(ex.Number.ToString());
-                 switch (ex.Number)
-                 {
-                     case 8152:
-                         MessageBox.Show("Cantidad de caracteres excedidos en el nombre del Rol");
-                         break;
-                     case 2627:
-                         MessageBox.Show("Rol Ya Creado");
-                         break;
-                     default:
-                         break;
-                 }
-             }
-         }*/
     }
 }
 
