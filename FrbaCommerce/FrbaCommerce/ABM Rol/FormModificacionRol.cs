@@ -20,16 +20,11 @@ namespace FrbaCommerce.ABM_Rol
         {
             InitializeComponent();
             this.cManager = cManager;
+            cManager.sqlAbmRol.Buscar(cManager, this.dataGridViewRolFuncion);
+            dataGridViewRolFuncion.Update();
             // FillData();
         }
 
-        private void buttonBuscar_Click(object sender, EventArgs e)
-        {
-
-            this.cManager.sqlAbmRol.Buscar(cManager, comboBoxNombreRol.Text, comboBoxFuncionalidad.Text, this.dataGridViewRolFuncion);
-            this.dataGridViewRolFuncion.Update();
-       
-        }
 
         private void dataGridViewRolFuncion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -53,12 +48,7 @@ namespace FrbaCommerce.ABM_Rol
             //MessageBox.Show(dataGridViewRolFuncion.Rows[1].Cells[1].Value.ToString());
         }
 
-        private void buttonLimpiar_Click(object sender, EventArgs e)
-        {
-            this.comboBoxFuncionalidad.Text = "";
-            this.comboBoxNombreRol.Text = "";
-            this.dataGridViewRolFuncion.Rows.Clear();
-        }
+        
 
 
     }
