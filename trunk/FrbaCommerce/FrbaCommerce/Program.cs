@@ -6,6 +6,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using FrbaCommerce.Modelo;
+using FrbaCommerce.Login;
 
 
 namespace FrbaCommerce
@@ -24,7 +25,8 @@ namespace FrbaCommerce
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal(classManager));
+           // Application.Run(new FormPrincipal(classManager));   Lo dejo por si quiero probar allguna funcionalidad pues
+            Application.Run(new FormLoggin(classManager));
         }
     }
 }

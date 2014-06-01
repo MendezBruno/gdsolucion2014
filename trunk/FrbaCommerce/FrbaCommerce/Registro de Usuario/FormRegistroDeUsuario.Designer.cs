@@ -92,12 +92,11 @@
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(188, 21);
             this.comboBoxRol.TabIndex = 7;
-            
             // 
             // buttonRegistrar
             // 
             this.buttonRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegistrar.Location = new System.Drawing.Point(132, 226);
+            this.buttonRegistrar.Location = new System.Drawing.Point(127, 191);
             this.buttonRegistrar.Name = "buttonRegistrar";
             this.buttonRegistrar.Size = new System.Drawing.Size(138, 33);
             this.buttonRegistrar.TabIndex = 10;
@@ -109,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(404, 284);
+            this.ClientSize = new System.Drawing.Size(404, 253);
             this.Controls.Add(this.buttonRegistrar);
             this.Controls.Add(this.comboBoxRol);
             this.Controls.Add(this.textBoxPass);

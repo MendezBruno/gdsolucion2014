@@ -25,25 +25,26 @@ namespace FrbaCommerce.Registro_de_Usuario
         private void buttonRegistrar_Click(object sender, EventArgs e)
         {
         //  cManager.conexion.registrarUsuario(this.textBoxUser.Text, this.textBoxPass.Text,this.comboBoxRol.Text , this.textBoxTipo.Text, this.textBoxNumero.Text);
-            crearUsuarioConTalRol(this.comboBoxRol.Text);
+            crearUsuarioConTalRol(this.comboBoxRol.Text,this.textBoxUser.Text,this.textBoxPass.Text);
         }
 
-        private void crearUsuarioConTalRol(string rol)
+        private void crearUsuarioConTalRol(string rol,string user,string pass)
         {
             switch (rol)
             {
                 case "Cliente":
                     this.Hide();
-                    FormAbmClienteAlta formAbmCliente = new FormAbmClienteAlta(cManager,true);
+                    FormAbmClienteAlta formAbmCliente = new FormAbmClienteAlta(user,pass,cManager, true);
                     formAbmCliente.ShowDialog();
                     this.Show();
                     break;
                 case "Empresa":
                     this.Hide();
-                    FormAbmEmpresaAlta formAbmEmpresa = new FormAbmEmpresaAlta(cManager,true);
+                    FormAbmEmpresaAlta formAbmEmpresa = new FormAbmEmpresaAlta(user,pass,cManager, true);
                     formAbmEmpresa.ShowDialog();
                     this.Show();
                     break;
+                    //TODO case de administrador
             }
         }
       

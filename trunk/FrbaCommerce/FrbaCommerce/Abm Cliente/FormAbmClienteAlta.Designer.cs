@@ -56,6 +56,8 @@
             this.comboBoxTipo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxDepto = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxNumeroCalle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBoxNombre
@@ -81,21 +83,21 @@
             // 
             // textBoxLocalidad
             // 
-            this.textBoxLocalidad.Location = new System.Drawing.Point(468, 213);
+            this.textBoxLocalidad.Location = new System.Drawing.Point(601, 211);
             this.textBoxLocalidad.Name = "textBoxLocalidad";
             this.textBoxLocalidad.Size = new System.Drawing.Size(140, 20);
             this.textBoxLocalidad.TabIndex = 39;
             // 
             // textBoxNroPiso
             // 
-            this.textBoxNroPiso.Location = new System.Drawing.Point(175, 213);
+            this.textBoxNroPiso.Location = new System.Drawing.Point(308, 211);
             this.textBoxNroPiso.Name = "textBoxNroPiso";
             this.textBoxNroPiso.Size = new System.Drawing.Size(140, 20);
             this.textBoxNroPiso.TabIndex = 38;
             // 
             // textBoxDirec
             // 
-            this.textBoxDirec.Location = new System.Drawing.Point(15, 213);
+            this.textBoxDirec.Location = new System.Drawing.Point(12, 211);
             this.textBoxDirec.Name = "textBoxDirec";
             this.textBoxDirec.Size = new System.Drawing.Size(140, 20);
             this.textBoxDirec.TabIndex = 36;
@@ -144,7 +146,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(465, 197);
+            this.label7.Location = new System.Drawing.Point(598, 195);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 13);
             this.label7.TabIndex = 28;
@@ -153,7 +155,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(172, 197);
+            this.label6.Location = new System.Drawing.Point(305, 195);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 27;
@@ -162,11 +164,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 197);
+            this.label4.Location = new System.Drawing.Point(9, 195);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 25;
-            this.label4.Text = "Direccion Calle";
+            this.label4.Text = "Calle";
             // 
             // label3
             // 
@@ -245,7 +247,7 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(17, 351);
+            this.buttonLimpiar.Location = new System.Drawing.Point(17, 428);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(144, 35);
             this.buttonLimpiar.TabIndex = 52;
@@ -255,7 +257,7 @@
             // 
             // buttonAlta
             // 
-            this.buttonAlta.Location = new System.Drawing.Point(452, 351);
+            this.buttonAlta.Location = new System.Drawing.Point(532, 428);
             this.buttonAlta.Name = "buttonAlta";
             this.buttonAlta.Size = new System.Drawing.Size(144, 35);
             this.buttonAlta.TabIndex = 53;
@@ -277,7 +279,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(335, 199);
+            this.label5.Location = new System.Drawing.Point(468, 197);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 55;
@@ -285,16 +287,34 @@
             // 
             // textBoxDepto
             // 
-            this.textBoxDepto.Location = new System.Drawing.Point(330, 214);
+            this.textBoxDepto.Location = new System.Drawing.Point(463, 212);
             this.textBoxDepto.Name = "textBoxDepto";
             this.textBoxDepto.Size = new System.Drawing.Size(122, 20);
             this.textBoxDepto.TabIndex = 56;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(162, 193);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 57;
+            this.label10.Text = "Numero";
+            // 
+            // textBoxNumeroCalle
+            // 
+            this.textBoxNumeroCalle.Location = new System.Drawing.Point(158, 211);
+            this.textBoxNumeroCalle.Name = "textBoxNumeroCalle";
+            this.textBoxNumeroCalle.Size = new System.Drawing.Size(136, 20);
+            this.textBoxNumeroCalle.TabIndex = 58;
             // 
             // FormAbmClienteAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 407);
+            this.ClientSize = new System.Drawing.Size(746, 475);
+            this.Controls.Add(this.textBoxNumeroCalle);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxDepto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBoxTipo);
@@ -360,6 +380,8 @@
         private System.Windows.Forms.ComboBox comboBoxTipo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxDepto;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxNumeroCalle;
 
     }
 }

@@ -28,24 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonLoggin = new System.Windows.Forms.Button();
+            this.buttonComprar = new System.Windows.Forms.Button();
             this.buttonCrearUsuario = new System.Windows.Forms.Button();
+            this.buttonModificaciones = new System.Windows.Forms.Button();
+            this.buttonPublicaciones = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.buttonCalificar = new System.Windows.Forms.Button();
+            this.buttonHistorial = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // buttonLoggin
+            // buttonComprar
             // 
-            this.buttonLoggin.Location = new System.Drawing.Point(74, 20);
-            this.buttonLoggin.Name = "buttonLoggin";
-            this.buttonLoggin.Size = new System.Drawing.Size(137, 42);
-            this.buttonLoggin.TabIndex = 0;
-            this.buttonLoggin.Text = "loggin";
-            this.buttonLoggin.UseVisualStyleBackColor = true;
-            this.buttonLoggin.Click += new System.EventHandler(this.buttonLoggin_Click);
+            this.buttonComprar.Location = new System.Drawing.Point(12, 23);
+            this.buttonComprar.Name = "buttonComprar";
+            this.buttonComprar.Size = new System.Drawing.Size(137, 42);
+            this.buttonComprar.TabIndex = 0;
+            this.buttonComprar.Text = "Comprar";
+            this.buttonComprar.UseVisualStyleBackColor = true;
             // 
             // buttonCrearUsuario
             // 
-            this.buttonCrearUsuario.Location = new System.Drawing.Point(74, 80);
+            this.buttonCrearUsuario.Location = new System.Drawing.Point(247, 23);
             this.buttonCrearUsuario.Name = "buttonCrearUsuario";
             this.buttonCrearUsuario.Size = new System.Drawing.Size(137, 43);
             this.buttonCrearUsuario.TabIndex = 1;
@@ -53,24 +57,73 @@
             this.buttonCrearUsuario.UseVisualStyleBackColor = true;
             this.buttonCrearUsuario.Click += new System.EventHandler(this.buttonCrearUsuario_Click);
             // 
+            // buttonModificaciones
+            // 
+            this.buttonModificaciones.Location = new System.Drawing.Point(247, 72);
+            this.buttonModificaciones.Name = "buttonModificaciones";
+            this.buttonModificaciones.Size = new System.Drawing.Size(135, 45);
+            this.buttonModificaciones.TabIndex = 2;
+            this.buttonModificaciones.Text = "Modificaciones";
+            this.buttonModificaciones.UseVisualStyleBackColor = true;
+            // 
+            // buttonPublicaciones
+            // 
+            this.buttonPublicaciones.Location = new System.Drawing.Point(12, 72);
+            this.buttonPublicaciones.Name = "buttonPublicaciones";
+            this.buttonPublicaciones.Size = new System.Drawing.Size(137, 45);
+            this.buttonPublicaciones.TabIndex = 3;
+            this.buttonPublicaciones.Text = "Publicaciones";
+            this.buttonPublicaciones.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(75, 146);
+            this.button1.Location = new System.Drawing.Point(12, 123);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 45);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Modificaciones";
+            this.button1.Size = new System.Drawing.Size(137, 44);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Ofertar";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(247, 123);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(137, 44);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Estadisticas";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // buttonCalificar
+            // 
+            this.buttonCalificar.Location = new System.Drawing.Point(12, 173);
+            this.buttonCalificar.Name = "buttonCalificar";
+            this.buttonCalificar.Size = new System.Drawing.Size(137, 44);
+            this.buttonCalificar.TabIndex = 6;
+            this.buttonCalificar.Text = "Calificar";
+            this.buttonCalificar.UseVisualStyleBackColor = true;
+            // 
+            // buttonHistorial
+            // 
+            this.buttonHistorial.Location = new System.Drawing.Point(247, 173);
+            this.buttonHistorial.Name = "buttonHistorial";
+            this.buttonHistorial.Size = new System.Drawing.Size(137, 44);
+            this.buttonHistorial.TabIndex = 7;
+            this.buttonHistorial.Text = "Historial";
+            this.buttonHistorial.UseVisualStyleBackColor = true;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(416, 255);
+            this.Controls.Add(this.buttonHistorial);
+            this.Controls.Add(this.buttonCalificar);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonPublicaciones);
+            this.Controls.Add(this.buttonModificaciones);
             this.Controls.Add(this.buttonCrearUsuario);
-            this.Controls.Add(this.buttonLoggin);
+            this.Controls.Add(this.buttonComprar);
             this.Name = "FormPrincipal";
             this.Text = "Cuadro de Opciones Principales";
             this.ResumeLayout(false);
@@ -79,9 +132,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonLoggin;
+        private System.Windows.Forms.Button buttonComprar;
         private System.Windows.Forms.Button buttonCrearUsuario;
+        private System.Windows.Forms.Button buttonModificaciones;
+        private System.Windows.Forms.Button buttonPublicaciones;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonCalificar;
+        private System.Windows.Forms.Button buttonHistorial;
     }
 }
 

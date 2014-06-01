@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Modelo;
 using Sistema;
+using FrbaCommerce.Registro_de_Usuario;
 
 namespace FrbaCommerce.Login
 {
@@ -23,49 +24,46 @@ namespace FrbaCommerce.Login
 
         private void buttonIngresar_Click(object sender, EventArgs e)
         {
+            //cManager.sqlAbmLogin.cargarUsuario(user, cManager); 
+            Usuario user = new Usuario();
+            cManager.traerUsuario(this.textBoxUsuario.Text, user);
             
-            Usuario user = cManager.traerUsuario(this.textBoxUsuario.Text);
-
-            //Ver si user no Es null
-
-            bool res = cManager.verificarCodificacionContraseña(user,this.textBoxUsuario.Text, this.textBoxUsuario.Text);
-
-            if (res)
+            if (user != null && user.habilitado)
             {
-                switch(user.RolAsignado.getNombre())
+                bool res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxUsuario.Text);
+
+                if (res)
                 {
-                    case "Empresa":
-                   // Interfaz empresa 
+                    this.Hide();
+                    FormPrincipal formPrincipal = new FormPrincipal(cManager, user);
+                    formPrincipal.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    user.Dispose();
+                    this.labelContraseñaincorrecta.Visible = true;
+                }
+                //si res es true ingresa y si es false suma una chance de inHabilitacion; si llego a tres muere.
 
-                    break;
-
-                    case "Cliente":
-                        //interfaz cliente
-                        break;
-
-                    case "Administrador":
-                        //interfaz administrador
-                        break;
-                    default: 
-                        MessageBox.Show("Nombre de rol sin Interfaz designa u incorrecto");
-                        break;
-                 }
-               //cManager.sqlAbmLogin.cargarUsuario(user, cManager); 
- 
             }
             else
             {
-                user.Dispose();
-                MessageBox.Show("Contraseña Incorrecta");
+                if (user.habilitado) this.labelUsuarioInexistente.Visible = true;
+                else this.labelUsuarioDeshabilitado.Visible = true;
             }
-            //si res es true ingresa y si es false suma una chance de inHabilitacion; si llego a tres muere.
         }
-
-        private void FormLoggin_Load(object sender, EventArgs e)
+        
+        private void linkLabelRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            this.Hide();
+            FormRegistroDeUsuario formRegistroDeUsuario = new FormRegistroDeUsuario(cManager);
+            formRegistroDeUsuario.ShowDialog();
+            this.Show();
         }
 
+
+        
 
     }
 }
