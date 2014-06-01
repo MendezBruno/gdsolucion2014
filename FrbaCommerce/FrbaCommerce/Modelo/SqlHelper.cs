@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Data;
 
 namespace FrbaCommerce.Modelo
 {
@@ -82,6 +83,18 @@ namespace FrbaCommerce.Modelo
                 default:
                     break;
             }
+        }
+
+
+        public void adaptarTablaAlComando(SqlDataAdapter adapComando, DataGridView dataGridViewFR, bool filaSeleccion)
+        {
+            DataTable tabla = new DataTable();
+            adapComando.Fill(tabla);
+            dataGridViewFR.DataSource = tabla;
+            adapComando.Update(tabla);
+            dataGridViewFR.Columns[0].Visible = true;
+            dataGridViewFR.Columns[0].DisplayIndex = 1;
+            adapComando.Update(tabla);
         }
 
         

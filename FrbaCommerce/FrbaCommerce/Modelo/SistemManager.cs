@@ -21,6 +21,7 @@ namespace FrbaCommerce.Modelo
         public SqlCliente sqlCliente = new SqlCliente();
         public SqlEmpresa sqlEmpresa = new SqlEmpresa();
         public SqlRol sqlRol = new SqlRol();
+        public SqlUsuario sqlUsuario = new SqlUsuario();
 
         public SistemManager()
         {
@@ -40,9 +41,9 @@ namespace FrbaCommerce.Modelo
             else return false;
         }
 
-        public Usuario traerUsuario(string usuario)
+        public Usuario traerUsuario(string usuario,Usuario user)
         {
-         return sqlAbmLogin.ObtenerUsuario(usuario, this);
+         return sqlAbmLogin.ObtenerUsuario(usuario, this, user);
         }
 
 
@@ -50,6 +51,8 @@ namespace FrbaCommerce.Modelo
         {
             throw new NotImplementedException();
         }
+        
+
         
     }
 }

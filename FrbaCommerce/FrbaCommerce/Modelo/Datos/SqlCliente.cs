@@ -14,24 +14,25 @@ namespace FrbaCommerce.Modelo.Datos
             throw new NotImplementedException();
         }
 
-        internal void darAlta(SistemManager cManager,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir, string nPiso,string depto ,string localidad, string codPostal, string ciudad, string fecNac)
+        internal void darAlta(SistemManager cManager,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string ciudad, string fecNac)
         {
             try
             {
-             //   String ComandoInsert = @"INSERT INTO Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
-             //   SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-                //  MyCmd.ExecuteScalar();
-          //      MyCmd.ExecuteNonQuery();
+                String ComandoInsert = @"INSERT INTO Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento,Cliente_Esta_Habilitada) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "'," + calleNum + ",'" + nPiso + "','" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "','SI')";
+                SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+             //     MyCmd.ExecuteScalar();
+               MyCmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-
+                cManager.conexion.errorDeSql(e);
             }
         }
 
         internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            throw new NotImplementedException();
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Cliente WHERE Cliente_Nombre LIKE %"+nombre+"% AND Cliente_Apellido LIKE %"+apellido+"% AND Cliente_DNI LIKE %"+dni+"% AND Cliente_Mail LIKE %"+mail+"%", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true);
         }
 
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formAltaCliente, string IDCliente)

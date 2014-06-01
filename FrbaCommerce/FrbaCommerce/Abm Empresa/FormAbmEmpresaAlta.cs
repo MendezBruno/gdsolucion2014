@@ -14,17 +14,20 @@ namespace FrbaCommerce.Abm_Empresa
     {
         SistemManager cManager;
         bool alta;
+        string user, pass;
         public FormAbmEmpresaAlta(SistemManager cManager)
         {
             InitializeComponent();
             this.cManager = cManager;
         }
 
-        public FormAbmEmpresaAlta(SistemManager cManager, bool alta)
+        public FormAbmEmpresaAlta(string user, string pass,SistemManager cManager, bool alta)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.alta = alta;
+            this.user = user;
+            this.pass = pass;
         }
 
 

@@ -40,7 +40,7 @@ namespace FrbaCommerce.Abm_Cliente
             if (this.Text.Equals("Modificacion Cliente"))
             {
                
-                FormAbmClienteAlta formAltaCliente = new FormAbmClienteAlta(cManager);
+                FormAbmClienteAlta formAltaCliente = new FormAbmClienteAlta(cManager,true);
                 cManager.sqlCliente.cargarDatosDeModificacion(cManager, formAltaCliente, dataGridViewModificacionCliente.Rows[e.RowIndex].Cells[1].Value.ToString());
                 formAltaCliente.ShowDialog();
             }

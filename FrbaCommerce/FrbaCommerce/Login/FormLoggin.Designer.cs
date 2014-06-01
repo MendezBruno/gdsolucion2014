@@ -33,6 +33,10 @@
             this.buttonIngresar = new System.Windows.Forms.Button();
             this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.textBoxContraseña = new System.Windows.Forms.TextBox();
+            this.linkLabelRegistrarse = new System.Windows.Forms.LinkLabel();
+            this.labelUsuarioInexistente = new System.Windows.Forms.Label();
+            this.labelContraseñaincorrecta = new System.Windows.Forms.Label();
+            this.labelUsuarioDeshabilitado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelUsuario
@@ -57,7 +61,7 @@
             // 
             // buttonIngresar
             // 
-            this.buttonIngresar.Location = new System.Drawing.Point(83, 134);
+            this.buttonIngresar.Location = new System.Drawing.Point(83, 127);
             this.buttonIngresar.Name = "buttonIngresar";
             this.buttonIngresar.Size = new System.Drawing.Size(132, 29);
             this.buttonIngresar.TabIndex = 2;
@@ -79,11 +83,58 @@
             this.textBoxContraseña.Size = new System.Drawing.Size(144, 20);
             this.textBoxContraseña.TabIndex = 4;
             // 
+            // linkLabelRegistrarse
+            // 
+            this.linkLabelRegistrarse.AutoSize = true;
+            this.linkLabelRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelRegistrarse.Location = new System.Drawing.Point(111, 176);
+            this.linkLabelRegistrarse.Name = "linkLabelRegistrarse";
+            this.linkLabelRegistrarse.Size = new System.Drawing.Size(84, 17);
+            this.linkLabelRegistrarse.TabIndex = 5;
+            this.linkLabelRegistrarse.TabStop = true;
+            this.linkLabelRegistrarse.Text = "Registrarse!";
+            // 
+            // labelUsuarioInexistente
+            // 
+            this.labelUsuarioInexistente.AutoSize = true;
+            this.labelUsuarioInexistente.ForeColor = System.Drawing.Color.Red;
+            this.labelUsuarioInexistente.Location = new System.Drawing.Point(98, 9);
+            this.labelUsuarioInexistente.Name = "labelUsuarioInexistente";
+            this.labelUsuarioInexistente.Size = new System.Drawing.Size(97, 13);
+            this.labelUsuarioInexistente.TabIndex = 6;
+            this.labelUsuarioInexistente.Text = "Usuario Inexistente";
+            this.labelUsuarioInexistente.Visible = false;
+            // 
+            // labelContraseñaincorrecta
+            // 
+            this.labelContraseñaincorrecta.AutoSize = true;
+            this.labelContraseñaincorrecta.ForeColor = System.Drawing.Color.Red;
+            this.labelContraseñaincorrecta.Location = new System.Drawing.Point(98, 9);
+            this.labelContraseñaincorrecta.Name = "labelContraseñaincorrecta";
+            this.labelContraseñaincorrecta.Size = new System.Drawing.Size(115, 13);
+            this.labelContraseñaincorrecta.TabIndex = 7;
+            this.labelContraseñaincorrecta.Text = "Contraseña Incorrecta!";
+            this.labelContraseñaincorrecta.Visible = false;
+            // 
+            // labelUsuarioDeshabilitado
+            // 
+            this.labelUsuarioDeshabilitado.AutoSize = true;
+            this.labelUsuarioDeshabilitado.ForeColor = System.Drawing.Color.Red;
+            this.labelUsuarioDeshabilitado.Location = new System.Drawing.Point(36, 9);
+            this.labelUsuarioDeshabilitado.Name = "labelUsuarioDeshabilitado";
+            this.labelUsuarioDeshabilitado.Size = new System.Drawing.Size(233, 13);
+            this.labelUsuarioDeshabilitado.TabIndex = 8;
+            this.labelUsuarioDeshabilitado.Text = "usuario deshabilitado comunicarse con sistemas";
+            // 
             // FormLoggin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 196);
+            this.ClientSize = new System.Drawing.Size(298, 208);
+            this.Controls.Add(this.labelUsuarioDeshabilitado);
+            this.Controls.Add(this.labelContraseñaincorrecta);
+            this.Controls.Add(this.labelUsuarioInexistente);
+            this.Controls.Add(this.linkLabelRegistrarse);
             this.Controls.Add(this.textBoxContraseña);
             this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.buttonIngresar);
@@ -91,7 +142,6 @@
             this.Controls.Add(this.labelUsuario);
             this.Name = "FormLoggin";
             this.Text = "LOGIN";
-            this.Load += new System.EventHandler(this.FormLoggin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +154,9 @@
         private System.Windows.Forms.Button buttonIngresar;
         private System.Windows.Forms.TextBox textBoxUsuario;
         private System.Windows.Forms.TextBox textBoxContraseña;
+        private System.Windows.Forms.LinkLabel linkLabelRegistrarse;
+        private System.Windows.Forms.Label labelUsuarioInexistente;
+        private System.Windows.Forms.Label labelContraseñaincorrecta;
+        private System.Windows.Forms.Label labelUsuarioDeshabilitado;
     }
 }

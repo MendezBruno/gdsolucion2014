@@ -132,6 +132,12 @@
     <Compile Include="Facturar Publicaciones\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModificaciones.Designer.cs">
+      <DependentUpon>FormModificaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,7 @@
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
     <Compile Include="Modelo\Datos\SqlRol.cs" />
+    <Compile Include="Modelo\Datos\SqlUsuario.cs" />
     <Compile Include="Modelo\Empresa.cs" />
     <Compile Include="Modelo\EstadoPublicacion.cs" />
     <Compile Include="Modelo\Factura.cs" />
@@ -222,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\FormModificacionRol.resx">
       <DependentUpon>FormModificacionRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModificaciones.resx">
+      <DependentUpon>FormModificaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

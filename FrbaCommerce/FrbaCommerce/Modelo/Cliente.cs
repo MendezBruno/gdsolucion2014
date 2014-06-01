@@ -21,6 +21,7 @@ namespace Sistema {
 		private string Mail;
 		private long Telefono;
 		private string Direccion;
+        private int numeroCalle;
 		private int NroPiso;
 		private char Depto;
 		private string Localidad;

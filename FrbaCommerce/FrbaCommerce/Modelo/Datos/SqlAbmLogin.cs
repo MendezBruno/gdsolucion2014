@@ -10,9 +10,9 @@ namespace FrbaCommerce.Modelo.Datos
     public class SqlAbmLogin
     {
 
-        public Usuario ObtenerUsuario(string usuario, SistemManager cManager)
+        public Usuario ObtenerUsuario(string usuario, SistemManager cManager,Usuario user)
         {
-            Usuario user = new Usuario();
+            user = new Usuario();
             SqlCommand cmd = new SqlCommand("SELECT Usuario_Nombre FROM Usuario WHERE ", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
 
