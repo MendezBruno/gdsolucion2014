@@ -48,147 +48,178 @@
             // 
             // buttonCrearCliente
             // 
-            this.buttonCrearCliente.Location = new System.Drawing.Point(16, 21);
+            this.buttonCrearCliente.Location = new System.Drawing.Point(18, 27);
             this.buttonCrearCliente.Name = "buttonCrearCliente";
-            this.buttonCrearCliente.Size = new System.Drawing.Size(115, 32);
+            this.buttonCrearCliente.Size = new System.Drawing.Size(119, 31);
             this.buttonCrearCliente.TabIndex = 0;
             this.buttonCrearCliente.Text = "Crear Cliente";
             this.buttonCrearCliente.UseVisualStyleBackColor = true;
+            this.buttonCrearCliente.Visible = false;
+            this.buttonCrearCliente.Click += new System.EventHandler(this.buttonCrearCliente_Click);
             // 
             // buttonModificarCliente
             // 
-            this.buttonModificarCliente.Location = new System.Drawing.Point(16, 59);
+            this.buttonModificarCliente.Location = new System.Drawing.Point(18, 65);
             this.buttonModificarCliente.Name = "buttonModificarCliente";
-            this.buttonModificarCliente.Size = new System.Drawing.Size(115, 32);
+            this.buttonModificarCliente.Size = new System.Drawing.Size(119, 31);
             this.buttonModificarCliente.TabIndex = 1;
             this.buttonModificarCliente.Text = "Modificar Cliente";
             this.buttonModificarCliente.UseVisualStyleBackColor = true;
+            this.buttonModificarCliente.Visible = false;
+            this.buttonModificarCliente.Click += new System.EventHandler(this.buttonModificarCliente_Click);
             // 
             // buttonModificarEmpresa
             // 
-            this.buttonModificarEmpresa.Location = new System.Drawing.Point(176, 59);
+            this.buttonModificarEmpresa.Location = new System.Drawing.Point(178, 65);
             this.buttonModificarEmpresa.Name = "buttonModificarEmpresa";
-            this.buttonModificarEmpresa.Size = new System.Drawing.Size(115, 32);
+            this.buttonModificarEmpresa.Size = new System.Drawing.Size(119, 31);
             this.buttonModificarEmpresa.TabIndex = 2;
             this.buttonModificarEmpresa.Text = "Modificar Empresa";
             this.buttonModificarEmpresa.UseVisualStyleBackColor = true;
+            this.buttonModificarEmpresa.Visible = false;
+            this.buttonModificarEmpresa.Click += new System.EventHandler(this.buttonModificarEmpresa_Click);
             // 
             // buttonBajaCliente
             // 
-            this.buttonBajaCliente.Location = new System.Drawing.Point(16, 97);
+            this.buttonBajaCliente.Location = new System.Drawing.Point(18, 103);
             this.buttonBajaCliente.Name = "buttonBajaCliente";
-            this.buttonBajaCliente.Size = new System.Drawing.Size(115, 32);
+            this.buttonBajaCliente.Size = new System.Drawing.Size(119, 31);
             this.buttonBajaCliente.TabIndex = 3;
             this.buttonBajaCliente.Text = "Baja Cliente";
             this.buttonBajaCliente.UseVisualStyleBackColor = true;
+            this.buttonBajaCliente.Visible = false;
+            this.buttonBajaCliente.Click += new System.EventHandler(this.buttonBajaCliente_Click);
             // 
             // buttonCrearRol
             // 
-            this.buttonCrearRol.Location = new System.Drawing.Point(16, 135);
+            this.buttonCrearRol.Location = new System.Drawing.Point(18, 141);
             this.buttonCrearRol.Name = "buttonCrearRol";
-            this.buttonCrearRol.Size = new System.Drawing.Size(115, 32);
+            this.buttonCrearRol.Size = new System.Drawing.Size(119, 31);
             this.buttonCrearRol.TabIndex = 4;
             this.buttonCrearRol.Text = "Crear Rol";
             this.buttonCrearRol.UseVisualStyleBackColor = true;
+            this.buttonCrearRol.Visible = false;
+            this.buttonCrearRol.Click += new System.EventHandler(this.buttonCrearRol_Click);
             // 
             // buttonCrearEmpresa
             // 
-            this.buttonCrearEmpresa.Location = new System.Drawing.Point(176, 21);
+            this.buttonCrearEmpresa.Location = new System.Drawing.Point(178, 27);
             this.buttonCrearEmpresa.Name = "buttonCrearEmpresa";
-            this.buttonCrearEmpresa.Size = new System.Drawing.Size(115, 32);
+            this.buttonCrearEmpresa.Size = new System.Drawing.Size(119, 31);
             this.buttonCrearEmpresa.TabIndex = 5;
             this.buttonCrearEmpresa.Text = "Crear Empresa";
             this.buttonCrearEmpresa.UseVisualStyleBackColor = true;
+            this.buttonCrearEmpresa.Visible = false;
+            this.buttonCrearEmpresa.Click += new System.EventHandler(this.buttonCrearEmpresa_Click);
             // 
             // buttonBajaEmpresa
             // 
-            this.buttonBajaEmpresa.Location = new System.Drawing.Point(176, 97);
+            this.buttonBajaEmpresa.Location = new System.Drawing.Point(178, 103);
             this.buttonBajaEmpresa.Name = "buttonBajaEmpresa";
-            this.buttonBajaEmpresa.Size = new System.Drawing.Size(115, 32);
+            this.buttonBajaEmpresa.Size = new System.Drawing.Size(119, 31);
             this.buttonBajaEmpresa.TabIndex = 6;
             this.buttonBajaEmpresa.Text = "Baja Empresa";
             this.buttonBajaEmpresa.UseVisualStyleBackColor = true;
+            this.buttonBajaEmpresa.Visible = false;
+            this.buttonBajaEmpresa.Click += new System.EventHandler(this.buttonBajaEmpresa_Click);
             // 
             // buttonAltaVisibilidad
             // 
-            this.buttonAltaVisibilidad.Location = new System.Drawing.Point(176, 135);
+            this.buttonAltaVisibilidad.Location = new System.Drawing.Point(178, 141);
             this.buttonAltaVisibilidad.Name = "buttonAltaVisibilidad";
-            this.buttonAltaVisibilidad.Size = new System.Drawing.Size(115, 32);
+            this.buttonAltaVisibilidad.Size = new System.Drawing.Size(119, 31);
             this.buttonAltaVisibilidad.TabIndex = 7;
             this.buttonAltaVisibilidad.Text = "Alta V Publicacion";
             this.buttonAltaVisibilidad.UseVisualStyleBackColor = true;
+            this.buttonAltaVisibilidad.Visible = false;
+            this.buttonAltaVisibilidad.Click += new System.EventHandler(this.buttonAltaVisibilidad_Click);
             // 
             // buttonDesbloquearUsuario
             // 
-            this.buttonDesbloquearUsuario.Location = new System.Drawing.Point(16, 249);
+            this.buttonDesbloquearUsuario.Location = new System.Drawing.Point(18, 255);
             this.buttonDesbloquearUsuario.Name = "buttonDesbloquearUsuario";
-            this.buttonDesbloquearUsuario.Size = new System.Drawing.Size(115, 32);
+            this.buttonDesbloquearUsuario.Size = new System.Drawing.Size(119, 31);
             this.buttonDesbloquearUsuario.TabIndex = 8;
             this.buttonDesbloquearUsuario.Text = "Desbloquear Usuario";
             this.buttonDesbloquearUsuario.UseVisualStyleBackColor = true;
+            this.buttonDesbloquearUsuario.Visible = false;
+            this.buttonDesbloquearUsuario.Click += new System.EventHandler(this.buttonDesbloquearUsuario_Click);
             // 
             // buttonBajaRol
             // 
-            this.buttonBajaRol.Location = new System.Drawing.Point(16, 211);
+            this.buttonBajaRol.Location = new System.Drawing.Point(18, 217);
             this.buttonBajaRol.Name = "buttonBajaRol";
-            this.buttonBajaRol.Size = new System.Drawing.Size(115, 32);
+            this.buttonBajaRol.Size = new System.Drawing.Size(119, 31);
             this.buttonBajaRol.TabIndex = 9;
             this.buttonBajaRol.Text = "Baja Rol";
             this.buttonBajaRol.UseVisualStyleBackColor = true;
+            this.buttonBajaRol.Visible = false;
+            this.buttonBajaRol.Click += new System.EventHandler(this.buttonBajaRol_Click);
             // 
             // buttonModificarVisibilidad
             // 
-            this.buttonModificarVisibilidad.Location = new System.Drawing.Point(176, 173);
+            this.buttonModificarVisibilidad.Location = new System.Drawing.Point(178, 179);
             this.buttonModificarVisibilidad.Name = "buttonModificarVisibilidad";
-            this.buttonModificarVisibilidad.Size = new System.Drawing.Size(115, 45);
+            this.buttonModificarVisibilidad.Size = new System.Drawing.Size(119, 44);
             this.buttonModificarVisibilidad.TabIndex = 10;
             this.buttonModificarVisibilidad.Text = "Modificar Visibilidad Publicacion";
             this.buttonModificarVisibilidad.UseVisualStyleBackColor = true;
+            this.buttonModificarVisibilidad.Visible = false;
+            this.buttonModificarVisibilidad.Click += new System.EventHandler(this.buttonModificarVisibilidad_Click);
             // 
             // buttonModificarRol
             // 
-            this.buttonModificarRol.Location = new System.Drawing.Point(16, 173);
+            this.buttonModificarRol.Location = new System.Drawing.Point(18, 179);
             this.buttonModificarRol.Name = "buttonModificarRol";
-            this.buttonModificarRol.Size = new System.Drawing.Size(115, 32);
+            this.buttonModificarRol.Size = new System.Drawing.Size(119, 31);
             this.buttonModificarRol.TabIndex = 11;
             this.buttonModificarRol.Text = "Modificar Rol";
             this.buttonModificarRol.UseVisualStyleBackColor = true;
+            this.buttonModificarRol.Visible = false;
             // 
             // buttonBajaVisibilidad
             // 
-            this.buttonBajaVisibilidad.Location = new System.Drawing.Point(176, 224);
+            this.buttonBajaVisibilidad.Location = new System.Drawing.Point(178, 230);
             this.buttonBajaVisibilidad.Name = "buttonBajaVisibilidad";
-            this.buttonBajaVisibilidad.Size = new System.Drawing.Size(115, 32);
+            this.buttonBajaVisibilidad.Size = new System.Drawing.Size(119, 31);
             this.buttonBajaVisibilidad.TabIndex = 12;
             this.buttonBajaVisibilidad.Text = "Baja Visibilidad Publicacion";
             this.buttonBajaVisibilidad.UseVisualStyleBackColor = true;
+            this.buttonBajaVisibilidad.Visible = false;
+            this.buttonBajaVisibilidad.Click += new System.EventHandler(this.buttonBajaVisibilidad_Click);
             // 
             // buttonDeshabilitarRol
             // 
-            this.buttonDeshabilitarRol.Location = new System.Drawing.Point(176, 300);
+            this.buttonDeshabilitarRol.Location = new System.Drawing.Point(178, 306);
             this.buttonDeshabilitarRol.Name = "buttonDeshabilitarRol";
-            this.buttonDeshabilitarRol.Size = new System.Drawing.Size(115, 32);
+            this.buttonDeshabilitarRol.Size = new System.Drawing.Size(119, 31);
             this.buttonDeshabilitarRol.TabIndex = 13;
             this.buttonDeshabilitarRol.Text = "Deshabilitar Rol";
             this.buttonDeshabilitarRol.UseVisualStyleBackColor = true;
+            this.buttonDeshabilitarRol.Visible = false;
+            this.buttonDeshabilitarRol.Click += new System.EventHandler(this.buttonDeshabilitarRol_Click);
             // 
             // buttonHabilitarRol
             // 
-            this.buttonHabilitarRol.Location = new System.Drawing.Point(176, 262);
+            this.buttonHabilitarRol.Location = new System.Drawing.Point(178, 268);
             this.buttonHabilitarRol.Name = "buttonHabilitarRol";
-            this.buttonHabilitarRol.Size = new System.Drawing.Size(115, 32);
+            this.buttonHabilitarRol.Size = new System.Drawing.Size(119, 31);
             this.buttonHabilitarRol.TabIndex = 14;
             this.buttonHabilitarRol.Text = "Habilitar Rol";
             this.buttonHabilitarRol.UseVisualStyleBackColor = true;
+            this.buttonHabilitarRol.Visible = false;
+            this.buttonHabilitarRol.Click += new System.EventHandler(this.buttonHabilitarRol_Click);
             // 
             // buttonBloquearUsuario
             // 
-            this.buttonBloquearUsuario.Location = new System.Drawing.Point(16, 287);
+            this.buttonBloquearUsuario.Location = new System.Drawing.Point(18, 293);
             this.buttonBloquearUsuario.Name = "buttonBloquearUsuario";
-            this.buttonBloquearUsuario.Size = new System.Drawing.Size(115, 32);
+            this.buttonBloquearUsuario.Size = new System.Drawing.Size(119, 31);
             this.buttonBloquearUsuario.TabIndex = 15;
             this.buttonBloquearUsuario.Text = "Bloquer Usuario";
             this.buttonBloquearUsuario.UseVisualStyleBackColor = true;
+            this.buttonBloquearUsuario.Visible = false;
+            this.buttonBloquearUsuario.Click += new System.EventHandler(this.buttonBloquearUsuario_Click);
             // 
             // FormModificaciones
             // 

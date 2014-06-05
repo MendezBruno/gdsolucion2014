@@ -93,6 +93,7 @@
             this.linkLabelRegistrarse.TabIndex = 5;
             this.linkLabelRegistrarse.TabStop = true;
             this.linkLabelRegistrarse.Text = "Registrarse!";
+            this.linkLabelRegistrarse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistrarse_LinkClicked);
             // 
             // labelUsuarioInexistente
             // 

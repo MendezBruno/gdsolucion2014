@@ -102,11 +102,23 @@
     <Compile Include="Abm Rubro\FormAbmRubro.Designer.cs">
       <DependentUpon>FormAbmRubro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Visibilidad\Form1.cs">
+    <Compile Include="Abm Visibilidad\FormAltaVisibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Visibilidad\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Visibilidad\FormAltaVisibilidad.Designer.cs">
+      <DependentUpon>FormAltaVisibilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Visibilidad\FormBajaVisibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Visibilidad\FormBajaVisibilidad.Designer.cs">
+      <DependentUpon>FormBajaVisibilidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Visibilidad\FormModificacionVisibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Visibilidad\FormModificacionVisibilidad.Designer.cs">
+      <DependentUpon>FormModificacionVisibilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Calificar Vendedor\Form1.cs">
       <SubType>Form</SubType>
@@ -181,6 +193,7 @@
     <Compile Include="Modelo\Compra.cs" />
     <Compile Include="Modelo\Datos\SqlAbmLogin.cs" />
     <Compile Include="Modelo\Datos\SqlAbmRol.cs" />
+    <Compile Include="Modelo\Datos\SqlAmbVisibilidad.cs" />
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
     <Compile Include="Modelo\Datos\SqlRol.cs" />
@@ -229,6 +242,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\FormModificacionRol.resx">
       <DependentUpon>FormModificacionRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Visibilidad\FormAltaVisibilidad.resx">
+      <DependentUpon>FormAltaVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Visibilidad\FormModificacionVisibilidad.resx">
+      <DependentUpon>FormModificacionVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormModificaciones.resx">
       <DependentUpon>FormModificaciones.cs</DependentUpon>
