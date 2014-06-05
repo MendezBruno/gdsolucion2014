@@ -22,6 +22,7 @@ namespace FrbaCommerce.Modelo
         public SqlEmpresa sqlEmpresa = new SqlEmpresa();
         public SqlRol sqlRol = new SqlRol();
         public SqlUsuario sqlUsuario = new SqlUsuario();
+        public SqlAmbVisibilidad sqlAbmVisibilidad = new SqlAmbVisibilidad();
 
         public SistemManager()
         {

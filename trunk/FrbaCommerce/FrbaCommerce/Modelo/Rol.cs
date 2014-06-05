@@ -58,6 +58,11 @@ namespace Sistema {
         {
             return funcionalidades.Contains(funcion);
         }
+
+        internal List<string> getListaFuncionalidades()
+        {
+            return funcionalidades;
+        }
     }//end Rol
 
 }//end namespace Sistema

@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Modelo;
 using Sistema;
+using FrbaCommerce.ABM_Rol;
+using FrbaCommerce.Abm_Cliente;
+using FrbaCommerce.Abm_Visibilidad;
 
 namespace FrbaCommerce
 {
@@ -20,6 +23,15 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.user = user;
+            deshabilitarBotonesSegunFuncionalidadRol(user.RolAsignado.getListaFuncionalidades());
+        }
+
+        private void deshabilitarBotonesSegunFuncionalidadRol(List<string> funcionalidades)
+        {
+            foreach (Button boton in this.Controls)
+            {
+                if(funcionalidades.Contains(boton.Name)) boton.Visible = true;
+            }
         }
 
         private void buttonModificarEmpresa_Click(object sender, EventArgs e)
@@ -29,7 +41,109 @@ namespace FrbaCommerce
 
         private void buttonModificarRol_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager);
+            formModificacionRol.ShowDialog();
+            this.Show();
+        }
 
+        private void buttonCrearCliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAbmClienteAlta formClienteAlta = new FormAbmClienteAlta(cManager, false);
+            formClienteAlta.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonHabilitarRol_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDeshabilitarRol_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonBajaVisibilidad_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormModificacionVisibilidad formModificacionVisibilidad = new FormModificacionVisibilidad(cManager);
+            formModificacionVisibilidad.Text = "Baja";
+            formModificacionVisibilidad.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonModificarVisibilidad_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormModificacionVisibilidad formModificacionVisibilidad = new FormModificacionVisibilidad(cManager);
+            formModificacionVisibilidad.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonBajaRol_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager);
+            formModificacionRol.Text = "Baja";
+            formModificacionRol.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonDesbloquearUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonAltaVisibilidad_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAltaVisibilidad formAltaVisibilidad = new FormAltaVisibilidad(cManager);
+            formAltaVisibilidad.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonBajaEmpresa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCrearEmpresa_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonBloquearUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonBajaCliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAbmModificacionCliente formModificacionCliente = new FormAbmModificacionCliente(cManager);
+            formModificacionCliente.Text = "Baja";
+            formModificacionCliente.ShowDialog();
+            this.Show();
+        }
+
+        
+
+        private void buttonModificarCliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAbmModificacionCliente formModificacionCliente = new FormAbmModificacionCliente(cManager);
+            formModificacionCliente.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonCrearRol_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAltaRol formAltaRol = new FormAltaRol(cManager);
+            formAltaRol.ShowDialog();
+            this.Show();
         }
     }
 }

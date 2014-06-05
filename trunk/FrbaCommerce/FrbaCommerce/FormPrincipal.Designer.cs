@@ -65,6 +65,7 @@
             this.buttonModificaciones.TabIndex = 2;
             this.buttonModificaciones.Text = "Modificaciones";
             this.buttonModificaciones.UseVisualStyleBackColor = true;
+            this.buttonModificaciones.Click += new System.EventHandler(this.buttonModificaciones_Click);
             // 
             // buttonPublicaciones
             // 
