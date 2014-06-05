@@ -86,14 +86,14 @@ namespace FrbaCommerce.Modelo
         }
 
 
-        public void adaptarTablaAlComando(SqlDataAdapter adapComando, DataGridView dataGridViewFR, bool filaSeleccion)
+        public void adaptarTablaAlComando(SqlDataAdapter adapComando, DataGridView dataGridViewFR, bool filaSeleccion,int cantidad_filas)
         {
             DataTable tabla = new DataTable();
             adapComando.Fill(tabla);
             dataGridViewFR.DataSource = tabla;
             adapComando.Update(tabla);
             dataGridViewFR.Columns[0].Visible = true;
-            dataGridViewFR.Columns[0].DisplayIndex = 1;
+            dataGridViewFR.Columns[0].DisplayIndex = cantidad_filas;
             adapComando.Update(tabla);
         }
 

@@ -32,13 +32,13 @@
             this.labelMail = new System.Windows.Forms.Label();
             this.textBoxCuit = new System.Windows.Forms.TextBox();
             this.textBoxRazonSocial = new System.Windows.Forms.TextBox();
-            this.dataGridViewRolFuncion = new System.Windows.Forms.DataGridView();
+            this.dataGridViewEmpresa = new System.Windows.Forms.DataGridView();
             this.SeleccionarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRolFuncion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxMail
@@ -71,15 +71,15 @@
             this.textBoxRazonSocial.Size = new System.Drawing.Size(259, 20);
             this.textBoxRazonSocial.TabIndex = 17;
             // 
-            // dataGridViewRolFuncion
+            // dataGridViewEmpresa
             // 
-            this.dataGridViewRolFuncion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRolFuncion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SeleccionarColumn});
-            this.dataGridViewRolFuncion.Location = new System.Drawing.Point(23, 182);
-            this.dataGridViewRolFuncion.Name = "dataGridViewRolFuncion";
-            this.dataGridViewRolFuncion.Size = new System.Drawing.Size(473, 230);
-            this.dataGridViewRolFuncion.TabIndex = 16;
+            this.dataGridViewEmpresa.Location = new System.Drawing.Point(23, 182);
+            this.dataGridViewEmpresa.Name = "dataGridViewEmpresa";
+            this.dataGridViewEmpresa.Size = new System.Drawing.Size(473, 230);
+            this.dataGridViewEmpresa.TabIndex = 16;
             // 
             // SeleccionarColumn
             // 
@@ -97,6 +97,7 @@
             this.buttonBuscar.TabIndex = 15;
             this.buttonBuscar.Text = "Buscar";
             this.buttonBuscar.UseVisualStyleBackColor = true;
+            this.buttonBuscar.Click += new System.EventHandler(this.buttonBuscar_Click);
             // 
             // buttonLimpiar
             // 
@@ -134,14 +135,14 @@
             this.Controls.Add(this.labelMail);
             this.Controls.Add(this.textBoxCuit);
             this.Controls.Add(this.textBoxRazonSocial);
-            this.Controls.Add(this.dataGridViewRolFuncion);
+            this.Controls.Add(this.dataGridViewEmpresa);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormModificacionEmpresa";
             this.Text = "Modificacion Empresa";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRolFuncion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,7 +154,7 @@
         private System.Windows.Forms.Label labelMail;
         private System.Windows.Forms.TextBox textBoxCuit;
         private System.Windows.Forms.TextBox textBoxRazonSocial;
-        private System.Windows.Forms.DataGridView dataGridViewRolFuncion;
+        private System.Windows.Forms.DataGridView dataGridViewEmpresa;
         private System.Windows.Forms.DataGridViewButtonColumn SeleccionarColumn;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.Button buttonLimpiar;
