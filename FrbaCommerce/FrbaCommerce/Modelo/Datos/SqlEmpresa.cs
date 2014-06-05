@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
+using System.Data;
 using System.Windows.Forms;
+
 
 namespace FrbaCommerce.Modelo.Datos
 {
@@ -12,17 +15,38 @@ namespace FrbaCommerce.Modelo.Datos
         {
             throw new NotImplementedException();
         }
+
+        internal void darAlta(SistemManager cManager, string cuit, string razon_social, string mail, string telefono, string dom_calle, string nro_calle, string depto, string localidad, string codPostal, string ciudad, string fecCreacion, string piso)
+        {
+
+            SqlCommand Cmd;
+
+            String Comando = "INSERT INTO Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Esta_Habilitada) VALUES ('" + razon_social + "','" + mail + "'," + telefono + ",'" + dom_calle + "','" + nro_calle + ",'" + piso + ",'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','SI'";
+
+            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+
+        }
+
+        internal void BuscarEmpresa(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
+        {
+
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail='" + cuit + "',Empresa_Cuit='%" + cuit + "%'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,3);
+            
+            
+        }
+
+        private void adaptarTablaAlComando(SqlDataAdapter adapComando, DataGridView dataGridViewFR, bool filaSeleccion)
+        {
+            DataTable tabla = new DataTable();
+            adapComando.Fill(tabla);
+            dataGridViewFR.DataSource = tabla;
+            adapComando.Update(tabla);
+            dataGridViewFR.Columns[0].Visible = true;
+            dataGridViewFR.Columns[0].DisplayIndex = 3;
+            adapComando.Update(tabla);
+        }
         /*
-        internal void darAlta(SistemManager cManager, string nombre, string ape, string tipo, string numero, string tel, string mail, string dir, string nPiso, string depto, string localidad, string codPostal, string ciudad, string fecNac)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni, string mail, System.Windows.Forms.DataGridView dataGridView)
-        {
-            throw new NotImplementedException();
-        }
-
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formAltaCliente, string IDCliente)
         {
             //pasar a numero y cargar cliente

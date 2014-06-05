@@ -13,7 +13,7 @@ namespace FrbaCommerce.Modelo.Datos
         public Usuario ObtenerUsuario(string usuario, SistemManager cManager,Usuario user)
         {
             user = new Usuario();
-            SqlCommand cmd = new SqlCommand("SELECT Usuario_Nombre FROM Usuario WHERE ", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT Usuario_Nombre FROM Usuario WHERE Usuario_Nombre=' " + usuario+ "'", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
 
             if (dr.Read())
@@ -35,6 +35,7 @@ namespace FrbaCommerce.Modelo.Datos
                 user.setPassword(dr["Usuario_Contraseña"].ToString());                        
                 
             }
+            dr.Close();
 
             return user;
         }
