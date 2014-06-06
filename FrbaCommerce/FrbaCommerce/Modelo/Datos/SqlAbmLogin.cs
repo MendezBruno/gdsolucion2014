@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using Sistema;
+using System.Windows.Forms;
 
 namespace FrbaCommerce.Modelo.Datos
 {
@@ -12,33 +13,53 @@ namespace FrbaCommerce.Modelo.Datos
 
         public Usuario ObtenerUsuario(string usuario, SistemManager cManager,Usuario user)
         {
-            user = new Usuario();
-            SqlCommand cmd = new SqlCommand("SELECT Usuario_Nombre FROM Usuario WHERE Usuario_Nombre=' " + usuario+ "'", cManager.conexion.conn);
+            
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Usuario WHERE Usuario_Nombre='"+usuario+"'", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
 
+            //dr["Usuario_Cliente_ID"].ToString()==null && dr["Usuario_Empresa_ID"].ToString().null
+            
             if (dr.Read())
             {
-              
-                
-                if (dr["Usuario_Cliente_ID"]==null)
+                if (dr.IsDBNull(3) && dr.IsDBNull(4))
                 {
-                //user.setIdUsuario(Convert.ToInt32(dr["Usuario_Empresa_ID"]));
-                cManager.sqlEmpresa.ObtenerEmpresa(user,cManager);
+                    user.habilitado = true;
+                    MessageBox.Show("ingresando como Administrador");
+                    
+                    //user.setWithTipoAdministrador
                 }
                 else
                 {
-                //user.setIdUsuario(Convert.ToInt32(dr["Usuario_Cliente_ID"]));
-                cManager.sqlCliente.ObtenerCliente(user, cManager);
+                    if (dr["Usuario_Cliente_ID"] == null)
+                    {
+                        user.usuarioId=Convert.ToInt32(dr["Usuario_Empresa_ID"]);
+                        cManager.sqlEmpresa.ObtenerEmpresa(user, cManager);
+                    }
+                    if (dr["Usuario_Empresa_ID"] == null)
+                    {
+                        user.usuarioId=Convert.ToInt32(dr["Usuario_Cliente_ID"]);
+                        cManager.sqlCliente.ObtenerCliente(user, cManager);
+                    }
                 }
-                cManager.sqlRol.ObtenerRol(user, cManager);
+                user.RolAsignado.idRol = Convert.ToInt32(dr["Usuario_Rol_ID"]);
+               
                 user.setUsuario(dr["Usuario_Nombre"].ToString());
-                user.setPassword(dr["Usuario_Contraseña"].ToString());                        
+
+                if (dr["Usuario_Contraseña"] == null) 
+                {
+
+                    FormAgregarContraseña agregarContraseña = new FormAgregarContraseña(cManager,user);
+                    agregarContraseña.ShowDialog();
+                    agregarContraseña.Close();
+                }
+                else user.setPassword(dr["Usuario_Contraseña"].ToString());                        
                 
             }
             dr.Close();
-
+            cManager.sqlRol.ObtenerRol(user, cManager);
             return user;
         }
+               
 
         /*
         internal void cargarUsuario(Usuario user, SistemManager cManager)
@@ -50,6 +71,17 @@ namespace FrbaCommerce.Modelo.Datos
             
         }
          * */
+
+        internal void agregarContraseñaPorPrimerIngreso(SistemManager cManager,string contraseña ,string usuario)
+        {
+            SqlCommand Cmd;
+
+            String Comando = "UPDATE Usuario SET Usuario_Contraseña='" + contraseña + "' WHERE Usuario_Nombre='" + usuario + "'";
+
+            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+            Cmd.ExecuteNonQuery();
+            
+        }
     }
 }
 
