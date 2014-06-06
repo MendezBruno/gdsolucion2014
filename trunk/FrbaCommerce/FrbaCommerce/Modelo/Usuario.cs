@@ -13,18 +13,17 @@ using Sistema;
 namespace Sistema {
 	public class Usuario {
 
+        public int usuarioId;
         private string Username;
 		private string Password;
 		public Rol RolAsignado;
-		public string Tipo;
-		public long numero;
 		public bool habilitado;
 		public TipoUsuario tipoUsuario;
 	
         //public Rol m_Rol;
 
 		public Usuario(){
-
+            this.RolAsignado = new Rol();
 		}
 
 		~Usuario(){

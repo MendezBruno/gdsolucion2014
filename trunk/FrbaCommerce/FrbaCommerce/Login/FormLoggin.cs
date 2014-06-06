@@ -27,10 +27,12 @@ namespace FrbaCommerce.Login
             //cManager.sqlAbmLogin.cargarUsuario(user, cManager); 
             Usuario user = new Usuario();
             cManager.traerUsuario(this.textBoxUsuario.Text, user);
+
+           
             
-            if (user != null && user.habilitado)
+            if (user != null && user.habilitado )  //aca agrego si quiero si quiero chequear el rol
             {
-                bool res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxUsuario.Text);
+                bool res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxContraseña.Text);
 
                 if (res)
                 {

@@ -24,12 +24,15 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.user = user;
-            cargaManuSegunRol(user.RolAsignado, this);
+            cargaManuSegunRol(user.RolAsignado);
         }
 
-        private void cargaManuSegunRol(Rol rol, FormPrincipal formPrincipal)
+        private void cargaManuSegunRol(Rol rol)
         {
-            throw new NotImplementedException();
+            if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.BotonOfertar.Visible = false; }
+            if (!rol.getListaFuncionalidades().Contains("Vender")) this.buttonPublicaciones.Visible = false;
+         //   if (!rol.getListaFuncionalidades().Contains("Publicar")) this.buttonModificaciones.Visible = false;
+         //   if (!rol.getListaFuncionalidades().Contains("Vender")) ;
         }
 
         /*

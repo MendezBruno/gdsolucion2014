@@ -13,6 +13,7 @@ using System.Collections.Generic;
 namespace Sistema {
 	public class Rol {
 
+        public int idRol;
 		private string nombre;
 		private List<string> funcionalidades= new List<string>();
         private bool habilitado;

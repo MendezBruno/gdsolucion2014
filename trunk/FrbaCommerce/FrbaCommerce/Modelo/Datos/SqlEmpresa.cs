@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using Sistema;
 
 
 namespace FrbaCommerce.Modelo.Datos
@@ -13,7 +14,22 @@ namespace FrbaCommerce.Modelo.Datos
     {
         internal void ObtenerEmpresa(Sistema.Usuario user, SistemManager cManager)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa WHERE Empresa_ID=" + user.RolAsignado.idRol.ToString()); 
+                                          //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            user.tipoUsuario = new Empresa();
+            //  adapComando.SelectCommand.ExecuteScalar();
+            if (dr.Read())
+            {
+                //user.tipoUsuario.  (dr["Funcionalidad_Tipo"].ToString());
+            }
+            dr.NextResult();
+            dr.Read();
+            user.RolAsignado.setNombre(dr["Rol_Nombre"].ToString());
+            if (dr["Esta_Habilitada"].ToString().Equals("SI")) user.RolAsignado.setHabilitado(true);
+            else user.RolAsignado.setHabilitado(true);
+            dr.Close();
         }
 
         internal void darAlta(SistemManager cManager, string cuit, string razon_social, string mail, string telefono, string dom_calle, string nro_calle, string depto, string localidad, string codPostal, string ciudad, string fecCreacion, string piso)

@@ -126,6 +126,7 @@
             this.labelUsuarioDeshabilitado.Size = new System.Drawing.Size(233, 13);
             this.labelUsuarioDeshabilitado.TabIndex = 8;
             this.labelUsuarioDeshabilitado.Text = "usuario deshabilitado comunicarse con sistemas";
+            this.labelUsuarioDeshabilitado.Visible = false;
             // 
             // FormLoggin
             // 

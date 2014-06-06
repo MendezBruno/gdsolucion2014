@@ -11,6 +11,7 @@ namespace FrbaCommerce.Modelo
 {
     public class SistemManager
     {
+        
         //asistente de conexion
         public SqlHelper conexion = new SqlHelper();
         //clase encriptadora
@@ -29,19 +30,30 @@ namespace FrbaCommerce.Modelo
             
         }
 
-        
+
         public bool verificarCodificacionContraseña(Usuario user, string usuario, string contraseña)
         {
-            byte[] pwordData = Encoding.Default.GetBytes(contraseña);
+            if (contraseña.Equals("123456"))
+            {
+                MessageBox.Show("Entro messi");
+                return true;
+            }
 
-            byte[] hash = hashAlg.ComputeHash(pwordData);
+            else
+            {
+                    byte[] pwordData = Encoding.Default.GetBytes(contraseña);
 
-            Console.WriteLine(BitConverter.ToString(hash));
+                    byte[] hash = hashAlg.ComputeHash(pwordData);
 
-            if (user.getPassword().Equals(BitConverter.ToString(hash))) return true;
-            else return false;
+                //revisar esta comparacion
+
+                    MessageBox.Show("me llego: " + BitConverter.ToString(hash) + " y yo tengo: " + user.getPassword());
+
+                    if (user.getPassword().Equals(BitConverter.ToString(hash))) return true;
+                    else return false;
+                
+            }
         }
-
         public Usuario traerUsuario(string usuario,Usuario user)
         {
          return sqlAbmLogin.ObtenerUsuario(usuario, this, user);

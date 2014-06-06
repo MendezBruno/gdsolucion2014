@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonComprar = new System.Windows.Forms.Button();
+            this.BotonComprar = new System.Windows.Forms.Button();
             this.buttonCrearUsuario = new System.Windows.Forms.Button();
             this.buttonModificaciones = new System.Windows.Forms.Button();
             this.buttonPublicaciones = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BotonOfertar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.buttonCalificar = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // buttonComprar
+            // BotonComprar
             // 
-            this.buttonComprar.Location = new System.Drawing.Point(12, 23);
-            this.buttonComprar.Name = "buttonComprar";
-            this.buttonComprar.Size = new System.Drawing.Size(137, 42);
-            this.buttonComprar.TabIndex = 0;
-            this.buttonComprar.Text = "Comprar";
-            this.buttonComprar.UseVisualStyleBackColor = true;
+            this.BotonComprar.Location = new System.Drawing.Point(12, 23);
+            this.BotonComprar.Name = "BotonComprar";
+            this.BotonComprar.Size = new System.Drawing.Size(137, 42);
+            this.BotonComprar.TabIndex = 0;
+            this.BotonComprar.Text = "Comprar";
+            this.BotonComprar.UseVisualStyleBackColor = true;
             // 
             // buttonCrearUsuario
             // 
@@ -76,14 +76,14 @@
             this.buttonPublicaciones.Text = "Publicaciones";
             this.buttonPublicaciones.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BotonOfertar
             // 
-            this.button1.Location = new System.Drawing.Point(12, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 44);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Ofertar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BotonOfertar.Location = new System.Drawing.Point(12, 123);
+            this.BotonOfertar.Name = "BotonOfertar";
+            this.BotonOfertar.Size = new System.Drawing.Size(137, 44);
+            this.BotonOfertar.TabIndex = 4;
+            this.BotonOfertar.Text = "Ofertar";
+            this.BotonOfertar.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -120,11 +120,11 @@
             this.Controls.Add(this.buttonHistorial);
             this.Controls.Add(this.buttonCalificar);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BotonOfertar);
             this.Controls.Add(this.buttonPublicaciones);
             this.Controls.Add(this.buttonModificaciones);
             this.Controls.Add(this.buttonCrearUsuario);
-            this.Controls.Add(this.buttonComprar);
+            this.Controls.Add(this.BotonComprar);
             this.Name = "FormPrincipal";
             this.Text = "Cuadro de Opciones Principales";
             this.ResumeLayout(false);
@@ -133,11 +133,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonComprar;
+        private System.Windows.Forms.Button BotonComprar;
         private System.Windows.Forms.Button buttonCrearUsuario;
         private System.Windows.Forms.Button buttonModificaciones;
         private System.Windows.Forms.Button buttonPublicaciones;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BotonOfertar;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonCalificar;
         private System.Windows.Forms.Button buttonHistorial;
