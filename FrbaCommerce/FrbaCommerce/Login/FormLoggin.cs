@@ -26,7 +26,8 @@ namespace FrbaCommerce.Login
         {
             //cManager.sqlAbmLogin.cargarUsuario(user, cManager); 
             Usuario user = new Usuario();
-            cManager.traerUsuario(this.textBoxUsuario.Text, user);
+            FormPrincipal formPrincipal;
+            cManager.sqlAbmLogin.ObtenerUsuario(this.textBoxUsuario.Text,cManager ,user);
 
            
             
@@ -37,9 +38,32 @@ namespace FrbaCommerce.Login
                 if (res)
                 {
                     this.Hide();
-                    FormPrincipal formPrincipal = new FormPrincipal(cManager, user);
-                    formPrincipal.ShowDialog();
-                    this.Show();
+                    switch (user.tipoUsuario)
+                    {
+                        case "Cliente":
+                            Cliente cliente = new Cliente();
+                            cManager.sqlCliente.ObtenerCliente(cliente,user, cManager);
+                            formPrincipal = new FormPrincipal(cManager, cliente);
+                            formPrincipal.ShowDialog();
+                            this.Show();
+                            break;
+                        case "Administrador":
+                            Administrador administrador = new Administrador();
+                            cManager.ObtenerAdministrador(user, administrador);
+                            formPrincipal = new FormPrincipal(cManager, administrador);
+                            formPrincipal.ShowDialog();
+                            this.Show();
+                            break;
+                        case "Empresa":
+                            Empresa empresa = new Empresa();
+                            cManager.sqlEmpresa.ObtenerEmpresa(user,empresa, cManager);
+                            formPrincipal = new FormPrincipal(cManager, empresa);
+                            formPrincipal.ShowDialog();
+                            this.Show();
+                            break;
+                    }
+
+                    
                 }
                 else
                 {

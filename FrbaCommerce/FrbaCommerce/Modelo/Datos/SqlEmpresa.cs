@@ -12,23 +12,40 @@ namespace FrbaCommerce.Modelo.Datos
 {
     public class SqlEmpresa
     {
-        internal void ObtenerEmpresa(Sistema.Usuario user, SistemManager cManager)
+        internal void ObtenerEmpresa(Sistema.Usuario user,Empresa empresa, SistemManager cManager)
         {
             SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa WHERE Empresa_ID=" + user.RolAsignado.idRol.ToString()); 
                                           //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
-            user.tipoUsuario = new Empresa();
+            
+            empresa.usuarioId = user.usuarioId;
+            empresa.RolAsignado = user.RolAsignado;
+            empresa.tipoUsuario = user.tipoUsuario;
+            empresa.setUsuario(user.getUsuario());
+            empresa.setPassword(user.getPassword());
+            
+            //user.tipoUsuario.
             //  adapComando.SelectCommand.ExecuteScalar();
             if (dr.Read())
             {
-                //user.tipoUsuario.  (dr["Funcionalidad_Tipo"].ToString());
+              empresa.Razonsocial =(dr["Empresa_Razon_Social"].ToString());
+              empresa.Mail = (dr["Empresa_Mail"].ToString());
+              if(!dr.IsDBNull(dr.GetOrdinal("Empresa_Telefono")))empresa.Telefono = (Convert.ToInt64(dr["Empresa_Telefono"]));
+              empresa.Direccion = (dr["Empresa_Dom_Calle"].ToString());
+              if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Nro_Calle"))) empresa.numeroCalle = (Convert.ToInt32(dr["Empresa_Telefono"]));
+              if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Piso"))) empresa.NroPiso = (Convert.ToInt32(dr["Empresa_Piso"]));
+              empresa.Depto = (Convert.ToChar(dr["Empresa_Depto"]));
+              empresa.localidad = (dr["Empresa_Localidad"].ToString());
+              if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Codigo_Postal"))) empresa.codigoPostal = (Convert.ToInt32((dr["Empresa_Codigo_Postal"])));
+              empresa.ciudad = (dr["Empresa_Ciudad"].ToString());
+              empresa.CUIT = (dr["Empresa_CUIT"].ToString());
+              empresa.fechaDeCreacion = dr.GetDateTime(dr.GetOrdinal("Empresa_Telefono"));
+              //empresa.nombreDeContacto = (dr["Empresa_CUIT"].ToString());      
+              if (dr["Empresa_Esta_Habilitada"].ToString().Equals("SI")) empresa.habilitado = true; else empresa.habilitado = false; 
+
             }
-            dr.NextResult();
-            dr.Read();
-            user.RolAsignado.setNombre(dr["Rol_Nombre"].ToString());
-            if (dr["Esta_Habilitada"].ToString().Equals("SI")) user.RolAsignado.setHabilitado(true);
-            else user.RolAsignado.setHabilitado(true);
+            
             dr.Close();
         }
 
@@ -88,5 +105,7 @@ namespace FrbaCommerce.Modelo.Datos
             throw new NotImplementedException();
         }
         */
+
+        
     }
 }

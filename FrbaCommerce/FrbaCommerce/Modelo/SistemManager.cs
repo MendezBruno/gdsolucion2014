@@ -54,19 +54,26 @@ namespace FrbaCommerce.Modelo
                 
             }
         }
-        public Usuario traerUsuario(string usuario,Usuario user)
-        {
-         return sqlAbmLogin.ObtenerUsuario(usuario, this, user);
-        }
+        
 
 
         internal void actulizarRol(FrbaCommerce.ABM_Rol.FormAltaRol formAltaRol, Rol rolActual)
         {
             throw new NotImplementedException();
         }
-        
 
-        
+
+
+
+        internal Usuario TipoUsuarioIngresante(Usuario user)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void ObtenerAdministrador(Usuario user, Administrador administrador)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

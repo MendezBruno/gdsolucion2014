@@ -24,6 +24,7 @@ namespace FrbaCommerce.Modelo.Datos
                 if (dr.IsDBNull(3) && dr.IsDBNull(4))
                 {
                     user.habilitado = true;
+                    user.tipoUsuario = "Administrador";
                     MessageBox.Show("ingresando como Administrador");
                     
                     //user.setWithTipoAdministrador
@@ -33,12 +34,14 @@ namespace FrbaCommerce.Modelo.Datos
                     if (dr["Usuario_Cliente_ID"] == null)
                     {
                         user.usuarioId=Convert.ToInt32(dr["Usuario_Empresa_ID"]);
-                        cManager.sqlEmpresa.ObtenerEmpresa(user, cManager);
+                        //cManager.sqlEmpresa.ObtenerEmpresa(user, cManager);
+                        user.tipoUsuario = "Cliente";
                     }
                     if (dr["Usuario_Empresa_ID"] == null)
                     {
                         user.usuarioId=Convert.ToInt32(dr["Usuario_Cliente_ID"]);
-                        cManager.sqlCliente.ObtenerCliente(user, cManager);
+                        //cManager.sqlCliente.ObtenerCliente(user, cManager);
+                        user.tipoUsuario = "Empresa";
                     }
                 }
                 user.RolAsignado.idRol = Convert.ToInt32(dr["Usuario_Rol_ID"]);
