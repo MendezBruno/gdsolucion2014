@@ -7,24 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Modelo;
+using Sistema;
 
 namespace FrbaCommerce.Abm_Empresa
 {
     public partial class FormAbmEmpresaAlta : Form
     {
         SistemManager cManager;
-        bool alta;
 
-        bool modificacion;
+        bool esEmpresa, modificacion;
+
+        Empresa empresa;
 
         string user, pass;
 
-        public FormAbmEmpresaAlta(SistemManager cManager)
+        public FormAbmEmpresaAlta(SistemManager cManager,bool modificacion)
         
         {
 
             InitializeComponent();
             this.cManager = cManager;
+            empresa = new Empresa();
+            this.modificacion = modificacion;
 
         }
 
@@ -33,7 +37,6 @@ namespace FrbaCommerce.Abm_Empresa
         {
             InitializeComponent();
             this.cManager = cManager;
-            this.alta = alta;
             this.user = user;
             this.pass = pass;
         }
@@ -42,6 +45,8 @@ namespace FrbaCommerce.Abm_Empresa
         
         {
 
+            if(esEmpresa==true)
+            
             cManager.sqlEmpresa.darAlta(cManager, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, depto.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text);
             
             

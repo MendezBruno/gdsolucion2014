@@ -31,7 +31,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Cliente WHERE Cliente_Nombre LIKE %"+nombre+"% AND Cliente_Apellido LIKE %"+apellido+"% AND Cliente_DNI LIKE %"+dni+"% AND Cliente_Mail LIKE %"+mail+"%", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Cliente WHERE Cliente_Nombre LIKE '%"+nombre+"%' AND Cliente_Apellido LIKE '%"+apellido+"%' AND Cliente_DNI LIKE '%"+dni+"%' AND Cliente_Mail LIKE '%"+mail+"%'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,4);
         }
 
