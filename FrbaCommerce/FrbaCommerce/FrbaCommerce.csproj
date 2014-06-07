@@ -144,6 +144,12 @@
     <Compile Include="Facturar Publicaciones\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAgregarContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarContraseña.Designer.cs">
+      <DependentUpon>FormAgregarContraseña.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormModificaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Visibilidad\FormModificacionVisibilidad.resx">
       <DependentUpon>FormModificacionVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarContraseña.resx">
+      <DependentUpon>FormAgregarContraseña.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormModificaciones.resx">
       <DependentUpon>FormModificaciones.cs</DependentUpon>
