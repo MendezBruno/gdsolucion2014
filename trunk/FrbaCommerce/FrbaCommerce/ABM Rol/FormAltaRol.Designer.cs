@@ -51,7 +51,6 @@
             this.Baja_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades = new System.Windows.Forms.GroupBox();
             this.Modificar_Estado_Usuario = new System.Windows.Forms.CheckBox();
-            this.Deshabilitar_rol = new System.Windows.Forms.CheckBox();
             this.Habilitar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades.SuspendLayout();
             this.SuspendLayout();
@@ -266,7 +265,6 @@
             // groupBoxFuncionalidades
             // 
             this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Estado_Usuario);
-            this.groupBoxFuncionalidades.Controls.Add(this.Deshabilitar_rol);
             this.groupBoxFuncionalidades.Controls.Add(this.Habilitar_Rol);
             this.groupBoxFuncionalidades.Controls.Add(this.Baja_Rol);
             this.groupBoxFuncionalidades.Controls.Add(this.BoxCrear_Empresa);
@@ -302,24 +300,14 @@
             this.Modificar_Estado_Usuario.Text = "Modificar Estado Usuario";
             this.Modificar_Estado_Usuario.UseVisualStyleBackColor = true;
             // 
-            // Deshabilitar_rol
-            // 
-            this.Deshabilitar_rol.AutoSize = true;
-            this.Deshabilitar_rol.Location = new System.Drawing.Point(2, 219);
-            this.Deshabilitar_rol.Name = "Deshabilitar_rol";
-            this.Deshabilitar_rol.Size = new System.Drawing.Size(100, 17);
-            this.Deshabilitar_rol.TabIndex = 39;
-            this.Deshabilitar_rol.Text = "Deshabilitar Rol";
-            this.Deshabilitar_rol.UseVisualStyleBackColor = true;
-            // 
             // Habilitar_Rol
             // 
             this.Habilitar_Rol.AutoSize = true;
             this.Habilitar_Rol.Location = new System.Drawing.Point(2, 196);
             this.Habilitar_Rol.Name = "Habilitar_Rol";
-            this.Habilitar_Rol.Size = new System.Drawing.Size(83, 17);
+            this.Habilitar_Rol.Size = new System.Drawing.Size(94, 17);
             this.Habilitar_Rol.TabIndex = 38;
-            this.Habilitar_Rol.Text = "Habilitar Rol";
+            this.Habilitar_Rol.Text = "Rol Hablilitado";
             this.Habilitar_Rol.UseVisualStyleBackColor = true;
             // 
             // FormAltaRol
@@ -366,7 +354,6 @@
         public System.Windows.Forms.TextBox textBoxNombreRol;
         public System.Windows.Forms.GroupBox groupBoxFuncionalidades;
         private System.Windows.Forms.CheckBox Modificar_Estado_Usuario;
-        private System.Windows.Forms.CheckBox Deshabilitar_rol;
         private System.Windows.Forms.CheckBox Habilitar_Rol;
     }
 }

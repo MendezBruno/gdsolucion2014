@@ -21,25 +21,34 @@ namespace FrbaCommerce.Modelo.Datos
                 string ComandoInsertar;
                 String ComandoInsert = @"INSERT INTO Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
                 SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-              //  MyCmd.ExecuteScalar();
-               MyCmd.ExecuteNonQuery();
+                MyCmd.ExecuteNonQuery();
 
                 foreach (CheckBox chekBox in funcionalidades)
                 {
                     if (chekBox.Checked)
                     {
-                       // ComandoInsert = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES('" + nombreRol + "','" + chekBox.Name + "')";
-                        ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
-                        MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
-                     //   MyCmd2.ExecuteScalar();
-                        MyCmd2.ExecuteNonQuery();
+                        // ComandoInsert = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES('" + nombreRol + "','" + chekBox.Name + "')";
+                        if (chekBox.Name == "Habilitar_Rol")
+                        {
+                            ComandoInsertar = @"UPDATE Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
+                            MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                            MyCmd2.ExecuteNonQuery();
+                        }
+ 
+                        else
+                        {
+                            ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
+                            MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                            //   MyCmd2.ExecuteScalar();
+                            MyCmd2.ExecuteNonQuery();
+
+                        }
                     }
                 }
                 MessageBox.Show("Rol creado exitosamente");
             }
             catch (SqlException ex)
             {
-                //MessageBox.Show(ex.Number.ToString());
                 switch (ex.Number)
                 {
                     case 8152:
@@ -101,15 +110,43 @@ namespace FrbaCommerce.Modelo.Datos
                     }
                 }
             }
+
             dr.Close();
+
+            cmd = new SqlCommand("Select Esta_Habilitada from Rol WHERE Rol_Nombre='" + nombre+ "'", cManager.conexion.conn);
+            dr = cmd.ExecuteReader();
+            dr.Read();
+            if(dr["Esta_Habilitada"].ToString()=="SI")
+            foreach (CheckBox chekBox in formAltaRol.groupBoxFuncionalidades.Controls)
+                {
+                    if (chekBox.Name.Equals("Habilitar_Rol"))
+                    {
+                        chekBox.Checked = true;
+                    }
+                }
+
+            dr.Close();
+
         }
 
         internal void cargarDatosDeBaja(SistemManager cManager, FrbaCommerce.ABM_Rol.FormBajaRol formBajaRol, string rol)
         {
-            DialogResult confirmarBaja = MessageBox.Show("Desea dar de baja" + rol);
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult confirmarBaja = MessageBox.Show("Desea dar de baja " +rol,"Baja de Rol",buttons);
             if (DialogResult.Yes == confirmarBaja)
             {
                 //Habilitado pasa a ser false con una consulta Sql ACÀ
+                SqlCommand comando;
+                string bajastring="UPDATE Rol SET Esta_Habilitada='NO' WHERE Rol_Nombre='"+rol+"'";
+                comando = new SqlCommand(bajastring, cManager.conexion.conn);
+                comando.ExecuteNonQuery();
+
+                bajastring="UPDATE Usuario SET Usuario_Rol_ID =NULL WHERE Usuario_Rol_ID=(SELECT Rol_ID FROM Rol WHERE Rol_Nombre='"+rol+"')";
+                comando = new SqlCommand(bajastring, cManager.conexion.conn);
+                comando.ExecuteNonQuery();
+
+
                 MessageBox.Show("el rol " + rol + " a sido deshabilitado");
             }
             if (DialogResult.No == confirmarBaja)
@@ -136,10 +173,6 @@ namespace FrbaCommerce.Modelo.Datos
 
             }
 
-
-
-
-
             MyCmd = new SqlCommand(ComandoBorrar, cManager.conexion.conn);
             MyCmd.ExecuteNonQuery();
 
@@ -147,9 +180,18 @@ namespace FrbaCommerce.Modelo.Datos
             {
                 if (chekBox.Checked == true)
                 {
-                    ComandoInsertar = "INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES ((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + p + "'),'" + chekBox.Name.ToString() + "')";
-                    MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
-                    MyCmd.ExecuteNonQuery();
+                    if (chekBox.Name == "Habilitar_Rol")
+                    {
+                        ComandoInsertar = "UPDATE Rol SET Esta_Habilitada='SI' WHERE Rol_Nombre='" + p + "'";
+                        MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                        MyCmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        ComandoInsertar = "INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES ((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + p + "'),'" + chekBox.Name.ToString() + "')";
+                        MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                        MyCmd.ExecuteNonQuery();
+                    }
                 }
 
             }
