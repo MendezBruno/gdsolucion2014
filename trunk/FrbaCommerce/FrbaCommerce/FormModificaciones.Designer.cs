@@ -54,7 +54,6 @@
             this.buttonCrearCliente.TabIndex = 0;
             this.buttonCrearCliente.Text = "Crear Cliente";
             this.buttonCrearCliente.UseVisualStyleBackColor = true;
-            this.buttonCrearCliente.Visible = false;
             this.buttonCrearCliente.Click += new System.EventHandler(this.buttonCrearCliente_Click);
             // 
             // buttonModificarCliente
@@ -65,7 +64,6 @@
             this.buttonModificarCliente.TabIndex = 1;
             this.buttonModificarCliente.Text = "Modificar Cliente";
             this.buttonModificarCliente.UseVisualStyleBackColor = true;
-            this.buttonModificarCliente.Visible = false;
             this.buttonModificarCliente.Click += new System.EventHandler(this.buttonModificarCliente_Click);
             // 
             // buttonModificarEmpresa
@@ -76,7 +74,6 @@
             this.buttonModificarEmpresa.TabIndex = 2;
             this.buttonModificarEmpresa.Text = "Modificar Empresa";
             this.buttonModificarEmpresa.UseVisualStyleBackColor = true;
-            this.buttonModificarEmpresa.Visible = false;
             this.buttonModificarEmpresa.Click += new System.EventHandler(this.buttonModificarEmpresa_Click);
             // 
             // buttonBajaCliente
@@ -87,7 +84,6 @@
             this.buttonBajaCliente.TabIndex = 3;
             this.buttonBajaCliente.Text = "Baja Cliente";
             this.buttonBajaCliente.UseVisualStyleBackColor = true;
-            this.buttonBajaCliente.Visible = false;
             this.buttonBajaCliente.Click += new System.EventHandler(this.buttonBajaCliente_Click);
             // 
             // buttonCrearRol
@@ -98,7 +94,6 @@
             this.buttonCrearRol.TabIndex = 4;
             this.buttonCrearRol.Text = "Crear Rol";
             this.buttonCrearRol.UseVisualStyleBackColor = true;
-            this.buttonCrearRol.Visible = false;
             this.buttonCrearRol.Click += new System.EventHandler(this.buttonCrearRol_Click);
             // 
             // buttonCrearEmpresa
@@ -109,7 +104,6 @@
             this.buttonCrearEmpresa.TabIndex = 5;
             this.buttonCrearEmpresa.Text = "Crear Empresa";
             this.buttonCrearEmpresa.UseVisualStyleBackColor = true;
-            this.buttonCrearEmpresa.Visible = false;
             this.buttonCrearEmpresa.Click += new System.EventHandler(this.buttonCrearEmpresa_Click);
             // 
             // buttonBajaEmpresa
@@ -120,7 +114,6 @@
             this.buttonBajaEmpresa.TabIndex = 6;
             this.buttonBajaEmpresa.Text = "Baja Empresa";
             this.buttonBajaEmpresa.UseVisualStyleBackColor = true;
-            this.buttonBajaEmpresa.Visible = false;
             this.buttonBajaEmpresa.Click += new System.EventHandler(this.buttonBajaEmpresa_Click);
             // 
             // buttonAltaVisibilidad
@@ -131,7 +124,6 @@
             this.buttonAltaVisibilidad.TabIndex = 7;
             this.buttonAltaVisibilidad.Text = "Alta V Publicacion";
             this.buttonAltaVisibilidad.UseVisualStyleBackColor = true;
-            this.buttonAltaVisibilidad.Visible = false;
             this.buttonAltaVisibilidad.Click += new System.EventHandler(this.buttonAltaVisibilidad_Click);
             // 
             // buttonDesbloquearUsuario
@@ -142,7 +134,6 @@
             this.buttonDesbloquearUsuario.TabIndex = 8;
             this.buttonDesbloquearUsuario.Text = "Desbloquear Usuario";
             this.buttonDesbloquearUsuario.UseVisualStyleBackColor = true;
-            this.buttonDesbloquearUsuario.Visible = false;
             this.buttonDesbloquearUsuario.Click += new System.EventHandler(this.buttonDesbloquearUsuario_Click);
             // 
             // buttonBajaRol
@@ -153,7 +144,6 @@
             this.buttonBajaRol.TabIndex = 9;
             this.buttonBajaRol.Text = "Baja Rol";
             this.buttonBajaRol.UseVisualStyleBackColor = true;
-            this.buttonBajaRol.Visible = false;
             this.buttonBajaRol.Click += new System.EventHandler(this.buttonBajaRol_Click);
             // 
             // buttonModificarVisibilidad
@@ -164,7 +154,6 @@
             this.buttonModificarVisibilidad.TabIndex = 10;
             this.buttonModificarVisibilidad.Text = "Modificar Visibilidad Publicacion";
             this.buttonModificarVisibilidad.UseVisualStyleBackColor = true;
-            this.buttonModificarVisibilidad.Visible = false;
             this.buttonModificarVisibilidad.Click += new System.EventHandler(this.buttonModificarVisibilidad_Click);
             // 
             // buttonModificarRol
@@ -175,7 +164,7 @@
             this.buttonModificarRol.TabIndex = 11;
             this.buttonModificarRol.Text = "Modificar Rol";
             this.buttonModificarRol.UseVisualStyleBackColor = true;
-            this.buttonModificarRol.Visible = false;
+            this.buttonModificarRol.Click += new System.EventHandler(this.buttonModificarRol_Click_1);
             // 
             // buttonBajaVisibilidad
             // 
@@ -185,7 +174,6 @@
             this.buttonBajaVisibilidad.TabIndex = 12;
             this.buttonBajaVisibilidad.Text = "Baja Visibilidad Publicacion";
             this.buttonBajaVisibilidad.UseVisualStyleBackColor = true;
-            this.buttonBajaVisibilidad.Visible = false;
             this.buttonBajaVisibilidad.Click += new System.EventHandler(this.buttonBajaVisibilidad_Click);
             // 
             // buttonDeshabilitarRol
@@ -196,7 +184,6 @@
             this.buttonDeshabilitarRol.TabIndex = 13;
             this.buttonDeshabilitarRol.Text = "Deshabilitar Rol";
             this.buttonDeshabilitarRol.UseVisualStyleBackColor = true;
-            this.buttonDeshabilitarRol.Visible = false;
             this.buttonDeshabilitarRol.Click += new System.EventHandler(this.buttonDeshabilitarRol_Click);
             // 
             // buttonHabilitarRol
@@ -207,7 +194,6 @@
             this.buttonHabilitarRol.TabIndex = 14;
             this.buttonHabilitarRol.Text = "Habilitar Rol";
             this.buttonHabilitarRol.UseVisualStyleBackColor = true;
-            this.buttonHabilitarRol.Visible = false;
             this.buttonHabilitarRol.Click += new System.EventHandler(this.buttonHabilitarRol_Click);
             // 
             // buttonBloquearUsuario
@@ -218,7 +204,6 @@
             this.buttonBloquearUsuario.TabIndex = 15;
             this.buttonBloquearUsuario.Text = "Bloquer Usuario";
             this.buttonBloquearUsuario.UseVisualStyleBackColor = true;
-            this.buttonBloquearUsuario.Visible = false;
             this.buttonBloquearUsuario.Click += new System.EventHandler(this.buttonBloquearUsuario_Click);
             // 
             // FormModificaciones

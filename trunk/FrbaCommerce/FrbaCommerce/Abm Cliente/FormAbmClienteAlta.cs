@@ -39,7 +39,7 @@ namespace FrbaCommerce.Abm_Cliente
             if (esCliente)
             {
                 cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxNumero.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxCiudad.Text, textBoxFecNac.Text);
-                cManager.sqlUsuario.darAlta(cManager, user, pass, "Cliente");
+                cManager.sqlUsuario.darAlta(cManager, textBoxNumero.Text, comboBoxTipo.Text);
             }
             else
             {
@@ -47,7 +47,8 @@ namespace FrbaCommerce.Abm_Cliente
                 {
                     MessageBox.Show("esto es de prueba para saber que entre a alta desde administrador");
                     cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxNumero.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxCiudad.Text, textBoxFecNac.Text);
-                    cManager.sqlUsuario.darAlta(cManager, textBoxNombre.Text, "null", "Cliente");
+                    cManager.sqlUsuario.darAlta(cManager, textBoxNumero.Text, comboBoxTipo.Text);
+                    //cManager.sqlUsuario.darAlta(cManager, textBoxNombre.Text, "null");
                 }
                 else cManager.sqlCliente.modificarCliente(cManager, cliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxNumero.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxCiudad.Text, textBoxFecNac.Text);
             }
@@ -69,5 +70,6 @@ namespace FrbaCommerce.Abm_Cliente
             textBoxCiudad.Text="";
             textBoxFecNac.Text = "";
         }
+
     }
 }

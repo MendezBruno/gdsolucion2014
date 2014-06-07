@@ -11,6 +11,7 @@ using Sistema;
 using FrbaCommerce.ABM_Rol;
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Visibilidad;
+using FrbaCommerce.Abm_Empresa;
 
 namespace FrbaCommerce
 {
@@ -36,8 +37,15 @@ namespace FrbaCommerce
 
         private void buttonModificarEmpresa_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            FormModificacionEmpresa fromModificacionEmpresa = new FormModificacionEmpresa(cManager);
+            fromModificacionEmpresa.ShowDialog();
+            
+            this.Show();
         }
+
+     
 
         private void buttonModificarRol_Click(object sender, EventArgs e)
         {
@@ -106,12 +114,20 @@ namespace FrbaCommerce
 
         private void buttonBajaEmpresa_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            FormModificacionEmpresa fromModificacionEmpresa = new FormModificacionEmpresa(cManager);
+            fromModificacionEmpresa.ShowDialog();
+
+            this.Show();
         }
 
         private void buttonCrearEmpresa_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            FormAbmEmpresaAlta formEmpresaAlta = new FormAbmEmpresaAlta(cManager, false);
+            formEmpresaAlta.ShowDialog();
+            this.Show();
         }
 
         private void buttonBloquearUsuario_Click(object sender, EventArgs e)
@@ -144,6 +160,15 @@ namespace FrbaCommerce
             FormAltaRol formAltaRol = new FormAltaRol(cManager);
             formAltaRol.ShowDialog();
             this.Show();
+        }
+
+        private void buttonModificarRol_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager);
+            formModificacionRol.ShowDialog();
+            this.Show();
+
         }
     }
 }
