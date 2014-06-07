@@ -15,8 +15,23 @@ namespace FrbaCommerce.Modelo.Datos
         {
             try
             {
-                String ComandoInsert = @"INSERT INTO Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento,Cliente_Esta_Habilitada) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "'," + calleNum + ",'" + nPiso + "','" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "','SI')";
+                
+                String ComandoInsert = @"INSERT INTO Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento,Cliente_Esta_Habilitada) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "','SI')";
                 SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+                if (calleNum == "")
+                    MyCmd.Parameters.AddWithValue("@callenum", DBNull.Value);
+                else
+                    MyCmd.Parameters.AddWithValue("@callenum", calleNum);
+
+                if (nPiso == "")
+                    MyCmd.Parameters.AddWithValue("@piso", DBNull.Value);
+                else
+                    MyCmd.Parameters.AddWithValue("@piso", nPiso);
+
+  
+
+
+             
              //     MyCmd.ExecuteScalar();
                MyCmd.ExecuteNonQuery();
             }
@@ -28,7 +43,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Cliente WHERE Cliente_Nombre LIKE '%"+nombre+"%' AND Cliente_Apellido LIKE '%"+apellido+"%' AND Cliente_DNI LIKE '%"+dni+"%' AND Cliente_Mail LIKE '%"+mail+"%'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,4);
         }
 
