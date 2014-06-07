@@ -11,21 +11,24 @@
 
 using Sistema;
 using System.Collections.Generic;
+using System;
 namespace Sistema {
-	public class Empresa : TipoUsuario {
+	public class Empresa : Usuario {
 
-		private string Razonsocial;
-		private string Mail;
-		private long Telefono;
-		private string Direccion;
-		private int NroPiso;
-		private char Depto;
-		private string localidad;
-		private int codigoPostal;
-		private string ciudad;
-		private string CUIT;
-		private string nombreDeContacto;
-		private string fechaDeCreacion;
+        
+        public string Razonsocial { get; set; }
+        public string Mail { get; set; }
+        public long Telefono { get; set; }
+        public string Direccion { get; set; }
+        public int numeroCalle { get; set; }
+        public int NroPiso { get; set; }
+        public char Depto { get; set; }
+        public string localidad { get; set; }
+        public int codigoPostal { get; set; }
+        public string ciudad { get; set; }
+        public string CUIT { get; set; }
+        public string nombreDeContacto { get; set; }
+        public DateTime fechaDeCreacion { get; set; }
 		public Publicacion m_Publicacion;
 
 		public Empresa(){
@@ -36,9 +39,7 @@ namespace Sistema {
 
 		}
 
-		public virtual void Dispose(){
-
-		}
+		
 
 		/// 
 		/// <param name="tipoPublicacion"></param>

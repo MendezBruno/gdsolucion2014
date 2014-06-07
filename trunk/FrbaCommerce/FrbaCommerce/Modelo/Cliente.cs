@@ -12,7 +12,7 @@
 using Sistema;
 using System.Collections.Generic;
 namespace Sistema {
-	public class Cliente : TipoUsuario {
+	public class Cliente : Usuario {
 
 		private string Nombre;
 		private string Apellido;

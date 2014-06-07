@@ -12,9 +12,10 @@
 using Sistema;
 using System.Collections.Generic;
 namespace Sistema {
-	public class Administrador : TipoUsuario {
-
-		public Administrador(){
+	public  class  Administrador : Usuario {
+        
+		
+        public Administrador(){
 
 		}
 

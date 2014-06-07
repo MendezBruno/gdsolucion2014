@@ -18,7 +18,8 @@ namespace Sistema {
 		private string Password;
 		public Rol RolAsignado;
 		public bool habilitado;
-		public TipoUsuario tipoUsuario;
+		public string tipoUsuario;
+        
 	
         //public Rol m_Rol;
 
@@ -26,6 +27,7 @@ namespace Sistema {
             this.RolAsignado = new Rol();
 		}
 
+        
 		~Usuario(){
 
 		}
