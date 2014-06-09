@@ -74,7 +74,8 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Cliente WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("select * from Usuario JOIN Cliente_Usuario ON Usuario.Usuario_Cliente_ID=Cliente_Usuario.Cliente_ID JOIN Cliente ON Cliente.Cliente_DNI=Cliente_Usuario.Cliente_DNI AND Cliente.Cliente_Tipo_Doc=Cliente_Usuario.Cliente_Tipo_Doc WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+           // SqlCommand cmd = new SqlCommand("SELECT * FROM Cliente WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
             //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -95,7 +96,7 @@ namespace FrbaCommerce.Modelo.Datos
                 cliente.Mail = (dr["Cliente_Mail"].ToString());
                 if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Telefono"))) cliente.Telefono = (Convert.ToInt64(dr["Cliente_Telefono"]));
                 cliente.Direccion = (dr["Cliente_Dom_Calle"].ToString());
-                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Numero_Calle"))) cliente.numeroCalle = (Convert.ToInt32(dr["Cliente_Nro_Calle"]));
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Numero_Calle"))) cliente.numeroCalle = (Convert.ToInt32(dr["Cliente_Numero_Calle"]));
                 if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Piso"))) cliente.nroPiso = (Convert.ToInt32(dr["Cliente_Piso"]));
                 cliente.depto = (Convert.ToChar(dr["Cliente_Departamento"]));
                 cliente.localidad = (dr["Cliente_Localidad"].ToString());

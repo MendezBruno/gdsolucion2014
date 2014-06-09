@@ -75,6 +75,7 @@
             this.buttonPublicaciones.TabIndex = 3;
             this.buttonPublicaciones.Text = "Publicaciones";
             this.buttonPublicaciones.UseVisualStyleBackColor = true;
+            this.buttonPublicaciones.Click += new System.EventHandler(this.buttonPublicaciones_Click);
             // 
             // BotonOfertar
             // 
