@@ -27,8 +27,7 @@ namespace FrbaCommerce
         {
             if (textBoxContraseña.Text.Equals(textBoxReContraseña.Text))
             {
-                cManager.sqlAbmLogin.agregarContraseñaPorPrimerIngreso(cManager, textBoxContraseña.Text, user.getUsuario());
-                user.setPassword(textBoxContraseña.Text);
+                user.setPassword(cManager.sqlAbmLogin.agregarContraseñaPorPrimerIngreso(cManager, textBoxContraseña.Text, user.getUsuario()));
                 this.Close();
             }
             else

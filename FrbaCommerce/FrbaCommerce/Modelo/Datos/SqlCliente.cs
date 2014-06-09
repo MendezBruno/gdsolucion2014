@@ -74,7 +74,41 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Cliente WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+            //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            cliente.usuarioId = user.usuarioId;
+            cliente.RolAsignado = user.RolAsignado;
+            cliente.tipoUsuario = user.tipoUsuario;
+            cliente.setUsuario(user.getUsuario());
+            cliente.setPassword(user.getPassword());
+
+            //user.tipoUsuario.
+            //  adapComando.SelectCommand.ExecuteScalar();
+            if (dr.Read())
+            {
+                cliente.apellido = (dr["Cliente_Apellido"].ToString());
+                cliente.nombre = (dr["Cliente_Nombre"].ToString());
+                cliente.TipoDeDocumento = (dr["Cliente_Tipo_Doc"].ToString());
+                cliente.Mail = (dr["Cliente_Mail"].ToString());
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Telefono"))) cliente.Telefono = (Convert.ToInt64(dr["Cliente_Telefono"]));
+                cliente.Direccion = (dr["Cliente_Dom_Calle"].ToString());
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Numero_Calle"))) cliente.numeroCalle = (Convert.ToInt32(dr["Cliente_Nro_Calle"]));
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Piso"))) cliente.nroPiso = (Convert.ToInt32(dr["Cliente_Piso"]));
+                cliente.depto = (Convert.ToChar(dr["Cliente_Departamento"]));
+                cliente.localidad = (dr["Cliente_Localidad"].ToString());
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_Codigo_Postal"))) cliente.codigoPostal = (Convert.ToInt32((dr["Cliente_Codigo_Postal"])));
+              //  cliente.ciudad = (dr["Cliente_Ciudad"].ToString());
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_DNI"))) cliente.numeroDoc = (Convert.ToInt32((dr["Cliente_DNI"])));
+                cliente.fechaDeNacimiento = dr.GetDateTime(dr.GetOrdinal("Cliente_Fecha_De_Nacimiento"));
+                //cliente.nombreDeContacto = (dr["Cliente_CUIT"].ToString());      
+                if (dr["Cliente_Esta_Habilitada"].ToString().Equals("SI")) cliente.habilitado = true; else cliente.habilitado = false;
+
+            }
+
+            dr.Close();
         }
     }
 }

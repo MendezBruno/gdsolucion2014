@@ -14,7 +14,7 @@ namespace FrbaCommerce.Modelo.Datos
     {
         internal void ObtenerEmpresa(Sistema.Usuario user,Empresa empresa, SistemManager cManager)
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa WHERE Empresa_ID=" + user.RolAsignado.idRol.ToString()); 
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa WHERE Empresa_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn); 
                                           //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -33,14 +33,14 @@ namespace FrbaCommerce.Modelo.Datos
               empresa.Mail = (dr["Empresa_Mail"].ToString());
               if(!dr.IsDBNull(dr.GetOrdinal("Empresa_Telefono")))empresa.Telefono = (Convert.ToInt64(dr["Empresa_Telefono"]));
               empresa.Direccion = (dr["Empresa_Dom_Calle"].ToString());
-              if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Nro_Calle"))) empresa.numeroCalle = (Convert.ToInt32(dr["Empresa_Telefono"]));
+              if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Nro_Calle"))) empresa.numeroCalle = (Convert.ToInt32(dr["Empresa_Nro_Calle"]));
               if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Piso"))) empresa.NroPiso = (Convert.ToInt32(dr["Empresa_Piso"]));
               empresa.Depto = (Convert.ToChar(dr["Empresa_Depto"]));
               empresa.localidad = (dr["Empresa_Localidad"].ToString());
               if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Codigo_Postal"))) empresa.codigoPostal = (Convert.ToInt32((dr["Empresa_Codigo_Postal"])));
               empresa.ciudad = (dr["Empresa_Ciudad"].ToString());
               empresa.CUIT = (dr["Empresa_CUIT"].ToString());
-              empresa.fechaDeCreacion = dr.GetDateTime(dr.GetOrdinal("Empresa_Telefono"));
+              empresa.fechaDeCreacion = dr.GetDateTime(dr.GetOrdinal("Empresa_Fecha_Creacion"));
               //empresa.nombreDeContacto = (dr["Empresa_CUIT"].ToString());      
               if (dr["Empresa_Esta_Habilitada"].ToString().Equals("SI")) empresa.habilitado = true; else empresa.habilitado = false; 
 
