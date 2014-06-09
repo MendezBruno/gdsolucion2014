@@ -12,6 +12,7 @@ using FrbaCommerce.Registro_de_Usuario;
 using FrbaCommerce.ABM_Rol;
 using Sistema;
 using FrbaCommerce.Abm_Cliente;
+using FrbaCommerce.Generar_Publicacion;
 
 namespace FrbaCommerce
 {
@@ -57,7 +58,7 @@ namespace FrbaCommerce
             cargaManuSegunRol(user.RolAsignado);
         }
         */
-        
+
 
 
 
@@ -67,7 +68,8 @@ namespace FrbaCommerce
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.BotonOfertar.Visible = false; }
             if (!rol.getListaFuncionalidades().Contains("Vender")) this.buttonPublicaciones.Visible = false;
             //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
-            if (user==null) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
+            if (user == null) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
+        }
            
 
         /*
@@ -96,6 +98,16 @@ namespace FrbaCommerce
             this.Hide();
             FormModificaciones formModificaciones = new FormModificaciones(cManager, user);
             formModificaciones.ShowDialog();
+            this.Show();
+        }
+
+        private void buttonPublicaciones_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormGenerarPublicacion formPublicacion;
+            if(cliente==null) formPublicacion = new FormGenerarPublicacion(cManager, empresa);
+            else formPublicacion = new FormGenerarPublicacion(cManager, cliente);
+            formPublicacion.ShowDialog();
             this.Show();
         }
 

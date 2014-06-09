@@ -35,5 +35,10 @@ namespace FrbaCommerce.Modelo.Datos
         {
             throw new NotImplementedException();
         }
+
+        internal void listaDeVisibilidades(SistemManager cManager, List<string> visibilidades)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
