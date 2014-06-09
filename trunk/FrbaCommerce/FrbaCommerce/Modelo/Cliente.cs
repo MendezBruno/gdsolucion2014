@@ -11,22 +11,23 @@
 
 using Sistema;
 using System.Collections.Generic;
+using System;
 namespace Sistema {
 	public class Cliente : Usuario {
 
-		private string Nombre;
-		private string Apellido;
-		private long numero;
-		private string TipoDeDocumento;
-		private string Mail;
-		private long Telefono;
-		private string Direccion;
-        private int numeroCalle;
-		private int NroPiso;
-		private char Depto;
-		private string Localidad;
-		private int CodigoPostal;
-		private string FechaDeNacimiento;
+		public string nombre;
+		public string apellido;
+		public long numeroDoc;
+		public string TipoDeDocumento;
+		public string Mail;
+		public long Telefono;
+		public string Direccion;
+        public int numeroCalle;
+		public int nroPiso;
+		public char depto;
+		public string localidad;
+		public int codigoPostal;
+		public DateTime fechaDeNacimiento;
 		public Compra m_Compra;
 		public Oferta m_Oferta;
 		public Publicacion m_Publicacion;

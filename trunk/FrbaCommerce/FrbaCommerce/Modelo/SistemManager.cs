@@ -15,7 +15,7 @@ namespace FrbaCommerce.Modelo
         //asistente de conexion
         public SqlHelper conexion = new SqlHelper();
         //clase encriptadora
-        HashAlgorithm hashAlg = new SHA1Managed();
+        public HashAlgorithm hashAlg = new SHA1Managed();
         //Clases de datos
         public SqlAbmRol sqlAbmRol = new SqlAbmRol();
         public SqlAbmLogin sqlAbmLogin = new SqlAbmLogin();

@@ -19,6 +19,36 @@ namespace FrbaCommerce
     {
         SistemManager cManager;
         Usuario user;
+        Cliente cliente;
+        Empresa empresa;
+
+        public FormPrincipal(SistemManager cManager, Cliente cliente)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.cliente = cliente;
+            cargaManuSegunRol(cliente.RolAsignado);
+            
+        }
+
+        public FormPrincipal(SistemManager cManager, Empresa empresa)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.empresa = empresa;
+            cargaManuSegunRol(empresa.RolAsignado);
+
+        }
+
+        public FormPrincipal(SistemManager cManager, Usuario user)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.user = user;
+            cargaManuSegunRol(cliente.RolAsignado);
+
+        }
+        /*
         public FormPrincipal(SistemManager cManager, Usuario user)
         {
             InitializeComponent();
@@ -26,14 +56,19 @@ namespace FrbaCommerce
             this.user = user;
             cargaManuSegunRol(user.RolAsignado);
         }
+        */
+        
+
+
+
 
         private void cargaManuSegunRol(Rol rol)
         {
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.BotonOfertar.Visible = false; }
             if (!rol.getListaFuncionalidades().Contains("Vender")) this.buttonPublicaciones.Visible = false;
-         //   if (!rol.getListaFuncionalidades().Contains("Publicar")) this.buttonModificaciones.Visible = false;
-         //   if (!rol.getListaFuncionalidades().Contains("Vender")) ;
-        }
+            //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
+            if (user==null) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
+           
 
         /*
          * ESTO DESAPARECE ME PARECE JUEZ

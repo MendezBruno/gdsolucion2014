@@ -31,29 +31,32 @@ namespace FrbaCommerce.Modelo.Datos
                 }
                 else
                 {
-                    if (dr["Usuario_Cliente_ID"] == null)
+                    if (dr.IsDBNull(3))
                     {
                         user.usuarioId=Convert.ToInt32(dr["Usuario_Empresa_ID"]);
-                        //cManager.sqlEmpresa.ObtenerEmpresa(user, cManager);
-                        user.tipoUsuario = "Cliente";
+                        //aca va si esta habilitado por tabla
+                        user.habilitado = true;
+                        user.tipoUsuario = "Empresa";
                     }
-                    if (dr["Usuario_Empresa_ID"] == null)
+                    if (dr.IsDBNull(4))
                     {
                         user.usuarioId=Convert.ToInt32(dr["Usuario_Cliente_ID"]);
-                        //cManager.sqlCliente.ObtenerCliente(user, cManager);
-                        user.tipoUsuario = "Empresa";
+                        //aca va si esta habilitado
+                        user.habilitado = true;
+                        user.tipoUsuario = "Cliente";
                     }
                 }
                 user.RolAsignado.idRol = Convert.ToInt32(dr["Usuario_Rol_ID"]);
                
                 user.setUsuario(dr["Usuario_Nombre"].ToString());
 
-                if (dr["Usuario_Contraseña"] == null) 
+                if (dr.IsDBNull(dr.GetOrdinal("Usuario_Contraseña")) ) 
                 {
-
+                    dr.Close();
                     FormAgregarContraseña agregarContraseña = new FormAgregarContraseña(cManager,user);
                     agregarContraseña.ShowDialog();
                     agregarContraseña.Close();
+                   
                 }
                 else user.setPassword(dr["Usuario_Contraseña"].ToString());                        
                 
@@ -75,14 +78,21 @@ namespace FrbaCommerce.Modelo.Datos
         }
          * */
 
-        internal void agregarContraseñaPorPrimerIngreso(SistemManager cManager,string contraseña ,string usuario)
+        internal string agregarContraseñaPorPrimerIngreso(SistemManager cManager,string contraseña ,string usuario)
         {
             SqlCommand Cmd;
 
-            String Comando = "UPDATE Usuario SET Usuario_Contraseña='" + contraseña + "' WHERE Usuario_Nombre='" + usuario + "'";
+            byte[] pwordData = Encoding.Default.GetBytes(contraseña);
+
+            byte[] hash = cManager.hashAlg.ComputeHash(pwordData);
+
+            string passToSave = BitConverter.ToString(hash);
+            String Comando = "UPDATE Usuario SET Usuario_Contraseña='" + passToSave + "' WHERE Usuario_Nombre='" + usuario + "'";
 
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
+
+            return passToSave;
             
         }
     }

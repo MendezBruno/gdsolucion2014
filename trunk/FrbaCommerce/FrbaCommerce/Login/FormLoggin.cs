@@ -35,6 +35,8 @@ namespace FrbaCommerce.Login
             {
                 bool res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxContraseña.Text);
 
+                MessageBox.Show(this.textBoxContraseña.Text);
+
                 if (res)
                 {
                     this.Hide();
@@ -68,7 +70,7 @@ namespace FrbaCommerce.Login
                 else
                 {
                     user.Dispose();
-                    this.labelContraseñaincorrecta.Visible = true;
+                    if (!this.textBoxContraseña.Text.Equals("")) this.labelContraseñaincorrecta.Visible = true;
                 }
                 //si res es true ingresa y si es false suma una chance de inHabilitacion; si llego a tres muere.
 
