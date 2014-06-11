@@ -56,7 +56,9 @@
             this.textBoxDepto = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxNumeroCalle = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxHabilitacion = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.monthCalendarCliente = new System.Windows.Forms.MonthCalendar();
             this.SuspendLayout();
             // 
             // textBoxNombre
@@ -230,7 +232,7 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(17, 428);
+            this.buttonLimpiar.Location = new System.Drawing.Point(8, 440);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(144, 35);
             this.buttonLimpiar.TabIndex = 52;
@@ -240,7 +242,7 @@
             // 
             // buttonAlta
             // 
-            this.buttonAlta.Location = new System.Drawing.Point(472, 428);
+            this.buttonAlta.Location = new System.Drawing.Point(463, 440);
             this.buttonAlta.Name = "buttonAlta";
             this.buttonAlta.Size = new System.Drawing.Size(144, 35);
             this.buttonAlta.TabIndex = 53;
@@ -291,22 +293,41 @@
             this.textBoxNumeroCalle.Size = new System.Drawing.Size(136, 20);
             this.textBoxNumeroCalle.TabIndex = 58;
             // 
-            // checkBox1
+            // checkBoxHabilitacion
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(308, 276);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(97, 17);
-            this.checkBox1.TabIndex = 59;
-            this.checkBox1.Text = "Esta Habilitado";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxHabilitacion.AutoSize = true;
+            this.checkBoxHabilitacion.Location = new System.Drawing.Point(135, 391);
+            this.checkBoxHabilitacion.Name = "checkBoxHabilitacion";
+            this.checkBoxHabilitacion.Size = new System.Drawing.Size(97, 17);
+            this.checkBoxHabilitacion.TabIndex = 59;
+            this.checkBoxHabilitacion.Text = "Esta Habilitado";
+            this.checkBoxHabilitacion.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(292, 348);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(98, 23);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // monthCalendarCliente
+            // 
+            this.monthCalendarCliente.Location = new System.Drawing.Point(402, 253);
+            this.monthCalendarCliente.Name = "monthCalendarCliente";
+            this.monthCalendarCliente.TabIndex = 61;
+            this.monthCalendarCliente.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarCliente_DateChanged);
             // 
             // FormAbmClienteAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 475);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(628, 480);
+            this.Controls.Add(this.monthCalendarCliente);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.checkBoxHabilitacion);
             this.Controls.Add(this.textBoxNumeroCalle);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxDepto);
@@ -372,7 +393,9 @@
         public System.Windows.Forms.TextBox textBoxFecNac;
         public System.Windows.Forms.TextBox textBoxDepto;
         public System.Windows.Forms.TextBox textBoxNumeroCalle;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxHabilitacion;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MonthCalendar monthCalendarCliente;
 
     }
 }

@@ -25,13 +25,16 @@ namespace FrbaCommerce.Abm_Cliente
             this.esCliente = esCliente;
             this.user = user;
             this.pass = pass;
+            this.checkBoxHabilitacion.Visible = false;
+            this.monthCalendarCliente.Visible = false;
+            
         }
 
         public FormAbmClienteAlta(SistemManager cManager)
         {
             InitializeComponent();
             this.cManager = cManager;
-
+            this.monthCalendarCliente.Visible = false;
         }
 
 
@@ -41,6 +44,7 @@ namespace FrbaCommerce.Abm_Cliente
             this.cManager = cManager;
             cliente = new Cliente();
             this.modificacion = modificacion;
+            this.monthCalendarCliente.Visible = false;
         }
 
         private void buttonAlta_Click(object sender, EventArgs e)
@@ -92,6 +96,18 @@ namespace FrbaCommerce.Abm_Cliente
             textBoxLocalidad.Text="";
             textBoxCodPos.Text="";
             textBoxFecNac.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.monthCalendarCliente.Visible = true;
+        }
+
+        private void monthCalendarCliente_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+
+
         }
 
 

@@ -15,9 +15,8 @@ namespace FrbaCommerce.Modelo.Datos
         {
             try
             {
-                
-                String ComandoInsert = @"INSERT INTO Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento,Cliente_Esta_Habilitada) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "','SI')";
-                SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+                string comandoInsert = "INSERT INTO Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
+                SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 if (calleNum == "")
                     MyCmd.Parameters.AddWithValue("@callenum", DBNull.Value);
                 else
@@ -28,15 +27,11 @@ namespace FrbaCommerce.Modelo.Datos
                 else
                     MyCmd.Parameters.AddWithValue("@piso", nPiso);
 
-  
-
-
-             
-             //     MyCmd.ExecuteScalar();
                MyCmd.ExecuteNonQuery();
             }
             catch (SqlException e)
             {
+                throw new NotImplementedException();
                 cManager.conexion.errorDeSql(e);
             }
         }
@@ -101,53 +96,31 @@ namespace FrbaCommerce.Modelo.Datos
         {
             SqlCommand cmd;
             string comando;
+            string clienteId;
 
-            if (cliente.getTipoDni() == tipo_doc && cliente.getDNI() == dni)
-            {
+            comando = "SELECT Cliente_ID FROM Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni()+"'";
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+            SqlDataReader dr=cmd.ExecuteReader();
+            dr.Read();
+            clienteId = dr["Cliente_ID"].ToString();
+            dr.Close();
 
-                comando = "UPDATE Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='"+tel+ "',Cliente_Dom_Calle='"+direc+"',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='"+depto+"',Cliente_Localidad='"+localidad+"',Cliente_Codigo_Postal='"+cod_pos+"',Cliente_Fecha_De_Nacimiento='"+fech_nac+"' WHERE Cliente_Tipo_Doc='" + tipo_doc+"' AND Cliente_DNI="+dni;
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-                if (nroCalle == "")
-                    cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
-                if (piso == "")
-                    cmd.Parameters.AddWithValue("@piso", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@piso", piso);
-                cmd.ExecuteNonQuery();
-            }
+            comando = "UPDATE Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='" + tel + "',Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_ID=" +clienteId ;
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+            
+            if (nroCalle == "")
+                 cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
             else
-            {
-                string clienteId;
-                comando = "SELECT Cliente_ID FROM Cliente_Usuario WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni()+"'";
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-                SqlDataReader dr=cmd.ExecuteReader();
-                dr.Read();
-                clienteId = dr["Cliente_ID"].ToString();
-                dr.Close();
-                comando = "UPDATE Cliente_Usuario SET Cliente_DNI=@dni,Cliente_Tipo_Doc=@tipo WHERE Cliente_ID=" + clienteId;
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-                cmd.Parameters.AddWithValue("@dni", DBNull.Value);
-                cmd.Parameters.AddWithValue("@tipo", DBNull.Value);
-                cmd.ExecuteNonQuery();
-                comando = "UPDATE Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='" + tel + "',Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_Tipo_Doc='" + cliente.getTipoDni() + "' AND Cliente_DNI=" + cliente.getDNI();
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-                if (nroCalle == "")
-                    cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
-                if (piso == "")
-                    cmd.Parameters.AddWithValue("@piso", DBNull.Value);
-                else
-                    cmd.Parameters.AddWithValue("@piso", piso);
-                cmd.ExecuteNonQuery();
-                comando = "UPDATE Cliente_Usuario SET Cliente_DNI=" + dni + ",Cliente_Tipo_Doc='" + tipo_doc + "' WHERE Cliente_ID=" + clienteId;
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-                cmd.ExecuteNonQuery();
-
-
-            }
+                 cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
+            if (piso == "")
+                 cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+            else
+                 cmd.Parameters.AddWithValue("@piso", piso);
+            
+            cmd.ExecuteNonQuery();
+            
+            
+            
            
         }
 
