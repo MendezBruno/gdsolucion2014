@@ -11,22 +11,23 @@
 
 using Sistema;
 using System.Collections.Generic;
+using System;
 namespace Sistema {
 	public class Publicacion {
 
-		private int codigo;
-		private string descripcion;
-		private int stock;
-		private string fechaVenc;
-		private string fechInicio;
-		private float precio;
-		private Rubro rubro;
-		private EstadoPublicacion estado;
-		private bool aceptaPregunta;
-		private VisibilidadPublicacion visibilidadPublicacion;
-		private TipoPublicacion tipoPublicacion;
-		private bool publicada;
-		private List<Pregunta> preguntas;
+		public int codigo;
+		public string descripcion;
+		public int stock;
+		public DateTime fechaVenc;
+		public DateTime fechInicio;
+		public float precio;
+		public Rubro rubro;
+		public EstadoPublicacion estado;
+		public bool aceptaPregunta;
+		public VisibilidadPublicacion visibilidadPublicacion;
+		public TipoPublicacion tipoPublicacion;
+		public bool publicada;
+		public List<Pregunta> preguntas;
 		public Pregunta m_Pregunta;
 
 		public Publicacion(){

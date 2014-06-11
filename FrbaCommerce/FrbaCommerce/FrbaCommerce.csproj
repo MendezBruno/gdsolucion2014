@@ -202,7 +202,9 @@
     <Compile Include="Modelo\Datos\SqlAmbVisibilidad.cs" />
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
+    <Compile Include="Modelo\Datos\SqlPublicacion.cs" />
     <Compile Include="Modelo\Datos\SqlRol.cs" />
+    <Compile Include="Modelo\Datos\SqlRubro.cs" />
     <Compile Include="Modelo\Datos\SqlUsuario.cs" />
     <Compile Include="Modelo\Datos\SqlVisibilidad.cs" />
     <Compile Include="Modelo\Empresa.cs" />

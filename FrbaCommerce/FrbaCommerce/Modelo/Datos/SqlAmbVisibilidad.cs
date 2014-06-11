@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace FrbaCommerce.Modelo.Datos
 {
@@ -36,9 +37,27 @@ namespace FrbaCommerce.Modelo.Datos
             throw new NotImplementedException();
         }
 
-        internal void listaDeVisibilidades(SistemManager cManager, List<string> visibilidades)
+        internal void listaDeVisibilidades(SistemManager cManager, ComboBox.ObjectCollection objectCollection)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Descripcion FROM Publicacion_Visibilidad", cManager.conexion.conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                objectCollection.Add(dr["Visibilidad_Descripcion"].ToString());
+            }
+            dr.Close();
+        }
+
+        internal int codigoSegunDescripcion(SistemManager cManager, string descripcion)
+        {
+            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Codigo FROM Publicacion_Visibilidad WHERE Visibilidad_Descripcion='"+descripcion+"'", cManager.conexion.conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            int res = Convert.ToInt32(dr[0]);
+            dr.Close();
+            return res;
         }
     }
 }

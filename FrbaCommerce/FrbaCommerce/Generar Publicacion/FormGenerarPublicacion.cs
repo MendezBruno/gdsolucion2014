@@ -16,34 +16,46 @@ namespace FrbaCommerce.Generar_Publicacion
         SistemManager cManager;
         Empresa empresa;
         Cliente cliente;
+
         public FormGenerarPublicacion(SistemManager cManager, Cliente cliente)
         {
-        cargarForm();
+        InitializeComponent();
         this.cliente = cliente;
         this.cManager = cManager;
+        this.labelUserName.Text = cliente.getUsuario();
+        cargarForm();
         }
 
         
 
         public FormGenerarPublicacion(SistemManager cManager, Empresa empresa)
         {
-        cargarForm();
+        InitializeComponent();
         this.empresa = empresa;
         this.cManager = cManager;
+        this.labelUserName.Text = empresa.getUsuario();
+        cargarForm();
         }
 
         private void cargarForm()
         {
-            InitializeComponent();
-            List<string> visibilidades = new List<string>();
-            cManager.sqlAbmVisibilidad.listaDeVisibilidades(cManager,visibilidades);
-        //    this.comboBoxVisibilidad.Items.Add 
+            
+            cManager.sqlAbmVisibilidad.listaDeVisibilidades(cManager, this.comboBoxVisibilidad.Items);
+           // llenarCombo(this.comboBoxVisibilidad.Items, listaAux);
+            cManager.sqlRubro.listaDeRubro(cManager, this.comboBoxRubro.Items);
+           // llenarCombo(this.comboBoxRubro.Items,listaAux);
 
+        }
+
+        private void llenarCombo(ComboBox.ObjectCollection objectCollection, List<string> listaCargada)
+        {
+            foreach (string item in listaCargada) objectCollection.Add(item);
+            listaCargada.Clear();
         }
         
         private void buttonPublicar_Click(object sender, EventArgs e)
-        {
-
+        {            
+            cManager.sqlPublicacion.publicar(cManager,this.comboBoxTipoPublicacion.Text, this.comboBoxRubro.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value, this.numericUpDownPrecio.Value, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text,this.labelUserName.Text); 
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
