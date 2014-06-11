@@ -74,7 +74,7 @@ namespace FrbaCommerce.Modelo
 
         internal void ObtenerAdministrador(Usuario user, Administrador administrador)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
     }
 }

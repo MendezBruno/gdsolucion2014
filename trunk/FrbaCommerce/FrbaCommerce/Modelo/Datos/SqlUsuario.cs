@@ -20,5 +20,13 @@ namespace FrbaCommerce.Modelo.Datos
            cmd.ExecuteNonQuery();
            
         }
+        internal void darAltaEmpresa(SistemManager cManager, String cuit)
+        {
+            SqlCommand cmd;
+            String ComandoInsert = "INSERT INTO Usuario(Usuario_Nombre,Usuario_Empresa_ID) VALUES('" + cuit + "', (SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "'))";
+            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+            cmd.ExecuteNonQuery();
+
+        }
     }
 }

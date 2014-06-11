@@ -13,15 +13,15 @@ namespace FrbaCommerce.Modelo.Datos
         {
 
             SqlCommand cmd;
-            string sql_insert = "INSERT INTO Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje) VALUES ('" + codigo+"','" +descripcion+"'," +precio+","+porcentaje+")";
+            string sql_insert = "INSERT INTO Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo+"','" +descripcion+"'," +precio+","+porcentaje+",'SI')";
             cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
         }
              
-        internal void Buscar(SistemManager cManager, System.Windows.Forms.DataGridView dataGridView)
+        internal void Buscar(SistemManager cManager, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Publicacion_Visibilidad" , cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Publicacion_Visibilidad", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,4);
      
 
@@ -29,7 +29,33 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Visibilidad.FormAltaVisibilidad formAltaVisibilidad, string p)
         {
-            throw new NotImplementedException();
+ 
+            
+            SqlCommand cmd;
+            string sql_tomar_datos = "SELECT * FROM Publicacion_Visibilidad WHERE Visibilidad_Codigo="+p;
+            cmd = new SqlCommand(sql_tomar_datos,cManager.conexion.conn);
+            SqlDataReader dr;
+            dr = cmd.ExecuteReader();
+            dr.Read();
+            formAltaVisibilidad.textBoxCodigo.Text = dr["Visibilidad_Codigo"].ToString();
+            formAltaVisibilidad.textBoxDescripcion.Text = dr["Visibilidad_Descripcion"].ToString();
+            formAltaVisibilidad.textBoxPorcentaje.Text = dr["Visibilidad_Porcentaje"].ToString();
+            formAltaVisibilidad.textBoxPPP.Text = dr["Visibilidad_Precio"].ToString();
+            
+            dr.Close();
+
+        }
+
+        internal void actualizar_Datos(SistemManager cManager,Sistema.VisibilidadPublicacion visibilidad, string codigo, string descripcion, string precio, string porcentaje)
+        {
+
+            SqlCommand cmd;
+
+            //int c[];
+
+            string instruccion = "SELECT Publicacion_Codigo From Publicacion WHERE Publicacion_Visibilidad_Codigo ='" ;  
+
+
         }
 
         internal void cargarDatosDeBaja(SistemManager cManager, FrbaCommerce.Abm_Visibilidad.FormBajaVisibilidad formBajaVisibilidad, string p)

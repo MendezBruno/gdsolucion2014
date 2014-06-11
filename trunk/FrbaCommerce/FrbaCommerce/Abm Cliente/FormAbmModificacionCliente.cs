@@ -22,7 +22,7 @@ namespace FrbaCommerce.Abm_Cliente
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            this.cManager.sqlCliente.Buscar(cManager, textBoxNombre.Text, textBoxApellido.Text,textBoxDni.Text,textBoxMail.Text, this.dataGridViewModificacionCliente);
+            this.cManager.sqlCliente.Buscar(cManager, textBoxNombre.Text, textBoxApellido.Text, comboBoxTipoDNI.Text,textBoxDni.Text, textBoxMail.Text, this.dataGridViewModificacionCliente);
             this.dataGridViewModificacionCliente.Update();
         }
 
@@ -41,7 +41,7 @@ namespace FrbaCommerce.Abm_Cliente
             {
                
                 FormAbmClienteAlta formAltaCliente = new FormAbmClienteAlta(cManager,true);
-                cManager.sqlCliente.cargarDatosDeModificacion(cManager, formAltaCliente, dataGridViewModificacionCliente.Rows[e.RowIndex].Cells[1].Value.ToString());
+                cManager.sqlCliente.cargarDatosDeModificacion(cManager, formAltaCliente, dataGridViewModificacionCliente.Rows[e.RowIndex].Cells[1].Value.ToString(), dataGridViewModificacionCliente.Rows[e.RowIndex].Cells[5].Value.ToString());
                 formAltaCliente.ShowDialog();
             }
             else
@@ -53,5 +53,9 @@ namespace FrbaCommerce.Abm_Cliente
 
             this.Close();
         }
+
+
+
+
     }
 }

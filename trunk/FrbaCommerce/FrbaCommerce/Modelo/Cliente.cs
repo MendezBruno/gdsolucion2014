@@ -15,7 +15,9 @@ using System;
 namespace Sistema {
 	public class Cliente : Usuario {
 
-		public string nombre;
+
+
+    	public string nombre;
 		public string apellido;
 		public long numeroDoc;
 		public string TipoDeDocumento;
@@ -28,6 +30,7 @@ namespace Sistema {
 		public string localidad;
 		public int codigoPostal;
 		public DateTime fechaDeNacimiento;
+
 		public Compra m_Compra;
 		public Oferta m_Oferta;
 		public List<Publicacion> publicaciones;
@@ -77,6 +80,30 @@ namespace Sistema {
 
 			return null;
 		}
+
+        public void setTipoDni(string tipodni)
+        {
+            TipoDeDocumento = tipodni;
+
+        }
+        public string getTipoDni()
+        {
+            return this.TipoDeDocumento;
+
+        }
+
+        public void setdni(string dni)
+        {
+            numeroDoc = Convert.ToInt64(dni);
+
+        }
+
+        public string getDNI()
+        {
+            return this.numeroDoc.ToString();
+        }
+
+
 
 		public bool Alta(){
 

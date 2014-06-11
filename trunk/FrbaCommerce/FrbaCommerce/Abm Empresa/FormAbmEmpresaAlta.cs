@@ -17,7 +17,7 @@ namespace FrbaCommerce.Abm_Empresa
 
         bool esEmpresa, modificacion;
 
-        Empresa empresa;
+        public Empresa empresa;
 
         string user, pass;
 
@@ -45,14 +45,19 @@ namespace FrbaCommerce.Abm_Empresa
         
         {
 
-            if(esEmpresa==true)
-            
-            cManager.sqlEmpresa.darAlta(cManager, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, depto.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text);
-            
-            
+            if (modificacion)
+            {
 
+                cManager.sqlEmpresa.modificarEmpresa(cManager, empresa, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
 
+            
+            }
+            else
+            {
+                cManager.sqlEmpresa.darAlta(cManager, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
+                cManager.sqlUsuario.darAltaEmpresa(cManager,cuit.Text);
 
+            }
         }
 
         private void botonLimpiar_Click(object sender, EventArgs e)
@@ -72,10 +77,6 @@ namespace FrbaCommerce.Abm_Empresa
             
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-        
-        }
         
     }
 }

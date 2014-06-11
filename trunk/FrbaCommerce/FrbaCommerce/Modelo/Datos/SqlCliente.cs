@@ -11,7 +11,7 @@ namespace FrbaCommerce.Modelo.Datos
     {
         
 
-        internal void darAlta(SistemManager cManager,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string ciudad, string fecNac)
+        internal void darAlta(SistemManager cManager,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string fecNac)
         {
             try
             {
@@ -41,16 +41,46 @@ namespace FrbaCommerce.Modelo.Datos
             }
         }
 
-        internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni, string mail, System.Windows.Forms.DataGridView dataGridView)
+        internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni,string tipo, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%'", cManager.conexion.conn);
-            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,4);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail,Cliente_Tipo_Doc FROM Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%"+tipo+"'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,5);
         }
 
-        internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formAltaCliente, string IDCliente)
+        internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formAltaCliente, string IDCliente,string tipo)
         {
+
+            SqlCommand cmd;
+            SqlDataReader dr;
+            string insertDataMod = "SELECT * FROM Cliente WHERE Cliente_DNI=" + IDCliente + "AND Cliente_Tipo_Doc='" + tipo + "'";
+            cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
+            dr=cmd.ExecuteReader();
+            dr.Read();
+            formAltaCliente.textBoxApe.Text = dr["Cliente_Apellido"].ToString();
+            formAltaCliente.textBoxNombre.Text = dr["Cliente_Nombre"].ToString();
+            formAltaCliente.textBoxCodPos.Text = dr["Cliente_Codigo_Postal"].ToString();
+            formAltaCliente.textBoxDepto.Text = dr["Cliente_Departamento"].ToString();
+            formAltaCliente.textBoxDirec.Text = dr["Cliente_Dom_Calle"].ToString();
+            formAltaCliente.textBoxDNI.Text = dr["Cliente_DNI"].ToString();
+            formAltaCliente.textBoxFecNac.Text = dr["Cliente_Fecha_De_Nacimiento"].ToString();
+            formAltaCliente.textBoxLocalidad.Text = dr["Cliente_Localidad"].ToString();
+            formAltaCliente.textBoxMail.Text = dr["Cliente_Mail"].ToString();
+            formAltaCliente.textBoxNroPiso.Text = dr["Cliente_Piso"].ToString();
+            formAltaCliente.textBoxNumeroCalle.Text = dr["Cliente_Numero_Calle"].ToString();
+            formAltaCliente.textBoxTel.Text = dr["Cliente_Telefono"].ToString();
+            formAltaCliente.comboBoxTipo.Text = dr["Cliente_Tipo_Doc"].ToString();
+
+            formAltaCliente.cliente.setTipoDni(formAltaCliente.comboBoxTipo.Text);
+            formAltaCliente.cliente.setdni(formAltaCliente.textBoxDNI.Text);
+
+            dr.Close();
+
+            
+
+
+            
             //pasar a numero y cargar cliente
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         internal void cargarDatosDeBaja(SistemManager cManager, string p)
@@ -67,9 +97,58 @@ namespace FrbaCommerce.Modelo.Datos
             }
         }
 
-        internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string p, string p_4, string p_5, string p_6, string p_7, string p_8, string p_9, string p_10, string p_11, string p_12, string p_13, string p_14, string p_15)
+        internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string nombre, string apellido, string tipo_doc, string dni, string tel, string mail, string direc, string nroCalle, string piso, string depto, string localidad, string cod_pos,string fech_nac)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd;
+            string comando;
+
+            if (cliente.getTipoDni() == tipo_doc && cliente.getDNI() == dni)
+            {
+
+                comando = "UPDATE Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='"+tel+ "',Cliente_Dom_Calle='"+direc+"',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='"+depto+"',Cliente_Localidad='"+localidad+"',Cliente_Codigo_Postal='"+cod_pos+"',Cliente_Fecha_De_Nacimiento='"+fech_nac+"' WHERE Cliente_Tipo_Doc='" + tipo_doc+"' AND Cliente_DNI="+dni;
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                if (nroCalle == "")
+                    cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
+                if (piso == "")
+                    cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@piso", piso);
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                string clienteId;
+                comando = "SELECT Cliente_ID FROM Cliente_Usuario WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni()+"'";
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                SqlDataReader dr=cmd.ExecuteReader();
+                dr.Read();
+                clienteId = dr["Cliente_ID"].ToString();
+                dr.Close();
+                comando = "UPDATE Cliente_Usuario SET Cliente_DNI=@dni,Cliente_Tipo_Doc=@tipo WHERE Cliente_ID=" + clienteId;
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                cmd.Parameters.AddWithValue("@dni", DBNull.Value);
+                cmd.Parameters.AddWithValue("@tipo", DBNull.Value);
+                cmd.ExecuteNonQuery();
+                comando = "UPDATE Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='" + tel + "',Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_Tipo_Doc='" + cliente.getTipoDni() + "' AND Cliente_DNI=" + cliente.getDNI();
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                if (nroCalle == "")
+                    cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
+                if (piso == "")
+                    cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@piso", piso);
+                cmd.ExecuteNonQuery();
+                comando = "UPDATE Cliente_Usuario SET Cliente_DNI=" + dni + ",Cliente_Tipo_Doc='" + tipo_doc + "' WHERE Cliente_ID=" + clienteId;
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+
+
+            }
+           
         }
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)

@@ -42,31 +42,83 @@ namespace FrbaCommerce.Modelo.Datos
               empresa.CUIT = (dr["Empresa_CUIT"].ToString());
               empresa.fechaDeCreacion = dr.GetDateTime(dr.GetOrdinal("Empresa_Fecha_Creacion"));
               //empresa.nombreDeContacto = (dr["Empresa_CUIT"].ToString());      
-              if (dr["Empresa_Esta_Habilitada"].ToString().Equals("SI")) empresa.habilitado = true; else empresa.habilitado = false; 
+             // if (dr["Empresa_Esta_Habilitada"].ToString().Equals("SI")) empresa.habilitado = true; else empresa.habilitado = false; 
 
             }
             
             dr.Close();
         }
 
-        internal void darAlta(SistemManager cManager, string cuit, string razon_social, string mail, string telefono, string dom_calle, string nro_calle, string depto, string localidad, string codPostal, string ciudad, string fecCreacion, string piso)
+        internal void darAlta(SistemManager cManager, string cuit, string razon_social, string mail, string telefono, string dom_calle, string nro_calle, string depto, string localidad, string codPostal, string ciudad, string fecCreacion, string piso,string contacto)
         {
 
             SqlCommand Cmd;
 
-            String Comando = "INSERT INTO Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Esta_Habilitada) VALUES ('" + razon_social + "','" + mail + "'," + telefono + ",'" + dom_calle + "','" + nro_calle + ",'" + piso + ",'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','SI'";
+            String Comando = "INSERT INTO Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Nombre_Contacto,Empresa_Esta_Habilitada) VALUES ('" + razon_social + "','" + mail + "', @telefono ,'" + dom_calle + "',@nrocalle ,@piso ,'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','"+ contacto +"','SI')";
 
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+
+            if (telefono == "")
+                Cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
+            else
+                Cmd.Parameters.AddWithValue("@telefono", telefono);
+
+            if (piso == "")
+                Cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+            else
+                Cmd.Parameters.AddWithValue("@piso", piso);
+
+            if (nro_calle == "")
+                Cmd.Parameters.AddWithValue("@nrocalle", DBNull.Value);
+            else
+                Cmd.Parameters.AddWithValue("@nrocalle", nro_calle);
+
+            Cmd.ExecuteNonQuery();
 
         }
 
         internal void BuscarEmpresa(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail='" + cuit + "',Empresa_Cuit='%" + cuit + "%'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit LIKE'%" + cuit + "%'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,3);
             
             
+        }
+
+        internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Empresa.FormAbmEmpresaAlta fromAbmEmpresaAlta, string cuit)
+        {
+
+            SqlCommand cmd;
+            SqlDataReader dr;
+            string insertDataEmpresa = "SELECT * FROM Empresa WHERE Empresa_CUIT = '" + cuit +"'";
+            cmd = new SqlCommand(insertDataEmpresa, cManager.conexion.conn);
+            dr = cmd.ExecuteReader();
+            dr.Read();
+            fromAbmEmpresaAlta.razon.Text = dr["Empresa_Razon_Social"].ToString();
+            fromAbmEmpresaAlta.mail.Text = dr["Empresa_Mail"].ToString();
+            fromAbmEmpresaAlta.telefono.Text = dr["Empresa_Telefono"].ToString();
+            fromAbmEmpresaAlta.direccion.Text = dr["Empresa_Dom_Calle"].ToString();
+            fromAbmEmpresaAlta.nroDireccion.Text = dr["Empresa_Nro_Calle"].ToString();
+            fromAbmEmpresaAlta.piso.Text = dr["Empresa_Piso"].ToString();
+            fromAbmEmpresaAlta.departamento.Text = dr["Empresa_Depto"].ToString();
+            fromAbmEmpresaAlta.localidad.Text = dr["Empresa_Localidad"].ToString();
+            fromAbmEmpresaAlta.codPostal.Text = dr["Empresa_Codigo_Postal"].ToString();
+            fromAbmEmpresaAlta.ciudad.Text = dr["Empresa_Ciudad"].ToString();
+            fromAbmEmpresaAlta.cuit.Text = dr["Empresa_CUIT"].ToString();
+            fromAbmEmpresaAlta.fechaCreacion.Text = dr["Empresa_Fecha_Creacion"].ToString();
+            fromAbmEmpresaAlta.usuario.Text = dr["Empresa_Nombre_Contacto"].ToString();
+
+            fromAbmEmpresaAlta.empresa.idEmpresa = dr["Empresa_ID"].ToString();
+          
+            
+            dr.Close();
+
+           
+            
+            //throw new NotImplementedException();
+
+
         }
 
         private void adaptarTablaAlComando(SqlDataAdapter adapComando, DataGridView dataGridViewFR, bool filaSeleccion)
@@ -79,12 +131,36 @@ namespace FrbaCommerce.Modelo.Datos
             dataGridViewFR.Columns[0].DisplayIndex = 3;
             adapComando.Update(tabla);
         }
-        /*
-        internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formAltaCliente, string IDCliente)
+
+        internal void modificarEmpresa(SistemManager cManager, Sistema.Empresa empresa, string cuit, string razon, string mail, string telefono, string direccion, string nroDireccion, string depto,string localidad,string codPostal,string ciudad, string fechaCreacion,string piso, string usuario)
         {
-            //pasar a numero y cargar cliente
-            throw new NotImplementedException();
+
+            SqlCommand cmd;
+            string comando;
+            comando = "UPDATE Empresa SET Empresa_CUIT='" + cuit + "',Empresa_Razon_Social='" + razon + "',Empresa_Mail='" + mail + "',Empresa_Telefono=@telefono,Empresa_Dom_Calle='" + direccion + "',Empresa_Nro_Calle=@nrocalle,Empresa_Depto='" + depto + "',Empresa_Localidad='" + localidad + "',Empresa_Codigo_Postal='" + codPostal + "',Empresa_Ciudad='" + ciudad + "',Empresa_Fecha_Creacion='" + fechaCreacion + "',Empresa_Piso=@piso,Empresa_Nombre_Contacto='" + usuario + "' WHERE Empresa_ID=" + empresa.idEmpresa;
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+            if (telefono == "")
+                cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("@telefono", telefono);
+
+            if (piso == "")
+                cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("@piso", piso);
+
+            if (nroDireccion == "")
+                cmd.Parameters.AddWithValue("@nrocalle", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("@nrocalle", nroDireccion);
+            
+            cmd.ExecuteNonQuery();
+
+
+
+
         }
+        /*
 
         internal void cargarDatosDeBaja(SistemManager cManager, string p)
         {

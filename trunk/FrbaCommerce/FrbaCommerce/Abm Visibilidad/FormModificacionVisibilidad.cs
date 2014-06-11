@@ -23,7 +23,7 @@ namespace FrbaCommerce.Abm_Visibilidad
 
 
 
-        private void dataGridViewRolFuncion_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewModificacionVisibilidad_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
             this.Hide();
@@ -31,7 +31,7 @@ namespace FrbaCommerce.Abm_Visibilidad
             {
 
                 FormAltaVisibilidad formAltaVisibilidad = new FormAltaVisibilidad(cManager, true);
-                cManager.sqlAbmVisibilidad.cargarDatosDeModificacion(cManager, formAltaVisibilidad, this.dataGridViewModificacionVisibilidad.Rows[e.RowIndex].Cells[1].Value.ToString());
+                cManager.sqlAbmVisibilidad.cargarDatosDeModificacion(cManager, formAltaVisibilidad, this.dataGridViewModificacionVisibilidad.Rows[e.RowIndex].Cells[0].Value.ToString());
                 formAltaVisibilidad.ShowDialog();
             }
             else
@@ -41,5 +41,6 @@ namespace FrbaCommerce.Abm_Visibilidad
                 formBajaVisibilidad.ShowDialog();
             }
         }
+
     }
 }

@@ -54,8 +54,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nroDireccion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.departamento = new System.Windows.Forms.TextBox();
             this.depto = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // botonAlta
@@ -187,9 +188,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(14, 295);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(118, 13);
+            this.label11.Size = new System.Drawing.Size(107, 13);
             this.label11.TabIndex = 61;
-            this.label11.Text = "Nombre Del Encargado";
+            this.label11.Text = "Nombre De Contacto";
             // 
             // label9
             // 
@@ -270,12 +271,12 @@
             this.label1.TabIndex = 81;
             this.label1.Text = "Nº Direccion";
             // 
-            // textBox1
+            // departamento
             // 
-            this.textBox1.Location = new System.Drawing.Point(332, 144);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 20);
-            this.textBox1.TabIndex = 82;
+            this.departamento.Location = new System.Drawing.Point(332, 144);
+            this.departamento.Name = "departamento";
+            this.departamento.Size = new System.Drawing.Size(140, 20);
+            this.departamento.TabIndex = 82;
             // 
             // depto
             // 
@@ -285,15 +286,25 @@
             this.depto.Size = new System.Drawing.Size(74, 13);
             this.depto.TabIndex = 83;
             this.depto.Text = "Departamento";
-            this.depto.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(332, 182);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(97, 17);
+            this.checkBox1.TabIndex = 84;
+            this.checkBox1.Text = "Esta Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // FormAbmEmpresaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 419);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.depto);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.departamento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nroDireccion);
             this.Controls.Add(this.botonAlta);
@@ -331,20 +342,9 @@
 
         private System.Windows.Forms.Button botonAlta;
         private System.Windows.Forms.Button botonLimpiar;
-        private System.Windows.Forms.TextBox fechaCreacion;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox cuit;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox razon;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox usuario;
-        private System.Windows.Forms.TextBox ciudad;
-        private System.Windows.Forms.TextBox codPostal;
-        private System.Windows.Forms.TextBox localidad;
-        private System.Windows.Forms.TextBox piso;
-        private System.Windows.Forms.TextBox direccion;
-        private System.Windows.Forms.TextBox telefono;
-        private System.Windows.Forms.TextBox mail;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -353,9 +353,21 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox nroDireccion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label depto;
+        public System.Windows.Forms.TextBox cuit;
+        public System.Windows.Forms.TextBox razon;
+        public System.Windows.Forms.TextBox piso;
+        public System.Windows.Forms.TextBox direccion;
+        public System.Windows.Forms.TextBox telefono;
+        public System.Windows.Forms.TextBox mail;
+        public System.Windows.Forms.TextBox nroDireccion;
+        public System.Windows.Forms.TextBox departamento;
+        public System.Windows.Forms.TextBox fechaCreacion;
+        public System.Windows.Forms.TextBox usuario;
+        public System.Windows.Forms.TextBox ciudad;
+        public System.Windows.Forms.TextBox codPostal;
+        public System.Windows.Forms.TextBox localidad;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
