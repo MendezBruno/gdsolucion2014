@@ -30,9 +30,10 @@ namespace Sistema {
 		public DateTime fechaDeNacimiento;
 		public Compra m_Compra;
 		public Oferta m_Oferta;
-		public Publicacion m_Publicacion;
+		public List<Publicacion> publicaciones;
 
 		public Cliente(){
+
 
 		}
 
