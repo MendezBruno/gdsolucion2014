@@ -13,7 +13,7 @@ using Sistema;
 namespace Sistema {
 	public class VisibilidadPublicacion {
 
-		private int codigo;
+		public string codigo{set;get;}
 		private string descripcion;
 		private float precioPorPublicar;
 		private float porcPorVenta;

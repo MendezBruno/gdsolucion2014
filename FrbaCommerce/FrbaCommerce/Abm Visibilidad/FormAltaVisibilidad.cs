@@ -23,7 +23,21 @@ namespace FrbaCommerce.Abm_Visibilidad
         public FormAltaVisibilidad(SistemManager cManager,bool modificacion)
         {
             InitializeComponent();
+            this.modificacion = modificacion;
 
         }
+
+        private void buttonAlta_Click(object sender, EventArgs e)
+        {
+
+            if (modificacion)
+            {
+                //cManager.sqlAbmVisibilidad
+            }
+
+            else
+            cManager.sqlAbmVisibilidad.Ingresar_Datos(cManager, textBoxCodigo.Text, textBoxDescripcion.Text, textBoxPPP.Text, textBoxPorcentaje.Text);
+        }
+
     }
 }

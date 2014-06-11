@@ -33,19 +33,21 @@
             this.textBoxDni = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.dataGridViewModificacionCliente = new System.Windows.Forms.DataGridView();
+            this.SeleccionarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxApellido = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.SeleccionarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxTipoDNI = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewModificacionCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxMail
             // 
-            this.textBoxMail.Location = new System.Drawing.Point(138, 127);
+            this.textBoxMail.Location = new System.Drawing.Point(138, 141);
             this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(259, 20);
             this.textBoxMail.TabIndex = 29;
@@ -53,7 +55,7 @@
             // labelMail
             // 
             this.labelMail.AutoSize = true;
-            this.labelMail.Location = new System.Drawing.Point(25, 130);
+            this.labelMail.Location = new System.Drawing.Point(27, 148);
             this.labelMail.Name = "labelMail";
             this.labelMail.Size = new System.Drawing.Size(42, 13);
             this.labelMail.TabIndex = 28;
@@ -61,7 +63,7 @@
             // 
             // textBoxDni
             // 
-            this.textBoxDni.Location = new System.Drawing.Point(138, 89);
+            this.textBoxDni.Location = new System.Drawing.Point(138, 110);
             this.textBoxDni.Name = "textBoxDni";
             this.textBoxDni.Size = new System.Drawing.Size(259, 20);
             this.textBoxDni.TabIndex = 27;
@@ -84,9 +86,17 @@
             this.dataGridViewModificacionCliente.TabIndex = 25;
             this.dataGridViewModificacionCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModificacionCliente_CellContentClick);
             // 
+            // SeleccionarColumn
+            // 
+            this.SeleccionarColumn.HeaderText = "Seleccionar";
+            this.SeleccionarColumn.Name = "SeleccionarColumn";
+            this.SeleccionarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SeleccionarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SeleccionarColumn.Visible = false;
+            // 
             // buttonBuscar
             // 
-            this.buttonBuscar.Location = new System.Drawing.Point(381, 173);
+            this.buttonBuscar.Location = new System.Drawing.Point(381, 183);
             this.buttonBuscar.Name = "buttonBuscar";
             this.buttonBuscar.Size = new System.Drawing.Size(115, 23);
             this.buttonBuscar.TabIndex = 24;
@@ -96,7 +106,7 @@
             // 
             // buttonLimpiar
             // 
-            this.buttonLimpiar.Location = new System.Drawing.Point(23, 173);
+            this.buttonLimpiar.Location = new System.Drawing.Point(23, 183);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(115, 23);
             this.buttonLimpiar.TabIndex = 23;
@@ -107,7 +117,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 92);
+            this.label2.Location = new System.Drawing.Point(27, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 22;
@@ -116,7 +126,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 20);
+            this.label1.Location = new System.Drawing.Point(25, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 21;
@@ -124,7 +134,7 @@
             // 
             // textBoxApellido
             // 
-            this.textBoxApellido.Location = new System.Drawing.Point(138, 52);
+            this.textBoxApellido.Location = new System.Drawing.Point(138, 48);
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(259, 20);
             this.textBoxApellido.TabIndex = 31;
@@ -138,19 +148,30 @@
             this.label3.TabIndex = 30;
             this.label3.Text = "Apellido";
             // 
-            // SeleccionarColumn
+            // label4
             // 
-            this.SeleccionarColumn.HeaderText = "Seleccionar";
-            this.SeleccionarColumn.Name = "SeleccionarColumn";
-            this.SeleccionarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SeleccionarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.SeleccionarColumn.Visible = false;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "Tipo DNI";
+            // 
+            // comboBoxTipoDNI
+            // 
+            this.comboBoxTipoDNI.FormattingEnabled = true;
+            this.comboBoxTipoDNI.Location = new System.Drawing.Point(138, 79);
+            this.comboBoxTipoDNI.Name = "comboBoxTipoDNI";
+            this.comboBoxTipoDNI.Size = new System.Drawing.Size(259, 21);
+            this.comboBoxTipoDNI.TabIndex = 33;
             // 
             // FormAbmModificacionCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 495);
+            this.Controls.Add(this.comboBoxTipoDNI);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxApellido);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxMail);
@@ -184,5 +205,7 @@
         private System.Windows.Forms.TextBox textBoxApellido;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewButtonColumn SeleccionarColumn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxTipoDNI;
     }
 }

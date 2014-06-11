@@ -80,6 +80,7 @@
             this.dataGridViewEmpresa.Name = "dataGridViewEmpresa";
             this.dataGridViewEmpresa.Size = new System.Drawing.Size(473, 230);
             this.dataGridViewEmpresa.TabIndex = 16;
+            this.dataGridViewEmpresa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmpresa_CellContentClick);
             // 
             // SeleccionarColumn
             // 

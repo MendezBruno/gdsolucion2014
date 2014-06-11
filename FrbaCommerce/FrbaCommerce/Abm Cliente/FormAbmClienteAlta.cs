@@ -16,8 +16,9 @@ namespace FrbaCommerce.Abm_Cliente
         SistemManager cManager;
         bool esCliente,modificacion;
         string user, pass;
-        Cliente cliente;
-        public FormAbmClienteAlta(string user,string pass,SistemManager cManager, bool esCliente)
+        public Cliente cliente;
+
+        public FormAbmClienteAlta(string user, string pass, SistemManager cManager, bool esCliente)
         {
             InitializeComponent();
             this.cManager = cManager;
@@ -25,6 +26,14 @@ namespace FrbaCommerce.Abm_Cliente
             this.user = user;
             this.pass = pass;
         }
+
+        public FormAbmClienteAlta(SistemManager cManager)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+
+        }
+
 
         public FormAbmClienteAlta(SistemManager cManager,bool modificacion)
         {
@@ -36,22 +45,37 @@ namespace FrbaCommerce.Abm_Cliente
 
         private void buttonAlta_Click(object sender, EventArgs e)
         {
+
+            if (modificacion)
+            {
+                cManager.sqlCliente.modificarCliente(cManager, cliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text,textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
+            }
+
+            else
+            {
+                cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
+                cManager.sqlUsuario.darAlta(cManager, textBoxDNI.Text, comboBoxTipo.Text);
+
+            }
+
+            
+            /*
             if (esCliente)
             {
-                cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxNumero.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxCiudad.Text, textBoxFecNac.Text);
-                cManager.sqlUsuario.darAlta(cManager, textBoxNumero.Text, comboBoxTipo.Text);
+                cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
+                cManager.sqlUsuario.darAlta(cManager, textBoxDNI.Text, comboBoxTipo.Text);
             }
             else
             {
                 if (!modificacion)
                 {
                     MessageBox.Show("esto es de prueba para saber que entre a alta desde administrador");
-                    cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxNumero.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxCiudad.Text, textBoxFecNac.Text);
-                    cManager.sqlUsuario.darAlta(cManager, textBoxNumero.Text, comboBoxTipo.Text);
+                    cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
+                    cManager.sqlUsuario.darAlta(cManager, textBoxDNI.Text, comboBoxTipo.Text);
                     //cManager.sqlUsuario.darAlta(cManager, textBoxNombre.Text, "null");
                 }
-                else cManager.sqlCliente.modificarCliente(cManager, cliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxNumero.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxCiudad.Text, textBoxFecNac.Text);
-            }
+               
+            }*/
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -59,7 +83,7 @@ namespace FrbaCommerce.Abm_Cliente
             textBoxNombre.Text="";
             textBoxApe.Text="";
             comboBoxTipo.Text="";
-            textBoxNumero.Text="";
+            textBoxDNI.Text="";
             textBoxTel.Text="";
             textBoxMail.Text="";
             textBoxDirec.Text="";
@@ -67,9 +91,9 @@ namespace FrbaCommerce.Abm_Cliente
             textBoxNroPiso.Text="";
             textBoxLocalidad.Text="";
             textBoxCodPos.Text="";
-            textBoxCiudad.Text="";
             textBoxFecNac.Text = "";
         }
+
 
     }
 }

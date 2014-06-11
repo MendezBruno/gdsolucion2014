@@ -15,7 +15,8 @@ using System;
 namespace Sistema {
 	public class Empresa : Usuario {
 
-        
+
+        public string idEmpresa { get; set; }
         public string Razonsocial { get; set; }
         public string Mail { get; set; }
         public long Telefono { get; set; }

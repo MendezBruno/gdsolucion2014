@@ -38,6 +38,7 @@
             this.textBoxPorcentaje = new System.Windows.Forms.TextBox();
             this.buttonAlta = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -112,6 +113,7 @@
             this.buttonAlta.TabIndex = 8;
             this.buttonAlta.Text = "Alta";
             this.buttonAlta.UseVisualStyleBackColor = true;
+            this.buttonAlta.Click += new System.EventHandler(this.buttonAlta_Click);
             // 
             // buttonLimpiar
             // 
@@ -122,11 +124,22 @@
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(18, 188);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(97, 17);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "Esta Habilitado";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // FormAltaVisibilidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.buttonAlta);
             this.Controls.Add(this.textBoxPorcentaje);
@@ -150,11 +163,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxCodigo;
-        private System.Windows.Forms.TextBox textBoxDescripcion;
-        private System.Windows.Forms.TextBox textBoxPPP;
-        private System.Windows.Forms.TextBox textBoxPorcentaje;
         private System.Windows.Forms.Button buttonAlta;
         private System.Windows.Forms.Button buttonLimpiar;
+        public System.Windows.Forms.TextBox textBoxCodigo;
+        public System.Windows.Forms.TextBox textBoxDescripcion;
+        public System.Windows.Forms.TextBox textBoxPPP;
+        public System.Windows.Forms.TextBox textBoxPorcentaje;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

@@ -39,6 +39,7 @@
             this.dataGridViewModificacionVisibilidad.Name = "dataGridViewModificacionVisibilidad";
             this.dataGridViewModificacionVisibilidad.Size = new System.Drawing.Size(257, 226);
             this.dataGridViewModificacionVisibilidad.TabIndex = 0;
+            this.dataGridViewModificacionVisibilidad.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModificacionVisibilidad_CellContentClick);
             // 
             // FormModificacionVisibilidad
             // 

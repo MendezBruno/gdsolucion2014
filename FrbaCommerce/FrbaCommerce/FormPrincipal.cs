@@ -46,6 +46,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.user = user;
+            cliente = new Cliente();
             cargaManuSegunRol(cliente.RolAsignado);
 
         }
