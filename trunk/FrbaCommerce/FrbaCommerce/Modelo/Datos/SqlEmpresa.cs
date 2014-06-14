@@ -54,7 +54,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand Cmd;
 
-            String Comando = "INSERT INTO Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Nombre_Contacto,Empresa_Esta_Habilitada) VALUES ('" + razon_social + "','" + mail + "', @telefono ,'" + dom_calle + "',@nrocalle ,@piso ,'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','"+ contacto +"','SI')";
+            String Comando = "INSERT INTO Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Nombre_Contacto) VALUES ('" + razon_social + "','" + mail + "', @telefono ,'" + dom_calle + "',@nrocalle ,@piso ,'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','"+ contacto +"')";
 
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
 
@@ -160,7 +160,7 @@ namespace FrbaCommerce.Modelo.Datos
 
 
         }
-        /*
+        
 
         internal void cargarDatosDeBaja(SistemManager cManager, string p)
         {
@@ -175,7 +175,7 @@ namespace FrbaCommerce.Modelo.Datos
                 //No pasa nada, vuelve al menu principal
             }
         }
-        
+        /*
         internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string p, string p_4, string p_5, string p_6, string p_7, string p_8, string p_9, string p_10, string p_11, string p_12, string p_13, string p_14, string p_15)
         {
             throw new NotImplementedException();

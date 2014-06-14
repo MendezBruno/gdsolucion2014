@@ -77,6 +77,22 @@ namespace FrbaCommerce.Abm_Empresa
             
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.monthCalendarEmpresa.Visible == true)
+                this.monthCalendarEmpresa.Visible = false;
+            else
+                this.monthCalendarEmpresa.Visible = true;
+
+        }
+
+        private void monthCalendarEmpresa_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            this.fechaCreacion.Text = this.monthCalendarEmpresa.SelectionRange.Start.ToString();
+
+
+        }
+
         
     }
 }

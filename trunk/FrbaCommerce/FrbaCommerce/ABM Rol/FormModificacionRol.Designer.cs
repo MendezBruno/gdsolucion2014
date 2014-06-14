@@ -35,11 +35,13 @@
             // 
             // dataGridViewRolFuncion
             // 
+            this.dataGridViewRolFuncion.AllowUserToAddRows = false;
             this.dataGridViewRolFuncion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRolFuncion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SeleccionarColumn});
             this.dataGridViewRolFuncion.Location = new System.Drawing.Point(12, 26);
             this.dataGridViewRolFuncion.Name = "dataGridViewRolFuncion";
+            this.dataGridViewRolFuncion.ReadOnly = true;
             this.dataGridViewRolFuncion.Size = new System.Drawing.Size(269, 246);
             this.dataGridViewRolFuncion.TabIndex = 7;
             this.dataGridViewRolFuncion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRolFuncion_CellContentClick);
@@ -48,6 +50,7 @@
             // 
             this.SeleccionarColumn.HeaderText = "Seleccionar";
             this.SeleccionarColumn.Name = "SeleccionarColumn";
+            this.SeleccionarColumn.ReadOnly = true;
             this.SeleccionarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SeleccionarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.SeleccionarColumn.Visible = false;

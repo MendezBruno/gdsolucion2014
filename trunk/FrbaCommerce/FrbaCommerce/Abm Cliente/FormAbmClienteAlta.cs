@@ -26,7 +26,7 @@ namespace FrbaCommerce.Abm_Cliente
             this.user = user;
             this.pass = pass;
             this.checkBoxHabilitacion.Visible = false;
-            this.monthCalendarCliente.Visible = false;
+    
             
         }
 
@@ -34,17 +34,18 @@ namespace FrbaCommerce.Abm_Cliente
         {
             InitializeComponent();
             this.cManager = cManager;
-            this.monthCalendarCliente.Visible = false;
+      
         }
 
 
-        public FormAbmClienteAlta(SistemManager cManager,bool modificacion)
+        public FormAbmClienteAlta(SistemManager cManager,bool modificacion,bool esCliente)
         {
             InitializeComponent();
             this.cManager = cManager;
             cliente = new Cliente();
             this.modificacion = modificacion;
-            this.monthCalendarCliente.Visible = false;
+            this.esCliente = esCliente;
+    
         }
 
         private void buttonAlta_Click(object sender, EventArgs e)
@@ -52,15 +53,15 @@ namespace FrbaCommerce.Abm_Cliente
 
             if (modificacion)
             {
-                cManager.sqlCliente.modificarCliente(cManager, cliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text,textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
+                cManager.sqlCliente.modificarCliente(cManager, cliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text,textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text,checkBoxHabilitacion.Checked);
             }
 
             else
             {
-                cManager.sqlCliente.darAlta(cManager, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
-                cManager.sqlUsuario.darAlta(cManager, textBoxDNI.Text, comboBoxTipo.Text);
+                cManager.sqlCliente.darAlta(cManager,esCliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
 
             }
+            this.Hide();
 
             
             /*
@@ -100,13 +101,22 @@ namespace FrbaCommerce.Abm_Cliente
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.monthCalendarCliente.Visible = true;
+            if (this.monthCalendarCliente.Visible == true)
+                this.monthCalendarCliente.Visible = false;
+            else
+                this.monthCalendarCliente.Visible = true;
+            
         }
 
         private void monthCalendarCliente_DateChanged(object sender, DateRangeEventArgs e)
         {
 
+            textBoxFecNac.Text = this.monthCalendarCliente.SelectionRange.Start.ToString();
 
+        }
+
+        private void checkBoxHabilitacion_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
 

@@ -85,9 +85,21 @@ namespace FrbaCommerce.Login
         private void linkLabelRegistrarse_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            FormRegistroDeUsuario formRegistroDeUsuario = new FormRegistroDeUsuario(cManager);
-            formRegistroDeUsuario.ShowDialog();
+            FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formCliente = new FrbaCommerce.Abm_Cliente.FormAbmClienteAlta(cManager,false,true);
+            formCliente.checkBoxHabilitacion.Visible = false;
+            formCliente.ShowDialog();
             this.Show();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            this.Hide();
+            FrbaCommerce.Abm_Empresa.FormAbmEmpresaAlta formEmpresa = new FrbaCommerce.Abm_Empresa.FormAbmEmpresaAlta(cManager,false);
+            formEmpresa.checkBoxHabilitacion.Visible = false;
+            formEmpresa.ShowDialog();
+            this.Show();
+
         }
 
         

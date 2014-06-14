@@ -112,6 +112,7 @@
             this.buttonHistorial.TabIndex = 7;
             this.buttonHistorial.Text = "Historial";
             this.buttonHistorial.UseVisualStyleBackColor = true;
+            this.buttonHistorial.Click += new System.EventHandler(this.buttonHistorial_Click);
             // 
             // FormPrincipal
             // 

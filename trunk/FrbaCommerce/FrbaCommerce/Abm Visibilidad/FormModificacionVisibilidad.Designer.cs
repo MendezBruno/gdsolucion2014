@@ -29,17 +29,26 @@
         private void InitializeComponent()
         {
             this.dataGridViewModificacionVisibilidad = new System.Windows.Forms.DataGridView();
+            this.seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewModificacionVisibilidad)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewModificacionVisibilidad
             // 
             this.dataGridViewModificacionVisibilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewModificacionVisibilidad.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.seleccionar});
             this.dataGridViewModificacionVisibilidad.Location = new System.Drawing.Point(14, 28);
             this.dataGridViewModificacionVisibilidad.Name = "dataGridViewModificacionVisibilidad";
-            this.dataGridViewModificacionVisibilidad.Size = new System.Drawing.Size(257, 226);
+            this.dataGridViewModificacionVisibilidad.Size = new System.Drawing.Size(257, 213);
             this.dataGridViewModificacionVisibilidad.TabIndex = 0;
             this.dataGridViewModificacionVisibilidad.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModificacionVisibilidad_CellContentClick);
+            // 
+            // seleccionar
+            // 
+            this.seleccionar.HeaderText = "seleccionar";
+            this.seleccionar.Name = "seleccionar";
+            this.seleccionar.Visible = false;
             // 
             // FormModificacionVisibilidad
             // 
@@ -57,5 +66,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewModificacionVisibilidad;
+        private System.Windows.Forms.DataGridViewButtonColumn seleccionar;
     }
 }

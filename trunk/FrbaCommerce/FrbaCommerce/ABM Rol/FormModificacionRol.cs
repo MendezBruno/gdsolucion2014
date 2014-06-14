@@ -16,13 +16,24 @@ namespace FrbaCommerce.ABM_Rol
     public partial class Modificacion_Rol : Form
     {
         SistemManager cManager;
-        public Modificacion_Rol(SistemManager cManager)
+        
+        public Modificacion_Rol(SistemManager cManager, string nombre)
         {
             InitializeComponent();
             this.cManager = cManager;
-            cManager.sqlAbmRol.Buscar(cManager, this.dataGridViewRolFuncion);
-            dataGridViewRolFuncion.Update();
-            // FillData();
+
+            this.Text = nombre;
+
+            if (this.Text.Equals("Modificacion Rol"))
+                cManager.sqlAbmRol.Buscar(cManager, this.dataGridViewRolFuncion);
+            else
+            {
+                cManager.sqlAbmRol.BuscarSinHabilitados(cManager, this.dataGridViewRolFuncion);
+                this.SeleccionarColumn.HeaderText = "Eliminar";
+            }
+                
+                dataGridViewRolFuncion.Update();
+
         }
 
 
@@ -39,9 +50,7 @@ namespace FrbaCommerce.ABM_Rol
             }
             else
             {
-                FormBajaRol formBajaRol = new FormBajaRol(cManager);
-                cManager.sqlAbmRol.cargarDatosDeBaja(cManager, formBajaRol, dataGridViewRolFuncion.Rows[e.RowIndex].Cells[1].Value.ToString());
-                formBajaRol.ShowDialog();
+                cManager.sqlAbmRol.cargarDatosDeBaja(cManager,dataGridViewRolFuncion.Rows[e.RowIndex].Cells[1].Value.ToString());
             }
 
             this.Close();
