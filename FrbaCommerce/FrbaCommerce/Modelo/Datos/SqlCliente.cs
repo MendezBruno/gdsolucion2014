@@ -10,8 +10,7 @@ namespace FrbaCommerce.Modelo.Datos
     public class SqlCliente
     {
         
-
-        internal void darAlta(SistemManager cManager,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string fecNac)
+        internal void darAlta(SistemManager cManager,bool esCliente,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string fecNac)
         {
             try
             {
@@ -28,18 +27,26 @@ namespace FrbaCommerce.Modelo.Datos
                     MyCmd.Parameters.AddWithValue("@piso", nPiso);
 
                MyCmd.ExecuteNonQuery();
+               
+               cManager.sqlUsuario.darAlta(cManager,esCliente, numero, tipo);
             }
             catch (SqlException e)
             {
-                throw new NotImplementedException();
+                MessageBox.Show(e.Number.ToString());
                 cManager.conexion.errorDeSql(e);
             }
         }
 
         internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni,string tipo, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail,Cliente_Tipo_Doc FROM Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%"+tipo+"'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_Tipo_Doc,Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%"+tipo+"%'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,5);
+        }
+
+        internal void BuscarSinHabilitados(SistemManager cManager, string nombre, string apellido, string dni, string tipo, string mail, System.Windows.Forms.DataGridView dataGridView)
+        {
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_Tipo_Doc,Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM Cliente JOIN Usuario ON Cliente.Cliente_ID=Usuario.Usuario_Cliente_ID WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%" + tipo + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 5);
         }
 
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Cliente.FormAbmClienteAlta formAltaCliente, string IDCliente,string tipo)
@@ -47,7 +54,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT * FROM Cliente WHERE Cliente_DNI=" + IDCliente + "AND Cliente_Tipo_Doc='" + tipo + "'";
+            string insertDataMod = "SELECT * FROM Cliente WHERE Cliente_DNI="+ IDCliente +" AND Cliente_Tipo_Doc='" + tipo +"'";
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr=cmd.ExecuteReader();
             dr.Read();
@@ -64,6 +71,15 @@ namespace FrbaCommerce.Modelo.Datos
             formAltaCliente.textBoxNumeroCalle.Text = dr["Cliente_Numero_Calle"].ToString();
             formAltaCliente.textBoxTel.Text = dr["Cliente_Telefono"].ToString();
             formAltaCliente.comboBoxTipo.Text = dr["Cliente_Tipo_Doc"].ToString();
+            dr.Close();
+            insertDataMod="SELECT Esta_Habilitado FROM Usuario WHERE Usuario_Cliente_ID=(SELECT Cliente_ID FROM Cliente WHERE Cliente_DNI=" + IDCliente + "AND Cliente_Tipo_Doc='" + tipo + "')";
+            cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
+            dr=cmd.ExecuteReader();
+            dr.Read();
+            if(dr["Esta_Habilitado"].ToString().Equals("NO"))
+                formAltaCliente.checkBoxHabilitacion.Checked = false;
+            else
+                formAltaCliente.checkBoxHabilitacion.Checked = true;
 
             formAltaCliente.cliente.setTipoDni(formAltaCliente.comboBoxTipo.Text);
             formAltaCliente.cliente.setdni(formAltaCliente.textBoxDNI.Text);
@@ -78,13 +94,23 @@ namespace FrbaCommerce.Modelo.Datos
            // throw new NotImplementedException();
         }
 
-        internal void cargarDatosDeBaja(SistemManager cManager, string p)
+        internal void cargarDatosDeBaja(SistemManager cManager, string tipo,string dni)
         {
-            DialogResult confirmarBaja = MessageBox.Show("Desea dar de baja" + p);
+
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult confirmarBaja = MessageBox.Show("Desea deshabilitar al cliente con "+tipo+ " igual a" + dni, "Baja de Rol", buttons);
+            
             if (DialogResult.Yes == confirmarBaja)
             {
                 //BAJA LOGICA ACA
-                MessageBox.Show("el rol " + p + " a sido deshabilitado");
+
+                SqlCommand comando;
+                string bajastring = "UPDATE Usuario SET Esta_Habilitado='NO' WHERE (SELECT Cliente_ID FROM Cliente WHERE Cliente_DNI='" + dni + "' AND Cliente_Tipo_Doc='" + tipo + "')=Usuario_Cliente_ID";
+                comando = new SqlCommand(bajastring, cManager.conexion.conn);
+                comando.ExecuteNonQuery();
+
+                MessageBox.Show("el Cliente con "+tipo+" igual a "+ dni + " a sido deshabilitado");
             }
             if (DialogResult.No == confirmarBaja)
             {
@@ -92,7 +118,7 @@ namespace FrbaCommerce.Modelo.Datos
             }
         }
 
-        internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string nombre, string apellido, string tipo_doc, string dni, string tel, string mail, string direc, string nroCalle, string piso, string depto, string localidad, string cod_pos,string fech_nac)
+        internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string nombre, string apellido, string tipo_doc, string dni, string tel, string mail, string direc, string nroCalle, string piso, string depto, string localidad, string cod_pos,string fech_nac,bool habilitacion)
         {
             SqlCommand cmd;
             string comando;
@@ -118,6 +144,14 @@ namespace FrbaCommerce.Modelo.Datos
                  cmd.Parameters.AddWithValue("@piso", piso);
             
             cmd.ExecuteNonQuery();
+
+            if (habilitacion==true)
+            {
+                comando = "UPDATE Usuario SET Esta_Habilitado='SI' WHERE Usuario_Cliente_ID='" + clienteId + "'";
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+            }
+            MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado"); 
             
             
             
@@ -126,7 +160,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)
         {
-            SqlCommand cmd = new SqlCommand("select * from Usuario JOIN Cliente_Usuario ON Usuario.Usuario_Cliente_ID=Cliente_Usuario.Cliente_ID JOIN Cliente ON Cliente.Cliente_DNI=Cliente_Usuario.Cliente_DNI AND Cliente.Cliente_Tipo_Doc=Cliente_Usuario.Cliente_Tipo_Doc WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("select * from Usuario JOIN Cliente ON Usuario.Usuario_Cliente_ID=Cliente.Cliente_ID WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
            // SqlCommand cmd = new SqlCommand("SELECT * FROM Cliente WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
             //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 
@@ -157,7 +191,7 @@ namespace FrbaCommerce.Modelo.Datos
                 if (!dr.IsDBNull(dr.GetOrdinal("Cliente_DNI"))) cliente.numeroDoc = (Convert.ToInt32((dr["Cliente_DNI"])));
                 cliente.fechaDeNacimiento = dr.GetDateTime(dr.GetOrdinal("Cliente_Fecha_De_Nacimiento"));
                 //cliente.nombreDeContacto = (dr["Cliente_CUIT"].ToString());      
-                if (dr["Cliente_Esta_Habilitada"].ToString().Equals("SI")) cliente.habilitado = true; else cliente.habilitado = false;
+                if (dr["Esta_Habilitado"].ToString().Equals("SI")) cliente.habilitado = true; else cliente.habilitado = false;
 
             }
 

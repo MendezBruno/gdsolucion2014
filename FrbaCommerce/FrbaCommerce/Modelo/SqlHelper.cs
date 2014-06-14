@@ -71,7 +71,17 @@ namespace FrbaCommerce.Modelo
 
         public void errorDeSql(SqlException ex)
         {
+            foreach (SqlError err in ex.Errors)
+            {
+
+                if (err.Number == 2627)
+                    MessageBox.Show(err.Message);
+
+
+            }
+            
             //MessageBox.Show(ex.Number.ToString());
+            /*
             switch (ex.Number)
             {
                 case 8152:
@@ -83,6 +93,7 @@ namespace FrbaCommerce.Modelo
                 default:
                     break;
             }
+            */
         }
 
 

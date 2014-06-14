@@ -37,6 +37,7 @@
             this.labelUsuarioInexistente = new System.Windows.Forms.Label();
             this.labelContraseñaincorrecta = new System.Windows.Forms.Label();
             this.labelUsuarioDeshabilitado = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // labelUsuario
@@ -61,7 +62,7 @@
             // 
             // buttonIngresar
             // 
-            this.buttonIngresar.Location = new System.Drawing.Point(83, 127);
+            this.buttonIngresar.Location = new System.Drawing.Point(92, 115);
             this.buttonIngresar.Name = "buttonIngresar";
             this.buttonIngresar.Size = new System.Drawing.Size(132, 29);
             this.buttonIngresar.TabIndex = 2;
@@ -87,12 +88,12 @@
             // 
             this.linkLabelRegistrarse.AutoSize = true;
             this.linkLabelRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelRegistrarse.Location = new System.Drawing.Point(111, 176);
+            this.linkLabelRegistrarse.Location = new System.Drawing.Point(100, 156);
             this.linkLabelRegistrarse.Name = "linkLabelRegistrarse";
-            this.linkLabelRegistrarse.Size = new System.Drawing.Size(84, 17);
+            this.linkLabelRegistrarse.Size = new System.Drawing.Size(113, 17);
             this.linkLabelRegistrarse.TabIndex = 5;
             this.linkLabelRegistrarse.TabStop = true;
-            this.linkLabelRegistrarse.Text = "Registrarse!";
+            this.linkLabelRegistrarse.Text = "Registrar Cliente";
             this.linkLabelRegistrarse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistrarse_LinkClicked);
             // 
             // labelUsuarioInexistente
@@ -128,11 +129,24 @@
             this.labelUsuarioDeshabilitado.Text = "usuario deshabilitado comunicarse con sistemas";
             this.labelUsuarioDeshabilitado.Visible = false;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(98, 182);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(126, 17);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Registrar Empresa";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // FormLoggin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 208);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.labelUsuarioDeshabilitado);
             this.Controls.Add(this.labelContraseñaincorrecta);
             this.Controls.Add(this.labelUsuarioInexistente);
@@ -160,5 +174,6 @@
         private System.Windows.Forms.Label labelUsuarioInexistente;
         private System.Windows.Forms.Label labelContraseñaincorrecta;
         private System.Windows.Forms.Label labelUsuarioDeshabilitado;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

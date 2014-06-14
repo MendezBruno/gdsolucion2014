@@ -41,7 +41,7 @@ namespace FrbaCommerce.Abm_Empresa
             else
             {
                 // FormBajaCliente formBajaRol = new FormBajaCliente(cManager);
-                cManager.sqlCliente.cargarDatosDeBaja(cManager, dataGridViewEmpresa.Rows[e.RowIndex].Cells[1].Value.ToString());
+                cManager.sqlEmpresa.cargarDatosDeBaja(cManager, dataGridViewEmpresa.Rows[e.RowIndex].Cells[1].Value.ToString());
                 // formBajaRol.ShowDialog();
             }
 

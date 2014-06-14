@@ -26,6 +26,7 @@ namespace FrbaCommerce.Modelo
         public SqlAmbVisibilidad sqlAbmVisibilidad = new SqlAmbVisibilidad();
         public SqlRubro sqlRubro = new SqlRubro();
         public SqlPublicacion sqlPublicacion = new SqlPublicacion();
+        public SqlHistorial sqlHistorial = new SqlHistorial();
 
         public SistemManager()
         {

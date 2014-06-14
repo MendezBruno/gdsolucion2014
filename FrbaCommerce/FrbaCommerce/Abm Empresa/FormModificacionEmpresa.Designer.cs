@@ -73,6 +73,7 @@
             // 
             // dataGridViewEmpresa
             // 
+            this.dataGridViewEmpresa.AllowUserToAddRows = false;
             this.dataGridViewEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SeleccionarColumn});

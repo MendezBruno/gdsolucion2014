@@ -23,11 +23,14 @@ namespace FrbaCommerce.Modelo.Datos
                 SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
 
+                ComandoInsertar = @"UPDATE Rol set Esta_Habilitada='NO' WHERE Rol_Nombre='" + nombreRol + "'";
+                MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
+                MyCmd2.ExecuteNonQuery();
+
                 foreach (CheckBox chekBox in funcionalidades)
                 {
                     if (chekBox.Checked)
                     {
-                        // ComandoInsert = @"INSERT INTO Funcionalidad_Rol(Rol_Nombre,Funcionalidad_Tipo) VALUES('" + nombreRol + "','" + chekBox.Name + "')";
                         if (chekBox.Name == "Habilitar_Rol")
                         {
                             ComandoInsertar = @"UPDATE Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
@@ -37,6 +40,7 @@ namespace FrbaCommerce.Modelo.Datos
  
                         else
                         {
+                            
                             ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
                             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                             //   MyCmd2.ExecuteScalar();
@@ -51,6 +55,7 @@ namespace FrbaCommerce.Modelo.Datos
             {
                 switch (ex.Number)
                 {
+                 
                     case 8152:
                         MessageBox.Show("Cantidad de caracteres excedidos en el nombre del Rol");
                         break;
@@ -71,6 +76,14 @@ namespace FrbaCommerce.Modelo.Datos
             adaptarTablaAlComando(adapComando, gridViewFR, true);
             
         }
+
+        internal void BuscarSinHabilitados(SistemManager cManager, DataGridView gridViewFR)
+        {
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Rol_Nombre FROM Rol WHERE Esta_Habilitada='SI'", cManager.conexion.conn);
+            adaptarTablaAlComando(adapComando, gridViewFR, true);
+
+        }
+
        
         private void adaptarTablaAlComando(SqlDataAdapter adapComando, DataGridView dataGridViewFR, bool filaSeleccion)
         {
@@ -129,7 +142,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
-        internal void cargarDatosDeBaja(SistemManager cManager, FrbaCommerce.ABM_Rol.FormBajaRol formBajaRol, string rol)
+        internal void cargarDatosDeBaja(SistemManager cManager, string rol)
         {
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
@@ -195,9 +208,10 @@ namespace FrbaCommerce.Modelo.Datos
                 }
 
             }
-
+            MessageBox.Show("el rol " + rolActual.getNombre() + " a sido modificado");
 
         }
+
     }
 }
 

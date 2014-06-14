@@ -13,6 +13,7 @@ using FrbaCommerce.ABM_Rol;
 using Sistema;
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Generar_Publicacion;
+using FrbaCommerce.Historial_Cliente;
 
 namespace FrbaCommerce
 {
@@ -88,7 +89,7 @@ namespace FrbaCommerce
         private void buttonCrearUsuario_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormAbmClienteAlta formClienteAlta = new FormAbmClienteAlta(cManager, false);
+            FormAbmClienteAlta formClienteAlta = new FormAbmClienteAlta(cManager, false,false);
             formClienteAlta.ShowDialog();
             this.Show();
 
@@ -110,6 +111,17 @@ namespace FrbaCommerce
             else formPublicacion = new FormGenerarPublicacion(cManager, cliente);
             formPublicacion.ShowDialog();
             this.Show();
+        }
+
+        private void buttonHistorial_Click(object sender, EventArgs e)
+        {
+            
+            this.Hide();
+            FormHistorialCliente formHistoria = new FormHistorialCliente(cManager,cliente.getUsuario());
+            formHistoria.ShowDialog();
+            this.Show();
+
+
         }
 
         

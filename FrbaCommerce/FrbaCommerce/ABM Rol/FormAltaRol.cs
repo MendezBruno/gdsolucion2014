@@ -33,8 +33,12 @@ namespace FrbaCommerce.ABM_Rol
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            if (modificacion) cManager.sqlAbmRol.modificarRol(cManager, this.textBoxNombreRol.Text, this.groupBoxFuncionalidades.Controls, rolActual);
-            else cManager.sqlAbmRol.altaRol(cManager,this.textBoxNombreRol.Text, this.groupBoxFuncionalidades.Controls);
+            if (modificacion)
+                cManager.sqlAbmRol.modificarRol(cManager, this.textBoxNombreRol.Text, this.groupBoxFuncionalidades.Controls, rolActual);
+            else
+                cManager.sqlAbmRol.altaRol(cManager, this.textBoxNombreRol.Text, this.groupBoxFuncionalidades.Controls);
+            
+            this.Close();
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)

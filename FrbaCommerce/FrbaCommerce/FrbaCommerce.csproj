@@ -72,23 +72,11 @@
     <Compile Include="Abm Empresa\FormModificacionEmpresa.Designer.cs">
       <DependentUpon>FormModificacionEmpresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Rol\FormABMRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM Rol\FormABMRol.Designer.cs">
-      <DependentUpon>FormABMRol.cs</DependentUpon>
-    </Compile>
     <Compile Include="ABM Rol\FormAltaRol.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Rol\FormAltaRol.Designer.cs">
       <DependentUpon>FormAltaRol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ABM Rol\FormBajaRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM Rol\FormBajaRol.Designer.cs">
-      <DependentUpon>FormBajaRol.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Rol\FormModificacionRol.cs">
       <SubType>Form</SubType>
@@ -174,17 +162,17 @@
     <Compile Include="Gestion de Preguntas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.cs">
+    <Compile Include="Historial Cliente\FormHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Historial Cliente\FormHistorialCliente.Designer.cs">
+      <DependentUpon>FormHistorialCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.cs">
+    <Compile Include="Listado Estadistico\FormListadoEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Listado Estadistico\FormListadoEstadistico.Designer.cs">
+      <DependentUpon>FormListadoEstadistico.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FormLoggin.cs">
       <SubType>Form</SubType>
@@ -202,6 +190,7 @@
     <Compile Include="Modelo\Datos\SqlAmbVisibilidad.cs" />
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
+    <Compile Include="Modelo\Datos\SqlHistorial.cs" />
     <Compile Include="Modelo\Datos\SqlPublicacion.cs" />
     <Compile Include="Modelo\Datos\SqlRol.cs" />
     <Compile Include="Modelo\Datos\SqlRubro.cs" />
@@ -240,14 +229,8 @@
     <EmbeddedResource Include="Abm Empresa\FormModificacionEmpresa.resx">
       <DependentUpon>FormModificacionEmpresa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Rol\FormABMRol.resx">
-      <DependentUpon>FormABMRol.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\FormAltaRol.resx">
       <DependentUpon>FormAltaRol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM Rol\FormBajaRol.resx">
-      <DependentUpon>FormBajaRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\FormModificacionRol.resx">
       <DependentUpon>FormModificacionRol.cs</DependentUpon>
@@ -269,6 +252,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Historial Cliente\FormHistorialCliente.resx">
+      <DependentUpon>FormHistorialCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\FormListadoEstadistico.resx">
+      <DependentUpon>FormListadoEstadistico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormLoggin.resx">
       <DependentUpon>FormLoggin.cs</DependentUpon>

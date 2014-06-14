@@ -67,6 +67,7 @@
             this.textBoxDni.Name = "textBoxDni";
             this.textBoxDni.Size = new System.Drawing.Size(259, 20);
             this.textBoxDni.TabIndex = 27;
+            this.textBoxDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDni_KeyPress_1);
             // 
             // textBoxNombre
             // 
@@ -77,11 +78,13 @@
             // 
             // dataGridViewModificacionCliente
             // 
+            this.dataGridViewModificacionCliente.AllowUserToAddRows = false;
             this.dataGridViewModificacionCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewModificacionCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SeleccionarColumn});
             this.dataGridViewModificacionCliente.Location = new System.Drawing.Point(23, 221);
             this.dataGridViewModificacionCliente.Name = "dataGridViewModificacionCliente";
+            this.dataGridViewModificacionCliente.ReadOnly = true;
             this.dataGridViewModificacionCliente.Size = new System.Drawing.Size(473, 230);
             this.dataGridViewModificacionCliente.TabIndex = 25;
             this.dataGridViewModificacionCliente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewModificacionCliente_CellContentClick);
@@ -90,6 +93,7 @@
             // 
             this.SeleccionarColumn.HeaderText = "Seleccionar";
             this.SeleccionarColumn.Name = "SeleccionarColumn";
+            this.SeleccionarColumn.ReadOnly = true;
             this.SeleccionarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SeleccionarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.SeleccionarColumn.Visible = false;
@@ -160,6 +164,9 @@
             // comboBoxTipoDNI
             // 
             this.comboBoxTipoDNI.FormattingEnabled = true;
+            this.comboBoxTipoDNI.Items.AddRange(new object[] {
+            "DNI",
+            "LC"});
             this.comboBoxTipoDNI.Location = new System.Drawing.Point(138, 79);
             this.comboBoxTipoDNI.Name = "comboBoxTipoDNI";
             this.comboBoxTipoDNI.Size = new System.Drawing.Size(259, 21);

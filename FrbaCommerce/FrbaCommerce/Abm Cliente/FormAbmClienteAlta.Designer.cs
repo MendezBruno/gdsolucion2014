@@ -302,6 +302,7 @@
             this.checkBoxHabilitacion.TabIndex = 59;
             this.checkBoxHabilitacion.Text = "Esta Habilitado";
             this.checkBoxHabilitacion.UseVisualStyleBackColor = true;
+            this.checkBoxHabilitacion.CheckedChanged += new System.EventHandler(this.checkBoxHabilitacion_CheckedChanged);
             // 
             // button1
             // 
@@ -318,6 +319,7 @@
             this.monthCalendarCliente.Location = new System.Drawing.Point(402, 253);
             this.monthCalendarCliente.Name = "monthCalendarCliente";
             this.monthCalendarCliente.TabIndex = 61;
+            this.monthCalendarCliente.Visible = false;
             this.monthCalendarCliente.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarCliente_DateChanged);
             // 
             // FormAbmClienteAlta
@@ -393,9 +395,9 @@
         public System.Windows.Forms.TextBox textBoxFecNac;
         public System.Windows.Forms.TextBox textBoxDepto;
         public System.Windows.Forms.TextBox textBoxNumeroCalle;
-        private System.Windows.Forms.CheckBox checkBoxHabilitacion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MonthCalendar monthCalendarCliente;
+        public System.Windows.Forms.CheckBox checkBoxHabilitacion;
 
     }
 }

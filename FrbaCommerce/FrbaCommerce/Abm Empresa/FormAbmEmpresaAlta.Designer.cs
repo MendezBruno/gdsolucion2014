@@ -56,7 +56,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.departamento = new System.Windows.Forms.TextBox();
             this.depto = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxHabilitacion = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.monthCalendarEmpresa = new System.Windows.Forms.MonthCalendar();
             this.SuspendLayout();
             // 
             // botonAlta
@@ -81,7 +83,7 @@
             // 
             // fechaCreacion
             // 
-            this.fechaCreacion.Location = new System.Drawing.Point(138, 331);
+            this.fechaCreacion.Location = new System.Drawing.Point(138, 310);
             this.fechaCreacion.Name = "fechaCreacion";
             this.fechaCreacion.Size = new System.Drawing.Size(140, 20);
             this.fechaCreacion.TabIndex = 75;
@@ -89,7 +91,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(17, 331);
+            this.label14.Location = new System.Drawing.Point(17, 310);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(99, 13);
             this.label14.TabIndex = 74;
@@ -129,21 +131,21 @@
             // 
             // usuario
             // 
-            this.usuario.Location = new System.Drawing.Point(138, 295);
+            this.usuario.Location = new System.Drawing.Point(138, 280);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(140, 20);
             this.usuario.TabIndex = 69;
             // 
             // ciudad
             // 
-            this.ciudad.Location = new System.Drawing.Point(138, 259);
+            this.ciudad.Location = new System.Drawing.Point(138, 244);
             this.ciudad.Name = "ciudad";
             this.ciudad.Size = new System.Drawing.Size(140, 20);
             this.ciudad.TabIndex = 68;
             // 
             // codPostal
             // 
-            this.codPostal.Location = new System.Drawing.Point(138, 221);
+            this.codPostal.Location = new System.Drawing.Point(138, 210);
             this.codPostal.Name = "codPostal";
             this.codPostal.Size = new System.Drawing.Size(140, 20);
             this.codPostal.TabIndex = 67;
@@ -186,7 +188,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(14, 295);
+            this.label11.Location = new System.Drawing.Point(17, 280);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(107, 13);
             this.label11.TabIndex = 61;
@@ -195,7 +197,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 259);
+            this.label9.Location = new System.Drawing.Point(17, 244);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 60;
@@ -204,7 +206,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 221);
+            this.label8.Location = new System.Drawing.Point(17, 210);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 13);
             this.label8.TabIndex = 59;
@@ -287,22 +289,42 @@
             this.depto.TabIndex = 83;
             this.depto.Text = "Departamento";
             // 
-            // checkBox1
+            // checkBoxHabilitacion
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(332, 182);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(97, 17);
-            this.checkBox1.TabIndex = 84;
-            this.checkBox1.Text = "Esta Habilitado";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxHabilitacion.AutoSize = true;
+            this.checkBoxHabilitacion.Location = new System.Drawing.Point(140, 336);
+            this.checkBoxHabilitacion.Name = "checkBoxHabilitacion";
+            this.checkBoxHabilitacion.Size = new System.Drawing.Size(97, 17);
+            this.checkBoxHabilitacion.TabIndex = 84;
+            this.checkBoxHabilitacion.Text = "Esta Habilitado";
+            this.checkBoxHabilitacion.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(284, 307);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 85;
+            this.button1.Text = "Seleccionar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // monthCalendarEmpresa
+            // 
+            this.monthCalendarEmpresa.Location = new System.Drawing.Point(379, 176);
+            this.monthCalendarEmpresa.Name = "monthCalendarEmpresa";
+            this.monthCalendarEmpresa.TabIndex = 86;
+            this.monthCalendarEmpresa.Visible = false;
+            this.monthCalendarEmpresa.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEmpresa_DateChanged);
             // 
             // FormAbmEmpresaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 419);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.monthCalendarEmpresa);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.checkBoxHabilitacion);
             this.Controls.Add(this.depto);
             this.Controls.Add(this.departamento);
             this.Controls.Add(this.label1);
@@ -368,6 +390,8 @@
         public System.Windows.Forms.TextBox ciudad;
         public System.Windows.Forms.TextBox codPostal;
         public System.Windows.Forms.TextBox localidad;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MonthCalendar monthCalendarEmpresa;
+        public System.Windows.Forms.CheckBox checkBoxHabilitacion;
     }
 }

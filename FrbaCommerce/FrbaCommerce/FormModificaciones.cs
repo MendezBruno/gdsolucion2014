@@ -50,7 +50,7 @@ namespace FrbaCommerce
         private void buttonModificarRol_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager);
+            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager,"Modificacion Rol");
             formModificacionRol.ShowDialog();
             this.Show();
         }
@@ -58,7 +58,7 @@ namespace FrbaCommerce
         private void buttonCrearCliente_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormAbmClienteAlta formClienteAlta = new FormAbmClienteAlta(cManager, false);
+            FormAbmClienteAlta formClienteAlta = new FormAbmClienteAlta(cManager, false,false);
             formClienteAlta.ShowDialog();
             this.Show();
         }
@@ -93,8 +93,7 @@ namespace FrbaCommerce
         private void buttonBajaRol_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager);
-            formModificacionRol.Text = "Baja";
+            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager,"Baja_Rol");
             formModificacionRol.ShowDialog();
             this.Show();
         }
@@ -165,7 +164,7 @@ namespace FrbaCommerce
         private void buttonModificarRol_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager);
+            Modificacion_Rol formModificacionRol = new Modificacion_Rol(cManager,"Modificacion Rol");
             formModificacionRol.ShowDialog();
             this.Show();
 
