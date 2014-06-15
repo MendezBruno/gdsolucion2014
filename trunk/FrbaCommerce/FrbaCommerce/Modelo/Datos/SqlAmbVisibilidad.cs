@@ -78,10 +78,14 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal int codigoSegunDescripcion(SistemManager cManager, string descripcion)
         {
+            int res;
             SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Codigo FROM Publicacion_Visibilidad WHERE Visibilidad_Descripcion='"+descripcion+"'", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            int res = Convert.ToInt32(dr[0]);
+            //dr.Read();
+            if (dr.Read())
+                res = Convert.ToInt32(dr[0]);
+            else
+                res = -1;
             dr.Close();
             return res;
         }

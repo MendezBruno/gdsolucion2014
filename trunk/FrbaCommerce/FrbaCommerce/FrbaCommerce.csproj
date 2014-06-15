@@ -108,29 +108,29 @@
     <Compile Include="Abm Visibilidad\FormModificacionVisibilidad.Designer.cs">
       <DependentUpon>FormModificacionVisibilidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calificar Vendedor\Form1.cs">
+    <Compile Include="Calificar Vendedor\FormCalificacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calificar Vendedor\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Calificar Vendedor\FormCalificacion.Designer.cs">
+      <DependentUpon>FormCalificacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar-Ofertar\Form1.cs">
+    <Compile Include="Comprar-Ofertar\FormComprarOfertar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar-Ofertar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Comprar-Ofertar\FormComprarOfertar.Designer.cs">
+      <DependentUpon>FormComprarOfertar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editar Publicacion\Form1.cs">
+    <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
+      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Facturar Publicaciones\Form1.cs">
+    <Compile Include="Facturar Publicaciones\FormFacturarPublicaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturar Publicaciones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Facturar Publicaciones\FormFacturarPublicaciones.Designer.cs">
+      <DependentUpon>FormFacturarPublicaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAgregarContraseña.cs">
       <SubType>Form</SubType>
@@ -150,6 +150,18 @@
     <Compile Include="FormPrincipal.Designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Publicacion\Continuar Publicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicacion\Continuar Publicacion.Designer.cs">
+      <DependentUpon>Continuar Publicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Publicacion\FormGenerarInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicacion\FormGenerarInicial.Designer.cs">
+      <DependentUpon>FormGenerarInicial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generar Publicacion\FormGenerarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +173,12 @@
     </Compile>
     <Compile Include="Gestion de Preguntas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gestion de Preguntas\SubPreguntas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion de Preguntas\SubPreguntas.Designer.cs">
+      <DependentUpon>SubPreguntas.cs</DependentUpon>
     </Compile>
     <Compile Include="Historial Cliente\FormHistorialCliente.cs">
       <SubType>Form</SubType>
@@ -191,6 +209,7 @@
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
     <Compile Include="Modelo\Datos\SqlHistorial.cs" />
+    <Compile Include="Modelo\Datos\SqlListado.cs" />
     <Compile Include="Modelo\Datos\SqlPublicacion.cs" />
     <Compile Include="Modelo\Datos\SqlRol.cs" />
     <Compile Include="Modelo\Datos\SqlRubro.cs" />
@@ -241,6 +260,15 @@
     <EmbeddedResource Include="Abm Visibilidad\FormModificacionVisibilidad.resx">
       <DependentUpon>FormModificacionVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Calificar Vendedor\FormCalificacion.resx">
+      <DependentUpon>FormCalificacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar-Ofertar\FormComprarOfertar.resx">
+      <DependentUpon>FormComprarOfertar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturar Publicaciones\FormFacturarPublicaciones.resx">
+      <DependentUpon>FormFacturarPublicaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarContraseña.resx">
       <DependentUpon>FormAgregarContraseña.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,8 +278,17 @@
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicacion\Continuar Publicacion.resx">
+      <DependentUpon>Continuar Publicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicacion\FormGenerarInicial.resx">
+      <DependentUpon>FormGenerarInicial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestion de Preguntas\SubPreguntas.resx">
+      <DependentUpon>SubPreguntas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\FormHistorialCliente.resx">
       <DependentUpon>FormHistorialCliente.cs</DependentUpon>

@@ -14,6 +14,7 @@ using Sistema;
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Generar_Publicacion;
 using FrbaCommerce.Historial_Cliente;
+using FrbaCommerce.Listado_Estadistico;
 
 namespace FrbaCommerce
 {
@@ -106,9 +107,10 @@ namespace FrbaCommerce
         private void buttonPublicaciones_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormGenerarPublicacion formPublicacion;
-            if(cliente==null) formPublicacion = new FormGenerarPublicacion(cManager, empresa);
-            else formPublicacion = new FormGenerarPublicacion(cManager, cliente);
+            FormGenerarInicial formPublicacion;
+          //  FormGenerarPublicacion formPublicacion;
+            if (cliente == null) formPublicacion = new FormGenerarInicial(cManager, empresa);
+            else formPublicacion = new FormGenerarInicial(cManager, cliente);
             formPublicacion.ShowDialog();
             this.Show();
         }
@@ -121,6 +123,20 @@ namespace FrbaCommerce
             formHistoria.ShowDialog();
             this.Show();
 
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormListadoEstadistico formListado = new FormListadoEstadistico(cManager) ;
+            formListado.ShowDialog();
+            this.Show();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
 
         }
 

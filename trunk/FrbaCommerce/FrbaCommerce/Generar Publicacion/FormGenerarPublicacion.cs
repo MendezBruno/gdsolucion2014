@@ -16,56 +16,59 @@ namespace FrbaCommerce.Generar_Publicacion
         SistemManager cManager;
         Empresa empresa;
         Cliente cliente;
+        bool publico;
 
         public FormGenerarPublicacion(SistemManager cManager, Cliente cliente)
         {
-        InitializeComponent();
-        this.cliente = cliente;
-        this.cManager = cManager;
-        this.labelUserName.Text = cliente.getUsuario();
-        cargarForm();
+            InitializeComponent();
+            this.cliente = cliente;
+            this.cManager = cManager;
+            this.labelUserName.Text = cliente.getUsuario();
+            this.publico = false;
+            cargarForm();
         }
 
         
 
         public FormGenerarPublicacion(SistemManager cManager, Empresa empresa)
         {
-        InitializeComponent();
-        this.empresa = empresa;
-        this.cManager = cManager;
-        this.labelUserName.Text = empresa.getUsuario();
-        cargarForm();
+            InitializeComponent();
+            this.empresa = empresa;
+            this.cManager = cManager;
+            this.labelUserName.Text = empresa.getUsuario();
+            this.publico = false;
+            cargarForm();
         }
 
         private void cargarForm()
         {
             
             cManager.sqlAbmVisibilidad.listaDeVisibilidades(cManager, this.comboBoxVisibilidad.Items);
-           // llenarCombo(this.comboBoxVisibilidad.Items, listaAux);
-            cManager.sqlRubro.listaDeRubro(cManager, this.comboBoxRubro.Items);
-           // llenarCombo(this.comboBoxRubro.Items,listaAux);
+            cManager.sqlRubro.listaDeRubro(cManager, this.checkedListBoxRubro.Items);
 
-        }
-
-        private void llenarCombo(ComboBox.ObjectCollection objectCollection, List<string> listaCargada)
-        {
-            foreach (string item in listaCargada) objectCollection.Add(item);
-            listaCargada.Clear();
         }
         
         private void buttonPublicar_Click(object sender, EventArgs e)
         {            
-            cManager.sqlPublicacion.publicar(cManager,this.comboBoxTipoPublicacion.Text, this.comboBoxRubro.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value, this.numericUpDownPrecio.Value, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text,this.labelUserName.Text); 
+
+            cManager.sqlPublicacion.publicar(cManager,this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text,this.labelUserName.Text);
+            publico = true;
+        
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
         {
             this.comboBoxTipoPublicacion.Text = "";
-            this.comboBoxRubro.Text = "";
             this.comboBoxVisibilidad.Text = "";
             this.comboBoxAceptaPregunta.Text = "";
         }
 
+        private void FormGenerarPublicacion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text);
+
+        }
 
     }
 }

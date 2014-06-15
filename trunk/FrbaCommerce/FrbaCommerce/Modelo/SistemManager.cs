@@ -27,6 +27,7 @@ namespace FrbaCommerce.Modelo
         public SqlRubro sqlRubro = new SqlRubro();
         public SqlPublicacion sqlPublicacion = new SqlPublicacion();
         public SqlHistorial sqlHistorial = new SqlHistorial();
+        public SqlListado sqlListado = new SqlListado();
 
         public SistemManager()
         {

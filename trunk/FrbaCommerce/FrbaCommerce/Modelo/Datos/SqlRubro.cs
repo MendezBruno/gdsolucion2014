@@ -9,12 +9,13 @@ namespace FrbaCommerce.Modelo.Datos
 {
     public class SqlRubro
     {
-        internal void listaDeRubro(SistemManager cManager, ComboBox.ObjectCollection objectCollection)
+       
+        internal void listaDeRubro(SistemManager cManager, CheckedListBox.ObjectCollection objectCollection)
         {
-            SqlCommand cmd = new SqlCommand("SELECT Rubro_Descripcion FROM Rubro" , cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT Rubro_Descripcion FROM Rubro", cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
-            
+
             while (dr.Read())
             {
                 objectCollection.Add(dr["Rubro_Descripcion"].ToString());
@@ -22,4 +23,6 @@ namespace FrbaCommerce.Modelo.Datos
             dr.Close();
         }
     }
+
+
 }
