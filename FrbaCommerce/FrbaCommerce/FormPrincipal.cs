@@ -24,6 +24,7 @@ namespace FrbaCommerce
         Usuario user;
         Cliente cliente;
         Empresa empresa;
+        Administrador administrador;
 
         public FormPrincipal(SistemManager cManager, Cliente cliente)
         {
@@ -43,13 +44,12 @@ namespace FrbaCommerce
 
         }
 
-        public FormPrincipal(SistemManager cManager, Usuario user)
+        public FormPrincipal(SistemManager cManager, Administrador administrador)
         {
             InitializeComponent();
             this.cManager = cManager;
-            this.user = user;
-            cliente = new Cliente();
-            cargaManuSegunRol(cliente.RolAsignado);
+            this.administrador = administrador;
+            cargaManuSegunRol(administrador.RolAsignado);
 
         }
         /*

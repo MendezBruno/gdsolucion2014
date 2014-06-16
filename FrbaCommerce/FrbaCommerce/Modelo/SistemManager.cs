@@ -76,7 +76,12 @@ namespace FrbaCommerce.Modelo
 
         internal void ObtenerAdministrador(Usuario user, Administrador administrador)
         {
-           // throw new NotImplementedException();
+            administrador.usuarioId = user.usuarioId;
+            administrador.habilitado = user.habilitado;
+            administrador.RolAsignado = user.RolAsignado;
+            administrador.setUsuario(user.getUsuario());
+            administrador.setPassword(user.getPassword());
+            administrador.tipoUsuario = user.tipoUsuario;
         }
     }
 }
