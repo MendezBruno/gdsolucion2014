@@ -114,17 +114,17 @@
     <Compile Include="Comprar-Ofertar\FormComprarOfertar.Designer.cs">
       <DependentUpon>FormComprarOfertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editar Publicacion\FormBuscarPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar Publicacion\FormBuscarPublicacion.Designer.cs">
+      <DependentUpon>FormBuscarPublicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
       <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editar Publicacion\SeleccionModificar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editar Publicacion\SeleccionModificar.Designer.cs">
-      <DependentUpon>SeleccionModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="Facturar Publicaciones\FormFacturarPublicaciones.cs">
       <SubType>Form</SubType>
@@ -137,6 +137,12 @@
     </Compile>
     <Compile Include="FormAgregarContraseña.Designer.cs">
       <DependentUpon>FormAgregarContraseña.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenuPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenuPublicacion.Designer.cs">
+      <DependentUpon>FormMenuPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormModificaciones.cs">
       <SubType>Form</SubType>
@@ -269,14 +275,20 @@
     <EmbeddedResource Include="Comprar-Ofertar\FormComprarOfertar.resx">
       <DependentUpon>FormComprarOfertar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editar Publicacion\SeleccionModificar.resx">
-      <DependentUpon>SeleccionModificar.cs</DependentUpon>
+    <EmbeddedResource Include="Editar Publicacion\FormBuscarPublicacion.resx">
+      <DependentUpon>FormBuscarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editar Publicacion\FormEditarPublicacion.resx">
+      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturar Publicaciones\FormFacturarPublicaciones.resx">
       <DependentUpon>FormFacturarPublicaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarContraseña.resx">
       <DependentUpon>FormAgregarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenuPublicacion.resx">
+      <DependentUpon>FormMenuPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormModificaciones.resx">
       <DependentUpon>FormModificaciones.cs</DependentUpon>
