@@ -24,6 +24,7 @@ namespace FrbaCommerce.Abm_Visibilidad
         {
             InitializeComponent();
             this.modificacion = modificacion;
+            this.cManager = cManager;
 
         }
 
@@ -32,7 +33,7 @@ namespace FrbaCommerce.Abm_Visibilidad
 
             if (modificacion)
             {
-                //cManager.sqlAbmVisibilidad
+                cManager.sqlAbmVisibilidad.Ingresar_Datos_Modificacion(cManager, textBoxCodigo.Text, textBoxDescripcion.Text, textBoxPPP.Text, textBoxPorcentaje.Text, checkBoxHabilitado.Checked);
             }
 
             else

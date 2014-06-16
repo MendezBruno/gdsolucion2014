@@ -23,9 +23,16 @@ namespace FrbaCommerce.Abm_Empresa
 
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
-            
-            cManager.sqlEmpresa.BuscarEmpresa(cManager, textBoxRazonSocial.Text, textBoxMail.Text, textBoxCuit.Text, this.dataGridViewEmpresa);
-            dataGridViewEmpresa.Update();
+            if (this.Text.Equals("Modificacion Empresa"))
+            {
+                cManager.sqlEmpresa.BuscarEmpresa(cManager, textBoxRazonSocial.Text, textBoxMail.Text, textBoxCuit.Text, this.dataGridViewEmpresa);
+                dataGridViewEmpresa.Update();
+            }
+            else
+            {
+                cManager.sqlEmpresa.BuscarEmpresaHabilitada(cManager, textBoxRazonSocial.Text, textBoxMail.Text, textBoxCuit.Text, this.dataGridViewEmpresa);
+                dataGridViewEmpresa.Update();
+            }
         }
 
         private void dataGridViewEmpresa_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -41,7 +48,7 @@ namespace FrbaCommerce.Abm_Empresa
             else
             {
                 // FormBajaCliente formBajaRol = new FormBajaCliente(cManager);
-                cManager.sqlEmpresa.cargarDatosDeBaja(cManager, dataGridViewEmpresa.Rows[e.RowIndex].Cells[1].Value.ToString());
+                cManager.sqlEmpresa.cargarDatosDeBaja(cManager, dataGridViewEmpresa.Rows[e.RowIndex].Cells[2].Value.ToString());
                 // formBajaRol.ShowDialog();
             }
 

@@ -38,7 +38,7 @@
             this.textBoxPorcentaje = new System.Windows.Forms.TextBox();
             this.buttonAlta = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxHabilitado = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -124,22 +124,22 @@
             this.buttonLimpiar.Text = "Limpiar";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxHabilitado
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(18, 188);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(97, 17);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Esta Habilitado";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxHabilitado.AutoSize = true;
+            this.checkBoxHabilitado.Location = new System.Drawing.Point(18, 188);
+            this.checkBoxHabilitado.Name = "checkBoxHabilitado";
+            this.checkBoxHabilitado.Size = new System.Drawing.Size(97, 17);
+            this.checkBoxHabilitado.TabIndex = 10;
+            this.checkBoxHabilitado.Text = "Esta Habilitado";
+            this.checkBoxHabilitado.UseVisualStyleBackColor = true;
             // 
             // FormAltaVisibilidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxHabilitado);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.buttonAlta);
             this.Controls.Add(this.textBoxPorcentaje);
@@ -169,6 +169,6 @@
         public System.Windows.Forms.TextBox textBoxDescripcion;
         public System.Windows.Forms.TextBox textBoxPPP;
         public System.Windows.Forms.TextBox textBoxPorcentaje;
-        private System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.CheckBox checkBoxHabilitado;
     }
 }

@@ -76,8 +76,7 @@ namespace FrbaCommerce
         private void buttonBajaVisibilidad_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormModificacionVisibilidad formModificacionVisibilidad = new FormModificacionVisibilidad(cManager);
-            formModificacionVisibilidad.Text = "Baja";
+            FormModificacionVisibilidad formModificacionVisibilidad = new FormModificacionVisibilidad(cManager,"Baja Visibilidad");
             formModificacionVisibilidad.ShowDialog();
             this.Show();
         }
@@ -85,7 +84,7 @@ namespace FrbaCommerce
         private void buttonModificarVisibilidad_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormModificacionVisibilidad formModificacionVisibilidad = new FormModificacionVisibilidad(cManager);
+            FormModificacionVisibilidad formModificacionVisibilidad = new FormModificacionVisibilidad(cManager,"Modificacion Visibilidad");
             formModificacionVisibilidad.ShowDialog();
             this.Show();
         }
@@ -116,6 +115,7 @@ namespace FrbaCommerce
             this.Hide();
 
             FormModificacionEmpresa fromModificacionEmpresa = new FormModificacionEmpresa(cManager);
+            fromModificacionEmpresa.Text = "Baja Empresa";
             fromModificacionEmpresa.ShowDialog();
 
             this.Show();
@@ -138,7 +138,7 @@ namespace FrbaCommerce
         {
             this.Hide();
             FormAbmModificacionCliente formModificacionCliente = new FormAbmModificacionCliente(cManager);
-            formModificacionCliente.Text = "Baja";
+            formModificacionCliente.Text = "Baja Cliente";
             formModificacionCliente.ShowDialog();
             this.Show();
         }

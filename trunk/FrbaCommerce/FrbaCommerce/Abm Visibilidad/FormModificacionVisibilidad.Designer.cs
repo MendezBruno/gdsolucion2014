@@ -35,6 +35,8 @@
             // 
             // dataGridViewModificacionVisibilidad
             // 
+            this.dataGridViewModificacionVisibilidad.AllowUserToAddRows = false;
+            this.dataGridViewModificacionVisibilidad.AllowUserToDeleteRows = false;
             this.dataGridViewModificacionVisibilidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewModificacionVisibilidad.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.seleccionar});
