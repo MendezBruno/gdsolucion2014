@@ -99,7 +99,7 @@ namespace FrbaCommerce
         private void buttonModificaciones_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormModificaciones formModificaciones = new FormModificaciones(cManager, user);
+            FormModificaciones formModificaciones = new FormModificaciones(cManager, administrador);
             formModificaciones.ShowDialog();
             this.Show();
         }

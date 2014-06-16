@@ -18,13 +18,13 @@ namespace FrbaCommerce
     public partial class FormModificaciones : Form
     {
         SistemManager cManager;
-        Usuario user;
-        public FormModificaciones(SistemManager cManager, Usuario user)
+        Administrador administrador;
+        public FormModificaciones(SistemManager cManager, Administrador administrador)
         {
             InitializeComponent();
             this.cManager = cManager;
-            this.user = user;
-            deshabilitarBotonesSegunFuncionalidadRol(user.RolAsignado.getListaFuncionalidades());
+            this.administrador = administrador;
+            deshabilitarBotonesSegunFuncionalidadRol(administrador.RolAsignado.getListaFuncionalidades());
         }
 
         private void deshabilitarBotonesSegunFuncionalidadRol(List<string> funcionalidades)
