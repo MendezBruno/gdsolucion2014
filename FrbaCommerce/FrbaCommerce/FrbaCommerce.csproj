@@ -206,6 +206,7 @@
     <Compile Include="Modelo\Datos\SqlAbmLogin.cs" />
     <Compile Include="Modelo\Datos\SqlAbmRol.cs" />
     <Compile Include="Modelo\Datos\SqlAmbVisibilidad.cs" />
+    <Compile Include="Modelo\Datos\SqlClasificar.cs" />
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
     <Compile Include="Modelo\Datos\SqlHistorial.cs" />
