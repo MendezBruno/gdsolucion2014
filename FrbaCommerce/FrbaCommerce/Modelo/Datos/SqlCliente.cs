@@ -96,7 +96,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void cargarDatosDeBaja(SistemManager cManager, string tipo,string dni)
         {
-
+ 
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
             DialogResult confirmarBaja = MessageBox.Show("Desea deshabilitar al cliente con "+tipo+ " igual a" + dni, "Baja de Rol", buttons);

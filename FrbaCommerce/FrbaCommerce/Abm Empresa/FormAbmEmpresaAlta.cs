@@ -48,7 +48,7 @@ namespace FrbaCommerce.Abm_Empresa
             if (modificacion)
             {
 
-                cManager.sqlEmpresa.modificarEmpresa(cManager, empresa, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
+                cManager.sqlEmpresa.modificarEmpresa(cManager, empresa, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text,checkBoxHabilitacion.Checked);
 
             
             }

@@ -17,15 +17,40 @@ namespace FrbaCommerce.Modelo.Datos
             cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
         }
+
+        internal void Ingresar_Datos_Modificacion(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje,bool habilitado)
+        {
+
+            SqlCommand cmd;
+            porcentaje=porcentaje.Replace(',','.');
+            precio=precio.Replace(',', '.');
+            string sql_insert = "UPDATE Publicacion_Visibilidad SET Visibilidad_Descripcion='"+ descripcion +"',Visibilidad_Precio="+ precio + ",Visibilidad_Porcentaje="+porcentaje+" WHERE Visibilidad_Codigo="+codigo;
+            cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
+            cmd.ExecuteNonQuery();
+            if(habilitado==true)
+            {
+                sql_insert = "UPDATE Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='SI' WHERE Visibilidad_Codigo="+codigo;
+                cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
              
         internal void Buscar(SistemManager cManager, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Publicacion_Visibilidad", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje FROM Publicacion_Visibilidad", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,4);
      
 
         }
+        internal void BuscarSinHabilitados(SistemManager cManager, DataGridView dataGridView)
+        {
+
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje FROM Publicacion_Visibilidad WHERE Visibilidad_Esta_Habilitada='SI'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 4);
+
+        }
+
 
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Visibilidad.FormAltaVisibilidad formAltaVisibilidad, string p)
         {
@@ -41,26 +66,35 @@ namespace FrbaCommerce.Modelo.Datos
             formAltaVisibilidad.textBoxDescripcion.Text = dr["Visibilidad_Descripcion"].ToString();
             formAltaVisibilidad.textBoxPorcentaje.Text = dr["Visibilidad_Porcentaje"].ToString();
             formAltaVisibilidad.textBoxPPP.Text = dr["Visibilidad_Precio"].ToString();
-            
+            formAltaVisibilidad.textBoxCodigo.ReadOnly = true;
+            if(dr["Visibilidad_Esta_Habilitada"].ToString()=="NO")
+                formAltaVisibilidad.checkBoxHabilitado.Checked=false;
+            else
+                formAltaVisibilidad.checkBoxHabilitado.Checked = true;
             dr.Close();
 
         }
 
-        internal void actualizar_Datos(SistemManager cManager,Sistema.VisibilidadPublicacion visibilidad, string codigo, string descripcion, string precio, string porcentaje)
+        internal void cargarDatosDeBaja(SistemManager cManager, string p)
         {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
-            SqlCommand cmd;
+            DialogResult confirmarBaja = MessageBox.Show("Desea dar de baja la visiblilidad " + p, "Baja de Visibilidad", buttons);
+            if (DialogResult.Yes == confirmarBaja)
+            {
+                //Habilitado pasa a ser false con una consulta Sql ACÀ
+                SqlCommand comando;
+                string bajastring = "UPDATE Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='NO' WHERE Visibilidad_Descripcion='" + p + "'";
+                comando = new SqlCommand(bajastring, cManager.conexion.conn);
+                comando.ExecuteNonQuery();
 
-            //int c[];
 
-            string instruccion = "SELECT Publicacion_Codigo From Publicacion WHERE Publicacion_Visibilidad_Codigo ='" ;  
-
-
-        }
-
-        internal void cargarDatosDeBaja(SistemManager cManager, FrbaCommerce.Abm_Visibilidad.FormBajaVisibilidad formBajaVisibilidad, string p)
-        {
-            throw new NotImplementedException();
+                MessageBox.Show("la visibilidad " + p + " a sido deshabilitado");
+            }
+            if (DialogResult.No == confirmarBaja)
+            {
+                //No pasa nada, vuelve al menu principal
+            }
         }
 
         internal void listaDeVisibilidades(SistemManager cManager, ComboBox.ObjectCollection objectCollection)

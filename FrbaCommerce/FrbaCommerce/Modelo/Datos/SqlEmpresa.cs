@@ -80,10 +80,18 @@ namespace FrbaCommerce.Modelo.Datos
         internal void BuscarEmpresa(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit LIKE'%" + cuit + "%'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit ='" + cuit + "'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,3);
             
             
+        }
+        internal void BuscarEmpresaHabilitada(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
+        {
+
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa JOIN Usuario ON Empresa.Empresa_ID=Usuario.Usuario_Empresa_ID WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit LIKE'%" + cuit + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
+
+
         }
 
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.Abm_Empresa.FormAbmEmpresaAlta fromAbmEmpresaAlta, string cuit)
@@ -108,10 +116,16 @@ namespace FrbaCommerce.Modelo.Datos
             fromAbmEmpresaAlta.cuit.Text = dr["Empresa_CUIT"].ToString();
             fromAbmEmpresaAlta.fechaCreacion.Text = dr["Empresa_Fecha_Creacion"].ToString();
             fromAbmEmpresaAlta.usuario.Text = dr["Empresa_Nombre_Contacto"].ToString();
-
             fromAbmEmpresaAlta.empresa.idEmpresa = dr["Empresa_ID"].ToString();
-          
-            
+            dr.Close();
+            insertDataEmpresa = "SELECT Esta_Habilitado FROM Usuario WHERE Usuario_Empresa_ID=(SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "')";
+            cmd = new SqlCommand(insertDataEmpresa, cManager.conexion.conn);
+            dr = cmd.ExecuteReader();
+            dr.Read();
+            if (dr["Esta_Habilitado"].ToString().Equals("NO"))
+                fromAbmEmpresaAlta.checkBoxHabilitacion.Checked = false;
+            else
+                fromAbmEmpresaAlta.checkBoxHabilitacion.Checked = true;
             dr.Close();
 
            
@@ -132,11 +146,22 @@ namespace FrbaCommerce.Modelo.Datos
             adapComando.Update(tabla);
         }
 
-        internal void modificarEmpresa(SistemManager cManager, Sistema.Empresa empresa, string cuit, string razon, string mail, string telefono, string direccion, string nroDireccion, string depto,string localidad,string codPostal,string ciudad, string fechaCreacion,string piso, string usuario)
+        internal void modificarEmpresa(SistemManager cManager, Sistema.Empresa empresa, string cuit, string razon, string mail, string telefono, string direccion, string nroDireccion, string depto, string localidad, string codPostal, string ciudad, string fechaCreacion, string piso, string usuario, bool habilitacion)
         {
 
             SqlCommand cmd;
             string comando;
+
+            string empresaId;
+
+            comando = "SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "'";
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            empresaId = dr["Empresa_ID"].ToString();
+            dr.Close();
+
+
             comando = "UPDATE Empresa SET Empresa_CUIT='" + cuit + "',Empresa_Razon_Social='" + razon + "',Empresa_Mail='" + mail + "',Empresa_Telefono=@telefono,Empresa_Dom_Calle='" + direccion + "',Empresa_Nro_Calle=@nrocalle,Empresa_Depto='" + depto + "',Empresa_Localidad='" + localidad + "',Empresa_Codigo_Postal='" + codPostal + "',Empresa_Ciudad='" + ciudad + "',Empresa_Fecha_Creacion='" + fechaCreacion + "',Empresa_Piso=@piso,Empresa_Nombre_Contacto='" + usuario + "' WHERE Empresa_ID=" + empresa.idEmpresa;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             if (telefono == "")
@@ -153,6 +178,14 @@ namespace FrbaCommerce.Modelo.Datos
                 cmd.Parameters.AddWithValue("@nrocalle", DBNull.Value);
             else
                 cmd.Parameters.AddWithValue("@nrocalle", nroDireccion);
+
+            if (habilitacion == true)
+            {
+                comando = "UPDATE Usuario SET Esta_Habilitado='SI' WHERE Usuario_Empresa_ID='" + empresaId + "'";
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+            }
+            MessageBox.Show("Cliente con CUIT: " + cuit + " fue modificado");
             
             cmd.ExecuteNonQuery();
 
@@ -164,16 +197,27 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void cargarDatosDeBaja(SistemManager cManager, string p)
         {
-            DialogResult confirmarBaja = MessageBox.Show("Desea dar de baja" + p);
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+            DialogResult confirmarBaja = MessageBox.Show("Desea deshabilitar a la Empresa con CUIT: " + p , "Baja de Empresa", buttons);
+
             if (DialogResult.Yes == confirmarBaja)
             {
                 //BAJA LOGICA ACA
-                MessageBox.Show("el rol " + p + " a sido deshabilitado");
+
+                SqlCommand comando;
+                string bajastring = "UPDATE Usuario SET Esta_Habilitado='NO' WHERE (SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + p +"')=Usuario_Empresa_ID";
+                comando = new SqlCommand(bajastring, cManager.conexion.conn);
+                comando.ExecuteNonQuery();
+
+                MessageBox.Show("la Empresa con CUIT: " + p + " a sido deshabilitado");
             }
             if (DialogResult.No == confirmarBaja)
             {
                 //No pasa nada, vuelve al menu principal
             }
+            
+            
         }
         /*
         internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string p, string p_4, string p_5, string p_6, string p_7, string p_8, string p_9, string p_10, string p_11, string p_12, string p_13, string p_14, string p_15)

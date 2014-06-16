@@ -84,23 +84,11 @@
     <Compile Include="ABM Rol\FormModificacionRol.Designer.cs">
       <DependentUpon>FormModificacionRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rubro\FormAbmRubro.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Rubro\FormAbmRubro.Designer.cs">
-      <DependentUpon>FormAbmRubro.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm Visibilidad\FormAltaVisibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm Visibilidad\FormAltaVisibilidad.Designer.cs">
       <DependentUpon>FormAltaVisibilidad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm Visibilidad\FormBajaVisibilidad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Visibilidad\FormBajaVisibilidad.Designer.cs">
-      <DependentUpon>FormBajaVisibilidad.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Visibilidad\FormModificacionVisibilidad.cs">
       <SubType>Form</SubType>
@@ -125,6 +113,12 @@
     </Compile>
     <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
       <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editar Publicacion\SeleccionModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar Publicacion\SeleccionModificar.Designer.cs">
+      <DependentUpon>SeleccionModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="Facturar Publicaciones\FormFacturarPublicaciones.cs">
       <SubType>Form</SubType>
@@ -214,7 +208,6 @@
     <Compile Include="Modelo\Datos\SqlRol.cs" />
     <Compile Include="Modelo\Datos\SqlRubro.cs" />
     <Compile Include="Modelo\Datos\SqlUsuario.cs" />
-    <Compile Include="Modelo\Datos\SqlVisibilidad.cs" />
     <Compile Include="Modelo\Empresa.cs" />
     <Compile Include="Modelo\EstadoPublicacion.cs" />
     <Compile Include="Modelo\Factura.cs" />
@@ -265,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar-Ofertar\FormComprarOfertar.resx">
       <DependentUpon>FormComprarOfertar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editar Publicacion\SeleccionModificar.resx">
+      <DependentUpon>SeleccionModificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturar Publicaciones\FormFacturarPublicaciones.resx">
       <DependentUpon>FormFacturarPublicaciones.cs</DependentUpon>
