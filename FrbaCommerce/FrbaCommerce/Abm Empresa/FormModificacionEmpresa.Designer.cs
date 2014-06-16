@@ -33,11 +33,11 @@
             this.textBoxCuit = new System.Windows.Forms.TextBox();
             this.textBoxRazonSocial = new System.Windows.Forms.TextBox();
             this.dataGridViewEmpresa = new System.Windows.Forms.DataGridView();
-            this.SeleccionarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.SeleccionarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,14 +83,6 @@
             this.dataGridViewEmpresa.TabIndex = 16;
             this.dataGridViewEmpresa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmpresa_CellContentClick);
             // 
-            // SeleccionarColumn
-            // 
-            this.SeleccionarColumn.HeaderText = "Seleccionar";
-            this.SeleccionarColumn.Name = "SeleccionarColumn";
-            this.SeleccionarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SeleccionarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.SeleccionarColumn.Visible = false;
-            // 
             // buttonBuscar
             // 
             this.buttonBuscar.Location = new System.Drawing.Point(366, 123);
@@ -128,6 +120,14 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Razon Social";
             // 
+            // SeleccionarColumn
+            // 
+            this.SeleccionarColumn.HeaderText = "Seleccionar";
+            this.SeleccionarColumn.Name = "SeleccionarColumn";
+            this.SeleccionarColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SeleccionarColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SeleccionarColumn.Visible = false;
+            // 
             // FormModificacionEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -157,10 +157,10 @@
         private System.Windows.Forms.TextBox textBoxCuit;
         private System.Windows.Forms.TextBox textBoxRazonSocial;
         private System.Windows.Forms.DataGridView dataGridViewEmpresa;
-        private System.Windows.Forms.DataGridViewButtonColumn SeleccionarColumn;
         private System.Windows.Forms.Button buttonBuscar;
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewButtonColumn SeleccionarColumn;
     }
 }

@@ -21,6 +21,8 @@ namespace FrbaCommerce.Modelo.Datos
             
             if (dr.Read())
             {
+                if (dr["Esta_Habilitado"].ToString().Equals("SI")) user.habilitado = true; else user.habilitado = false; 
+
                 if (dr.IsDBNull(3) && dr.IsDBNull(4))
                 {
                     user.habilitado = true;
@@ -34,15 +36,11 @@ namespace FrbaCommerce.Modelo.Datos
                     if (dr.IsDBNull(3))
                     {
                         user.usuarioId=Convert.ToInt32(dr["Usuario_Empresa_ID"]);
-                        //aca va si esta habilitado por tabla
-                        user.habilitado = true;
                         user.tipoUsuario = "Empresa";
                     }
                     if (dr.IsDBNull(4))
                     {
                         user.usuarioId=Convert.ToInt32(dr["Usuario_Cliente_ID"]);
-                        //aca va si esta habilitado
-                        user.habilitado = true;
                         user.tipoUsuario = "Cliente";
                     }
                 }
