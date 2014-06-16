@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.comboBoxCalificacion = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.descripcionClasificacion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonClasificar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxCalificacion
@@ -44,18 +45,18 @@
             "3",
             "4",
             "5"});
-            this.comboBoxCalificacion.Location = new System.Drawing.Point(212, 62);
+            this.comboBoxCalificacion.Location = new System.Drawing.Point(221, 62);
             this.comboBoxCalificacion.Name = "comboBoxCalificacion";
             this.comboBoxCalificacion.Size = new System.Drawing.Size(66, 21);
             this.comboBoxCalificacion.TabIndex = 0;
             // 
-            // textBox1
+            // descripcionClasificacion
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 102);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(350, 103);
-            this.textBox1.TabIndex = 1;
+            this.descripcionClasificacion.Location = new System.Drawing.Point(82, 102);
+            this.descripcionClasificacion.Multiline = true;
+            this.descripcionClasificacion.Name = "descripcionClasificacion";
+            this.descripcionClasificacion.Size = new System.Drawing.Size(350, 103);
+            this.descripcionClasificacion.TabIndex = 1;
             // 
             // label1
             // 
@@ -84,15 +85,26 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "(Max. 255)";
             // 
+            // buttonClasificar
+            // 
+            this.buttonClasificar.Location = new System.Drawing.Point(212, 218);
+            this.buttonClasificar.Name = "buttonClasificar";
+            this.buttonClasificar.Size = new System.Drawing.Size(75, 23);
+            this.buttonClasificar.TabIndex = 6;
+            this.buttonClasificar.Text = "Clasificar";
+            this.buttonClasificar.UseVisualStyleBackColor = true;
+            this.buttonClasificar.Click += new System.EventHandler(this.buttonClasificar_Click);
+            // 
             // FormCalificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 217);
+            this.ClientSize = new System.Drawing.Size(520, 253);
+            this.Controls.Add(this.buttonClasificar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.descripcionClasificacion);
             this.Controls.Add(this.comboBoxCalificacion);
             this.Name = "FormCalificacion";
             this.Text = "Calificacion";
@@ -103,11 +115,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.ComboBox comboBoxCalificacion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonClasificar;
+        public System.Windows.Forms.TextBox descripcionClasificacion;
 
     }
 }
