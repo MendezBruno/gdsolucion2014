@@ -31,7 +31,7 @@ namespace FrbaCommerce
         {
             foreach (Button boton in this.Controls)
             {
-                if(funcionalidades.Contains(boton.Name)) boton.Visible = true;
+                if(!funcionalidades.Contains(boton.Name)) boton.Visible = false;
             }
         }
 
