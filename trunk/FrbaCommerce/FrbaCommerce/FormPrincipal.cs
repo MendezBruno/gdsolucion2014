@@ -71,7 +71,7 @@ namespace FrbaCommerce
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.BotonOfertar.Visible = false; }
             if (!rol.getListaFuncionalidades().Contains("Vender")) this.buttonPublicaciones.Visible = false;
             //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
-            if (user == null) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
+            if (administrador == null) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
         }
            
 
