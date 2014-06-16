@@ -107,10 +107,10 @@ namespace FrbaCommerce
         private void buttonPublicaciones_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormGenerarInicial formPublicacion;
+            FormMenuPublicacion formPublicacion;
           //  FormGenerarPublicacion formPublicacion;
-            if (cliente == null) formPublicacion = new FormGenerarInicial(cManager, empresa);
-            else formPublicacion = new FormGenerarInicial(cManager, cliente);
+            if (cliente == null) formPublicacion = new FormMenuPublicacion(cManager, empresa);
+            else formPublicacion = new FormMenuPublicacion(cManager, cliente);
             formPublicacion.ShowDialog();
             this.Show();
         }

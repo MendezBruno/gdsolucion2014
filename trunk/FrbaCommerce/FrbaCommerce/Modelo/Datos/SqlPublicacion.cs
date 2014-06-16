@@ -72,6 +72,12 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+
+        internal void ObtenerPublicacionesSegunUsuario(SistemManager cManager, string userName, DataGridView dataGridView)
+        {
+            SqlDataAdapter adapComando = new SqlDataAdapter("select * from Publicacion WHERE Publicacion_Usuario_Nombre= '" + userName + "'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
+        }
     }
 
 }
