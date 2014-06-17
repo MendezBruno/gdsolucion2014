@@ -12,7 +12,7 @@ namespace FrbaCommerce.Modelo.Datos
        
         internal void listaDeRubro(SistemManager cManager, CheckedListBox.ObjectCollection objectCollection)
         {
-            SqlCommand cmd = new SqlCommand("SELECT Rubro_Descripcion FROM Rubro", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT Rubro_Descripcion FROM NO_MORE_SQL.Rubro", cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
 

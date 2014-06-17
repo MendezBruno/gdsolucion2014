@@ -35,9 +35,9 @@
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelprecio = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelstock = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxTipoPublicacion = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -112,14 +112,14 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "Descripcion:";
             // 
-            // label3
+            // labelprecio
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 339);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Precio";
+            this.labelprecio.AutoSize = true;
+            this.labelprecio.Location = new System.Drawing.Point(21, 339);
+            this.labelprecio.Name = "labelprecio";
+            this.labelprecio.Size = new System.Drawing.Size(37, 13);
+            this.labelprecio.TabIndex = 15;
+            this.labelprecio.Text = "Precio";
             // 
             // label2
             // 
@@ -130,14 +130,14 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Rubros:";
             // 
-            // label1
+            // labelstock
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 298);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Stock Inicial";
+            this.labelstock.AutoSize = true;
+            this.labelstock.Location = new System.Drawing.Point(21, 298);
+            this.labelstock.Name = "labelstock";
+            this.labelstock.Size = new System.Drawing.Size(65, 13);
+            this.labelstock.TabIndex = 13;
+            this.labelstock.Text = "Stock Inicial";
             // 
             // label7
             // 
@@ -158,6 +158,7 @@
             this.comboBoxTipoPublicacion.Name = "comboBoxTipoPublicacion";
             this.comboBoxTipoPublicacion.Size = new System.Drawing.Size(208, 21);
             this.comboBoxTipoPublicacion.TabIndex = 26;
+            this.comboBoxTipoPublicacion.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoPublicacion_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -244,9 +245,9 @@
             this.Controls.Add(this.textBoxDescripcion);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelprecio);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelstock);
             this.Name = "FormGenerarPublicacion";
             this.Text = "Generar Publicacion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGenerarPublicacion_FormClosing);
@@ -258,25 +259,25 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxAceptaPregunta;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBoxVisibilidad;
-        private System.Windows.Forms.NumericUpDown numericUpDownStockInicial;
-        private System.Windows.Forms.TextBox textBoxDescripcion;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelprecio;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelstock;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBoxTipoPublicacion;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.Button buttonPublicar;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.LinkLabel linkLabelSalir;
         public System.Windows.Forms.CheckedListBox checkedListBoxRubro;
-        private System.Windows.Forms.TextBox textBoxPrecio;
+        public System.Windows.Forms.ComboBox comboBoxAceptaPregunta;
+        public System.Windows.Forms.ComboBox comboBoxVisibilidad;
+        public System.Windows.Forms.NumericUpDown numericUpDownStockInicial;
+        public System.Windows.Forms.TextBox textBoxDescripcion;
+        public System.Windows.Forms.ComboBox comboBoxTipoPublicacion;
+        public System.Windows.Forms.TextBox textBoxPrecio;
 
     }
 }

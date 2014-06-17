@@ -13,7 +13,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void CargarDatosMayorFacturados(SistemManager cManager, DataGridView dataGridView, string anio, string trimestre)
         {
 
-            SqlCommand cmd = new SqlCommand("Vendedores_Mayor_Facturacion", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("NO_MORE_SQL.Vendedores_Mayor_Facturacion", cManager.conexion.conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@trimestre", trimestre);
             cmd.Parameters.AddWithValue("@anio", anio);
@@ -25,7 +25,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void CargarDatosMayorCalificacion(SistemManager cManager, DataGridView dataGridView,string trimestre,string anio)
         {
 
-            SqlCommand cmd = new SqlCommand("Vendedores_Mayor_Calificacion", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("NO_MORE_SQL.Vendedores_Mayor_Calificacion", cManager.conexion.conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@trimestre", trimestre);
             cmd.Parameters.AddWithValue("@anio", anio);
@@ -37,7 +37,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void CargarDatosSinClasificar(SistemManager cManager, DataGridView dataGridView, string trimestre, string anio)
         {
-            SqlCommand cmd = new SqlCommand("Vendedores_Mayor_Publicaciones_Sin_Clasificar", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("NO_MORE_SQL.Vendedores_Mayor_Publicaciones_Sin_Clasificar", cManager.conexion.conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@trimestre", trimestre);
             cmd.Parameters.AddWithValue("@anio", anio);

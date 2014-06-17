@@ -15,13 +15,13 @@ namespace FrbaCommerce.Modelo.Datos
            SqlCommand cmd;
            String ComandoInsert;
            if (esCliente == true)
-        
 
-               ComandoInsert = "INSERT INTO Usuario(Usuario_Nombre,Usuario_Cliente_ID,Esta_Habilitado) VALUES('" + dni + "', (SELECT Cliente_ID FROM Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI =" + dni + "),'SI')";
+
+               ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Cliente_ID,Esta_Habilitado) VALUES('" + dni + "', (SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI =" + dni + "),'SI')";
 
            
            else
-               ComandoInsert = "INSERT INTO Usuario(Usuario_Nombre,Usuario_Cliente_ID) VALUES('" + dni + "', (SELECT Cliente_ID FROM Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI =" + dni + "))";
+               ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Cliente_ID) VALUES('" + dni + "', (SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI =" + dni + "))";
 
 
            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
@@ -33,7 +33,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void darAltaEmpresa(SistemManager cManager, String cuit)
         {
             SqlCommand cmd;
-            String ComandoInsert = "INSERT INTO Usuario(Usuario_Nombre,Usuario_Empresa_ID) VALUES('" + cuit + "', (SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "'))";
+            String ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Empresa_ID) VALUES('" + cuit + "', (SELECT Empresa_ID FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + cuit + "'))";
             cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 

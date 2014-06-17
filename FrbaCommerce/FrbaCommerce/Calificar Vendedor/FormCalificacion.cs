@@ -14,26 +14,26 @@ namespace FrbaCommerce.Calificar_Vendedor
     {
         SistemManager cManager;
         string compra_id;
-        
-        public FormCalificacion(SistemManager cManager,string compra_id)
+
+        public FormCalificacion(SistemManager cManager, string compra_id)
         {
             InitializeComponent();
             this.cManager = cManager;
-            this.compra_id=compra_id;
+            this.compra_id = compra_id;
 
         }
 
         private void buttonClasificar_Click(object sender, EventArgs e)
         {
-        
-            cManager.sqlClasificar.IngresarClasificacion(cManager,compra_id,comboBoxCalificacion.Text.ToString(),descripcionClasificacion.Text.ToString());
+
+            cManager.sqlClasificar.IngresarClasificacion(cManager, compra_id, comboBoxCalificacion.Text.ToString(), descripcionClasificacion.Text.ToString());
 
 
 
         }
 
 
-
+    }
 
       
 }

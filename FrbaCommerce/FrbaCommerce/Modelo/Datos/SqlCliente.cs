@@ -14,7 +14,7 @@ namespace FrbaCommerce.Modelo.Datos
         {
             try
             {
-                string comandoInsert = "INSERT INTO Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
+                string comandoInsert = "INSERT INTO NO_MORE_SQL.Cliente(Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 if (calleNum == "")
                     MyCmd.Parameters.AddWithValue("@callenum", DBNull.Value);
@@ -39,13 +39,13 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void Buscar(SistemManager cManager, string nombre, string apellido, string dni,string tipo, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_Tipo_Doc,Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%"+tipo+"%'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_Tipo_Doc,Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM NO_MORE_SQL.Cliente WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%" + tipo + "%'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,5);
         }
 
         internal void BuscarSinHabilitados(SistemManager cManager, string nombre, string apellido, string dni, string tipo, string mail, System.Windows.Forms.DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_Tipo_Doc,Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM Cliente JOIN Usuario ON Cliente.Cliente_ID=Usuario.Usuario_Cliente_ID WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%" + tipo + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Cliente_Tipo_Doc,Cliente_DNI,Cliente_Nombre,Cliente_Apellido,Cliente_Mail FROM NO_MORE_SQL.Cliente JOIN NO_MORE_SQL.Usuario ON NO_MORE_SQL.Cliente.Cliente_ID=NO_MORE_SQL.Usuario.Usuario_Cliente_ID WHERE Cliente_Nombre LIKE '%" + nombre + "%' AND Cliente_Apellido LIKE '%" + apellido + "%' AND Cliente_DNI LIKE '%" + dni + "%' AND Cliente_Mail LIKE '%" + mail + "%' AND Cliente_Tipo_Doc LIKE '%" + tipo + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 5);
         }
 
@@ -54,7 +54,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT * FROM Cliente WHERE Cliente_DNI="+ IDCliente +" AND Cliente_Tipo_Doc='" + tipo +"'";
+            string insertDataMod = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + IDCliente + " AND Cliente_Tipo_Doc='" + tipo + "'";
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr=cmd.ExecuteReader();
             dr.Read();
@@ -72,7 +72,7 @@ namespace FrbaCommerce.Modelo.Datos
             formAltaCliente.textBoxTel.Text = dr["Cliente_Telefono"].ToString();
             formAltaCliente.comboBoxTipo.Text = dr["Cliente_Tipo_Doc"].ToString();
             dr.Close();
-            insertDataMod="SELECT Esta_Habilitado FROM Usuario WHERE Usuario_Cliente_ID=(SELECT Cliente_ID FROM Cliente WHERE Cliente_DNI=" + IDCliente + "AND Cliente_Tipo_Doc='" + tipo + "')";
+            insertDataMod = "SELECT Esta_Habilitado FROM NO_MORE_SQL.Usuario WHERE Usuario_Cliente_ID=(SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + IDCliente + "AND Cliente_Tipo_Doc='" + tipo + "')";
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr=cmd.ExecuteReader();
             dr.Read();
@@ -106,7 +106,7 @@ namespace FrbaCommerce.Modelo.Datos
                 //BAJA LOGICA ACA
 
                 SqlCommand comando;
-                string bajastring = "UPDATE Usuario SET Esta_Habilitado='NO' WHERE (SELECT Cliente_ID FROM Cliente WHERE Cliente_DNI='" + dni + "' AND Cliente_Tipo_Doc='" + tipo + "')=Usuario_Cliente_ID";
+                string bajastring = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE (SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI='" + dni + "' AND Cliente_Tipo_Doc='" + tipo + "')=Usuario_Cliente_ID";
                 comando = new SqlCommand(bajastring, cManager.conexion.conn);
                 comando.ExecuteNonQuery();
 
@@ -124,14 +124,14 @@ namespace FrbaCommerce.Modelo.Datos
             string comando;
             string clienteId;
 
-            comando = "SELECT Cliente_ID FROM Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni()+"'";
+            comando = "SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni() + "'";
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             SqlDataReader dr=cmd.ExecuteReader();
             dr.Read();
             clienteId = dr["Cliente_ID"].ToString();
             dr.Close();
 
-            comando = "UPDATE Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='" + tel + "',Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_ID=" +clienteId ;
+            comando = "UPDATE NO_MORE_SQL.Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono='" + tel + "',Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_ID=" + clienteId;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             
             if (nroCalle == "")
@@ -147,7 +147,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             if (habilitacion==true)
             {
-                comando = "UPDATE Usuario SET Esta_Habilitado='SI' WHERE Usuario_Cliente_ID='" + clienteId + "'";
+                comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='SI' WHERE Usuario_Cliente_ID='" + clienteId + "'";
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
             }
@@ -160,7 +160,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)
         {
-            SqlCommand cmd = new SqlCommand("select * from Usuario JOIN Cliente ON Usuario.Usuario_Cliente_ID=Cliente.Cliente_ID WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("select * from NO_MORE_SQL.Usuario JOIN NO_MORE_SQL.Cliente ON NO_MORE_SQL.Usuario.Usuario_Cliente_ID=NO_MORE_SQL.Cliente.Cliente_ID WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
            // SqlCommand cmd = new SqlCommand("SELECT * FROM Cliente WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
             //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 

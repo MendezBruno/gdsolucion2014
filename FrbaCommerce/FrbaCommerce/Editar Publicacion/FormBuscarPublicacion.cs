@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FrbaCommerce.Buscar_Publicaciones;
 using FrbaCommerce.Modelo;
 using Sistema;
+using FrbaCommerce.Generar_Publicacion;
 
 namespace FrbaCommerce.Editar_Publicacion
 {
@@ -44,14 +44,31 @@ namespace FrbaCommerce.Editar_Publicacion
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             this.Hide();
-            FormEditarPublicacion formEditarPublicacion;
-           
-            //Aca va La obtenceion de la Publicacion
 
-            if (cliente == null) formEditarPublicacion = new FormEditarPublicacion(cManager, empresa);
-            else formEditarPublicacion = new FormEditarPublicacion(cManager, cliente);
-            formEditarPublicacion.ShowDialog();
-            this.Show();
+            if(this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Borrada"))
+            {
+
+                FormGenerarPublicacion formGenerarPublicacion;
+
+                if (cliente == null) formGenerarPublicacion = new FormGenerarPublicacion(cManager, empresa);
+                else formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente);
+                cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()); 
+                formGenerarPublicacion.ShowDialog();
+                this.Show();
+
+            }
+            if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Publicada"))
+            {
+
+
+
+
+
+
+            }
+
+ 
+           
         }
     }
 }

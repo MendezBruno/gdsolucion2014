@@ -9,36 +9,18 @@ using System.Windows.Forms;
 using FrbaCommerce.Modelo;
 using Sistema;
 
-namespace FrbaCommerce.Buscar_Publicaciones
+namespace FrbaCommerce.Editar_Publicacion
 {
     public partial class FormEditarPublicacion : Form
     {
-        SistemManager cManager;
-        Cliente cliente;
-        Empresa empresa;
+        public FormEditarPublicacion(SistemManager cManager,Empresa empresa)
+        {
+            InitializeComponent();
+        }
 
         public FormEditarPublicacion(SistemManager cManager, Cliente cliente)
         {
             InitializeComponent();
-             this.cManager = cManager;
-            this.cliente = cliente;
-            
         }
-
-        
-
-        public FormEditarPublicacion(SistemManager cManager, Empresa empresa)
-        {
-            InitializeComponent();
-            this.cManager = cManager;
-            this.empresa = empresa;
-            
-
-        }
-
-        
-        
-
-       
     }
 }

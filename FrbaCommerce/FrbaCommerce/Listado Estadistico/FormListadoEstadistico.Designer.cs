@@ -72,9 +72,9 @@
             // dataGridViewListado
             // 
             this.dataGridViewListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewListado.Location = new System.Drawing.Point(21, 140);
+            this.dataGridViewListado.Location = new System.Drawing.Point(21, 142);
             this.dataGridViewListado.Name = "dataGridViewListado";
-            this.dataGridViewListado.Size = new System.Drawing.Size(425, 312);
+            this.dataGridViewListado.Size = new System.Drawing.Size(425, 310);
             this.dataGridViewListado.TabIndex = 3;
             // 
             // Año

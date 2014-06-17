@@ -14,7 +14,7 @@ namespace FrbaCommerce.Modelo.Datos
         {
 
 
-            SqlCommand cmd = new SqlCommand("Historial_Ofertas", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("NO_MORE_SQL.Historial_Ofertas", cManager.conexion.conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Nombre", nombre);
             SqlDataAdapter adapComando = new SqlDataAdapter(cmd);

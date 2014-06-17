@@ -13,7 +13,7 @@ namespace FrbaCommerce.Modelo.Datos
         {
 
             SqlCommand cmd;
-            string sql_insert = "INSERT INTO Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo+"','" +descripcion+"'," +precio+","+porcentaje+",'SI')";
+            string sql_insert = "INSERT INTO NO_MORE_SQL.Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo + "','" + descripcion + "'," + precio + "," + porcentaje + ",'SI')";
             cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
         }
@@ -24,12 +24,12 @@ namespace FrbaCommerce.Modelo.Datos
             SqlCommand cmd;
             porcentaje=porcentaje.Replace(',','.');
             precio=precio.Replace(',', '.');
-            string sql_insert = "UPDATE Publicacion_Visibilidad SET Visibilidad_Descripcion='"+ descripcion +"',Visibilidad_Precio="+ precio + ",Visibilidad_Porcentaje="+porcentaje+" WHERE Visibilidad_Codigo="+codigo;
+            string sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Descripcion='" + descripcion + "',Visibilidad_Precio=" + precio + ",Visibilidad_Porcentaje=" + porcentaje + " WHERE Visibilidad_Codigo=" + codigo;
             cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
             if(habilitado==true)
             {
-                sql_insert = "UPDATE Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='SI' WHERE Visibilidad_Codigo="+codigo;
+                sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='SI' WHERE Visibilidad_Codigo=" + codigo;
                 cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
             }
@@ -38,7 +38,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void Buscar(SistemManager cManager, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje FROM Publicacion_Visibilidad", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje FROM NO_MORE_SQL.Publicacion_Visibilidad", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,4);
      
 
@@ -46,7 +46,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void BuscarSinHabilitados(SistemManager cManager, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje FROM Publicacion_Visibilidad WHERE Visibilidad_Esta_Habilitada='SI'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Esta_Habilitada='SI'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 4);
 
         }
@@ -57,7 +57,7 @@ namespace FrbaCommerce.Modelo.Datos
  
             
             SqlCommand cmd;
-            string sql_tomar_datos = "SELECT * FROM Publicacion_Visibilidad WHERE Visibilidad_Codigo="+p;
+            string sql_tomar_datos = "SELECT * FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Codigo=" + p;
             cmd = new SqlCommand(sql_tomar_datos,cManager.conexion.conn);
             SqlDataReader dr;
             dr = cmd.ExecuteReader();
@@ -84,7 +84,7 @@ namespace FrbaCommerce.Modelo.Datos
             {
                 //Habilitado pasa a ser false con una consulta Sql ACÀ
                 SqlCommand comando;
-                string bajastring = "UPDATE Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='NO' WHERE Visibilidad_Descripcion='" + p + "'";
+                string bajastring = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='NO' WHERE Visibilidad_Descripcion='" + p + "'";
                 comando = new SqlCommand(bajastring, cManager.conexion.conn);
                 comando.ExecuteNonQuery();
 
@@ -99,7 +99,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void listaDeVisibilidades(SistemManager cManager, ComboBox.ObjectCollection objectCollection)
         {
-            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Descripcion FROM Publicacion_Visibilidad", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Descripcion FROM NO_MORE_SQL.Publicacion_Visibilidad", cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -113,7 +113,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal int codigoSegunDescripcion(SistemManager cManager, string descripcion)
         {
             int res;
-            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Codigo FROM Publicacion_Visibilidad WHERE Visibilidad_Descripcion='"+descripcion+"'", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Codigo FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Descripcion='" + descripcion + "'", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
             //dr.Read();
             if (dr.Read())

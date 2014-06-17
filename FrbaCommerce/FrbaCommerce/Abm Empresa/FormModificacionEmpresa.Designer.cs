@@ -144,7 +144,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormModificacionEmpresa";
             this.Text = "Modificacion Empresa";
-            this.Load += new System.EventHandler(this.FormModificacionEmpresa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmpresa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
