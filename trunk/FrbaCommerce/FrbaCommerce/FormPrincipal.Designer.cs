@@ -104,6 +104,7 @@
             this.buttonCalificar.TabIndex = 6;
             this.buttonCalificar.Text = "Calificar";
             this.buttonCalificar.UseVisualStyleBackColor = true;
+            this.buttonCalificar.Click += new System.EventHandler(this.buttonCalificar_Click);
             // 
             // buttonHistorial
             // 

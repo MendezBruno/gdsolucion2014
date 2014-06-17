@@ -14,8 +14,8 @@ namespace FrbaCommerce.Modelo.Datos
             //SqlCommand cmd = new SqlCommand("SELECT Count* Funcionalidad_Rol WHERE Rol_ID="+user.RolAsignado.idRol.ToString() 
             //                                +";SELECT * FROM Funcionalidad_Rol WHERE Rol_ID="+user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
            // SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM Funcionalidad_Rol WHERE Rol_ID="+user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Funcionalidad_Rol WHERE Rol_ID="+user.RolAsignado.idRol.ToString()+
-                                            ";SELECT * FROM Rol WHERE Rol_ID="+user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM NO_MORE_SQL.Funcionalidad_Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString() +
+                                            ";SELECT * FROM NO_MORE_SQL.Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
             
             SqlDataReader dr = cmd.ExecuteReader();
           //  adapComando.SelectCommand.ExecuteScalar();

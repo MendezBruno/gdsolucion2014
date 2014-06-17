@@ -28,7 +28,7 @@ namespace FrbaCommerce.Generar_Publicacion
             cargarForm();
         }
 
-        
+
 
         public FormGenerarPublicacion(SistemManager cManager, Empresa empresa)
         {
@@ -38,6 +38,7 @@ namespace FrbaCommerce.Generar_Publicacion
             this.labelUserName.Text = empresa.getUsuario();
             this.publico = false;
             cargarForm();
+
         }
 
         private void cargarForm()
@@ -51,8 +52,10 @@ namespace FrbaCommerce.Generar_Publicacion
         private void buttonPublicar_Click(object sender, EventArgs e)
         {            
 
-            cManager.sqlPublicacion.publicar(cManager,this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text,this.labelUserName.Text);
+            cManager.sqlPublicacion.publicar(cManager,this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text,this.labelUserName.Text,this.checkedListBoxRubro.CheckedItems);
+            
             publico = true;
+
         
         }
 
@@ -66,7 +69,32 @@ namespace FrbaCommerce.Generar_Publicacion
         private void FormGenerarPublicacion_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text);
+            cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+
+        }
+
+        private void comboBoxTipoPublicacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if(this.comboBoxTipoPublicacion.Text.Equals("Subasta"))
+            {
+               this.numericUpDownStockInicial.Value=1;
+               this.numericUpDownStockInicial.Visible=false;
+               this.labelstock.Visible=false;
+               this.labelprecio.Text="Precio Inicial";
+            }
+            else
+            {
+               this.numericUpDownStockInicial.Visible=true;
+               this.labelstock.Visible=true;
+               this.labelprecio.Text="Precio";
+               
+            }
+
+
+
+
+
 
         }
 

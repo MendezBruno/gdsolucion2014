@@ -14,7 +14,7 @@ namespace FrbaCommerce.Modelo.Datos
     {
         internal void ObtenerEmpresa(Sistema.Usuario user,Empresa empresa, SistemManager cManager)
         {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Empresa WHERE Empresa_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn); 
+            SqlCommand cmd = new SqlCommand("SELECT * FROM NO_MORE_SQL.Empresa WHERE Empresa_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn); 
                                           //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -54,7 +54,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand Cmd;
 
-            String Comando = "INSERT INTO Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Nombre_Contacto) VALUES ('" + razon_social + "','" + mail + "', @telefono ,'" + dom_calle + "',@nrocalle ,@piso ,'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','"+ contacto +"')";
+            String Comando = "INSERT INTO NO_MORE_SQL.Empresa(Empresa_Razon_Social,Empresa_Mail,Empresa_Telefono,Empresa_Dom_Calle,Empresa_Nro_Calle,Empresa_Piso,Empresa_Depto,Empresa_Localidad,Empresa_Codigo_Postal,Empresa_Ciudad,Empresa_CUIT,Empresa_Fecha_Creacion,Empresa_Nombre_Contacto) VALUES ('" + razon_social + "','" + mail + "', @telefono ,'" + dom_calle + "',@nrocalle ,@piso ,'" + depto + "','" + localidad + "','" + codPostal + "','" + ciudad + "','" + cuit + "','" + fecCreacion + "','" + contacto + "')";
 
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
 
@@ -80,7 +80,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void BuscarEmpresa(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit ='" + cuit + "'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM NO_MORE_SQL.Empresa WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit ='" + cuit + "'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true,3);
             
             
@@ -88,7 +88,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void BuscarEmpresaHabilitada(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM Empresa JOIN Usuario ON Empresa.Empresa_ID=Usuario.Usuario_Empresa_ID WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit LIKE'%" + cuit + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM NO_MORE_SQL.Empresa JOIN NO_MORE_SQL.Usuario ON NO_MORE_SQL.Empresa.Empresa_ID=NO_MORE_SQL.Usuario.Usuario_Empresa_ID WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit LIKE'%" + cuit + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
 
 
@@ -99,7 +99,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataEmpresa = "SELECT * FROM Empresa WHERE Empresa_CUIT = '" + cuit +"'";
+            string insertDataEmpresa = "SELECT * FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT = '" + cuit + "'";
             cmd = new SqlCommand(insertDataEmpresa, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
@@ -118,7 +118,7 @@ namespace FrbaCommerce.Modelo.Datos
             fromAbmEmpresaAlta.usuario.Text = dr["Empresa_Nombre_Contacto"].ToString();
             fromAbmEmpresaAlta.empresa.idEmpresa = dr["Empresa_ID"].ToString();
             dr.Close();
-            insertDataEmpresa = "SELECT Esta_Habilitado FROM Usuario WHERE Usuario_Empresa_ID=(SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "')";
+            insertDataEmpresa = "SELECT Esta_Habilitado FROM NO_MORE_SQL.Usuario WHERE Usuario_Empresa_ID=(SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "')";
             cmd = new SqlCommand(insertDataEmpresa, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
@@ -154,7 +154,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             string empresaId;
 
-            comando = "SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + cuit + "'";
+            comando = "SELECT Empresa_ID FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + cuit + "'";
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
@@ -162,7 +162,7 @@ namespace FrbaCommerce.Modelo.Datos
             dr.Close();
 
 
-            comando = "UPDATE Empresa SET Empresa_CUIT='" + cuit + "',Empresa_Razon_Social='" + razon + "',Empresa_Mail='" + mail + "',Empresa_Telefono=@telefono,Empresa_Dom_Calle='" + direccion + "',Empresa_Nro_Calle=@nrocalle,Empresa_Depto='" + depto + "',Empresa_Localidad='" + localidad + "',Empresa_Codigo_Postal='" + codPostal + "',Empresa_Ciudad='" + ciudad + "',Empresa_Fecha_Creacion='" + fechaCreacion + "',Empresa_Piso=@piso,Empresa_Nombre_Contacto='" + usuario + "' WHERE Empresa_ID=" + empresa.idEmpresa;
+            comando = "UPDATE NO_MORE_SQL.Empresa SET Empresa_CUIT='" + cuit + "',Empresa_Razon_Social='" + razon + "',Empresa_Mail='" + mail + "',Empresa_Telefono=@telefono,Empresa_Dom_Calle='" + direccion + "',Empresa_Nro_Calle=@nrocalle,Empresa_Depto='" + depto + "',Empresa_Localidad='" + localidad + "',Empresa_Codigo_Postal='" + codPostal + "',Empresa_Ciudad='" + ciudad + "',Empresa_Fecha_Creacion='" + fechaCreacion + "',Empresa_Piso=@piso,Empresa_Nombre_Contacto='" + usuario + "' WHERE Empresa_ID=" + empresa.idEmpresa;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             if (telefono == "")
                 cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
@@ -181,7 +181,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             if (habilitacion == true)
             {
-                comando = "UPDATE Usuario SET Esta_Habilitado='SI' WHERE Usuario_Empresa_ID='" + empresaId + "'";
+                comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='SI' WHERE Usuario_Empresa_ID='" + empresaId + "'";
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
             }
@@ -206,7 +206,7 @@ namespace FrbaCommerce.Modelo.Datos
                 //BAJA LOGICA ACA
 
                 SqlCommand comando;
-                string bajastring = "UPDATE Usuario SET Esta_Habilitado='NO' WHERE (SELECT Empresa_ID FROM Empresa WHERE Empresa_CUIT='" + p +"')=Usuario_Empresa_ID";
+                string bajastring = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE (SELECT Empresa_ID FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + p + "')=Usuario_Empresa_ID";
                 comando = new SqlCommand(bajastring, cManager.conexion.conn);
                 comando.ExecuteNonQuery();
 

@@ -28,35 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonResponder = new System.Windows.Forms.Button();
+            this.buttonVer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonResponder
             // 
-            this.button1.Location = new System.Drawing.Point(77, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 71);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonResponder.Location = new System.Drawing.Point(77, 31);
+            this.buttonResponder.Name = "buttonResponder";
+            this.buttonResponder.Size = new System.Drawing.Size(137, 71);
+            this.buttonResponder.TabIndex = 0;
+            this.buttonResponder.Text = "Responder Preguntas";
+            this.buttonResponder.UseVisualStyleBackColor = true;
+            this.buttonResponder.Click += new System.EventHandler(this.buttonResponder_Click);
             // 
-            // button2
+            // buttonVer
             // 
-            this.button2.Location = new System.Drawing.Point(77, 152);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 75);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonVer.Location = new System.Drawing.Point(77, 130);
+            this.buttonVer.Name = "buttonVer";
+            this.buttonVer.Size = new System.Drawing.Size(137, 75);
+            this.buttonVer.TabIndex = 1;
+            this.buttonVer.Text = "Ver Respuestas";
+            this.buttonVer.UseVisualStyleBackColor = true;
+            this.buttonVer.Click += new System.EventHandler(this.buttonVer_Click);
             // 
             // SubPreguntas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonVer);
+            this.Controls.Add(this.buttonResponder);
             this.Name = "SubPreguntas";
             this.Text = "SubPreguntas";
             this.ResumeLayout(false);
@@ -65,7 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonResponder;
+        private System.Windows.Forms.Button buttonVer;
     }
 }

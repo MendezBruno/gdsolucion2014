@@ -19,11 +19,11 @@ namespace FrbaCommerce.Modelo.Datos
             {
                 SqlCommand MyCmd2;
                 string ComandoInsertar;
-                String ComandoInsert = @"INSERT INTO Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
+                String ComandoInsert = @"INSERT INTO NO_MORE_SQL.Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
                 SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
 
-                ComandoInsertar = @"UPDATE Rol set Esta_Habilitada='NO' WHERE Rol_Nombre='" + nombreRol + "'";
+                ComandoInsertar = @"UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='NO' WHERE Rol_Nombre='" + nombreRol + "'";
                 MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                 MyCmd2.ExecuteNonQuery();
 
@@ -33,15 +33,15 @@ namespace FrbaCommerce.Modelo.Datos
                     {
                         if (chekBox.Name == "Habilitar_Rol")
                         {
-                            ComandoInsertar = @"UPDATE Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
+                            ComandoInsertar = @"UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
                             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                             MyCmd2.ExecuteNonQuery();
                         }
  
                         else
                         {
-                            
-                            ComandoInsertar = @"INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
+
+                            ComandoInsertar = @"INSERT INTO NO_MORE_SQL.Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
                             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                             //   MyCmd2.ExecuteScalar();
                             MyCmd2.ExecuteNonQuery();
@@ -72,14 +72,14 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void Buscar(SistemManager cManager, DataGridView gridViewFR)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Rol_Nombre FROM Rol", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Rol_Nombre FROM NO_MORE_SQL.Rol", cManager.conexion.conn);
             adaptarTablaAlComando(adapComando, gridViewFR, true);
             
         }
 
         internal void BuscarSinHabilitados(SistemManager cManager, DataGridView gridViewFR)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Rol_Nombre FROM Rol WHERE Esta_Habilitada='SI'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Rol_Nombre FROM NO_MORE_SQL.Rol WHERE Esta_Habilitada='SI'", cManager.conexion.conn);
             adaptarTablaAlComando(adapComando, gridViewFR, true);
 
         }
@@ -98,7 +98,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void cargarDatosDeModificacion(SistemManager cManager, FrbaCommerce.ABM_Rol.FormAltaRol formAltaRol, string nombre)
         {
-            SqlCommand cmd = new SqlCommand("Enviar_Funcionalidades", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("NO_MORE_SQL.Enviar_Funcionalidades", cManager.conexion.conn);
             cmd.CommandType = CommandType.StoredProcedure;
            
             cmd.Parameters.AddWithValue("@rol", nombre);
@@ -126,7 +126,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             dr.Close();
 
-            cmd = new SqlCommand("Select Esta_Habilitada from Rol WHERE Rol_Nombre='" + nombre+ "'", cManager.conexion.conn);
+            cmd = new SqlCommand("Select Esta_Habilitada from NO_MORE_SQL.Rol WHERE Rol_Nombre='" + nombre + "'", cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
             if(dr["Esta_Habilitada"].ToString()=="SI")
@@ -151,11 +151,11 @@ namespace FrbaCommerce.Modelo.Datos
             {
                 //Habilitado pasa a ser false con una consulta Sql ACÀ
                 SqlCommand comando;
-                string bajastring="UPDATE Rol SET Esta_Habilitada='NO' WHERE Rol_Nombre='"+rol+"'";
+                string bajastring = "UPDATE NO_MORE_SQL.Rol SET Esta_Habilitada='NO' WHERE Rol_Nombre='" + rol + "'";
                 comando = new SqlCommand(bajastring, cManager.conexion.conn);
                 comando.ExecuteNonQuery();
 
-                bajastring="UPDATE Usuario SET Usuario_Rol_ID =NULL WHERE Usuario_Rol_ID=(SELECT Rol_ID FROM Rol WHERE Rol_Nombre='"+rol+"')";
+                bajastring = "UPDATE NO_MORE_SQL.Usuario SET Usuario_Rol_ID =NULL WHERE Usuario_Rol_ID=(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='" + rol + "')";
                 comando = new SqlCommand(bajastring, cManager.conexion.conn);
                 comando.ExecuteNonQuery();
 
@@ -173,13 +173,13 @@ namespace FrbaCommerce.Modelo.Datos
         {
 
             String ComandoInsertar;
-            String ComandoBorrar = "DELETE FROM Funcionalidad_Rol WHERE Rol_ID=(SELECT Rol_ID FROM Rol WHERE Rol_Nombre= '" + p + "')";
+            String ComandoBorrar = "DELETE FROM NO_MORE_SQL.Funcionalidad_Rol WHERE Rol_ID=(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre= '" + p + "')";
             SqlCommand MyCmd;
 
             if (p != rolActual.getNombre())
             {
 
-                ComandoInsertar = "UPDATE Rol SET Rol_Nombre =  '" + p + "' WHERE Rol_Nombre ='" + rolActual.getNombre() + "'";
+                ComandoInsertar = "UPDATE NO_MORE_SQL.Rol SET Rol_Nombre =  '" + p + "' WHERE Rol_Nombre ='" + rolActual.getNombre() + "'";
                 MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
 
@@ -195,13 +195,13 @@ namespace FrbaCommerce.Modelo.Datos
                 {
                     if (chekBox.Name == "Habilitar_Rol")
                     {
-                        ComandoInsertar = "UPDATE Rol SET Esta_Habilitada='SI' WHERE Rol_Nombre='" + p + "'";
+                        ComandoInsertar = "UPDATE NO_MORE_SQL.Rol SET Esta_Habilitada='SI' WHERE Rol_Nombre='" + p + "'";
                         MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                         MyCmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        ComandoInsertar = "INSERT INTO Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES ((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + p + "'),'" + chekBox.Name.ToString() + "')";
+                        ComandoInsertar = "INSERT INTO NO_MORE_SQL.Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES ((SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre ='" + p + "'),'" + chekBox.Name.ToString() + "')";
                         MyCmd = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                         MyCmd.ExecuteNonQuery();
                     }

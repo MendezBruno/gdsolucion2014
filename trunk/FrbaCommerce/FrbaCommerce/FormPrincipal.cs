@@ -15,6 +15,7 @@ using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Generar_Publicacion;
 using FrbaCommerce.Historial_Cliente;
 using FrbaCommerce.Listado_Estadistico;
+using FrbaCommerce.Calificar_Vendedor;
 
 namespace FrbaCommerce
 {
@@ -137,6 +138,27 @@ namespace FrbaCommerce
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void buttonCalificar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BuscarCalificar formCalificar;
+            //  FormGenerarPublicacion formPublicacion;
+            if (cliente != null)                
+                formCalificar = new BuscarCalificar(cManager, cliente.getUsuario());
+            else 
+            
+            if(empresa != null)
+                formCalificar = new BuscarCalificar(cManager, empresa.getUsuario());
+
+            else 
+                
+                formCalificar = new BuscarCalificar(cManager, administrador.getUsuario());
+
+            formCalificar.ShowDialog();
+            this.Show();
 
         }
 

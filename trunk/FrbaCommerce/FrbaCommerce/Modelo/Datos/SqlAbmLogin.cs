@@ -13,8 +13,8 @@ namespace FrbaCommerce.Modelo.Datos
 
         public Usuario ObtenerUsuario(string usuario, SistemManager cManager,Usuario user)
         {
-            
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Usuario WHERE Usuario_Nombre='"+usuario+"'", cManager.conexion.conn);
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre='" + usuario + "'", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
 
             //dr["Usuario_Cliente_ID"].ToString()==null && dr["Usuario_Empresa_ID"].ToString().null
@@ -85,7 +85,7 @@ namespace FrbaCommerce.Modelo.Datos
             byte[] hash = cManager.hashAlg.ComputeHash(pwordData);
 
             string passToSave = BitConverter.ToString(hash);
-            String Comando = "UPDATE Usuario SET Usuario_Contraseña='" + passToSave + "' WHERE Usuario_Nombre='" + usuario + "'";
+            String Comando = "UPDATE NO_MORE_SQL.Usuario SET Usuario_Contraseña='" + passToSave + "' WHERE Usuario_Nombre='" + usuario + "'";
 
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
