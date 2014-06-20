@@ -160,7 +160,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)
         {
-            SqlCommand cmd = new SqlCommand("select * from NO_MORE_SQL.Usuario JOIN NO_MORE_SQL.Cliente ON NO_MORE_SQL.Usuario.Usuario_Cliente_ID=NO_MORE_SQL.Cliente.Cliente_ID WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("select * from NO_MORE_SQL.Usuario INNER JOIN NO_MORE_SQL.Cliente ON NO_MORE_SQL.Usuario.Usuario_Cliente_ID=NO_MORE_SQL.Cliente.Cliente_ID WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
            // SqlCommand cmd = new SqlCommand("SELECT * FROM Cliente WHERE Cliente_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
             //  +";SELECT * FROM Rol WHERE Rol_ID=" + user.RolAsignado.idRol.ToString(), cManager.conexion.conn);
 

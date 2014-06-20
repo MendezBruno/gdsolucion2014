@@ -20,22 +20,19 @@ namespace FrbaCommerce.Login
         {
             InitializeComponent();
             this.cManager = cManager;
-        }
+            cManager.sqlAbmLogin.ingresarUsuarioAdministrador(cManager, "admin", "w23e");
 
+        }
         private void buttonIngresar_Click(object sender, EventArgs e)
         {
-            //cManager.sqlAbmLogin.cargarUsuario(user, cManager); 
+
             Usuario user = new Usuario();
             FormPrincipal formPrincipal;
-            cManager.sqlAbmLogin.ObtenerUsuario(this.textBoxUsuario.Text,cManager ,user);
-
-           
-            
+            user=cManager.sqlAbmLogin.ObtenerUsuario(this.textBoxUsuario.Text,cManager ,user);
+      
             if (user != null && user.habilitado )  //aca agrego si quiero si quiero chequear el rol
             {
                 bool res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxContraseña.Text);
-
-                MessageBox.Show(this.textBoxContraseña.Text);
 
                 if (res)
                 {
@@ -70,15 +67,31 @@ namespace FrbaCommerce.Login
                 else
                 {
                     user.Dispose();
-                    if (!this.textBoxContraseña.Text.Equals("")) this.labelContraseñaincorrecta.Visible = true;
+                    if (!this.textBoxContraseña.Text.Equals(""))
+                    {
+
+                        MessageBox.Show("!Contraseña Incorrecta");
+
+                    }
+                    
                 }
                 //si res es true ingresa y si es false suma una chance de inHabilitacion; si llego a tres muere.
 
             }
             else
             {
-                if (user.habilitado) this.labelUsuarioInexistente.Visible = true;
-                else this.labelUsuarioDeshabilitado.Visible = true;
+
+                if (user == null)
+                {
+
+                    MessageBox.Show("Usuario Inexistente");
+        
+                }
+                else
+                    if (!user.habilitado)
+                    {
+                        MessageBox.Show("Usuario Deshabilitado Contactar Con Sistemas");
+                    }
             }
         }
         
@@ -101,9 +114,6 @@ namespace FrbaCommerce.Login
             this.Show();
 
         }
-
-        
-
         
 
     }

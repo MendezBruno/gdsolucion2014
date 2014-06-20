@@ -34,9 +34,6 @@
             this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.textBoxContraseña = new System.Windows.Forms.TextBox();
             this.linkLabelRegistrarse = new System.Windows.Forms.LinkLabel();
-            this.labelUsuarioInexistente = new System.Windows.Forms.Label();
-            this.labelContraseñaincorrecta = new System.Windows.Forms.Label();
-            this.labelUsuarioDeshabilitado = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -96,39 +93,6 @@
             this.linkLabelRegistrarse.Text = "Registrar Cliente";
             this.linkLabelRegistrarse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistrarse_LinkClicked);
             // 
-            // labelUsuarioInexistente
-            // 
-            this.labelUsuarioInexistente.AutoSize = true;
-            this.labelUsuarioInexistente.ForeColor = System.Drawing.Color.Red;
-            this.labelUsuarioInexistente.Location = new System.Drawing.Point(98, 9);
-            this.labelUsuarioInexistente.Name = "labelUsuarioInexistente";
-            this.labelUsuarioInexistente.Size = new System.Drawing.Size(97, 13);
-            this.labelUsuarioInexistente.TabIndex = 6;
-            this.labelUsuarioInexistente.Text = "Usuario Inexistente";
-            this.labelUsuarioInexistente.Visible = false;
-            // 
-            // labelContraseñaincorrecta
-            // 
-            this.labelContraseñaincorrecta.AutoSize = true;
-            this.labelContraseñaincorrecta.ForeColor = System.Drawing.Color.Red;
-            this.labelContraseñaincorrecta.Location = new System.Drawing.Point(98, 9);
-            this.labelContraseñaincorrecta.Name = "labelContraseñaincorrecta";
-            this.labelContraseñaincorrecta.Size = new System.Drawing.Size(115, 13);
-            this.labelContraseñaincorrecta.TabIndex = 7;
-            this.labelContraseñaincorrecta.Text = "Contraseña Incorrecta!";
-            this.labelContraseñaincorrecta.Visible = false;
-            // 
-            // labelUsuarioDeshabilitado
-            // 
-            this.labelUsuarioDeshabilitado.AutoSize = true;
-            this.labelUsuarioDeshabilitado.ForeColor = System.Drawing.Color.Red;
-            this.labelUsuarioDeshabilitado.Location = new System.Drawing.Point(36, 9);
-            this.labelUsuarioDeshabilitado.Name = "labelUsuarioDeshabilitado";
-            this.labelUsuarioDeshabilitado.Size = new System.Drawing.Size(233, 13);
-            this.labelUsuarioDeshabilitado.TabIndex = 8;
-            this.labelUsuarioDeshabilitado.Text = "usuario deshabilitado comunicarse con sistemas";
-            this.labelUsuarioDeshabilitado.Visible = false;
-            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
@@ -147,9 +111,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 208);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.labelUsuarioDeshabilitado);
-            this.Controls.Add(this.labelContraseñaincorrecta);
-            this.Controls.Add(this.labelUsuarioInexistente);
             this.Controls.Add(this.linkLabelRegistrarse);
             this.Controls.Add(this.textBoxContraseña);
             this.Controls.Add(this.textBoxUsuario);
@@ -171,9 +132,6 @@
         private System.Windows.Forms.TextBox textBoxUsuario;
         private System.Windows.Forms.TextBox textBoxContraseña;
         private System.Windows.Forms.LinkLabel linkLabelRegistrarse;
-        private System.Windows.Forms.Label labelUsuarioInexistente;
-        private System.Windows.Forms.Label labelContraseñaincorrecta;
-        private System.Windows.Forms.Label labelUsuarioDeshabilitado;
         private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

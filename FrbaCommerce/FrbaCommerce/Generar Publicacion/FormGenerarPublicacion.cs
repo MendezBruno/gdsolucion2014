@@ -90,12 +90,6 @@ namespace FrbaCommerce.Generar_Publicacion
                this.labelprecio.Text="Precio";
                
             }
-
-
-
-
-
-
         }
 
     }

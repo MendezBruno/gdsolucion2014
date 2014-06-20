@@ -34,23 +34,22 @@
             this.Vender = new System.Windows.Forms.CheckBox();
             this.Crear_Cliente = new System.Windows.Forms.CheckBox();
             this.Modificar_Cliente = new System.Windows.Forms.CheckBox();
-            this.Baja_Cliente = new System.Windows.Forms.CheckBox();
+            this.Eliminar_Cliente = new System.Windows.Forms.CheckBox();
             this.Crear_Rubro = new System.Windows.Forms.CheckBox();
             this.Modificar_Rubro = new System.Windows.Forms.CheckBox();
-            this.Baja_Rubro = new System.Windows.Forms.CheckBox();
-            this.BoxCrear_Empresa = new System.Windows.Forms.CheckBox();
+            this.Eliminar_Rubro = new System.Windows.Forms.CheckBox();
+            this.Crear_Empresa = new System.Windows.Forms.CheckBox();
             this.Modificar_Empresa = new System.Windows.Forms.CheckBox();
-            this.Baja_Empresa = new System.Windows.Forms.CheckBox();
+            this.Eliminar_Empresa = new System.Windows.Forms.CheckBox();
             this.Crear_Visibilidad = new System.Windows.Forms.CheckBox();
             this.Modificar_Visibilidad = new System.Windows.Forms.CheckBox();
-            this.Baja_Visibilidad = new System.Windows.Forms.CheckBox();
+            this.Eliminar_Visibilidad = new System.Windows.Forms.CheckBox();
             this.Crear_Rol = new System.Windows.Forms.CheckBox();
             this.Modificar_Rol = new System.Windows.Forms.CheckBox();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.Baja_Rol = new System.Windows.Forms.CheckBox();
+            this.Eliminar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades = new System.Windows.Forms.GroupBox();
-            this.Modificar_Estado_Usuario = new System.Windows.Forms.CheckBox();
             this.Habilitar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades.SuspendLayout();
             this.SuspendLayout();
@@ -112,15 +111,15 @@
             this.Modificar_Cliente.Text = "Modificar Cliente";
             this.Modificar_Cliente.UseVisualStyleBackColor = true;
             // 
-            // Baja_Cliente
+            // Eliminar_Cliente
             // 
-            this.Baja_Cliente.AutoSize = true;
-            this.Baja_Cliente.Location = new System.Drawing.Point(3, 104);
-            this.Baja_Cliente.Name = "Baja_Cliente";
-            this.Baja_Cliente.Size = new System.Drawing.Size(82, 17);
-            this.Baja_Cliente.TabIndex = 26;
-            this.Baja_Cliente.Text = "Baja Cliente";
-            this.Baja_Cliente.UseVisualStyleBackColor = true;
+            this.Eliminar_Cliente.AutoSize = true;
+            this.Eliminar_Cliente.Location = new System.Drawing.Point(3, 104);
+            this.Eliminar_Cliente.Name = "Eliminar_Cliente";
+            this.Eliminar_Cliente.Size = new System.Drawing.Size(82, 17);
+            this.Eliminar_Cliente.TabIndex = 26;
+            this.Eliminar_Cliente.Text = "Baja Cliente";
+            this.Eliminar_Cliente.UseVisualStyleBackColor = true;
             // 
             // Crear_Rubro
             // 
@@ -142,25 +141,25 @@
             this.Modificar_Rubro.Text = "Modificar Rubro";
             this.Modificar_Rubro.UseVisualStyleBackColor = true;
             // 
-            // Baja_Rubro
+            // Eliminar_Rubro
             // 
-            this.Baja_Rubro.AutoSize = true;
-            this.Baja_Rubro.Location = new System.Drawing.Point(3, 173);
-            this.Baja_Rubro.Name = "Baja_Rubro";
-            this.Baja_Rubro.Size = new System.Drawing.Size(79, 17);
-            this.Baja_Rubro.TabIndex = 23;
-            this.Baja_Rubro.Text = "Baja Rubro";
-            this.Baja_Rubro.UseVisualStyleBackColor = true;
+            this.Eliminar_Rubro.AutoSize = true;
+            this.Eliminar_Rubro.Location = new System.Drawing.Point(3, 173);
+            this.Eliminar_Rubro.Name = "Eliminar_Rubro";
+            this.Eliminar_Rubro.Size = new System.Drawing.Size(79, 17);
+            this.Eliminar_Rubro.TabIndex = 23;
+            this.Eliminar_Rubro.Text = "Baja Rubro";
+            this.Eliminar_Rubro.UseVisualStyleBackColor = true;
             // 
-            // BoxCrear_Empresa
+            // Crear_Empresa
             // 
-            this.BoxCrear_Empresa.AutoSize = true;
-            this.BoxCrear_Empresa.Location = new System.Drawing.Point(264, 12);
-            this.BoxCrear_Empresa.Name = "BoxCrear_Empresa";
-            this.BoxCrear_Empresa.Size = new System.Drawing.Size(95, 17);
-            this.BoxCrear_Empresa.TabIndex = 34;
-            this.BoxCrear_Empresa.Text = "Crear Empresa";
-            this.BoxCrear_Empresa.UseVisualStyleBackColor = true;
+            this.Crear_Empresa.AutoSize = true;
+            this.Crear_Empresa.Location = new System.Drawing.Point(264, 12);
+            this.Crear_Empresa.Name = "Crear_Empresa";
+            this.Crear_Empresa.Size = new System.Drawing.Size(95, 17);
+            this.Crear_Empresa.TabIndex = 34;
+            this.Crear_Empresa.Text = "Crear Empresa";
+            this.Crear_Empresa.UseVisualStyleBackColor = true;
             // 
             // Modificar_Empresa
             // 
@@ -172,15 +171,15 @@
             this.Modificar_Empresa.Text = "Modificar Empresa";
             this.Modificar_Empresa.UseVisualStyleBackColor = true;
             // 
-            // Baja_Empresa
+            // Eliminar_Empresa
             // 
-            this.Baja_Empresa.AutoSize = true;
-            this.Baja_Empresa.Location = new System.Drawing.Point(264, 58);
-            this.Baja_Empresa.Name = "Baja_Empresa";
-            this.Baja_Empresa.Size = new System.Drawing.Size(91, 17);
-            this.Baja_Empresa.TabIndex = 32;
-            this.Baja_Empresa.Text = "Baja Empresa";
-            this.Baja_Empresa.UseVisualStyleBackColor = true;
+            this.Eliminar_Empresa.AutoSize = true;
+            this.Eliminar_Empresa.Location = new System.Drawing.Point(264, 58);
+            this.Eliminar_Empresa.Name = "Eliminar_Empresa";
+            this.Eliminar_Empresa.Size = new System.Drawing.Size(91, 17);
+            this.Eliminar_Empresa.TabIndex = 32;
+            this.Eliminar_Empresa.Text = "Baja Empresa";
+            this.Eliminar_Empresa.UseVisualStyleBackColor = true;
             // 
             // Crear_Visibilidad
             // 
@@ -202,15 +201,15 @@
             this.Modificar_Visibilidad.Text = "Modificar Visibilidad";
             this.Modificar_Visibilidad.UseVisualStyleBackColor = true;
             // 
-            // Baja_Visibilidad
+            // Eliminar_Visibilidad
             // 
-            this.Baja_Visibilidad.AutoSize = true;
-            this.Baja_Visibilidad.Location = new System.Drawing.Point(264, 127);
-            this.Baja_Visibilidad.Name = "Baja_Visibilidad";
-            this.Baja_Visibilidad.Size = new System.Drawing.Size(96, 17);
-            this.Baja_Visibilidad.TabIndex = 29;
-            this.Baja_Visibilidad.Text = "Baja Visibilidad";
-            this.Baja_Visibilidad.UseVisualStyleBackColor = true;
+            this.Eliminar_Visibilidad.AutoSize = true;
+            this.Eliminar_Visibilidad.Location = new System.Drawing.Point(264, 127);
+            this.Eliminar_Visibilidad.Name = "Eliminar_Visibilidad";
+            this.Eliminar_Visibilidad.Size = new System.Drawing.Size(96, 17);
+            this.Eliminar_Visibilidad.TabIndex = 29;
+            this.Eliminar_Visibilidad.Text = "Baja Visibilidad";
+            this.Eliminar_Visibilidad.UseVisualStyleBackColor = true;
             // 
             // Crear_Rol
             // 
@@ -252,53 +251,42 @@
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
-            // Baja_Rol
+            // Eliminar_Rol
             // 
-            this.Baja_Rol.AutoSize = true;
-            this.Baja_Rol.Location = new System.Drawing.Point(264, 196);
-            this.Baja_Rol.Name = "Baja_Rol";
-            this.Baja_Rol.Size = new System.Drawing.Size(66, 17);
-            this.Baja_Rol.TabIndex = 37;
-            this.Baja_Rol.Text = "Baja Rol";
-            this.Baja_Rol.UseVisualStyleBackColor = true;
+            this.Eliminar_Rol.AutoSize = true;
+            this.Eliminar_Rol.Location = new System.Drawing.Point(264, 196);
+            this.Eliminar_Rol.Name = "Eliminar_Rol";
+            this.Eliminar_Rol.Size = new System.Drawing.Size(66, 17);
+            this.Eliminar_Rol.TabIndex = 37;
+            this.Eliminar_Rol.Text = "Baja Rol";
+            this.Eliminar_Rol.UseVisualStyleBackColor = true;
             // 
             // groupBoxFuncionalidades
             // 
-            this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Estado_Usuario);
             this.groupBoxFuncionalidades.Controls.Add(this.Habilitar_Rol);
-            this.groupBoxFuncionalidades.Controls.Add(this.Baja_Rol);
-            this.groupBoxFuncionalidades.Controls.Add(this.BoxCrear_Empresa);
+            this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Rol);
+            this.groupBoxFuncionalidades.Controls.Add(this.Crear_Empresa);
             this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Empresa);
-            this.groupBoxFuncionalidades.Controls.Add(this.Baja_Empresa);
+            this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Empresa);
             this.groupBoxFuncionalidades.Controls.Add(this.Crear_Visibilidad);
             this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Visibilidad);
-            this.groupBoxFuncionalidades.Controls.Add(this.Baja_Visibilidad);
+            this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Visibilidad);
             this.groupBoxFuncionalidades.Controls.Add(this.Crear_Rol);
             this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Rol);
-            this.groupBoxFuncionalidades.Controls.Add(this.Baja_Cliente);
+            this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Cliente);
             this.groupBoxFuncionalidades.Controls.Add(this.Crear_Rubro);
             this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Rubro);
-            this.groupBoxFuncionalidades.Controls.Add(this.Baja_Rubro);
+            this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Rubro);
             this.groupBoxFuncionalidades.Controls.Add(this.Modificar_Cliente);
             this.groupBoxFuncionalidades.Controls.Add(this.Crear_Cliente);
             this.groupBoxFuncionalidades.Controls.Add(this.Vender);
             this.groupBoxFuncionalidades.Controls.Add(this.Comprar);
             this.groupBoxFuncionalidades.Location = new System.Drawing.Point(17, 101);
             this.groupBoxFuncionalidades.Name = "groupBoxFuncionalidades";
-            this.groupBoxFuncionalidades.Size = new System.Drawing.Size(410, 255);
+            this.groupBoxFuncionalidades.Size = new System.Drawing.Size(410, 230);
             this.groupBoxFuncionalidades.TabIndex = 38;
             this.groupBoxFuncionalidades.TabStop = false;
             this.groupBoxFuncionalidades.Text = "Funcionalidades";
-            // 
-            // Modificar_Estado_Usuario
-            // 
-            this.Modificar_Estado_Usuario.AutoSize = true;
-            this.Modificar_Estado_Usuario.Location = new System.Drawing.Point(264, 219);
-            this.Modificar_Estado_Usuario.Name = "Modificar_Estado_Usuario";
-            this.Modificar_Estado_Usuario.Size = new System.Drawing.Size(144, 17);
-            this.Modificar_Estado_Usuario.TabIndex = 40;
-            this.Modificar_Estado_Usuario.Text = "Modificar Estado Usuario";
-            this.Modificar_Estado_Usuario.UseVisualStyleBackColor = true;
             // 
             // Habilitar_Rol
             // 
@@ -338,22 +326,21 @@
         private System.Windows.Forms.CheckBox Vender;
         private System.Windows.Forms.CheckBox Crear_Cliente;
         private System.Windows.Forms.CheckBox Modificar_Cliente;
-        private System.Windows.Forms.CheckBox Baja_Cliente;
+        private System.Windows.Forms.CheckBox Eliminar_Cliente;
         private System.Windows.Forms.CheckBox Crear_Rubro;
         private System.Windows.Forms.CheckBox Modificar_Rubro;
-        private System.Windows.Forms.CheckBox Baja_Rubro;
-        private System.Windows.Forms.CheckBox BoxCrear_Empresa;
+        private System.Windows.Forms.CheckBox Eliminar_Rubro;
+        private System.Windows.Forms.CheckBox Crear_Empresa;
         private System.Windows.Forms.CheckBox Modificar_Empresa;
-        private System.Windows.Forms.CheckBox Baja_Empresa;
+        private System.Windows.Forms.CheckBox Eliminar_Empresa;
         private System.Windows.Forms.CheckBox Crear_Visibilidad;
         private System.Windows.Forms.CheckBox Modificar_Visibilidad;
-        private System.Windows.Forms.CheckBox Baja_Visibilidad;
+        private System.Windows.Forms.CheckBox Eliminar_Visibilidad;
         private System.Windows.Forms.CheckBox Crear_Rol;
         private System.Windows.Forms.CheckBox Modificar_Rol;
-        private System.Windows.Forms.CheckBox Baja_Rol;
+        private System.Windows.Forms.CheckBox Eliminar_Rol;
         public System.Windows.Forms.TextBox textBoxNombreRol;
         public System.Windows.Forms.GroupBox groupBoxFuncionalidades;
-        private System.Windows.Forms.CheckBox Modificar_Estado_Usuario;
         private System.Windows.Forms.CheckBox Habilitar_Rol;
     }
 }

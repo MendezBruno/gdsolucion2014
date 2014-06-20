@@ -44,8 +44,9 @@
             this.BotonComprar.Name = "BotonComprar";
             this.BotonComprar.Size = new System.Drawing.Size(137, 42);
             this.BotonComprar.TabIndex = 0;
-            this.BotonComprar.Text = "Comprar";
+            this.BotonComprar.Text = "Comprar/Ofertar";
             this.BotonComprar.UseVisualStyleBackColor = true;
+            this.BotonComprar.Click += new System.EventHandler(this.BotonComprar_Click);
             // 
             // buttonCrearUsuario
             // 

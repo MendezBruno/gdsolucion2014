@@ -16,6 +16,7 @@ using FrbaCommerce.Generar_Publicacion;
 using FrbaCommerce.Historial_Cliente;
 using FrbaCommerce.Listado_Estadistico;
 using FrbaCommerce.Calificar_Vendedor;
+using FrbaCommerce.Comprar_Ofertar;
 
 namespace FrbaCommerce
 {
@@ -120,9 +121,14 @@ namespace FrbaCommerce
         {
             
             this.Hide();
-            FormHistorialCliente formHistoria = new FormHistorialCliente(cManager,cliente.getUsuario());
-            formHistoria.ShowDialog();
-            this.Show();
+            FormHistorialCliente formHistoria;
+            if (cliente != null)
+            {
+                formHistoria = new FormHistorialCliente(cManager, cliente.getUsuario());
+                formHistoria.ShowDialog();
+                this.Show();
+            }
+
 
 
         }
@@ -158,6 +164,19 @@ namespace FrbaCommerce
                 formCalificar = new BuscarCalificar(cManager, administrador.getUsuario());
 
             formCalificar.ShowDialog();
+            this.Show();
+
+        }
+
+        private void BotonComprar_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+
+            FormComprarOfertar formComprarOferta = new FormComprarOfertar(cManager);
+
+            formComprarOferta.ShowDialog();
+
             this.Show();
 
         }

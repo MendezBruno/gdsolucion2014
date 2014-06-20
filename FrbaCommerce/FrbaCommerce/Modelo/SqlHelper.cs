@@ -21,7 +21,7 @@ namespace FrbaCommerce.Modelo
         public SqlHelper()
         {
             conectar();
-            probarConexion();
+          
         }
         
         //SqlConnection con = new SqlConnection("Data Source=  ; initial                catalog= Northwind ; User Id=  ; Password=  '");
@@ -31,7 +31,10 @@ namespace FrbaCommerce.Modelo
         {
             try
             {
-                conn = new SqlConnection("Data Source=localhost\\SQLSERVER2008; initial catalog=GD1C2014 ; User Id=gd ; Password=gd2014");
+
+                String conect = Configuracion.Default.ConexionBase;
+
+                conn = new SqlConnection(conect);
                 conn.Open();
                 Console.WriteLine("se pudo conectar");
             }
@@ -41,11 +44,6 @@ namespace FrbaCommerce.Modelo
             }
         }
 
-        public void probarConexion()
-        {
-            
-            MessageBox.Show("el dato es: " + conn.ConnectionString+ "  " + conn.Database+"   " + conn.DataSource);
-        }
 
         public void insertarEnTabla()
         {

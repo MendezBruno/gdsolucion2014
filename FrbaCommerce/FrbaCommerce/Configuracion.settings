@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FrbaCommerce" GeneratedClassName="Configuracion">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConexionBase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=localhost\SQLSERVER2008; initial catalog=GD1C2014 ; User Id=gd ; Password=gd2014</Value>
+    </Setting>
+    <Setting Name="FechaHoy" Type="System.DateTime" Scope="Application">
+      <Value Profile="(Default)">2014-04-18</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
