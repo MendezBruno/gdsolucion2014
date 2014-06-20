@@ -16,8 +16,8 @@ namespace FrbaCommerce.Modelo.Datos
             SqlCommand Cmd;
             SqlDataReader dr;
             string pub_codigo;
-            MessageBox.Show(DateTime.Now.ToString());
-            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo,Publicacion_Estado,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",Null,'" + DateTime.Now.ToString() + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada',2,'" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ")";
+            MessageBox.Show(Configuracion.Default.FechaHoy.ToString());
+            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo,Publicacion_Estado,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",Null,'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada',2,'" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ")";
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
 
@@ -79,7 +79,7 @@ namespace FrbaCommerce.Modelo.Datos
             SqlCommand cmd;
             SqlDataReader dr;
             string pub_codigo;
-            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo,Publicacion_Estado,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",Null,'" + DateTime.Now.ToString() + "',@precio,'" + tipoPublicacion + "','Borrada',1,'" + aceptaPregunta + "','" + userName + "',@visibilidad)";
+            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo,Publicacion_Estado,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",Null,'" + Configuracion.Default.FechaHoy.ToString() + "',@precio,'" + tipoPublicacion + "','Borrada',1,'" + aceptaPregunta + "','" + userName + "',@visibilidad)";
             cmd = new SqlCommand(Comando, cManager.conexion.conn);
             if (precio == "")
                 cmd.Parameters.AddWithValue("@precio", DBNull.Value);

@@ -29,7 +29,8 @@ namespace FrbaCommerce.Modelo
         public SqlHistorial sqlHistorial = new SqlHistorial();
         public SqlListado sqlListado = new SqlListado();
         public SqlClasificar sqlClasificar = new SqlClasificar();
-
+        public SqlCompra sqlCompra = new SqlCompra();
+         
         public SistemManager()
         {
             
@@ -51,8 +52,6 @@ namespace FrbaCommerce.Modelo
                     byte[] hash = hashAlg.ComputeHash(pwordData);
 
                 //revisar esta comparacion
-
-                    MessageBox.Show("me llego: " + BitConverter.ToString(hash) + " y yo tengo: " + user.getPassword());
 
                     if (user.getPassword().Equals(BitConverter.ToString(hash))) return true;
                     else return false;

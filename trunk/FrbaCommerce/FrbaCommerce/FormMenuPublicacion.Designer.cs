@@ -34,7 +34,7 @@
             // 
             // botonGenerarPublicacion
             // 
-            this.botonGenerarPublicacion.Location = new System.Drawing.Point(69, 29);
+            this.botonGenerarPublicacion.Location = new System.Drawing.Point(68, 12);
             this.botonGenerarPublicacion.Name = "botonGenerarPublicacion";
             this.botonGenerarPublicacion.Size = new System.Drawing.Size(131, 40);
             this.botonGenerarPublicacion.TabIndex = 5;
@@ -44,7 +44,7 @@
             // 
             // buttonEditarPublicacion
             // 
-            this.buttonEditarPublicacion.Location = new System.Drawing.Point(69, 99);
+            this.buttonEditarPublicacion.Location = new System.Drawing.Point(69, 69);
             this.buttonEditarPublicacion.Name = "buttonEditarPublicacion";
             this.buttonEditarPublicacion.Size = new System.Drawing.Size(130, 44);
             this.buttonEditarPublicacion.TabIndex = 6;

@@ -120,12 +120,6 @@
     <Compile Include="Editar Publicacion\FormBuscarPublicacion.Designer.cs">
       <DependentUpon>FormBuscarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
-      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Facturar Publicaciones\FormFacturarPublicaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +196,7 @@
     <Compile Include="Modelo\Datos\SqlAmbVisibilidad.cs" />
     <Compile Include="Modelo\Datos\SqlClasificar.cs" />
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
+    <Compile Include="Modelo\Datos\SqlCompra.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
     <Compile Include="Modelo\Datos\SqlHistorial.cs" />
     <Compile Include="Modelo\Datos\SqlListado.cs" />
@@ -311,9 +306,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Configuracion.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Configuracion.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -325,6 +325,16 @@
     </Compile>
     <Compile Include="Registro de Usuario\FormRegistroDeUsuario.Designer.cs">
       <DependentUpon>FormRegistroDeUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Configuracion.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
