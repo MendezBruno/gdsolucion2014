@@ -114,6 +114,12 @@
     <Compile Include="Comprar-Ofertar\FormComprarOfertar.Designer.cs">
       <DependentUpon>FormComprarOfertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprar-Ofertar\FormMostrarPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar-Ofertar\FormMostrarPublicacion.Designer.cs">
+      <DependentUpon>FormMostrarPublicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editar Publicacion\FormBuscarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,7 @@
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
     <Compile Include="Modelo\Datos\SqlCompra.cs" />
     <Compile Include="Modelo\Datos\SqlEmpresa.cs" />
+    <Compile Include="Modelo\Datos\SqlFactura.cs" />
     <Compile Include="Modelo\Datos\SqlHistorial.cs" />
     <Compile Include="Modelo\Datos\SqlListado.cs" />
     <Compile Include="Modelo\Datos\SqlPublicacion.cs" />
@@ -257,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar-Ofertar\FormComprarOfertar.resx">
       <DependentUpon>FormComprarOfertar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar-Ofertar\FormMostrarPublicacion.resx">
+      <DependentUpon>FormMostrarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\FormBuscarPublicacion.resx">
       <DependentUpon>FormBuscarPublicacion.cs</DependentUpon>
@@ -331,7 +341,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Configuracion.settings</DependentUpon>
     </Compile>
-    <Compile Include="Settings11.Designer.cs">
+    <Compile Include="Settings1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings1.settings</DependentUpon>

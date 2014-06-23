@@ -36,6 +36,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.buttonCalificar = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
+            this.buttonFacturar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BotonComprar
@@ -117,11 +118,22 @@
             this.buttonHistorial.UseVisualStyleBackColor = true;
             this.buttonHistorial.Click += new System.EventHandler(this.buttonHistorial_Click);
             // 
+            // buttonFacturar
+            // 
+            this.buttonFacturar.Location = new System.Drawing.Point(443, 23);
+            this.buttonFacturar.Name = "buttonFacturar";
+            this.buttonFacturar.Size = new System.Drawing.Size(173, 43);
+            this.buttonFacturar.TabIndex = 8;
+            this.buttonFacturar.Text = "Facturar Publicaciones";
+            this.buttonFacturar.UseVisualStyleBackColor = true;
+            this.buttonFacturar.Click += new System.EventHandler(this.buttonFacturar_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(416, 231);
+            this.ClientSize = new System.Drawing.Size(652, 231);
+            this.Controls.Add(this.buttonFacturar);
             this.Controls.Add(this.buttonHistorial);
             this.Controls.Add(this.buttonCalificar);
             this.Controls.Add(this.button2);
@@ -146,6 +158,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonCalificar;
         private System.Windows.Forms.Button buttonHistorial;
+        private System.Windows.Forms.Button buttonFacturar;
     }
 }
 

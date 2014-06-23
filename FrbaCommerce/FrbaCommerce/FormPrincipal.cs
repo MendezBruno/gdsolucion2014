@@ -17,6 +17,7 @@ using FrbaCommerce.Historial_Cliente;
 using FrbaCommerce.Listado_Estadistico;
 using FrbaCommerce.Calificar_Vendedor;
 using FrbaCommerce.Comprar_Ofertar;
+using FrbaCommerce.Facturar_Publicaciones;
 
 namespace FrbaCommerce
 {
@@ -178,6 +179,18 @@ namespace FrbaCommerce
             formComprarOferta.ShowDialog();
 
             this.Show();
+
+        }
+
+        private void buttonFacturar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            FormFacturarPublicaciones formFacturar = new FormFacturarPublicaciones(cManager, cliente.getUsuario());
+
+            formFacturar.ShowDialog();
+
+
 
         }
 
