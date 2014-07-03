@@ -15,5 +15,10 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             InitializeComponent();
         }
+
+        private void buttonPreguntarResponder_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
