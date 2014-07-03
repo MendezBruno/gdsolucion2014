@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.BotonComprar = new System.Windows.Forms.Button();
-            this.buttonCrearUsuario = new System.Windows.Forms.Button();
             this.buttonModificaciones = new System.Windows.Forms.Button();
             this.buttonPublicaciones = new System.Windows.Forms.Button();
-            this.BotonOfertar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.buttonCalificar = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
             this.buttonFacturar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BotonComprar
@@ -49,19 +48,9 @@
             this.BotonComprar.UseVisualStyleBackColor = true;
             this.BotonComprar.Click += new System.EventHandler(this.BotonComprar_Click);
             // 
-            // buttonCrearUsuario
-            // 
-            this.buttonCrearUsuario.Location = new System.Drawing.Point(247, 23);
-            this.buttonCrearUsuario.Name = "buttonCrearUsuario";
-            this.buttonCrearUsuario.Size = new System.Drawing.Size(137, 43);
-            this.buttonCrearUsuario.TabIndex = 1;
-            this.buttonCrearUsuario.Text = "Crear Usuario";
-            this.buttonCrearUsuario.UseVisualStyleBackColor = true;
-            this.buttonCrearUsuario.Click += new System.EventHandler(this.buttonCrearUsuario_Click);
-            // 
             // buttonModificaciones
             // 
-            this.buttonModificaciones.Location = new System.Drawing.Point(247, 72);
+            this.buttonModificaciones.Location = new System.Drawing.Point(14, 173);
             this.buttonModificaciones.Name = "buttonModificaciones";
             this.buttonModificaciones.Size = new System.Drawing.Size(135, 45);
             this.buttonModificaciones.TabIndex = 2;
@@ -79,18 +68,9 @@
             this.buttonPublicaciones.UseVisualStyleBackColor = true;
             this.buttonPublicaciones.Click += new System.EventHandler(this.buttonPublicaciones_Click);
             // 
-            // BotonOfertar
-            // 
-            this.BotonOfertar.Location = new System.Drawing.Point(12, 123);
-            this.BotonOfertar.Name = "BotonOfertar";
-            this.BotonOfertar.Size = new System.Drawing.Size(137, 44);
-            this.BotonOfertar.TabIndex = 4;
-            this.BotonOfertar.Text = "Ofertar";
-            this.BotonOfertar.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(247, 123);
+            this.button2.Location = new System.Drawing.Point(165, 23);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(137, 44);
             this.button2.TabIndex = 5;
@@ -100,7 +80,7 @@
             // 
             // buttonCalificar
             // 
-            this.buttonCalificar.Location = new System.Drawing.Point(12, 173);
+            this.buttonCalificar.Location = new System.Drawing.Point(12, 123);
             this.buttonCalificar.Name = "buttonCalificar";
             this.buttonCalificar.Size = new System.Drawing.Size(137, 44);
             this.buttonCalificar.TabIndex = 6;
@@ -110,7 +90,7 @@
             // 
             // buttonHistorial
             // 
-            this.buttonHistorial.Location = new System.Drawing.Point(247, 173);
+            this.buttonHistorial.Location = new System.Drawing.Point(165, 72);
             this.buttonHistorial.Name = "buttonHistorial";
             this.buttonHistorial.Size = new System.Drawing.Size(137, 44);
             this.buttonHistorial.TabIndex = 7;
@@ -120,7 +100,7 @@
             // 
             // buttonFacturar
             // 
-            this.buttonFacturar.Location = new System.Drawing.Point(443, 23);
+            this.buttonFacturar.Location = new System.Drawing.Point(165, 122);
             this.buttonFacturar.Name = "buttonFacturar";
             this.buttonFacturar.Size = new System.Drawing.Size(173, 43);
             this.buttonFacturar.TabIndex = 8;
@@ -128,19 +108,27 @@
             this.buttonFacturar.UseVisualStyleBackColor = true;
             this.buttonFacturar.Click += new System.EventHandler(this.buttonFacturar_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(165, 173);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 46);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Modificar Contraseña";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(652, 231);
+            this.ClientSize = new System.Drawing.Size(362, 231);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonFacturar);
             this.Controls.Add(this.buttonHistorial);
             this.Controls.Add(this.buttonCalificar);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.BotonOfertar);
             this.Controls.Add(this.buttonPublicaciones);
             this.Controls.Add(this.buttonModificaciones);
-            this.Controls.Add(this.buttonCrearUsuario);
             this.Controls.Add(this.BotonComprar);
             this.Name = "FormPrincipal";
             this.Text = "Cuadro de Opciones Principales";
@@ -151,14 +139,13 @@
         #endregion
 
         private System.Windows.Forms.Button BotonComprar;
-        private System.Windows.Forms.Button buttonCrearUsuario;
         private System.Windows.Forms.Button buttonModificaciones;
         private System.Windows.Forms.Button buttonPublicaciones;
-        private System.Windows.Forms.Button BotonOfertar;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button buttonCalificar;
         private System.Windows.Forms.Button buttonHistorial;
         private System.Windows.Forms.Button buttonFacturar;
+        private System.Windows.Forms.Button button1;
     }
 }
 

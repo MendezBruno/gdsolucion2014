@@ -14,49 +14,52 @@ namespace FrbaCommerce.Modelo.Datos
         public Usuario ObtenerUsuario(string usuario, SistemManager cManager,Usuario user)
         {
 
-            SqlCommand cmd = new SqlCommand("SELECT * FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre='" + usuario + "'", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM NO_MORE_SQL.Usuario LEFT JOIN NO_MORE_SQL.Empresa ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre LEFT JOIN NO_MORE_SQL.Cliente ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Cliente.Cliente_Usuario_Nombre  WHERE Usuario_Nombre='"+usuario+"'", cManager.conexion.conn);
             SqlDataReader dr = cmd.ExecuteReader();
 
-            //dr["Usuario_Cliente_ID"].ToString()==null && dr["Usuario_Empresa_ID"].ToString().null
-
             if (dr.Read())
-            {
-                if (dr["Esta_Habilitado"].ToString().Equals("SI")) user.habilitado = true; else user.habilitado = false;
+            {   
+                
+                if (dr["Esta_Habilitado"].ToString().Equals("SI")) 
+                    
+                user.habilitado = true; 
+                
+                else user.habilitado = false;
 
-                if (dr.IsDBNull(3) && dr.IsDBNull(4))
-                {
-                    user.habilitado = true;
-                    user.tipoUsuario = "Administrador";
-
-                    //user.setWithTipoAdministrador
-                }
-                else
-                {
-                    if (dr.IsDBNull(3))
-                    {
-                        user.usuarioId = Convert.ToInt32(dr["Usuario_Empresa_ID"]);
-                        user.tipoUsuario = "Empresa";
-                    }
-                    if (dr.IsDBNull(4))
-                    {
-                        user.usuarioId = Convert.ToInt32(dr["Usuario_Cliente_ID"]);
-                        user.tipoUsuario = "Cliente";
-                    }
-                }
                 user.RolAsignado.idRol = Convert.ToInt32(dr["Usuario_Rol_ID"]);
 
                 user.setUsuario(dr["Usuario_Nombre"].ToString());
 
-                if (dr.IsDBNull(dr.GetOrdinal("Usuario_Contraseña")))
-                {
-                    dr.Close();
-                    FormAgregarContraseña agregarContraseña = new FormAgregarContraseña(cManager, user);
-                    agregarContraseña.ShowDialog();
-                    agregarContraseña.Close();
+                   if (dr.IsDBNull(dr.GetOrdinal("Empresa_Usuario_Nombre")))
+                    {
+                        //  user.usuarioId = Convert.ToInt32(dr["Usuario_Empresa_ID"]);
+                        user.tipoUsuario = "Cliente";
+                    }
+                    if (dr.IsDBNull(dr.GetOrdinal("Cliente_Usuario_Nombre")))
+                    {
+                        // user.usuarioId = Convert.ToInt32(dr["Usuario_Cliente_ID"]);
+                        user.tipoUsuario = "Empresa";
+                    }
+                    if ((dr.IsDBNull(dr.GetOrdinal("Empresa_Usuario_Nombre")) && dr.IsDBNull(dr.GetOrdinal("Cliente_Usuario_Nombre"))))
+                    {
+                        user.tipoUsuario = "Administrador";
 
-                }
-                else user.setPassword(dr["Usuario_Contraseña"].ToString());
+                    }
 
+                    if (dr.IsDBNull(dr.GetOrdinal("Usuario_Contraseña")))
+                    {
+                        dr.Close();
+                        FormAgregarContraseña agregarContraseña = new FormAgregarContraseña(cManager, user);
+                        agregarContraseña.ShowDialog();
+                        agregarContraseña.Close();
+                        user.cambioContrasena(true);
+
+                    }
+                    else
+
+                        user.setPassword(dr["Usuario_Contraseña"].ToString());
+                        dr.Close();
+                
 
             }
             else
@@ -65,7 +68,7 @@ namespace FrbaCommerce.Modelo.Datos
                 user = null;
                 return user;
             }
-            dr.Close();
+     
             cManager.sqlRol.ObtenerRol(user, cManager);
             return user;
         }
@@ -98,6 +101,18 @@ namespace FrbaCommerce.Modelo.Datos
 
             return passToSave;
             
+        }
+
+        internal void deshabilitarUsuario(Usuario user,SistemManager cManager)
+        {
+            SqlCommand Cmd;
+            
+            String Comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE Usuario_Nombre='" +user.getUsuario()+ "'";
+
+            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+            Cmd.ExecuteNonQuery();
+
+
         }
 
         internal void ingresarUsuarioAdministrador(SistemManager cManager,string administrador, string contraseña)
@@ -135,9 +150,3 @@ namespace FrbaCommerce.Modelo.Datos
 }
 
 
-
-/*
-Rol empresa = new Rol();
-empresa.setNombre("empresa");
-user.RolAsignado = empresa;
-*/

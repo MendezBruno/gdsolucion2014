@@ -14,9 +14,10 @@ namespace FrbaCommerce.Abm_Cliente
     public partial class FormAbmClienteAlta : Form
     {
         SistemManager cManager;
-        bool esCliente,modificacion;
+        bool esCliente,modificacion,registro;
         string user, pass;
         public Cliente cliente;
+
 
         public FormAbmClienteAlta(string user, string pass, SistemManager cManager, bool esCliente)
         {
@@ -26,8 +27,7 @@ namespace FrbaCommerce.Abm_Cliente
             this.user = user;
             this.pass = pass;
             this.checkBoxHabilitacion.Visible = false;
-    
-            
+            this.registro = true;
         }
 
         public FormAbmClienteAlta(SistemManager cManager)
@@ -45,6 +45,7 @@ namespace FrbaCommerce.Abm_Cliente
             cliente = new Cliente();
             this.modificacion = modificacion;
             this.esCliente = esCliente;
+            this.registro = false;
     
         }
 
@@ -57,10 +58,22 @@ namespace FrbaCommerce.Abm_Cliente
             }
 
             else
-            {
-                cManager.sqlCliente.darAlta(cManager,esCliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
+                if (this.registro == false)
+                {
+                    cManager.sqlCliente.darAlta(cManager, esCliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text);
 
-            }
+                }
+                else
+                {
+
+                    cManager.sqlCliente.darAlta(cManager, esCliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text,this.user,this.pass);
+
+
+
+                }
+
+            
+
             this.Hide();
 
             

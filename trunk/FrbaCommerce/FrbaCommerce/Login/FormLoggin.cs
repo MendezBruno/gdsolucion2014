@@ -16,27 +16,37 @@ namespace FrbaCommerce.Login
     {
         //SistemManagerSingleton classManagerSingleton = SistemManagerSingleton.Instance;
         SistemManager cManager;
+        int intentos;
         public FormLoggin(SistemManager cManager)
         {
             InitializeComponent();
             this.cManager = cManager;
             cManager.sqlAbmLogin.ingresarUsuarioAdministrador(cManager, "admin", "w23e");
+            this.intentos = 0;
 
         }
         private void buttonIngresar_Click(object sender, EventArgs e)
         {
 
             Usuario user = new Usuario();
+            bool res;
             FormPrincipal formPrincipal;
             user=cManager.sqlAbmLogin.ObtenerUsuario(this.textBoxUsuario.Text,cManager ,user);
-      
-            if (user != null && user.habilitado )  //aca agrego si quiero si quiero chequear el rol
+            if (user != null && user.habilitado)  //aca agrego si quiero si quiero chequear el rol
             {
-                bool res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxContraseña.Text);
-
+                if (user.secambioContrasena() != true)
+                {
+                    res = cManager.verificarCodificacionContraseña(user, this.textBoxUsuario.Text, this.textBoxContraseña.Text);
+                    user.cambioContrasena(false);
+                }
+                else
+                    res = true;
+                
+                    
                 if (res)
                 {
                     this.Hide();
+
                     switch (user.tipoUsuario)
                     {
                         case "Cliente":
@@ -61,19 +71,24 @@ namespace FrbaCommerce.Login
                             this.Show();
                             break;
                     }
+  
 
                     
                 }
                 else
                 {
-                    user.Dispose();
-                    if (!this.textBoxContraseña.Text.Equals(""))
-                    {
+                    
 
                         MessageBox.Show("!Contraseña Incorrecta");
+                        this.intentos = this.intentos+1;
+                        MessageBox.Show(this.intentos.ToString());
+                        if (this.intentos == 3)
+                        {
 
-                    }
-                    
+                            cManager.sqlAbmLogin.deshabilitarUsuario(user,cManager);
+                            MessageBox.Show(this.intentos.ToString());
+                        }
+
                 }
                 //si res es true ingresa y si es false suma una chance de inHabilitacion; si llego a tres muere.
 
@@ -112,6 +127,19 @@ namespace FrbaCommerce.Login
             formEmpresa.checkBoxHabilitacion.Visible = false;
             formEmpresa.ShowDialog();
             this.Show();
+
+        }
+
+        private void linkLabelResgistrarUsuario_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+
+            FormRegistroDeUsuario registro = new FormRegistroDeUsuario(cManager);
+
+            registro.ShowDialog();
+
+            this.Show();
+
 
         }
         

@@ -15,7 +15,7 @@ namespace FrbaCommerce.Abm_Empresa
     {
         SistemManager cManager;
 
-        bool esEmpresa, modificacion;
+        bool esEmpresa, modificacion,registro,esCliente;
 
         public Empresa empresa;
 
@@ -29,16 +29,20 @@ namespace FrbaCommerce.Abm_Empresa
             this.cManager = cManager;
             empresa = new Empresa();
             this.modificacion = modificacion;
+            this.registro = false;
 
         }
 
-        public FormAbmEmpresaAlta(string user, string pass,SistemManager cManager, bool alta)
+        public FormAbmEmpresaAlta(string user, string pass,SistemManager cManager, bool esCliente)
         
         {
             InitializeComponent();
             this.cManager = cManager;
             this.user = user;
             this.pass = pass;
+            this.registro = true;
+            this.esCliente = esCliente;
+            this.checkBoxHabilitacion.Visible = false;
         }
 
         private void botonAlta_Click(object sender, EventArgs e)
@@ -53,12 +57,35 @@ namespace FrbaCommerce.Abm_Empresa
             
             }
             else
+            if(this.registro== false)
             {
-                cManager.sqlEmpresa.darAlta(cManager, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
-                cManager.sqlUsuario.darAltaEmpresa(cManager,cuit.Text);
-
+                cManager.sqlEmpresa.darAlta(cManager,esCliente, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
             }
+                else
+            {
+                cManager.sqlEmpresa.darAlta(cManager,esCliente, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text, this.user, this.pass);
+            }
+            /*
+                if (cuit.Text.Equals("") || razon.Text.Equals(""))
+                {
+
+                    if (cuit.Text.Equals(""))
+                        MessageBox.Show("Cuit No Ingresado");
+                    if (razon.Text.Equals(""))
+                        MessageBox.Show("Razon Social No ingresada");
+
+                }
+                else
+                {
+                    cManager.sqlUsuario.darAltaEmpresa(cManager, cuit.Text);
+                    cManager.sqlEmpresa.darAlta(cManager, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
+                    MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + cuit.Text + ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
+                }
+             
+             */
+            this.Hide();
         }
+        
 
         private void botonLimpiar_Click(object sender, EventArgs e)
 

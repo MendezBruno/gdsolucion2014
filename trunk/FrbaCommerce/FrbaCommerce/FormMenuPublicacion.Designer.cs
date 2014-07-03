@@ -30,6 +30,7 @@
         {
             this.botonGenerarPublicacion = new System.Windows.Forms.Button();
             this.buttonEditarPublicacion = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // botonGenerarPublicacion
@@ -52,11 +53,22 @@
             this.buttonEditarPublicacion.UseVisualStyleBackColor = true;
             this.buttonEditarPublicacion.Click += new System.EventHandler(this.buttonEditarPublicacion_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(69, 130);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 48);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Borrar Publicacion";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormMenuPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 178);
+            this.ClientSize = new System.Drawing.Size(263, 203);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEditarPublicacion);
             this.Controls.Add(this.botonGenerarPublicacion);
             this.Name = "FormMenuPublicacion";
@@ -69,5 +81,6 @@
 
         private System.Windows.Forms.Button botonGenerarPublicacion;
         private System.Windows.Forms.Button buttonEditarPublicacion;
+        private System.Windows.Forms.Button button1;
     }
 }

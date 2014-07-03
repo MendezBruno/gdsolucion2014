@@ -19,6 +19,7 @@ namespace FrbaCommerce
        
         Cliente cliente;
         Empresa empresa;
+        Administrador administrador;
         
         public FormMenuPublicacion(SistemManager cManager, Cliente cliente)
         {
@@ -35,15 +36,37 @@ namespace FrbaCommerce
 
         }
 
+        public FormMenuPublicacion(SistemManager cManager, Administrador administrador)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.administrador=administrador;
+
+        }
+
         private void botonGenerarPublicacion_Click(object sender, EventArgs e)
         {
             this.Hide();
             FormGenerarPublicacion formGenerarPublicacion;
             //  FormGenerarPublicacion formPublicacion;
-            if (cliente == null) formGenerarPublicacion = new FormGenerarPublicacion(cManager, empresa);
-            else formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente);
-            formGenerarPublicacion.ShowDialog();
-            this.Show();
+            if (cliente != null)
+            {
+                formGenerarPublicacion = new FormGenerarPublicacion(cManager,cliente,false);
+                formGenerarPublicacion.ShowDialog();
+            }
+            else
+                if (empresa != null)
+                {
+                    formGenerarPublicacion = new FormGenerarPublicacion(cManager, empresa,false);
+                    formGenerarPublicacion.ShowDialog();
+                }
+                else
+                    if (empresa == null && cliente == null)
+                    {
+                        formGenerarPublicacion = new FormGenerarPublicacion(cManager,administrador,false);
+                        formGenerarPublicacion.ShowDialog();
+                    }
+                this.Show();
         }
 
         
@@ -51,10 +74,62 @@ namespace FrbaCommerce
         {
             this.Hide();
             FormBuscarPublicacion formBuscarPublicacion;
-            if (cliente == null) formBuscarPublicacion = new FormBuscarPublicacion(cManager, empresa);
-            else formBuscarPublicacion = new FormBuscarPublicacion(cManager, cliente);
-            formBuscarPublicacion.ShowDialog();
+            if (cliente != null)
+            {
+                formBuscarPublicacion = new FormBuscarPublicacion(cManager, cliente);
+                formBuscarPublicacion.Text = "Modificar Publicacion"; 
+                formBuscarPublicacion.ShowDialog();
+                 
+            }
+            else
+                if (empresa != null)
+                {
+                    formBuscarPublicacion = new FormBuscarPublicacion(cManager, empresa);
+                    formBuscarPublicacion.Text = "Modificar Publicacion"; 
+                    formBuscarPublicacion.ShowDialog();
+                    
+                }
+                else
+                    if (empresa == null && cliente == null)
+                    {
+                        formBuscarPublicacion = new FormBuscarPublicacion(cManager, administrador);
+                        formBuscarPublicacion.Text = "Modificar Publicacion"; 
+                        formBuscarPublicacion.ShowDialog();
+                   
+                    }
+
             this.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormBuscarPublicacion formBuscarPublicacion;
+            if (cliente != null)
+            {
+                formBuscarPublicacion = new FormBuscarPublicacion(cManager, cliente);
+                formBuscarPublicacion.Text = "Eliminar Publicacion";
+                formBuscarPublicacion.ShowDialog();
+                
+            }
+            else
+                if (empresa != null)
+                {
+                    formBuscarPublicacion = new FormBuscarPublicacion(cManager, empresa);
+                    formBuscarPublicacion.Text = "Eliminar Publicacion";
+                    formBuscarPublicacion.ShowDialog();
+                   
+                }
+                else
+                    if (empresa == null && cliente == null)
+                    {
+                        formBuscarPublicacion = new FormBuscarPublicacion(cManager, administrador);
+                        formBuscarPublicacion.Text = "Eliminar Publicacion";
+                        formBuscarPublicacion.ShowDialog();
+                    }
+
+            this.Show();
+
         }
 
 

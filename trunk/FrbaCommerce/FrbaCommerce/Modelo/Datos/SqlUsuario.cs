@@ -14,26 +14,60 @@ namespace FrbaCommerce.Modelo.Datos
            
            SqlCommand cmd;
            String ComandoInsert;
-           if (esCliente == true)
+
+            
+            if (esCliente == true)
 
 
-               ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Cliente_ID,Esta_Habilitado) VALUES('" + dni + "', (SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI =" + dni + "),'SI')";
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
+
+            
+            else
+
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
+
 
            
-           else
-               ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Cliente_ID) VALUES('" + dni + "', (SELECT Cliente_ID FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI =" + dni + "))";
-
-
+            
            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
            cmd.ExecuteNonQuery();
            MessageBox.Show("El nombre de usuario para ingresar al sistema es:" +dni+".\nIngresar al sistema sin password y le pedira que cambie la contraseña" );
-           
+        
            
         }
+
+        internal void darAltaUsuario(SistemManager cManager, bool esCliente, string user, string pass)
+        {
+
+            SqlCommand cmd;
+            String ComandoInsert;
+
+
+            if (esCliente == true)
+
+
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
+
+
+            else
+
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'))";
+
+
+            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+            cmd.ExecuteNonQuery();
+            cManager.sqlAbmLogin.agregarContraseñaPorPrimerIngreso(cManager, pass, user);
+            MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + user + ".\n la contraseña es:"+pass);
+
+
+        }
+
+
+
         internal void darAltaEmpresa(SistemManager cManager, String cuit)
         {
             SqlCommand cmd;
-            String ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Empresa_ID) VALUES('" + cuit + "', (SELECT Empresa_ID FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + cuit + "'))";
+            String ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + cuit + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa') )";
             cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 

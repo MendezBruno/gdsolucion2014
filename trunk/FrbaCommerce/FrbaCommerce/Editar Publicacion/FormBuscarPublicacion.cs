@@ -17,6 +17,7 @@ namespace FrbaCommerce.Editar_Publicacion
         SistemManager cManager;
         Cliente cliente;
         Empresa empresa;
+        Administrador administrador;
               
         
         public FormBuscarPublicacion(SistemManager cManager, Cliente cliente)
@@ -36,6 +37,15 @@ namespace FrbaCommerce.Editar_Publicacion
 
         }
 
+        public FormBuscarPublicacion(SistemManager cManager, Administrador administrador)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.administrador=administrador;
+            cargarPublicaciones(administrador.getUsuario());
+
+        }
+
         private void cargarPublicaciones(string userName)
         {
             cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuario(cManager, userName, this.dataGridView1);
@@ -45,27 +55,130 @@ namespace FrbaCommerce.Editar_Publicacion
         {
             this.Hide();
 
-            if(this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Borrada"))
+            if(this.Text.Equals("Eliminar Publicacion"))
             {
 
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                DialogResult confirmarBaja = MessageBox.Show("Desea deshabilitar al cliente con ", "Baja de Rol", buttons);
+                
+                if(DialogResult.Yes==confirmarBaja)
+                cManager.sqlPublicacion.eliminarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                return;
+
+            }
+
+
+            if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Borrador") || this.dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("Borrada"))
+            {
+                
                 FormGenerarPublicacion formGenerarPublicacion;
 
-                if (cliente == null) formGenerarPublicacion = new FormGenerarPublicacion(cManager, empresa);
-                else formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente);
-                cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()); 
-                formGenerarPublicacion.ShowDialog();
+                if (cliente != null)
+                {
+                    formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente,false);
+                    cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    formGenerarPublicacion.ShowDialog();
+                }
+                else
+                    if (empresa != null)
+                    {
+                        formGenerarPublicacion = new FormGenerarPublicacion(cManager,empresa,false);
+                        cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        formGenerarPublicacion.ShowDialog();
+                    }
+                    else
+                        if (empresa == null && cliente == null)
+                        {
+                            formGenerarPublicacion = new FormGenerarPublicacion(cManager, administrador,false);
+                            cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                            formGenerarPublicacion.ShowDialog();
+                        }
+
                 this.Show();
 
             }
-            if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Publicada"))
+            if (this.dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("Publicada"))
             {
+                if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Activa"))
+                {
 
+                    this.Hide();
+                    if (cliente != null)
+                    {
+                        FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),cliente);
+                        if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Equals("Subasta"))
+                        {
 
+                            formModif.modifStock.Visible = false;
 
+                        }
+                        formModif.Activar.Visible = false;
+                        formModif.ShowDialog();
+                    }
+                    else
+                        if (empresa != null)
+                        {
+                            FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),empresa);
+                            if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Equals("Subasta"))
+                            {
 
+                                formModif.modifStock.Visible = false;
 
+                            }
+                            formModif.Activar.Visible = false;
+                            formModif.ShowDialog();
+                        }
+                        else
+                            if (empresa == null && cliente == null)
+                            {
+                                FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),administrador);
+                                if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Equals("Subasta"))
+                                {
 
+                                    formModif.modifStock.Visible = false;
+
+                                }
+                                formModif.Activar.Visible = false;
+                                formModif.ShowDialog();
+                            }
+
+                    this.Show();
+
+                }
+                if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Pausada"))
+                {
+
+                    this.Hide();
+                    if (cliente != null)
+                    {
+                        FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),cliente);
+                        formModif.modifStock.Visible = false;
+                        formModif.Pausar.Visible = false;
+                        formModif.ShowDialog();
+                    }
+                    else
+                        if (empresa != null)
+                        {
+                            FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),empresa);
+                            formModif.modifStock.Visible = false;
+                            formModif.Pausar.Visible = false;
+                            formModif.ShowDialog();
+                        }
+                        else
+                            if (empresa == null && cliente == null)
+                            {
+                                FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),administrador);
+                                formModif.modifStock.Visible = false;
+                                formModif.Pausar.Visible = false;
+                                formModif.ShowDialog();
+                            }
+ 
+                    this.Show();
+
+                }
             }
+
 
  
            

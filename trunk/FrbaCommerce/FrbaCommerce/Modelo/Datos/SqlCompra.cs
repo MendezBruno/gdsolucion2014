@@ -71,7 +71,7 @@ namespace FrbaCommerce.Modelo.Datos
 
              SqlDataReader dr;
 
-             string comando = "SELECT Publicacion_Tipo,Publicacion_Descripcion,STR((Publicacion_Precio/Publicacion_Stock),18,2) as PrcioUni FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
+             string comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,STR((Publicacion_Precio/Publicacion_Stock),18,2) as PrcioUni FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
 
              cmd=new SqlCommand(comando,cManager.conexion.conn);
 
@@ -79,7 +79,7 @@ namespace FrbaCommerce.Modelo.Datos
 
              dr.Read();
 
-             publicacion.tipo.Text=dr["Publicacion_Tipo"].ToString();
+             publicacion.tipo.Text=dr["Publicacion_Tipo_ID"].ToString();
 
              publicacion.descripcion.Text = dr["Publicacion_Descripcion"].ToString();
 
@@ -87,7 +87,7 @@ namespace FrbaCommerce.Modelo.Datos
 
              dr.Close();
 
-             comando = "SELECT (SUM(Compra_Cantidad)-Publicacion_Stock) AS StockActual FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON Publicacion.Publicacion_Codigo=Compra.Compra_Publicacion WHERE Publicacion_Codigo="+public_Cod+" GROUP BY Publicacion_Stock";
+             comando = "SELECT (Publicacion_Stock -isnull(SUM(Compra_Cantidad),0)) AS StockActual FROM NO_MORE_SQL.Publicacion LEFT JOIN NO_MORE_SQL.Compra ON Publicacion.Publicacion_Codigo=Compra.Compra_Publicacion WHERE Publicacion_Codigo=" + public_Cod + " GROUP BY Publicacion_Stock";
 
              cmd = new SqlCommand(comando, cManager.conexion.conn);
 

@@ -31,6 +31,7 @@ namespace FrbaCommerce.Modelo
         public SqlClasificar sqlClasificar = new SqlClasificar();
         public SqlCompra sqlCompra = new SqlCompra();
         public SqlFactura sqlFactura = new SqlFactura();
+        public SqlAdministrador sqlAdministrador = new SqlAdministrador();
          
         public SistemManager()
         {
@@ -77,6 +78,8 @@ namespace FrbaCommerce.Modelo
 
         internal void ObtenerAdministrador(Usuario user, Administrador administrador)
         {
+            
+                       
             administrador.usuarioId = user.usuarioId;
             administrador.habilitado = user.habilitado;
             administrador.RolAsignado = user.RolAsignado;
