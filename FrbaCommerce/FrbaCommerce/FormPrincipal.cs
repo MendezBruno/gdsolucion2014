@@ -29,6 +29,15 @@ namespace FrbaCommerce
         Empresa empresa;
         Administrador administrador;
 
+        public FormPrincipal(SistemManager cManager, Usuario usuario)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.user =usuario;
+            cargaManuSegunRol(user.RolAsignado);
+
+        }
+
         public FormPrincipal(SistemManager cManager, Cliente cliente)
         {
             InitializeComponent();
@@ -71,10 +80,14 @@ namespace FrbaCommerce
 
         private void cargaManuSegunRol(Rol rol)
         {
-            if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.BotonOfertar.Visible = false; }
-            if (!rol.getListaFuncionalidades().Contains("Vender")) this.buttonPublicaciones.Visible = false;
+            if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; }
+            if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
+
+            if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
+
+
             //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
-            if (administrador == null) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
+            if (administrador == null) { this.buttonModificaciones.Visible = false;}
         }
            
 
@@ -112,9 +125,22 @@ namespace FrbaCommerce
             this.Hide();
             FormMenuPublicacion formPublicacion;
           //  FormGenerarPublicacion formPublicacion;
-            if (cliente == null) formPublicacion = new FormMenuPublicacion(cManager, empresa);
-            else formPublicacion = new FormMenuPublicacion(cManager, cliente);
-            formPublicacion.ShowDialog();
+            if (cliente != null)
+            {
+                formPublicacion = new FormMenuPublicacion(cManager, cliente);
+                formPublicacion.ShowDialog();
+            }
+            if (empresa != null)
+            {
+                formPublicacion = new FormMenuPublicacion(cManager, empresa);
+                formPublicacion.ShowDialog();
+            }
+            if (cliente == null && empresa == null)
+            {
+                formPublicacion = new FormMenuPublicacion(cManager, administrador);
+                formPublicacion.ShowDialog();
+
+            }
             this.Show();
         }
 
@@ -129,6 +155,26 @@ namespace FrbaCommerce
                 formHistoria.ShowDialog();
                 this.Show();
             }
+            else
+                if (empresa != null)
+                {
+                    formHistoria = new FormHistorialCliente(cManager, empresa.getUsuario());
+                    formHistoria.ShowDialog();
+                    this.Show();
+
+                }
+
+                else
+
+                    if (cliente == null && empresa == null)
+                    {
+
+                       formHistoria = new FormHistorialCliente(cManager, administrador.getUsuario());
+                       formHistoria.ShowDialog();
+                       this.Show();
+
+
+                    }
 
 
 
@@ -186,10 +232,32 @@ namespace FrbaCommerce
         {
             this.Hide();
 
-            FormFacturarPublicaciones formFacturar = new FormFacturarPublicaciones(cManager, cliente.getUsuario());
+            FormFacturarPublicaciones formFacturar;
 
-            formFacturar.ShowDialog();
+            if (empresa != null)
+            {
+                formFacturar = new FormFacturarPublicaciones(cManager, empresa.getUsuario());
 
+                formFacturar.ShowDialog();
+            }
+            else
+            if (cliente != null)
+            {
+
+                formFacturar = new FormFacturarPublicaciones(cManager, empresa.getUsuario());
+
+                formFacturar.ShowDialog();
+
+            }
+            else
+            if (cliente == null && empresa==null)
+            {
+
+                formFacturar = new FormFacturarPublicaciones(cManager, administrador.getUsuario());
+
+                formFacturar.ShowDialog();
+
+            }
 
 
         }

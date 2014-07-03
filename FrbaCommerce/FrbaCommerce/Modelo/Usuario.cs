@@ -19,6 +19,7 @@ namespace Sistema {
 		public Rol RolAsignado;
 		public bool habilitado;
 		public string tipoUsuario;
+        public bool cambioContrasenas;
         
 	
         //public Rol m_Rol;
@@ -55,6 +56,18 @@ namespace Sistema {
             return Password;
         }
 
-	}//end Usuario
+       
+        internal bool secambioContrasena()
+        {
+
+            return cambioContrasenas;
+        }
+
+
+        internal void cambioContrasena(bool p)
+        {
+            cambioContrasenas=p;
+        }
+    }//end Usuario
 
 }//end namespace Sistema

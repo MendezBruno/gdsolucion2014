@@ -140,6 +140,7 @@
             this.numericUpDownCantComprar.Name = "numericUpDownCantComprar";
             this.numericUpDownCantComprar.Size = new System.Drawing.Size(127, 20);
             this.numericUpDownCantComprar.TabIndex = 10;
+            this.numericUpDownCantComprar.ValueChanged += new System.EventHandler(this.numericUpDownCantComprar_ValueChanged);
             // 
             // label5
             // 

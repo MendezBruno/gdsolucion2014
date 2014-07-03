@@ -86,8 +86,7 @@
             this.comboBoxRol.FormattingEnabled = true;
             this.comboBoxRol.Items.AddRange(new object[] {
             "Cliente",
-            "Empresa",
-            "Administrador"});
+            "Empresa"});
             this.comboBoxRol.Location = new System.Drawing.Point(199, 108);
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(188, 21);
@@ -96,11 +95,11 @@
             // buttonRegistrar
             // 
             this.buttonRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRegistrar.Location = new System.Drawing.Point(127, 191);
+            this.buttonRegistrar.Location = new System.Drawing.Point(96, 177);
             this.buttonRegistrar.Name = "buttonRegistrar";
-            this.buttonRegistrar.Size = new System.Drawing.Size(138, 33);
+            this.buttonRegistrar.Size = new System.Drawing.Size(201, 33);
             this.buttonRegistrar.TabIndex = 10;
-            this.buttonRegistrar.Text = "Registrar";
+            this.buttonRegistrar.Text = "Continuar Registro";
             this.buttonRegistrar.UseVisualStyleBackColor = true;
             this.buttonRegistrar.Click += new System.EventHandler(this.buttonRegistrar_Click);
             // 

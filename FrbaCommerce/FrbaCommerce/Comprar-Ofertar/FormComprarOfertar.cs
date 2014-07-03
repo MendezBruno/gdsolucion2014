@@ -39,7 +39,6 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void botonBuscar_Click(object sender, EventArgs e)
         {
 
-
             this.dataGridViewCompra.Columns.Clear();
             this.tabla = cManager.sqlCompra.buscarCompras(cManager, this.checkedListBoxRubro.CheckedItems, this.textBoxDescripcion.Text, this.dataGridViewCompra);
             this.paginaActual = 0;
@@ -148,7 +147,8 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
 
-            if (mostrarPublic.tipo.Equals("Subasta"))
+
+            if (mostrarPublic.tipo.Text.Equals("Subasta"))
             {
 
                 mostrarPublic.stock.Visible = false;

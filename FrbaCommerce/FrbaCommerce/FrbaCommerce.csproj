@@ -120,11 +120,23 @@
     <Compile Include="Comprar-Ofertar\FormMostrarPublicacion.Designer.cs">
       <DependentUpon>FormMostrarPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprar-Ofertar\FormOfertar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar-Ofertar\FormOfertar.Designer.cs">
+      <DependentUpon>FormOfertar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editar Publicacion\FormBuscarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Editar Publicacion\FormBuscarPublicacion.Designer.cs">
       <DependentUpon>FormBuscarPublicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editar Publicacion\FormModificarPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar Publicacion\FormModificarPublicacion.Designer.cs">
+      <DependentUpon>FormModificarPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Facturar Publicaciones\FormFacturarPublicaciones.cs">
       <SubType>Form</SubType>
@@ -199,6 +211,7 @@
     <Compile Include="Modelo\Compra.cs" />
     <Compile Include="Modelo\Datos\SqlAbmLogin.cs" />
     <Compile Include="Modelo\Datos\SqlAbmRol.cs" />
+    <Compile Include="Modelo\Datos\SqlAdministrador.cs" />
     <Compile Include="Modelo\Datos\SqlAmbVisibilidad.cs" />
     <Compile Include="Modelo\Datos\SqlClasificar.cs" />
     <Compile Include="Modelo\Datos\SqlCliente.cs" />
@@ -268,8 +281,14 @@
     <EmbeddedResource Include="Comprar-Ofertar\FormMostrarPublicacion.resx">
       <DependentUpon>FormMostrarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comprar-Ofertar\FormOfertar.resx">
+      <DependentUpon>FormOfertar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editar Publicacion\FormBuscarPublicacion.resx">
       <DependentUpon>FormBuscarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editar Publicacion\FormModificarPublicacion.resx">
+      <DependentUpon>FormModificarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturar Publicaciones\FormFacturarPublicaciones.resx">
       <DependentUpon>FormFacturarPublicaciones.cs</DependentUpon>

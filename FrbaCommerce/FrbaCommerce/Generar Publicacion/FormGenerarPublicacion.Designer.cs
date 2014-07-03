@@ -77,6 +77,7 @@
             this.comboBoxVisibilidad.Name = "comboBoxVisibilidad";
             this.comboBoxVisibilidad.Size = new System.Drawing.Size(212, 21);
             this.comboBoxVisibilidad.TabIndex = 22;
+            this.comboBoxVisibilidad.SelectedIndexChanged += new System.EventHandler(this.comboBoxVisibilidad_SelectedIndexChanged);
             // 
             // numericUpDownStockInicial
             // 
@@ -85,6 +86,7 @@
             this.numericUpDownStockInicial.Size = new System.Drawing.Size(212, 20);
             this.numericUpDownStockInicial.TabIndex = 20;
             this.numericUpDownStockInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownStockInicial.ValueChanged += new System.EventHandler(this.numericUpDownStockInicial_ValueChanged);
             // 
             // textBoxDescripcion
             // 
@@ -208,6 +210,7 @@
             this.linkLabelSalir.TabIndex = 32;
             this.linkLabelSalir.TabStop = true;
             this.linkLabelSalir.Text = "Salir";
+            this.linkLabelSalir.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSalir_LinkClicked);
             // 
             // checkedListBoxRubro
             // 
@@ -259,13 +262,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label labelprecio;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelstock;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.Button buttonPublicar;
@@ -278,6 +275,12 @@
         public System.Windows.Forms.TextBox textBoxDescripcion;
         public System.Windows.Forms.ComboBox comboBoxTipoPublicacion;
         public System.Windows.Forms.TextBox textBoxPrecio;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label labelprecio;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label labelstock;
+        public System.Windows.Forms.Label label7;
 
     }
 }
