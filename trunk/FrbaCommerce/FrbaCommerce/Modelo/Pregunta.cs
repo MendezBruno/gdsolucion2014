@@ -12,8 +12,12 @@
 namespace Sistema {
 	public class Pregunta {
 
-		private string pregunta;
-		private string respuesta;
+        int idPregunta;
+        int idRespuesta;
+		string pregunta;
+		string respuesta;
+        string nombreUsuario;
+        
 
 		public Pregunta(){
 

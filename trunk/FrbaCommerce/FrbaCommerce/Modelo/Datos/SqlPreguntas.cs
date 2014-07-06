@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace FrbaCommerce.Modelo.Datos
 {
-    class SqlPreguntas
+    public class SqlPreguntas
     {
-        internal void insertarPregunta(SistemManager cManager, string p, int codigoPublicacion)
+        internal void insertarPregunta(SistemManager cManager, string p, int codigoPublicacion,string usuarioNombre)
         {
             if (p.Length > 255)
             {
@@ -17,15 +17,15 @@ namespace FrbaCommerce.Modelo.Datos
             }
             else
             {
-                string comandoInsert = "INSERT INTO NO_MORE_SQL.Preguntas(Pregunta_descripcion,Pregunta_Publicacion_Cod) VALUES ('" + p + "'," + codigoPublicacion.ToString() + ")";
+                string comandoInsert = "INSERT INTO NO_MORE_SQL.Pregunta(Pregunta_descripcion,Pregunta_Publicacion_Cod,Pregunta_Respuesta_ID,Pregunta_Usuario_Nombre) VALUES ('" + p + "'," + codigoPublicacion.ToString() + ",null,"+usuarioNombre+")";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
             }
         }
 
         internal void CargarPreguntas(System.Windows.Forms.DataGridView dataGridViewPreguntas, int codigoPublicacion, SistemManager cManager)
-        {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Preguntas WHERE Pregunta_Publicacion_cod="+ codigoPublicacion.ToString(), cManager.conexion.conn);
+        {                                                               
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Pregunta INNER JOIN NO_MORE_SQL.Respuesta ON NO_MORE_SQL.Pregunta.Pregunta_Respuesta_ID=NO_MORE_SQL.Respuesta.Respuesta_ID   WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString(), cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewPreguntas, true, 5);
         }
 
@@ -37,7 +37,7 @@ namespace FrbaCommerce.Modelo.Datos
             }
             else
             {
-                string comandoInsert = "INSERT INTO NO_MORE_SQL.Respuesta(Respuesta_Fecha,Respuesta_Respuesta) VALUES ('" + p + "')";
+                string comandoInsert = "INSERT INTO NO_MORE_SQL.Respuesta(Respuesta_Fecha,Respuesta_Respuesta) VALUES ('"+DateTime.Today.ToString()+"','" + p + "')";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
                 ActualizarPregunta(cManager, codigoPublicacion);
@@ -49,7 +49,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta_Id FROM NO_MORE_SQL.Preguntas WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
+            string insertDataMod = "SELECT Respuesta_Id FROM NO_MORE_SQL.Pregunta WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
@@ -69,7 +69,7 @@ namespace FrbaCommerce.Modelo.Datos
             int idRespuesta = Convert.ToInt32(p);
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Preguntas WHERE Respuesta_Id=" + idRespuesta.ToString();
+            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Pregunta WHERE Respuesta_Id=" + idRespuesta.ToString();
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();

@@ -12,6 +12,7 @@ using FrbaCommerce.ABM_Rol;
 using FrbaCommerce.Abm_Cliente;
 using FrbaCommerce.Abm_Visibilidad;
 using FrbaCommerce.Abm_Empresa;
+using FrbaCommerce.Registro_de_Usuario;
 
 namespace FrbaCommerce
 {
@@ -168,6 +169,15 @@ namespace FrbaCommerce
             formModificacionRol.ShowDialog();
             this.Show();
 
+        }
+
+        private void buttonCambiarContraseña_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormCambiarContraseña formCambiarContraseña = new FormCambiarContraseña(cManager);
+            formCambiarContraseña.ShowDialog();
+            this.Show();
+            
         }
 
     }

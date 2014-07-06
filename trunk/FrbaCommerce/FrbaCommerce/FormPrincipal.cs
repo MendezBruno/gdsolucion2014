@@ -266,6 +266,37 @@ namespace FrbaCommerce
 
         }
 
+        private void buttoncambiarContraseña_Click(object sender, EventArgs e)
+        {
+            FormAgregarContraseña formAgregarContraseña;
+            this.Hide();
+            if (empresa != null)
+            {
+               formAgregarContraseña = new FormAgregarContraseña(cManager, empresa);
+               formAgregarContraseña.ShowDialog();
+            }
+            else
+                if (cliente != null)
+                {
+
+                    formAgregarContraseña = new FormAgregarContraseña(cManager, cliente);
+                    formAgregarContraseña.ShowDialog();
+
+                }
+                else
+                    if (cliente == null && empresa == null)
+                    {
+
+                       formAgregarContraseña = new FormAgregarContraseña(cManager, administrador);
+                       formAgregarContraseña.ShowDialog();
+
+                    }
+            
+            
+            
+            this.Show();
+        }
+
         
 
         
