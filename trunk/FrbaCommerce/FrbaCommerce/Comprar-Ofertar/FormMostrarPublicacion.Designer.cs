@@ -33,7 +33,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonComprar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonPreguntar = new System.Windows.Forms.Button();
             this.tipo = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.Label();
             this.precio = new System.Windows.Forms.Label();
@@ -89,14 +89,15 @@
             this.buttonComprar.UseVisualStyleBackColor = true;
             this.buttonComprar.Click += new System.EventHandler(this.buttonComprar_Click);
             // 
-            // button2
+            // buttonPreguntar
             // 
-            this.button2.Location = new System.Drawing.Point(255, 241);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Preguntar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonPreguntar.Location = new System.Drawing.Point(255, 241);
+            this.buttonPreguntar.Name = "buttonPreguntar";
+            this.buttonPreguntar.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreguntar.TabIndex = 5;
+            this.buttonPreguntar.Text = "Preguntar";
+            this.buttonPreguntar.UseVisualStyleBackColor = true;
+            this.buttonPreguntar.Click += new System.EventHandler(this.buttonPreguntar_Click);
             // 
             // tipo
             // 
@@ -162,7 +163,7 @@
             this.Controls.Add(this.precio);
             this.Controls.Add(this.descripcion);
             this.Controls.Add(this.tipo);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonPreguntar);
             this.Controls.Add(this.buttonComprar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -180,7 +181,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonPreguntar;
         public System.Windows.Forms.Label tipo;
         public System.Windows.Forms.Label descripcion;
         public System.Windows.Forms.Label precio;

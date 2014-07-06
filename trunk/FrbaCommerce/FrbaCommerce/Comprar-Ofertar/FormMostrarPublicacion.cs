@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Modelo;
+using FrbaCommerce.Gestion_de_Preguntas;
 
 namespace FrbaCommerce.Comprar_Ofertar
 {
@@ -54,6 +55,16 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             if (numericUpDownCantComprar.Value >= Convert.ToInt16(this.stock.Text))
                 numericUpDownCantComprar.Value = Convert.ToInt16(this.stock.Text);
+        }
+
+        private void buttonPreguntar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager,public_Codigo);
+            preguntasyRespuestas.ShowDialog();
+
+            this.Show();
         }
 
 
