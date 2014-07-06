@@ -53,7 +53,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void cargarPublicaciones(string userName)
         {
-            cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuario(cManager, userName, this.dataGridView1);
+            cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuarioYPreguntasSinResponder(cManager, userName, this.dataGridView1);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

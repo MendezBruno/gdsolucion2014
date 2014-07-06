@@ -155,6 +155,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             if (mostrarPublic.tipo.Text.Equals("Subasta"))
             {
 
+
                 mostrarPublic.stock.Visible = false;
 
                 mostrarPublic.label4.Visible = false;
