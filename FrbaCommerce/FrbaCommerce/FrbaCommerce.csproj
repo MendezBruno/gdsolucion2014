@@ -181,6 +181,12 @@
     <Compile Include="Generar Publicacion\FormGenerarPublicacion.Designer.cs">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gestion de Preguntas\FormContestarPreguntas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestion de Preguntas\FormContestarPreguntas.Designer.cs">
+      <DependentUpon>FormContestarPreguntas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gestion de Preguntas\PreguntasyRespuestas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestion de Preguntas\FormContestarPreguntas.resx">
+      <DependentUpon>FormContestarPreguntas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion de Preguntas\PreguntasyRespuestas.resx">
       <DependentUpon>PreguntasyRespuestas.cs</DependentUpon>

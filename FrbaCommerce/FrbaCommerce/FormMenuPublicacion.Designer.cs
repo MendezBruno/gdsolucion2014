@@ -31,6 +31,7 @@
             this.botonGenerarPublicacion = new System.Windows.Forms.Button();
             this.buttonEditarPublicacion = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.linkLabelContestarPreguntas = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // botonGenerarPublicacion
@@ -63,17 +64,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // linkLabelContestarPreguntas
+            // 
+            this.linkLabelContestarPreguntas.AutoSize = true;
+            this.linkLabelContestarPreguntas.Location = new System.Drawing.Point(83, 195);
+            this.linkLabelContestarPreguntas.Name = "linkLabelContestarPreguntas";
+            this.linkLabelContestarPreguntas.Size = new System.Drawing.Size(103, 13);
+            this.linkLabelContestarPreguntas.TabIndex = 8;
+            this.linkLabelContestarPreguntas.TabStop = true;
+            this.linkLabelContestarPreguntas.Text = "Contestar Preguntas";
+            this.linkLabelContestarPreguntas.Visible = false;
+            this.linkLabelContestarPreguntas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelContestarPreguntas_LinkClicked);
+            // 
             // FormMenuPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 203);
+            this.ClientSize = new System.Drawing.Size(263, 227);
+            this.Controls.Add(this.linkLabelContestarPreguntas);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEditarPublicacion);
             this.Controls.Add(this.botonGenerarPublicacion);
             this.Name = "FormMenuPublicacion";
             this.Text = "FormMenuPublicacion";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -82,5 +97,6 @@
         private System.Windows.Forms.Button botonGenerarPublicacion;
         private System.Windows.Forms.Button buttonEditarPublicacion;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.LinkLabel linkLabelContestarPreguntas;
     }
 }
