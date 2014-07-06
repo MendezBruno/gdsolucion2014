@@ -19,11 +19,22 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         public PreguntasyRespuestas(SistemManager cManager, int codigoPublicacion, string usuario)
         {
             InitializeComponent();
-            cargarPanelDePreguntasRespuestas(cManager);
             this.cManager = cManager;
             this.codigoPublicacion = codigoPublicacion;
+            cargarPanelDePreguntasRespuestas(cManager);
             this.usuario = usuario;
         }
+        
+        public PreguntasyRespuestas(SistemManager cManager, int codigoPublicacion, string usuario,bool responder)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.codigoPublicacion = codigoPublicacion;
+            cargarPanelDePreguntasRespuestas(cManager);
+            this.usuario = usuario;
+            buttonPreguntarResponder.Visible = false;
+        }
+        
 
         private void cargarPanelDePreguntasRespuestas(SistemManager cManager)
         {

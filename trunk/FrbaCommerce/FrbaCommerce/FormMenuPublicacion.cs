@@ -10,6 +10,7 @@ using FrbaCommerce.Generar_Publicacion;
 using FrbaCommerce.Modelo;
 using Sistema;
 using FrbaCommerce.Editar_Publicacion;
+using FrbaCommerce.Gestion_de_Preguntas;
 
 namespace FrbaCommerce
 {
@@ -26,6 +27,12 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.cliente = cliente;
+            habilitarResponderPreguntas(cliente.RolAsignado.getListaFuncionalidades()); 
+        }
+
+        private void habilitarResponderPreguntas(List<string> list)
+        {
+            if (list.Contains("Vender")) linkLabelContestarPreguntas.Visible = true;
         }
 
         public FormMenuPublicacion(SistemManager cManager, Empresa empresa)
@@ -33,7 +40,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.empresa = empresa;
-
+            habilitarResponderPreguntas(empresa.RolAsignado.getListaFuncionalidades());
         }
 
         public FormMenuPublicacion(SistemManager cManager, Administrador administrador)
@@ -41,7 +48,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.administrador=administrador;
-
+            habilitarResponderPreguntas(administrador.RolAsignado.getListaFuncionalidades());
         }
 
         private void botonGenerarPublicacion_Click(object sender, EventArgs e)
@@ -130,6 +137,34 @@ namespace FrbaCommerce
 
             this.Show();
 
+        }
+
+        private void linkLabelContestarPreguntas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            FormContestarPreguntas formConstestapreguntas;
+            if (cliente != null)
+            {
+                formConstestapreguntas = new  FormContestarPreguntas(cManager, cliente);
+                formConstestapreguntas.ShowDialog();
+                
+            }
+            else
+                if (empresa != null)
+                {
+                    formConstestapreguntas = new FormContestarPreguntas(cManager, empresa);
+                    formConstestapreguntas.ShowDialog();
+                   
+                }
+                else
+                    if (empresa == null && cliente == null)
+                    {
+                        formConstestapreguntas = new FormContestarPreguntas(cManager, administrador);
+                        formConstestapreguntas.ShowDialog();
+                    }
+
+            this.Show();
+            
         }
 
 
