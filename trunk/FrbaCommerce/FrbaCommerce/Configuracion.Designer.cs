@@ -35,7 +35,7 @@ namespace FrbaCommerce {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2014-04-18")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2014-12-13")]
         public global::System.DateTime FechaHoy {
             get {
                 return ((global::System.DateTime)(this["FechaHoy"]));

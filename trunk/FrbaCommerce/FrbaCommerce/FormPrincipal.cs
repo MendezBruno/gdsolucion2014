@@ -28,6 +28,7 @@ namespace FrbaCommerce
         Cliente cliente;
         Empresa empresa;
         Administrador administrador;
+        string usuario;
 
         public FormPrincipal(SistemManager cManager, Usuario usuario)
         {
@@ -44,6 +45,7 @@ namespace FrbaCommerce
             this.cManager = cManager;
             this.cliente = cliente;
             cargaManuSegunRol(cliente.RolAsignado);
+            this.usuario = cliente.getUsuario();
             
         }
 
@@ -53,6 +55,7 @@ namespace FrbaCommerce
             this.cManager = cManager;
             this.empresa = empresa;
             cargaManuSegunRol(empresa.RolAsignado);
+            this.usuario = empresa.getUsuario();
 
         }
 
@@ -62,6 +65,7 @@ namespace FrbaCommerce
             this.cManager = cManager;
             this.administrador = administrador;
             cargaManuSegunRol(administrador.RolAsignado);
+            this.usuario = administrador.getUsuario();
 
         }
         /*
@@ -220,7 +224,7 @@ namespace FrbaCommerce
 
             this.Hide();
 
-            FormComprarOfertar formComprarOferta = new FormComprarOfertar(cManager);
+            FormComprarOfertar formComprarOferta = new FormComprarOfertar(cManager,this.usuario);
 
             formComprarOferta.ShowDialog();
 

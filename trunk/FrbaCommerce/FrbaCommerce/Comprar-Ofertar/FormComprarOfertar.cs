@@ -21,12 +21,14 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         bool paginaUltima;
 
-        public FormComprarOfertar(SistemManager cManager)
+        string usuario;
+
+        public FormComprarOfertar(SistemManager cManager,string usuario)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.cargarForm();
-
+            this.usuario = usuario;
         }
 
         private void cargarForm()
@@ -52,6 +54,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             if (this.paginaActual != 0)
             {
+
                 this.paginaActual--;
 
                 this.paginalbl.Text = paginaActual.ToString();
@@ -59,6 +62,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                 this.dataGridViewCompra.Columns.Clear();
                 
                 this.mostrar_Pagina();
+
             }           
 
 
@@ -143,7 +147,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.Hide();
 
-            FormMostrarPublicacion mostrarPublic = new FormMostrarPublicacion(cManager, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
+            FormMostrarPublicacion mostrarPublic = new FormMostrarPublicacion(cManager, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString(),this.usuario);
 
             cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
 

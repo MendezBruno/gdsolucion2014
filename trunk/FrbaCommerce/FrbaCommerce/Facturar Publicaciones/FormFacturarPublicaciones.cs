@@ -18,6 +18,8 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
         DataTable tabla;
 
+        DataTable tablaCompras;
+
         public FormFacturarPublicaciones(SistemManager cManager, string usuario)
         {
             InitializeComponent();
@@ -44,45 +46,32 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
             this.dataGridViewFacturar.Columns.Clear();
             
-            int j=0,i;
+            int j=0,i,n=0;
             
             this.tabla=cManager.sqlFactura.buscarFactura(cManager, this.usuario, textCantPubli.Text);
-
+          
+           this.tablaCompras = cManager.sqlFactura.buscarCompras(cManager,this.usuario,textCantPubli.Text);
+            
             DataRow fila;
 
             this.dataGridViewFacturar.Columns.Add("Item", "Nro Item");
 
-            this.dataGridViewFacturar.Columns.Add("Cantidad", "Cantiadad");
+            this.dataGridViewFacturar.Columns.Add("Cantidad", "Cantidad");
 
             this.dataGridViewFacturar.Columns.Add("Precio", "Precio");
 
             this.dataGridViewFacturar.Columns.Add("Publicacion_Cod","Publicacion_Cod");
-            
-            for (i = 0; i < Convert.ToInt16(textCantPubli.Text); i++)
+
+            if (tabla.Rows.Count > 0)
             {
-                
-                fila = tabla.Rows[j];
 
-                this.dataGridViewFacturar.Rows.Add();
-
-                this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = j + 1;
-
-                this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = fila[0].ToString();
-
-                this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = fila[1].ToString();
-
-                this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value=fila[2].ToString();
-                
-                while(tabla.Rows[j+1][2].ToString().Equals(fila[2].ToString()))
+                for (i = 0; i < tabla.Rows.Count; i++)
                 {
-
-                    
-                    j=j+1;
 
                     fila = tabla.Rows[j];
 
                     this.dataGridViewFacturar.Rows.Add();
-                    
+
                     this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = j + 1;
 
                     this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = fila[0].ToString();
@@ -91,32 +80,84 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
                     this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[2].ToString();
 
+                    j = j + 1;
+
+                }
+                i = 0;
+                if (!textCantPubli.Text.Equals(""))
+                {
+                    while (i < Convert.ToInt16(textCantPubli.Text) && i < (tablaCompras.Rows.Count))
+                    {
+
+
+                        fila = tablaCompras.Rows[i];
+
+                        this.dataGridViewFacturar.Rows.Add();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = j + 1;
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = fila[0].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = fila[1].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[2].ToString();
+
+                        j = j + 1;
+
+                        i = i + 1;
+
+                    }
+
+                    /*
+                    while (tabla.Rows[j + 1][2].ToString().Equals(fila[2].ToString()))
+                    {
+
+
+                        j = j + 1;
+
+                        fila = tabla.Rows[j];
+
+                        this.dataGridViewFacturar.Rows.Add();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = j + 1;
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = fila[0].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = fila[1].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[2].ToString();
+
+
+                    }
+                    */
+
+
+
+
+
+                    int cantidad_Total = 0;
+
+                    float precio_Total = 0;
+
+                    for (i = 0; i < this.dataGridViewFacturar.RowCount - 1; i++)
+                    {
+
+                        cantidad_Total = cantidad_Total + int.Parse(dataGridViewFacturar.Rows[i].Cells[1].Value.ToString());
+
+                        precio_Total = precio_Total + float.Parse(dataGridViewFacturar.Rows[i].Cells[2].Value.ToString());
+
+
+                    }
+
+                    this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = "Total";
+
+                    this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = cantidad_Total;
+
+                    this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = precio_Total;
 
                 }
 
-                j = j + 1;
-
-
-            }
-
-            int cantidad_Total=0,precio_Total=0;
-            
-            for (i = 0; i < this.dataGridViewFacturar.RowCount-1; i++)
-            {
-                
-                cantidad_Total=cantidad_Total+int.Parse(dataGridViewFacturar.Rows[i].Cells[1].Value.ToString());
-
-                precio_Total = precio_Total + int.Parse(dataGridViewFacturar.Rows[i].Cells[2].Value.ToString());
-
-
-            }
-
-            this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = "Total";
-
-            this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = cantidad_Total;
-
-            this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = precio_Total;
-
+            }  
         }
 
 

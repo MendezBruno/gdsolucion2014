@@ -33,8 +33,6 @@
             this.buttonIngresar = new System.Windows.Forms.Button();
             this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.textBoxContraseña = new System.Windows.Forms.TextBox();
-            this.linkLabelRegistrarse = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabelResgistrarUsuario = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -82,35 +80,11 @@
             this.textBoxContraseña.Size = new System.Drawing.Size(144, 20);
             this.textBoxContraseña.TabIndex = 4;
             // 
-            // linkLabelRegistrarse
-            // 
-            this.linkLabelRegistrarse.AutoSize = true;
-            this.linkLabelRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelRegistrarse.Location = new System.Drawing.Point(173, 182);
-            this.linkLabelRegistrarse.Name = "linkLabelRegistrarse";
-            this.linkLabelRegistrarse.Size = new System.Drawing.Size(113, 17);
-            this.linkLabelRegistrarse.TabIndex = 5;
-            this.linkLabelRegistrarse.TabStop = true;
-            this.linkLabelRegistrarse.Text = "Registrar Cliente";
-            this.linkLabelRegistrarse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelRegistrarse_LinkClicked);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(12, 182);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(126, 17);
-            this.linkLabel1.TabIndex = 9;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Registrar Empresa";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // linkLabelResgistrarUsuario
             // 
             this.linkLabelResgistrarUsuario.AutoSize = true;
             this.linkLabelResgistrarUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabelResgistrarUsuario.Location = new System.Drawing.Point(98, 156);
+            this.linkLabelResgistrarUsuario.Location = new System.Drawing.Point(98, 163);
             this.linkLabelResgistrarUsuario.Name = "linkLabelResgistrarUsuario";
             this.linkLabelResgistrarUsuario.Size = new System.Drawing.Size(115, 17);
             this.linkLabelResgistrarUsuario.TabIndex = 10;
@@ -124,8 +98,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 208);
             this.Controls.Add(this.linkLabelResgistrarUsuario);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.linkLabelRegistrarse);
             this.Controls.Add(this.textBoxContraseña);
             this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.buttonIngresar);
@@ -145,8 +117,6 @@
         private System.Windows.Forms.Button buttonIngresar;
         private System.Windows.Forms.TextBox textBoxUsuario;
         private System.Windows.Forms.TextBox textBoxContraseña;
-        private System.Windows.Forms.LinkLabel linkLabelRegistrarse;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabelResgistrarUsuario;
     }
 }

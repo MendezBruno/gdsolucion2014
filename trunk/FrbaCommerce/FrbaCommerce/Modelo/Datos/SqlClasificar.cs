@@ -26,7 +26,7 @@ namespace FrbaCommerce.Modelo.Datos
             cmd = new SqlCommand(command,cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 
-            command = "UPDATE NO_MORE_SQL.Compra SET Compra_Calificacion_Codigo=(SELECT TOP 1 Calificacion_Codigo FROM Calificacion ORDER BY Calificacion_Codigo)";
+            command = "UPDATE NO_MORE_SQL.Compra SET Compra_Calificacion_Codigo=(SELECT TOP 1 Calificacion_Codigo FROM NO_MORE_SQL.Calificacion ORDER BY Calificacion_Codigo)";
             cmd = new SqlCommand(command,cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 
