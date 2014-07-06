@@ -35,7 +35,7 @@
             this.buttonCalificar = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
             this.buttonFacturar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttoncambiarContraseña = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BotonComprar
@@ -102,27 +102,28 @@
             // 
             this.buttonFacturar.Location = new System.Drawing.Point(165, 122);
             this.buttonFacturar.Name = "buttonFacturar";
-            this.buttonFacturar.Size = new System.Drawing.Size(173, 43);
+            this.buttonFacturar.Size = new System.Drawing.Size(137, 43);
             this.buttonFacturar.TabIndex = 8;
             this.buttonFacturar.Text = "Facturar Publicaciones";
             this.buttonFacturar.UseVisualStyleBackColor = true;
             this.buttonFacturar.Click += new System.EventHandler(this.buttonFacturar_Click);
             // 
-            // button1
+            // buttoncambiarContraseña
             // 
-            this.button1.Location = new System.Drawing.Point(165, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 46);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Modificar Contraseña";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttoncambiarContraseña.Location = new System.Drawing.Point(165, 173);
+            this.buttoncambiarContraseña.Name = "buttoncambiarContraseña";
+            this.buttoncambiarContraseña.Size = new System.Drawing.Size(137, 46);
+            this.buttoncambiarContraseña.TabIndex = 14;
+            this.buttoncambiarContraseña.Text = "Modificar Contraseña";
+            this.buttoncambiarContraseña.UseVisualStyleBackColor = true;
+            this.buttoncambiarContraseña.Click += new System.EventHandler(this.buttoncambiarContraseña_Click);
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 231);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(353, 231);
+            this.Controls.Add(this.buttoncambiarContraseña);
             this.Controls.Add(this.buttonFacturar);
             this.Controls.Add(this.buttonHistorial);
             this.Controls.Add(this.buttonCalificar);
@@ -145,7 +146,7 @@
         private System.Windows.Forms.Button buttonCalificar;
         private System.Windows.Forms.Button buttonHistorial;
         private System.Windows.Forms.Button buttonFacturar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttoncambiarContraseña;
     }
 }
 

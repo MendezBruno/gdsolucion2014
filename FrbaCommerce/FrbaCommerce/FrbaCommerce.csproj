@@ -336,6 +336,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registro de Usuario\FormCambiarContraseña.resx">
+      <DependentUpon>FormCambiarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\FormRegistroDeUsuario.resx">
       <DependentUpon>FormRegistroDeUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -356,6 +359,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormCambiarContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormCambiarContraseña.Designer.cs">
+      <DependentUpon>FormCambiarContraseña.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro de Usuario\FormRegistroDeUsuario.cs">
       <SubType>Form</SubType>

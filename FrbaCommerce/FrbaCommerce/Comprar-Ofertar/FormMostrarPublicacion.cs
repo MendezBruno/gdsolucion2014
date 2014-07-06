@@ -81,7 +81,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             this.Hide();
 
-            PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager,public_Codigo);
+            PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager,Convert.ToInt32(public_Codigo),usuario);
             preguntasyRespuestas.ShowDialog();
 
             this.Show();

@@ -15,12 +15,14 @@ namespace FrbaCommerce.Gestion_de_Preguntas
     {
         SistemManager cManager;
         int codigoPublicacion;
-        public PreguntasyRespuestas(SistemManager cManager, int codigoPublicacion)
+        string usuario;
+        public PreguntasyRespuestas(SistemManager cManager, int codigoPublicacion, string usuario)
         {
             InitializeComponent();
             cargarPanelDePreguntasRespuestas(cManager);
             this.cManager = cManager;
             this.codigoPublicacion = codigoPublicacion;
+            this.usuario = usuario;
         }
 
         private void cargarPanelDePreguntasRespuestas(SistemManager cManager)
@@ -30,7 +32,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void buttonPreguntarResponder_Click(object sender, EventArgs e)
         {
-            cManager.sqlPreguntas.insertarPregunta(cManager,richTextBoxPregunta.Text,codigoPublicacion);
+            cManager.sqlPreguntas.insertarPregunta(cManager,richTextBoxPregunta.Text,codigoPublicacion,usuario);
         }
 
         private void buttonResponder_Click(object sender, EventArgs e)
@@ -41,7 +43,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         private void dataGridViewPreguntas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             richTextBoxPregunta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells[2].ToString();
-            richTextBoxRespuesta.Text = cManager.sqlPreguntas.buscarRespuesta(cManager, dataGridViewPreguntas.Rows[e.RowIndex].Cells[4].Value);//dataGridViewPreguntas.Rows[e.RowIndex].Cells[e.ColumnIndex].ToString();
+            richTextBoxRespuesta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells["Respuesta_Respuesta"].ToString();
         }
 
 
