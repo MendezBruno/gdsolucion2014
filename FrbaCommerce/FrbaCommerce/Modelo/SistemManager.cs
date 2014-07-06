@@ -32,6 +32,7 @@ namespace FrbaCommerce.Modelo
         public SqlCompra sqlCompra = new SqlCompra();
         public SqlFactura sqlFactura = new SqlFactura();
         public SqlAdministrador sqlAdministrador = new SqlAdministrador();
+        public SqlPreguntas sqlPreguntas = new SqlPreguntas();
          
         public SistemManager()
         {

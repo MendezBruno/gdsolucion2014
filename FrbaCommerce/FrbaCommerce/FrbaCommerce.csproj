@@ -220,6 +220,7 @@
     <Compile Include="Modelo\Datos\SqlFactura.cs" />
     <Compile Include="Modelo\Datos\SqlHistorial.cs" />
     <Compile Include="Modelo\Datos\SqlListado.cs" />
+    <Compile Include="Modelo\Datos\SqlPreguntas.cs" />
     <Compile Include="Modelo\Datos\SqlPublicacion.cs" />
     <Compile Include="Modelo\Datos\SqlRol.cs" />
     <Compile Include="Modelo\Datos\SqlRubro.cs" />
