@@ -59,8 +59,6 @@ namespace FrbaCommerce.Modelo.Datos
 
             return tabla;
 
-
-
         }
 
         public void BuscarPublicacion(SistemManager cManager, FormMostrarPublicacion publicacion, string public_Cod)
@@ -102,7 +100,29 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+        public void confirmo_oferta(SistemManager cManager, string usuario, string publicCod,string monto)
+        {
+            SqlCommand cmd;
 
+            string comando = "INSERT INTO NO_MORE_SQL.Oferta(Oferta_Fecha,Oferta_Monto,Oferta_Publicacion_Codigo,Oferta_Usuario_Nombre) VALUES ('" + Configuracion.Default.FechaHoy + "'," + monto + "," + publicCod + ",'" + usuario + "')";
 
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+            cmd.ExecuteNonQuery();
+
+        }
+
+        internal void confirmo_Compra(SistemManager cManager, string public_Codigo, string usuario, string cantidad)
+        {
+            
+            SqlCommand cmd;
+
+            string comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion) VALUES ('" + Configuracion.Default.FechaHoy + "'," + cantidad + ",'" + usuario + "'," + public_Codigo + ")";
+
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+            cmd.ExecuteNonQuery();
+
+        }
     }
 }

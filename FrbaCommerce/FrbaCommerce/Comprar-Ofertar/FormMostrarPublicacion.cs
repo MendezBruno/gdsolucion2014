@@ -16,8 +16,10 @@ namespace FrbaCommerce.Comprar_Ofertar
         SistemManager cManager;
 
         string public_Codigo;
+
+        string usuario;
         
-        public FormMostrarPublicacion(SistemManager cManger, string public_Codigo)
+        public FormMostrarPublicacion(SistemManager cManager, string public_Codigo,string usuario)
         {
             
             InitializeComponent();
@@ -26,18 +28,36 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.public_Codigo = public_Codigo;
 
+            this.usuario = usuario;
+
 
         }
 
         private void buttonComprar_Click(object sender, EventArgs e)
         {
 
+            
+            if(buttonComprar.Text.Equals("Comprar"))
+            {
+
+                this.Hide();
+                
+                FormMostrarVendedor formOfertar = new FormMostrarVendedor(cManager,this.public_Codigo,this.usuario,this.numericUpDownCantComprar.Value.ToString());
+
+                formOfertar.ShowDialog();
+
+                this.Show();
+            
+            
+            
+            }
+            else
             if (buttonComprar.Text.Equals("Ofertar"))
             {
 
                 this.Hide();
                 
-                FormOfertar formOfertar = new FormOfertar();
+                FormOfertar formOfertar = new FormOfertar(cManager,this.public_Codigo,this.usuario);
 
                 formOfertar.ShowDialog();
 

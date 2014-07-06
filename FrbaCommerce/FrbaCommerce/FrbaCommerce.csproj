@@ -120,12 +120,19 @@
     <Compile Include="Comprar-Ofertar\FormMostrarPublicacion.Designer.cs">
       <DependentUpon>FormMostrarPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprar-Ofertar\FormMostrarVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar-Ofertar\FormMostrarVendedor.Designer.cs">
+      <DependentUpon>FormMostrarVendedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprar-Ofertar\FormOfertar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprar-Ofertar\FormOfertar.Designer.cs">
       <DependentUpon>FormOfertar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Configuracion.cs" />
     <Compile Include="Editar Publicacion\FormBuscarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>

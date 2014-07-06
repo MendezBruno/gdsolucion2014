@@ -6,7 +6,7 @@
       <Value Profile="(Default)">Data Source=localhost\SQLSERVER2008; initial catalog=GD1C2014 ; User Id=gd ; Password=gd2014</Value>
     </Setting>
     <Setting Name="FechaHoy" Type="System.DateTime" Scope="Application">
-      <Value Profile="(Default)">2014-04-18</Value>
+      <Value Profile="(Default)">2014-12-13</Value>
     </Setting>
   </Settings>
 </SettingsFile>
