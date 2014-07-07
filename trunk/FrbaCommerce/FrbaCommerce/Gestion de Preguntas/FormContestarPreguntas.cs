@@ -60,9 +60,18 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             this.Hide();
             bool responder = true;
-            PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value), userName,responder);
+
+            if (dataGridView1.Rows[e.RowIndex] != null)
+            {
+                PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value), userName, responder);
+                preguntasyRespuestas.ShowDialog();
+                this.Close();
+            }
+            else
+                MessageBox.Show("No Hay preguntas para responder");
+
+
             
-            preguntasyRespuestas.ShowDialog();
             this.Show();
         }
 
