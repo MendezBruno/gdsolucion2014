@@ -9,17 +9,19 @@ namespace FrbaCommerce.Modelo.Datos
 {
     public class SqlPreguntas
     {
-        internal void insertarPregunta(SistemManager cManager, string p, int codigoPublicacion,string usuarioNombre)
+        internal bool insertarPregunta(SistemManager cManager, string p, int codigoPublicacion,string usuarioNombre)
         {
             if (p.Length > 255)
             {
                 MessageBox.Show("Maximo de caracteres exedidos");
+                return false;
             }
             else
             {
                 string comandoInsert = "INSERT INTO NO_MORE_SQL.Pregunta(Pregunta_descripcion,Pregunta_Publicacion_Cod,Pregunta_Respuesta_ID,Pregunta_Usuario_Nombre) VALUES ('" + p + "'," + codigoPublicacion.ToString() + ",null,"+usuarioNombre+")";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
+                return true;
             }
         }
 
@@ -29,11 +31,12 @@ namespace FrbaCommerce.Modelo.Datos
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewPreguntas, true, 5);
         }
 
-        internal void insertarRespuesta(SistemManager cManager, string p, int codigoPublicacion)
+        internal bool insertarRespuesta(SistemManager cManager, string p, int codigoPublicacion)
         {
             if (p.Length>255)
             {
                 MessageBox.Show("Maximo de caracteres exedidos");
+                return false;
             }
             else
             {
@@ -41,6 +44,7 @@ namespace FrbaCommerce.Modelo.Datos
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
                 ActualizarPregunta(cManager, codigoPublicacion);
+                return true;
                 
             }
         }
@@ -50,7 +54,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta.Respuesta_ID FROM NO_MORE_SQL.Respuesta WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
+            string insertDataMod = "SELECT TOP 1 * FROM NO_MORE_SQL.Respuesta ORDER BY Respuesta_ID DESC" ;
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
@@ -60,6 +64,7 @@ namespace FrbaCommerce.Modelo.Datos
             ComandoInsertar = @"UPDATE NO_MORE_SQL.Pregunta set Pregunta_Respuesta_ID='"+ dr["Respuesta_ID"].ToString() +"' WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
             //tal vez necesito cerra el dr
+            dr.Close();
             MyCmd2.ExecuteNonQuery();
         }
 

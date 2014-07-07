@@ -24,6 +24,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             cargarPanelDePreguntasRespuestas(cManager);
             this.usuario = usuario;
             buttonResponder.Visible = false;
+            richTextBoxRespuesta.Enabled = false;
         }
         
         public PreguntasyRespuestas(SistemManager cManager, int codigoPublicacion, string usuario,bool responder)
@@ -44,14 +45,22 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void buttonPreguntarResponder_Click(object sender, EventArgs e)
         {
-            cManager.sqlPreguntas.insertarPregunta(cManager,richTextBoxPregunta.Text,codigoPublicacion,usuario);
+            bool cargo=cManager.sqlPreguntas.insertarPregunta(cManager,richTextBoxPregunta.Text,codigoPublicacion,usuario);
+            if (cargo)
+            {
+                MessageBox.Show("Pregunta Cargada Correctamente");
+                this.Close();
+            }
         }
 
         private void buttonResponder_Click(object sender, EventArgs e)
         {
-            cManager.sqlPreguntas.insertarRespuesta(cManager, richTextBoxRespuesta.Text, codigoPublicacion);
-            MessageBox.Show("Pregunta Cargada Correctamente");
-            richTextBoxPregunta.Clear();
+            bool cargo=cManager.sqlPreguntas.insertarRespuesta(cManager, richTextBoxRespuesta.Text, codigoPublicacion);
+            if (cargo)
+            {
+                MessageBox.Show("Respuesta Cargada Correctamente");
+                this.Close();
+            }
         }
 
         private void dataGridViewPreguntas_CellContentClick(object sender, DataGridViewCellEventArgs e)
