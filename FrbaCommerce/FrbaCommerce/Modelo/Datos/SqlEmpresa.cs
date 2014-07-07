@@ -23,6 +23,7 @@ namespace FrbaCommerce.Modelo.Datos
             empresa.tipoUsuario = user.tipoUsuario;
             empresa.setUsuario(user.getUsuario());
             empresa.setPassword(user.getPassword());
+            empresa.puedeComprar = user.puedeComprar;
             
             //user.tipoUsuario.
             //  adapComando.SelectCommand.ExecuteScalar();

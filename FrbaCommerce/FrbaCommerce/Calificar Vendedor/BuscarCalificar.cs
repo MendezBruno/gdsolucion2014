@@ -14,6 +14,8 @@ namespace FrbaCommerce.Calificar_Vendedor
     {
 
         SistemManager cManager;
+
+        string usuario;
         
         public BuscarCalificar(SistemManager cManager, string usuario)
         {
@@ -21,6 +23,16 @@ namespace FrbaCommerce.Calificar_Vendedor
             InitializeComponent();
             cManager.sqlClasificar.buscarClasificar(cManager, usuario,dataGridViewClasificar);
             dataGridViewClasificar.Update();
+
+            this.usuario = usuario;
+            /*
+            if (dataGridViewClasificar.Rows.Count == 0)
+            {
+
+                cManager.sqlClasificar.permitirComprar(cManager, usuario);
+
+
+            }*/
             this.cManager = cManager;
         
         }
@@ -30,7 +42,7 @@ namespace FrbaCommerce.Calificar_Vendedor
 
             this.Hide();
 
-            FormCalificacion formcalificacion = new FormCalificacion(cManager, dataGridViewClasificar.Rows[e.RowIndex].Cells[1].Value.ToString());
+            FormCalificacion formcalificacion = new FormCalificacion(cManager, dataGridViewClasificar.Rows[e.RowIndex].Cells[0].Value.ToString(),usuario);
                 formcalificacion.ShowDialog();
             
           

@@ -31,6 +31,7 @@ namespace Sistema {
         public string nombreDeContacto { get; set; }
         public DateTime fechaDeCreacion { get; set; }
 		public Publicacion m_Publicacion;
+        public bool puedeComprar { get; set; }
 
 		public Empresa(){
 

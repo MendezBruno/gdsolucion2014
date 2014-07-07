@@ -13,6 +13,8 @@ using Sistema;
 using System.Collections.Generic;
 namespace Sistema {
 	public  class  Administrador : Usuario {
+
+        public bool puedeComprar { get; set; }
         
 		
         public Administrador(){

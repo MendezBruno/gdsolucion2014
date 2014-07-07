@@ -14,12 +14,14 @@ namespace FrbaCommerce.Calificar_Vendedor
     {
         SistemManager cManager;
         string compra_id;
+        string usuario;
 
-        public FormCalificacion(SistemManager cManager, string compra_id)
+        public FormCalificacion(SistemManager cManager, string compra_id,string usuario)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.compra_id = compra_id;
+            this.usuario = usuario;
 
         }
 
@@ -27,8 +29,7 @@ namespace FrbaCommerce.Calificar_Vendedor
         {
 
             cManager.sqlClasificar.IngresarClasificacion(cManager, compra_id, comboBoxCalificacion.Text.ToString(), descripcionClasificacion.Text.ToString());
-
-
+            cManager.sqlClasificar.permitirComprar(cManager, usuario);
 
         }
 

@@ -46,6 +46,23 @@ namespace FrbaCommerce.Modelo.Datos
 
                     }
 
+                    if (dr["Puede_Comprar"].ToString() == "SI")
+                    {
+
+                        user.puedeComprar = true;
+
+                    }
+
+                    else
+                    {
+
+
+                        user.puedeComprar = false;
+                    
+                    
+                    }
+
+
                     if (dr.IsDBNull(dr.GetOrdinal("Usuario_Contraseña")))
                     {
                         dr.Close();
@@ -59,6 +76,8 @@ namespace FrbaCommerce.Modelo.Datos
 
                         user.setPassword(dr["Usuario_Contraseña"].ToString());
                         dr.Close();
+
+                 
                 
 
             }
@@ -134,7 +153,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                 dr.Close();
                 
-                string insertarAdmin = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Rol_ID,Esta_Habilitado) VALUES ('admin',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Administrador General'),'SI')";
+                string insertarAdmin = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Usuario_Rol_ID,Esta_Habilitado,Puede_Comprar) VALUES ('admin',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Administrador General'),'SI','SI')";
 
                 cmd = new SqlCommand(insertarAdmin, cManager.conexion.conn);
 

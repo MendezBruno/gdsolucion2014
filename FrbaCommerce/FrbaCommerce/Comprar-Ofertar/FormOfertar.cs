@@ -40,7 +40,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
 
             cManager.sqlCompra.confirmo_oferta(cManager, this.usuario, this.public_Codigo,this.numericUpDownOfer.Value.ToString());
-            
+        //    cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, this.usuario);
 
         }
 

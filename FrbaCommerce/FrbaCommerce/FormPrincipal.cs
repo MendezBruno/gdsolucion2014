@@ -35,7 +35,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.user =usuario;
-            cargaManuSegunRol(user.RolAsignado);
+            cargaManuSegunRol(user.RolAsignado,usuario.puedeComprar);
 
         }
 
@@ -44,7 +44,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.cliente = cliente;
-            cargaManuSegunRol(cliente.RolAsignado);
+            cargaManuSegunRol(cliente.RolAsignado,cliente.puedeComprar);
             this.usuario = cliente.getUsuario();
             
         }
@@ -54,7 +54,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.empresa = empresa;
-            cargaManuSegunRol(empresa.RolAsignado);
+            cargaManuSegunRol(empresa.RolAsignado, empresa.puedeComprar);
             this.usuario = empresa.getUsuario();
 
         }
@@ -64,7 +64,7 @@ namespace FrbaCommerce
             InitializeComponent();
             this.cManager = cManager;
             this.administrador = administrador;
-            cargaManuSegunRol(administrador.RolAsignado);
+            cargaManuSegunRol(administrador.RolAsignado, administrador.puedeComprar);
             this.usuario = administrador.getUsuario();
 
         }
@@ -82,16 +82,23 @@ namespace FrbaCommerce
 
 
 
-        private void cargaManuSegunRol(Rol rol)
+        private void cargaManuSegunRol(Rol rol,bool puede_Comprar)
         {
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; }
             if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
 
             if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
 
+            if (puede_Comprar == true)
+                this.BotonComprar.Visible = true;
+            else
+                this.BotonComprar.Visible = false;
+
 
             //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
             if (administrador == null) { this.buttonModificaciones.Visible = false;}
+
+
         }
            
 
@@ -248,7 +255,7 @@ namespace FrbaCommerce
             if (cliente != null)
             {
 
-                formFacturar = new FormFacturarPublicaciones(cManager, empresa.getUsuario());
+                formFacturar = new FormFacturarPublicaciones(cManager, cliente.getUsuario());
 
                 formFacturar.ShowDialog();
 
