@@ -36,14 +36,24 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void buttonComprar_Click(object sender, EventArgs e)
         {
 
-            
             if(buttonComprar.Text.Equals("Comprar"))
             {
 
                 this.Hide();
+
+                if (this.numericUpDownCantComprar.Value == Convert.ToInt16(stock.Text))
+                {
+
+                    cManager.sqlPublicacion.CambiarAFinalizada(cManager, this.public_Codigo);
+
+                }
+
+               // cManager.sqlPublicacion.DeshabilitarSidiezcompras(cManager, this.public_Codigo);
+
+
                 
                 FormMostrarVendedor formOfertar = new FormMostrarVendedor(cManager,this.public_Codigo,this.usuario,this.numericUpDownCantComprar.Value.ToString());
-
+             
                 formOfertar.ShowDialog();
 
                 this.Show();
@@ -81,7 +91,9 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             this.Hide();
 
+
             PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager,Convert.ToInt32(public_Codigo),usuario);
+
             preguntasyRespuestas.ShowDialog();
 
             this.Show();

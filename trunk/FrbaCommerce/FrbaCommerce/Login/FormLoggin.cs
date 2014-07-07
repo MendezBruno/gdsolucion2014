@@ -81,12 +81,11 @@ namespace FrbaCommerce.Login
 
                         MessageBox.Show("!Contraseña Incorrecta");
                         this.intentos = this.intentos+1;
-                        MessageBox.Show(this.intentos.ToString());
                         if (this.intentos == 3)
                         {
 
                             cManager.sqlAbmLogin.deshabilitarUsuario(user,cManager);
-                            MessageBox.Show(this.intentos.ToString());
+;
                         }
 
                 }

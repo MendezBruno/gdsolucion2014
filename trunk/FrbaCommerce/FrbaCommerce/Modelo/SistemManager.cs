@@ -42,24 +42,15 @@ namespace FrbaCommerce.Modelo
 
         public bool verificarCodificacionContraseña(Usuario user, string usuario, string contraseña)
         {
-            if (contraseña.Equals("123456"))
-            {
-                MessageBox.Show("Entro messi");
-                return true;
-            }
 
-            else
-            {
                     byte[] pwordData = Encoding.Default.GetBytes(contraseña);
 
                     byte[] hash = hashAlg.ComputeHash(pwordData);
 
-                //revisar esta comparacion
-
                     if (user.getPassword().Equals(BitConverter.ToString(hash))) return true;
                     else return false;
                 
-            }
+            
         }
         
 
@@ -87,6 +78,7 @@ namespace FrbaCommerce.Modelo
             administrador.setUsuario(user.getUsuario());
             administrador.setPassword(user.getPassword());
             administrador.tipoUsuario = user.tipoUsuario;
+            administrador.puedeComprar = user.puedeComprar;
         }
     }
 }

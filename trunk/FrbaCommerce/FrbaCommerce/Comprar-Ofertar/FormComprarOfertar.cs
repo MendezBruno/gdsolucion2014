@@ -42,7 +42,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
 
             this.dataGridViewCompra.Columns.Clear();
-            this.tabla = cManager.sqlCompra.buscarCompras(cManager, this.checkedListBoxRubro.CheckedItems, this.textBoxDescripcion.Text, this.dataGridViewCompra);
+            this.tabla = cManager.sqlCompra.buscarCompras(cManager, this.checkedListBoxRubro.CheckedItems, this.textBoxDescripcion.Text, this.dataGridViewCompra,this.usuario);
             this.paginaActual = 0;
             this.paginalbl.Text = "0";
             mostrar_Pagina();

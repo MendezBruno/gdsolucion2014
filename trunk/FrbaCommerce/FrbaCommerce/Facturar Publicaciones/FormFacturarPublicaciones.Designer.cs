@@ -98,10 +98,13 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Cobrar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Efectivo"});
             this.comboBox1.Location = new System.Drawing.Point(119, 297);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);

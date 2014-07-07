@@ -16,7 +16,7 @@ namespace FrbaCommerce.Modelo.Datos
             SqlCommand Cmd;
             SqlDataReader dr;
             string pub_codigo;
-            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ")";
+            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
 
@@ -34,6 +34,11 @@ namespace FrbaCommerce.Modelo.Datos
                 Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                 Cmd.ExecuteNonQuery();
             }
+
+            Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod="+visibilidad+" GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + pub_codigo ;
+            
+            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+            Cmd.ExecuteNonQuery();
 
         }
 

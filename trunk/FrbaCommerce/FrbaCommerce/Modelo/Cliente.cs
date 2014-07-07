@@ -30,6 +30,7 @@ namespace Sistema {
 		public string localidad;
 		public int codigoPostal;
 		public DateTime fechaDeNacimiento;
+        public bool puedeComprar { get; set; }
 
 		public Compra m_Compra;
 		public Oferta m_Oferta;

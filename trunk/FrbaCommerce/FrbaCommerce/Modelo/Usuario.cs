@@ -20,12 +20,14 @@ namespace Sistema {
 		public bool habilitado;
 		public string tipoUsuario;
         public bool cambioContrasenas;
+        public bool puedeComprar{get;set;}
         
 	
         //public Rol m_Rol;
 
 		public Usuario(){
             this.RolAsignado = new Rol();
+
 		}
 
         

@@ -100,7 +100,7 @@ namespace FrbaCommerce.Generar_Publicacion
 
 
                         cManager.sqlPublicacion.publicar(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
-
+ 
                         this.publico = true;
 
                     }
