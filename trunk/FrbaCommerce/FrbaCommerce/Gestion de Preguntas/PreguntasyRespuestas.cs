@@ -29,7 +29,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         {
             InitializeComponent();
             this.cManager = cManager;
-            this.codigoPublicacion = codigoPublicacion;
+            this.codigoPublicacion = codigoPublicacion; //me falta cargar esto con el codigo?
             cargarPanelDePreguntasRespuestas(cManager);
             this.usuario = usuario;
             buttonPreguntarResponder.Visible = false;
@@ -53,8 +53,8 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void dataGridViewPreguntas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            richTextBoxPregunta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells[2].ToString();
-            richTextBoxRespuesta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells["Respuesta_Respuesta"].ToString();
+            richTextBoxPregunta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells[2].Value.ToString();
+            richTextBoxRespuesta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells["Respuesta_Respuesta"].Value.ToString();
         }
 
 

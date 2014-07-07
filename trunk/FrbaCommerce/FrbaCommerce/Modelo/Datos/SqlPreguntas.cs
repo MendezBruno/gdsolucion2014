@@ -25,7 +25,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void CargarPreguntas(System.Windows.Forms.DataGridView dataGridViewPreguntas, int codigoPublicacion, SistemManager cManager)
         {                                                               
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Pregunta INNER JOIN NO_MORE_SQL.Respuesta ON NO_MORE_SQL.Pregunta.Pregunta_Respuesta_ID=NO_MORE_SQL.Respuesta.Respuesta_ID   WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString(), cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Pregunta LEFT JOIN NO_MORE_SQL.Respuesta ON NO_MORE_SQL.Pregunta.Pregunta_Respuesta_ID=NO_MORE_SQL.Respuesta.Respuesta_ID   WHERE Pregunta_Publicacion_cod="+ codigoPublicacion.ToString(), cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewPreguntas, true, 5);
         }
 
@@ -37,10 +37,11 @@ namespace FrbaCommerce.Modelo.Datos
             }
             else
             {
-                string comandoInsert = "INSERT INTO NO_MORE_SQL.Respuesta(Respuesta_Fecha,Respuesta_Respuesta) VALUES ('"+DateTime.Today.ToString()+"','" + p + "')";
+                string comandoInsert = "INSERT INTO NO_MORE_SQL.Respuesta(Respuesta_Fecha,Respuesta_Respuesta) VALUES ('"+Configuracion.Default.FechaHoy.ToShortDateString()+"','" + p + "')";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
                 ActualizarPregunta(cManager, codigoPublicacion);
+                
             }
         }
 
