@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridViewPreguntas = new System.Windows.Forms.DataGridView();
+            this.ColumnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonPreguntarResponder = new System.Windows.Forms.Button();
             this.richTextBoxRespuesta = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -36,7 +37,7 @@
             this.buttonResponder = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ColumnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.buttonEscribir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPreguntas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,6 +51,11 @@
             this.dataGridViewPreguntas.Size = new System.Drawing.Size(774, 179);
             this.dataGridViewPreguntas.TabIndex = 0;
             this.dataGridViewPreguntas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPreguntas_CellContentClick);
+            // 
+            // ColumnSeleccionar
+            // 
+            this.ColumnSeleccionar.HeaderText = "Seleccionar";
+            this.ColumnSeleccionar.Name = "ColumnSeleccionar";
             // 
             // buttonPreguntarResponder
             // 
@@ -114,16 +120,22 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Respuesta";
             // 
-            // ColumnSeleccionar
+            // buttonEscribir
             // 
-            this.ColumnSeleccionar.HeaderText = "Seleccionar";
-            this.ColumnSeleccionar.Name = "ColumnSeleccionar";
+            this.buttonEscribir.Location = new System.Drawing.Point(644, 434);
+            this.buttonEscribir.Name = "buttonEscribir";
+            this.buttonEscribir.Size = new System.Drawing.Size(141, 30);
+            this.buttonEscribir.TabIndex = 9;
+            this.buttonEscribir.Text = "Escribir";
+            this.buttonEscribir.UseVisualStyleBackColor = true;
+            this.buttonEscribir.Click += new System.EventHandler(this.buttonEscribir_Click);
             // 
             // PreguntasyRespuestas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 476);
+            this.Controls.Add(this.buttonEscribir);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonResponder);
@@ -151,5 +163,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnSeleccionar;
+        private System.Windows.Forms.Button buttonEscribir;
     }
 }

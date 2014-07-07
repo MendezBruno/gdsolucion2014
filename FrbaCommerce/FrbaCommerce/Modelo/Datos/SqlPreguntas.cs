@@ -50,14 +50,14 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta_Id FROM NO_MORE_SQL.Pregunta WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
+            string insertDataMod = "SELECT Respuesta.Respuesta_ID FROM NO_MORE_SQL.Respuesta WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
 
             SqlCommand MyCmd2;
             string ComandoInsertar;
-            ComandoInsertar = @"UPDATE NO_MORE_SQL.Pregunta set Pregunta_Respuesta_Id='"+ dr["Respuesta_Id"].ToString() +"' WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
+            ComandoInsertar = @"UPDATE NO_MORE_SQL.Pregunta set Pregunta_Respuesta_ID='"+ dr["Respuesta_ID"].ToString() +"' WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
             //tal vez necesito cerra el dr
             MyCmd2.ExecuteNonQuery();
@@ -70,7 +70,7 @@ namespace FrbaCommerce.Modelo.Datos
             int idRespuesta = Convert.ToInt32(p);
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Pregunta WHERE Respuesta_Id=" + idRespuesta.ToString();
+            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Pregunta WHERE Respuesta_ID=" + idRespuesta.ToString();
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
