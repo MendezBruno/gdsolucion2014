@@ -76,6 +76,60 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+        internal void DeshabilitarDiezCompras(SistemManager cManager, string public_Codigo)
+        {
+
+           SqlCommand cmd;
+
+           SqlDataReader dr;
+
+           string usuario_publico;
+
+           string comando="SELECT Publicacion_Usuario_Nombre FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo="+public_Codigo;
+
+           cmd=new SqlCommand(comando,cManager.conexion.conn);
+
+           dr=cmd.ExecuteReader();
+
+           dr.Read();
+
+           usuario_publico=dr["Publicacion_Usuario_Nombre"].ToString();
+
+            dr.Close();
+   
+           comando="SELECT COUNT(*) AS Cuenta FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Compra.Compra_Publicacion WHERE Publicacion_Usuario_Nombre='"+usuario_publico+"'";
+
+           cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+           dr = cmd.ExecuteReader();
+
+           dr.Read();
+
+           if (Convert.ToInt16(dr["Cuenta"].ToString()) == 10)
+           {
+
+               dr.Close();
+
+               comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE Usuario_Nombre='" + usuario_publico+"'";
+
+               cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+               cmd.ExecuteNonQuery();
+
+               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Usuario_Nombre='" + usuario_publico + "'";
+
+               cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+               cmd.ExecuteNonQuery();
+               
+               return;
+           
+           
+           }
+           dr.Close();
+
+
+        }
         internal bool tieneMasDeTresGratis(SistemManager cManager, string usuario)
         {
 
@@ -191,6 +245,21 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+        internal void RegistrarSubasta(SistemManager cManager, string publicCodigo, string tipo_public)
+        {
+            string comando;
+
+            SqlCommand cmd;
+           
+            comando="INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('"+Configuracion.Default.FechaHoy+"',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo="+ publicCodigo +" ORDER BY Oferta_Monto DESC),"+publicCodigo+",'NO'";
+
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+            cmd.ExecuteNonQuery();
+
+
+        }
+        
         internal void CambiarAFinalizada(SistemManager cManager, string public_Codigo)
         {
             string comando;
@@ -198,6 +267,8 @@ namespace FrbaCommerce.Modelo.Datos
             comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Finalizado' WHERE Publicacion_Codigo=" + public_Codigo;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
+
+         
 
         }
 

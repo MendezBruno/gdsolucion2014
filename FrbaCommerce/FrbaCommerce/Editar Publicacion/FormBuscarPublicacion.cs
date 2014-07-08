@@ -106,7 +106,7 @@ namespace FrbaCommerce.Editar_Publicacion
                     this.Hide();
                     if (cliente != null)
                     {
-                        FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),cliente);
+                        FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), cliente, dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                         if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Equals("Subasta"))
                         {
 
@@ -119,7 +119,7 @@ namespace FrbaCommerce.Editar_Publicacion
                     else
                         if (empresa != null)
                         {
-                            FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),empresa);
+                            FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), empresa, dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                             if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Equals("Subasta"))
                             {
 
@@ -132,7 +132,7 @@ namespace FrbaCommerce.Editar_Publicacion
                         else
                             if (empresa == null && cliente == null)
                             {
-                                FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),administrador);
+                                FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), administrador, dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                                 if (dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString().Equals("Subasta"))
                                 {
 
@@ -152,7 +152,7 @@ namespace FrbaCommerce.Editar_Publicacion
                     this.Hide();
                     if (cliente != null)
                     {
-                        FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),cliente);
+                        FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), cliente, dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                         formModif.modifStock.Visible = false;
                         formModif.Pausar.Visible = false;
                         formModif.ShowDialog();
@@ -160,7 +160,7 @@ namespace FrbaCommerce.Editar_Publicacion
                     else
                         if (empresa != null)
                         {
-                            FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),empresa);
+                            FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), empresa, dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                             formModif.modifStock.Visible = false;
                             formModif.Pausar.Visible = false;
                             formModif.ShowDialog();
@@ -168,7 +168,7 @@ namespace FrbaCommerce.Editar_Publicacion
                         else
                             if (empresa == null && cliente == null)
                             {
-                                FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),administrador);
+                                FormModificarPublicacion formModif = new FormModificarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), administrador, dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
                                 formModif.modifStock.Visible = false;
                                 formModif.Pausar.Visible = false;
                                 formModif.ShowDialog();

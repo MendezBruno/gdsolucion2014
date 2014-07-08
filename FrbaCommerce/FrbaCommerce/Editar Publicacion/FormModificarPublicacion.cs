@@ -20,36 +20,40 @@ namespace FrbaCommerce.Editar_Publicacion
         Empresa empresa;
         Administrador administrador;
         bool modificacion;
+        string tipo_public;
 
 
-        public FormModificarPublicacion(SistemManager cManager,string publicCodigo,Cliente cliente)
+        public FormModificarPublicacion(SistemManager cManager,string publicCodigo,Cliente cliente,string tipo_public)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.publicCodigo = publicCodigo;
             this.cliente = cliente;
             this.modificacion = false;
+            this.tipo_public = tipo_public;
 
 
         }
-        public FormModificarPublicacion(SistemManager cManager, string publicCodigo, Empresa empresa)
+        public FormModificarPublicacion(SistemManager cManager, string publicCodigo, Empresa empresa, string tipo_public)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.publicCodigo = publicCodigo;
             this.empresa = empresa;
             this.modificacion = false;
+            this.tipo_public = tipo_public;
   
 
 
         }
-        public FormModificarPublicacion(SistemManager cManager, string publicCodigo, Administrador administrador)
+        public FormModificarPublicacion(SistemManager cManager, string publicCodigo, Administrador administrador, string tipo_public)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.publicCodigo = publicCodigo;
             this.administrador = administrador;
             this.modificacion = false;
+            this.tipo_public = tipo_public;
 
         }
 
@@ -72,6 +76,10 @@ namespace FrbaCommerce.Editar_Publicacion
         private void Finalizar_Click(object sender, EventArgs e)
         {
             cManager.sqlPublicacion.CambiarAFinalizada(cManager, publicCodigo);
+            if(tipo_public.Equals("Subasta"))
+            {
+                cManager.sqlPublicacion.RegistrarSubasta(cManager, publicCodigo, tipo_public);
+            }
             this.Hide();
         }
 
