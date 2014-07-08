@@ -50,7 +50,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
             
             this.tabla=cManager.sqlFactura.buscarFactura(cManager, this.usuario, textCantPubli.Text);
           
-           this.tablaCompras = cManager.sqlFactura.buscarCompras(cManager,this.usuario,textCantPubli.Text);
+            this.tablaCompras = cManager.sqlFactura.buscarCompras(cManager,this.usuario,textCantPubli.Text);
             
             DataRow fila;
 
@@ -60,9 +60,13 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
             this.dataGridViewFacturar.Columns.Add("Precio", "Precio");
 
+            this.dataGridViewFacturar.Columns.Add("Codigo","Codigo");
+
+            this.dataGridViewFacturar.Columns.Add("Tipo", "Tipo");
+
             this.dataGridViewFacturar.Columns.Add("Publicacion_Cod","Publicacion_Cod");
 
-            if (tabla.Rows.Count > 0)
+            if (tabla.Rows.Count > 0 || tablaCompras.Rows.Count > 0)
             {
 
                 for (i = 0; i < tabla.Rows.Count; i++)
@@ -78,8 +82,14 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
                     this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = fila[1].ToString();
 
-                    this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[2].ToString();
+                    this.dataGridViewFacturar.Rows[j].Cells["Codigo"].Value = fila[2].ToString();
 
+                    this.dataGridViewFacturar.Rows[j].Cells["Tipo"].Value = fila[3].ToString();
+
+                    this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[4].ToString();
+
+                    
+                    
                     j = j + 1;
 
                 }
@@ -100,13 +110,18 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
                         this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = fila[1].ToString();
 
-                        this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[2].ToString();
+                        this.dataGridViewFacturar.Rows[j].Cells["Codigo"].Value = fila[2].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Tipo"].Value = fila[3].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[4].ToString();
 
                         j = j + 1;
 
                         i = i + 1;
 
                     }
+                }
 
                     /*
                     while (tabla.Rows[j + 1][2].ToString().Equals(fila[2].ToString()))
@@ -148,6 +163,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
 
                     }
+                    this.dataGridViewFacturar.Rows.Add();
 
                     this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = "Total";
 
@@ -155,7 +171,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
                     this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = precio_Total;
 
-                }
+                
 
             }  
         }
@@ -163,9 +179,42 @@ namespace FrbaCommerce.Facturar_Publicaciones
         private void button2_Click(object sender, EventArgs e)
         {
 
+            
+            int i;
+
+            string monto_Total;
+
+            string nro_Factura;
+
+            if (dataGridViewFacturar.Rows.Count > 1)
+            {
+
+                monto_Total = this.dataGridViewFacturar.Rows[this.dataGridViewFacturar.Rows.Count - 2].Cells["Precio"].Value.ToString();
+
+                nro_Factura = cManager.sqlFactura.Cargar_Factura(cManager, monto_Total, comboBoxMedio.Text);
+
+
+                for (i = 0; i < this.dataGridViewFacturar.RowCount - 2; i++)
+                {
+
+                    MessageBox.Show("llego");
+
+                    if (this.dataGridViewFacturar.Rows[i].Cells["Tipo"].Value.Equals("Visibilidad_Publicacion"))
+                    {
+
+                        cManager.sqlFactura.CargarVisibilidad(cManager, this.dataGridViewFacturar.Rows[i].Cells["Codigo"].Value.ToString(), this.dataGridViewFacturar.Rows[i].Cells["Precio"].Value.ToString(), this.dataGridViewFacturar.Rows[i].Cells["Cantidad"].Value.ToString(), nro_Factura);
+
+                    }
+
+                    else
+
+                        cManager.sqlFactura.CargarCompra(cManager, this.dataGridViewFacturar.Rows[i].Cells["Codigo"].Value.ToString(), this.dataGridViewFacturar.Rows[i].Cells["Publicacion_Cod"].Value.ToString(), this.dataGridViewFacturar.Rows[i].Cells["Cantidad"].Value.ToString(), this.dataGridViewFacturar.Rows[i].Cells["Precio"].Value.ToString(), nro_Factura);
+
+
+                }
+            }
+
         }
-
-
 
     }
 }
