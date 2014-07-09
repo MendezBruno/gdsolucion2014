@@ -36,6 +36,7 @@
             this.buttonHistorial = new System.Windows.Forms.Button();
             this.buttonFacturar = new System.Windows.Forms.Button();
             this.buttoncambiarContraseña = new System.Windows.Forms.Button();
+            this.buttonGenerarFactura = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BotonComprar
@@ -118,11 +119,22 @@
             this.buttoncambiarContraseña.UseVisualStyleBackColor = true;
             this.buttoncambiarContraseña.Click += new System.EventHandler(this.buttoncambiarContraseña_Click);
             // 
+            // buttonGenerarFactura
+            // 
+            this.buttonGenerarFactura.Location = new System.Drawing.Point(320, 23);
+            this.buttonGenerarFactura.Name = "buttonGenerarFactura";
+            this.buttonGenerarFactura.Size = new System.Drawing.Size(137, 42);
+            this.buttonGenerarFactura.TabIndex = 15;
+            this.buttonGenerarFactura.Text = "Generar Factura de un Usuario";
+            this.buttonGenerarFactura.UseVisualStyleBackColor = true;
+            this.buttonGenerarFactura.Click += new System.EventHandler(this.buttonGenerarFactura_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 231);
+            this.ClientSize = new System.Drawing.Size(478, 231);
+            this.Controls.Add(this.buttonGenerarFactura);
             this.Controls.Add(this.buttoncambiarContraseña);
             this.Controls.Add(this.buttonFacturar);
             this.Controls.Add(this.buttonHistorial);
@@ -147,6 +159,7 @@
         private System.Windows.Forms.Button buttonHistorial;
         private System.Windows.Forms.Button buttonFacturar;
         private System.Windows.Forms.Button buttoncambiarContraseña;
+        private System.Windows.Forms.Button buttonGenerarFactura;
     }
 }
 

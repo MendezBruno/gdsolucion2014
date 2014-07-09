@@ -92,6 +92,11 @@ namespace FrbaCommerce
             else
             { this.buttonEstadisticas.Visible = false; }
 
+            if (rol.getListaFuncionalidades().Contains("GenerarFacturaUsuario"))
+            { this.buttonGenerarFactura.Visible = true; }
+            else
+            { this.buttonGenerarFactura.Visible = false; }
+
             
             if (existen_Modificaciones(rol)==true)
                 this.buttonModificaciones.Visible = true;
@@ -371,6 +376,20 @@ namespace FrbaCommerce
                     }
 
             this.Show();
+        }
+
+        private void buttonGenerarFactura_Click(object sender, EventArgs e)
+        {
+
+
+            this.Hide();
+            FormCambiarContraseña formGenerarFactura = new FormCambiarContraseña(cManager);
+            formGenerarFactura.Text = "Generar Factura";
+            formGenerarFactura.ShowDialog();
+
+
+
+
         }
 
         
