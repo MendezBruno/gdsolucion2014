@@ -53,6 +53,7 @@
             this.ModificarContrasenia = new System.Windows.Forms.CheckBox();
             this.Estadisticas = new System.Windows.Forms.CheckBox();
             this.Habilitar_Rol = new System.Windows.Forms.CheckBox();
+            this.GenerarFacturaUsuario = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -265,6 +266,7 @@
             // 
             // groupBoxFuncionalidades
             // 
+            this.groupBoxFuncionalidades.Controls.Add(this.GenerarFacturaUsuario);
             this.groupBoxFuncionalidades.Controls.Add(this.ModificarContrasenia);
             this.groupBoxFuncionalidades.Controls.Add(this.Estadisticas);
             this.groupBoxFuncionalidades.Controls.Add(this.Habilitar_Rol);
@@ -287,7 +289,7 @@
             this.groupBoxFuncionalidades.Controls.Add(this.Comprar);
             this.groupBoxFuncionalidades.Location = new System.Drawing.Point(17, 101);
             this.groupBoxFuncionalidades.Name = "groupBoxFuncionalidades";
-            this.groupBoxFuncionalidades.Size = new System.Drawing.Size(410, 244);
+            this.groupBoxFuncionalidades.Size = new System.Drawing.Size(410, 262);
             this.groupBoxFuncionalidades.TabIndex = 38;
             this.groupBoxFuncionalidades.TabStop = false;
             this.groupBoxFuncionalidades.Text = "Funcionalidades";
@@ -316,12 +318,22 @@
             // Habilitar_Rol
             // 
             this.Habilitar_Rol.AutoSize = true;
-            this.Habilitar_Rol.Location = new System.Drawing.Point(3, 219);
+            this.Habilitar_Rol.Location = new System.Drawing.Point(3, 242);
             this.Habilitar_Rol.Name = "Habilitar_Rol";
             this.Habilitar_Rol.Size = new System.Drawing.Size(94, 17);
             this.Habilitar_Rol.TabIndex = 38;
             this.Habilitar_Rol.Text = "Rol Hablilitado";
             this.Habilitar_Rol.UseVisualStyleBackColor = true;
+            // 
+            // GenerarFacturaUsuario
+            // 
+            this.GenerarFacturaUsuario.AutoSize = true;
+            this.GenerarFacturaUsuario.Location = new System.Drawing.Point(3, 219);
+            this.GenerarFacturaUsuario.Name = "GenerarFacturaUsuario";
+            this.GenerarFacturaUsuario.Size = new System.Drawing.Size(172, 17);
+            this.GenerarFacturaUsuario.TabIndex = 41;
+            this.GenerarFacturaUsuario.Text = "Generar Factura de un Usuario";
+            this.GenerarFacturaUsuario.UseVisualStyleBackColor = true;
             // 
             // FormAltaRol
             // 
@@ -369,5 +381,6 @@
         private System.Windows.Forms.CheckBox Habilitar_Rol;
         private System.Windows.Forms.CheckBox ModificarContrasenia;
         private System.Windows.Forms.CheckBox Estadisticas;
+        private System.Windows.Forms.CheckBox GenerarFacturaUsuario;
     }
 }

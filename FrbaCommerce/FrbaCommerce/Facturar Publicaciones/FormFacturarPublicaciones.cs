@@ -41,7 +41,6 @@ namespace FrbaCommerce.Facturar_Publicaciones
         public void mostrarItems()
         {
 
-
             this.dataGridViewFacturar.Rows.Clear();
 
             this.dataGridViewFacturar.Columns.Clear();
@@ -87,9 +86,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
                     this.dataGridViewFacturar.Rows[j].Cells["Tipo"].Value = fila[3].ToString();
 
                     this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[4].ToString();
-
-                    
-                    
+ 
                     j = j + 1;
 
                 }
@@ -121,6 +118,37 @@ namespace FrbaCommerce.Facturar_Publicaciones
                         i = i + 1;
 
                     }
+                }
+                else
+                {
+                    while (i < tablaCompras.Rows.Count)
+                    {
+
+                        fila = tablaCompras.Rows[i];
+
+                        this.dataGridViewFacturar.Rows.Add();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Item"].Value = j + 1;
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Cantidad"].Value = fila[0].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Precio"].Value = fila[1].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Codigo"].Value = fila[2].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Tipo"].Value = fila[3].ToString();
+
+                        this.dataGridViewFacturar.Rows[j].Cells["Publicacion_Cod"].Value = fila[4].ToString();
+
+                        j = j + 1;
+
+                        i = i + 1;
+
+                    }
+
+
+
+
                 }
 
                     /*
@@ -214,6 +242,8 @@ namespace FrbaCommerce.Facturar_Publicaciones
             }
 
         }
+
+
 
     }
 }
