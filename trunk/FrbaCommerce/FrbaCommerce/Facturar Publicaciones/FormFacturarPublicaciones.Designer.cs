@@ -132,7 +132,7 @@
             this.Controls.Add(this.textCantPubli);
             this.Controls.Add(this.dataGridViewFacturar);
             this.Name = "FormFacturarPublicaciones";
-            this.Text = "Form1";
+            this.Text = "Facturar Publicaciones";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFacturar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

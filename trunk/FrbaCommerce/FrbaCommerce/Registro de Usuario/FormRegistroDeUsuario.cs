@@ -25,6 +25,14 @@ namespace FrbaCommerce.Registro_de_Usuario
         private void buttonRegistrar_Click(object sender, EventArgs e)
         {
         //  cManager.conexion.registrarUsuario(this.textBoxUser.Text, this.textBoxPass.Text,this.comboBoxRol.Text , this.textBoxTipo.Text, this.textBoxNumero.Text);
+
+
+            if (this.textBoxUser.Text.Equals(""))
+            MessageBox.Show("Nombre de Usuario no ingresado");
+            else
+            if(this.textBoxPass.Text.Equals(""))
+            MessageBox.Show("Contraseña no ingresada");
+            else
             crearUsuarioConTalRol(this.comboBoxRol.Text,this.textBoxUser.Text,this.textBoxPass.Text);
 
         }

@@ -20,6 +20,8 @@ namespace FrbaCommerce
     {
         SistemManager cManager;
         Administrador administrador;
+        Empresa empresa;
+        Cliente cliente;
         public FormModificaciones(SistemManager cManager, Administrador administrador)
         {
             InitializeComponent();
@@ -27,6 +29,23 @@ namespace FrbaCommerce
             this.administrador = administrador;
             deshabilitarBotonesSegunFuncionalidadRol(administrador.RolAsignado.getListaFuncionalidades());
         }
+
+        public FormModificaciones(SistemManager cManager,Empresa empresa)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.empresa=empresa;
+            deshabilitarBotonesSegunFuncionalidadRol(empresa.RolAsignado.getListaFuncionalidades());
+        }
+
+        public FormModificaciones(SistemManager cManager, Cliente cliente)
+        {
+            InitializeComponent();
+            this.cManager = cManager;
+            this.cliente = cliente;
+            deshabilitarBotonesSegunFuncionalidadRol(cliente.RolAsignado.getListaFuncionalidades());
+        }
+
 
         private void deshabilitarBotonesSegunFuncionalidadRol(List<string> funcionalidades)
         {

@@ -197,7 +197,6 @@ namespace FrbaCommerce.Facturar_Publicaciones
                 for (i = 0; i < this.dataGridViewFacturar.RowCount - 2; i++)
                 {
 
-                    MessageBox.Show("llego");
 
                     if (this.dataGridViewFacturar.Rows[i].Cells["Tipo"].Value.Equals("Visibilidad_Publicacion"))
                     {

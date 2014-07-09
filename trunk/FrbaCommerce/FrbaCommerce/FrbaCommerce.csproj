@@ -295,6 +295,9 @@
     <EmbeddedResource Include="Comprar-Ofertar\FormMostrarPublicacion.resx">
       <DependentUpon>FormMostrarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comprar-Ofertar\FormMostrarVendedor.resx">
+      <DependentUpon>FormMostrarVendedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comprar-Ofertar\FormOfertar.resx">
       <DependentUpon>FormOfertar.cs</DependentUpon>
     </EmbeddedResource>

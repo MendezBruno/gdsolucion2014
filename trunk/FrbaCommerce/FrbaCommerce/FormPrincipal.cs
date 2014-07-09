@@ -86,8 +86,11 @@ namespace FrbaCommerce
         {
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; }
             if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
-
-            if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
+            
+            if (existen_Modificaciones(rol)==true)
+                this.buttonModificaciones.Visible = true;
+            else
+                this.buttonModificaciones.Visible = false;
 
             if (puede_Comprar == true)
                 this.BotonComprar.Visible = true;
@@ -95,8 +98,10 @@ namespace FrbaCommerce
                 this.BotonComprar.Visible = false;
 
 
+
+
             //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
-            if (administrador == null) { this.buttonModificaciones.Visible = false;}
+         //   if (administrador == null) { this.buttonModificaciones.Visible = false;}
 
 
         }
@@ -123,12 +128,70 @@ namespace FrbaCommerce
 
         }
 
+        private bool existen_Modificaciones(Rol rol)
+        {
+
+            if (rol.getListaFuncionalidades().Contains("Crear_Cliente")) { return true; }
+            else
+            if (rol.getListaFuncionalidades().Contains("Modificar_Cliente")) { return true; }
+            else
+            if (rol.getListaFuncionalidades().Contains("Eliminar__Cliente")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Crear_Rubro")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Modificar_Rubro")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Eliminar_Rubro")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Crear_Empresa")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Modificar_Empresa")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Eliminar_Empresa")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Crear_Visibilidad")){ return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Modificar_Visibilidad")){ return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Eliminar_Visibilidad")){ return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Crear_Rol")){ return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("Modificar_Rol")){ return true; }
+            else
+            if (rol.getListaFuncionalidades().Contains("Eliminar_Rol")) { return true; }
+            else return false;
+            
+
+
+        }
+
         private void buttonModificaciones_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormModificaciones formModificaciones = new FormModificaciones(cManager, administrador);
-            formModificaciones.ShowDialog();
-            this.Show();
+
+            if (empresa != null)
+            {
+                FormModificaciones formModificaciones = new FormModificaciones(cManager, empresa);
+                formModificaciones.ShowDialog();
+                this.Show();
+
+            }
+            if (cliente != null)
+            {
+                FormModificaciones formModificaciones = new FormModificaciones(cManager, cliente);
+                formModificaciones.ShowDialog();
+                this.Show();
+
+            }
+
+            if (cliente == null && empresa == null)
+            {
+                FormModificaciones formModificaciones = new FormModificaciones(cManager, administrador);
+                formModificaciones.ShowDialog();
+                this.Show();
+            }
+
         }
 
         private void buttonPublicaciones_Click(object sender, EventArgs e)

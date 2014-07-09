@@ -95,7 +95,7 @@ namespace FrbaCommerce.Editar_Publicacion
                             formGenerarPublicacion.ShowDialog();
                         }
 
-                this.Show();
+                this.Hide();
 
             }
             if (this.dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("Publicada"))
@@ -143,7 +143,7 @@ namespace FrbaCommerce.Editar_Publicacion
                                 formModif.ShowDialog();
                             }
 
-                    this.Show();
+                    this.Hide();
 
                 }
                 if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Pausada"))
@@ -173,8 +173,8 @@ namespace FrbaCommerce.Editar_Publicacion
                                 formModif.Pausar.Visible = false;
                                 formModif.ShowDialog();
                             }
- 
-                    this.Show();
+
+                    this.Hide();
 
                 }
             }
