@@ -50,5 +50,7 @@ namespace FrbaCommerce.ABM_Rol
             this.textBoxNombreRol.Text = "";
         }
 
+
+
     }
 }

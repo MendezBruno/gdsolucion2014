@@ -31,35 +31,60 @@ namespace FrbaCommerce.Modelo.Datos
             
            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
            cmd.ExecuteNonQuery();
-           MessageBox.Show("El nombre de usuario para ingresar al sistema es:" +dni+".\nIngresar al sistema sin password y le pedira que cambie la contraseña" );
         
            
         }
 
-        internal void darAltaUsuario(SistemManager cManager, bool esCliente, string user, string pass)
+        internal void eliminar(SistemManager cManager,bool esCliente,string usuario)
+        {
+
+            SqlCommand cmd;
+
+            string comando = "DELETE FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre='"+usuario+"'";
+
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+            cmd.ExecuteNonQuery();
+
+
+        }
+
+        internal bool darAltaUsuario(SistemManager cManager, bool esCliente, string user, string pass)
         {
 
             SqlCommand cmd;
             String ComandoInsert;
 
+            try
+            {
 
-            if (esCliente == true)
-
-
-                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
-
-
-            else
-
-                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'))";
+                if (esCliente == true)
 
 
-            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
-            cmd.ExecuteNonQuery();
-            cManager.sqlAbmLogin.agregarContraseñaPorPrimerIngreso(cManager, pass, user);
-            MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + user + ".\n la contraseña es:"+pass);
+                    ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
 
 
+                else
+
+                    ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'))";
+
+
+                cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+                cManager.sqlAbmLogin.agregarContraseñaPorPrimerIngreso(cManager, pass, user);
+                return true;
+            }
+            catch (SqlException e)
+            {
+
+                if (e.Number.ToString().Equals("2627"))
+                {
+                    MessageBox.Show("Usuario ya ingresado");
+
+                }
+                return false;
+
+            }
         }
 
 

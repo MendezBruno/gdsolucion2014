@@ -214,8 +214,6 @@ namespace FrbaCommerce.Generar_Publicacion
 
         private void numericUpDownStockInicial_ValueChanged(object sender, EventArgs e)
         {
-
-            MessageBox.Show(this.stock_Inicial);
             
             if (this.modificacion == true)
             {

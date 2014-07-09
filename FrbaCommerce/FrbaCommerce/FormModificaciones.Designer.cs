@@ -117,9 +117,9 @@
             // 
             this.Crear_Visibilidad.Location = new System.Drawing.Point(178, 141);
             this.Crear_Visibilidad.Name = "Crear_Visibilidad";
-            this.Crear_Visibilidad.Size = new System.Drawing.Size(119, 31);
+            this.Crear_Visibilidad.Size = new System.Drawing.Size(119, 40);
             this.Crear_Visibilidad.TabIndex = 7;
-            this.Crear_Visibilidad.Text = "Alta V Publicacion";
+            this.Crear_Visibilidad.Text = "Alta Visibilidad Publicacion";
             this.Crear_Visibilidad.UseVisualStyleBackColor = true;
             this.Crear_Visibilidad.Click += new System.EventHandler(this.buttonAltaVisibilidad_Click);
             // 
@@ -135,7 +135,7 @@
             // 
             // Modificar_Visibilidad
             // 
-            this.Modificar_Visibilidad.Location = new System.Drawing.Point(178, 179);
+            this.Modificar_Visibilidad.Location = new System.Drawing.Point(178, 187);
             this.Modificar_Visibilidad.Name = "Modificar_Visibilidad";
             this.Modificar_Visibilidad.Size = new System.Drawing.Size(119, 44);
             this.Modificar_Visibilidad.TabIndex = 10;
@@ -155,9 +155,9 @@
             // 
             // Eliminar_Visibilidad
             // 
-            this.Eliminar_Visibilidad.Location = new System.Drawing.Point(178, 230);
+            this.Eliminar_Visibilidad.Location = new System.Drawing.Point(178, 237);
             this.Eliminar_Visibilidad.Name = "Eliminar_Visibilidad";
-            this.Eliminar_Visibilidad.Size = new System.Drawing.Size(119, 31);
+            this.Eliminar_Visibilidad.Size = new System.Drawing.Size(119, 44);
             this.Eliminar_Visibilidad.TabIndex = 12;
             this.Eliminar_Visibilidad.Text = "Baja Visibilidad Publicacion";
             this.Eliminar_Visibilidad.UseVisualStyleBackColor = true;

@@ -66,6 +66,7 @@ namespace FrbaCommerce.Abm_Cliente
                 else
                 {
 
+     
                     cManager.sqlCliente.darAlta(cManager, esCliente, textBoxNombre.Text, textBoxApe.Text, comboBoxTipo.Text, textBoxDNI.Text, textBoxTel.Text, textBoxMail.Text, textBoxDirec.Text, textBoxNumeroCalle.Text, textBoxNroPiso.Text, textBoxDepto.Text, textBoxLocalidad.Text, textBoxCodPos.Text, textBoxFecNac.Text,this.user,this.pass);
 
 

@@ -50,6 +50,8 @@
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.Eliminar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Estadisticas = new System.Windows.Forms.CheckBox();
             this.Habilitar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades.SuspendLayout();
             this.SuspendLayout();
@@ -76,9 +78,9 @@
             this.Comprar.AutoSize = true;
             this.Comprar.Location = new System.Drawing.Point(3, 12);
             this.Comprar.Name = "Comprar";
-            this.Comprar.Size = new System.Drawing.Size(65, 17);
+            this.Comprar.Size = new System.Drawing.Size(102, 17);
             this.Comprar.TabIndex = 19;
-            this.Comprar.Text = "Comprar";
+            this.Comprar.Text = "Comprar/Ofertar";
             this.Comprar.UseVisualStyleBackColor = true;
             // 
             // Vender
@@ -154,7 +156,7 @@
             // Crear_Empresa
             // 
             this.Crear_Empresa.AutoSize = true;
-            this.Crear_Empresa.Location = new System.Drawing.Point(264, 12);
+            this.Crear_Empresa.Location = new System.Drawing.Point(226, 12);
             this.Crear_Empresa.Name = "Crear_Empresa";
             this.Crear_Empresa.Size = new System.Drawing.Size(95, 17);
             this.Crear_Empresa.TabIndex = 34;
@@ -164,7 +166,7 @@
             // Modificar_Empresa
             // 
             this.Modificar_Empresa.AutoSize = true;
-            this.Modificar_Empresa.Location = new System.Drawing.Point(264, 35);
+            this.Modificar_Empresa.Location = new System.Drawing.Point(226, 35);
             this.Modificar_Empresa.Name = "Modificar_Empresa";
             this.Modificar_Empresa.Size = new System.Drawing.Size(113, 17);
             this.Modificar_Empresa.TabIndex = 33;
@@ -174,7 +176,7 @@
             // Eliminar_Empresa
             // 
             this.Eliminar_Empresa.AutoSize = true;
-            this.Eliminar_Empresa.Location = new System.Drawing.Point(264, 58);
+            this.Eliminar_Empresa.Location = new System.Drawing.Point(226, 58);
             this.Eliminar_Empresa.Name = "Eliminar_Empresa";
             this.Eliminar_Empresa.Size = new System.Drawing.Size(91, 17);
             this.Eliminar_Empresa.TabIndex = 32;
@@ -184,7 +186,7 @@
             // Crear_Visibilidad
             // 
             this.Crear_Visibilidad.AutoSize = true;
-            this.Crear_Visibilidad.Location = new System.Drawing.Point(264, 81);
+            this.Crear_Visibilidad.Location = new System.Drawing.Point(226, 81);
             this.Crear_Visibilidad.Name = "Crear_Visibilidad";
             this.Crear_Visibilidad.Size = new System.Drawing.Size(100, 17);
             this.Crear_Visibilidad.TabIndex = 31;
@@ -194,7 +196,7 @@
             // Modificar_Visibilidad
             // 
             this.Modificar_Visibilidad.AutoSize = true;
-            this.Modificar_Visibilidad.Location = new System.Drawing.Point(264, 104);
+            this.Modificar_Visibilidad.Location = new System.Drawing.Point(226, 104);
             this.Modificar_Visibilidad.Name = "Modificar_Visibilidad";
             this.Modificar_Visibilidad.Size = new System.Drawing.Size(118, 17);
             this.Modificar_Visibilidad.TabIndex = 30;
@@ -204,7 +206,7 @@
             // Eliminar_Visibilidad
             // 
             this.Eliminar_Visibilidad.AutoSize = true;
-            this.Eliminar_Visibilidad.Location = new System.Drawing.Point(264, 127);
+            this.Eliminar_Visibilidad.Location = new System.Drawing.Point(226, 127);
             this.Eliminar_Visibilidad.Name = "Eliminar_Visibilidad";
             this.Eliminar_Visibilidad.Size = new System.Drawing.Size(96, 17);
             this.Eliminar_Visibilidad.TabIndex = 29;
@@ -214,7 +216,7 @@
             // Crear_Rol
             // 
             this.Crear_Rol.AutoSize = true;
-            this.Crear_Rol.Location = new System.Drawing.Point(264, 150);
+            this.Crear_Rol.Location = new System.Drawing.Point(226, 150);
             this.Crear_Rol.Name = "Crear_Rol";
             this.Crear_Rol.Size = new System.Drawing.Size(70, 17);
             this.Crear_Rol.TabIndex = 28;
@@ -224,7 +226,7 @@
             // Modificar_Rol
             // 
             this.Modificar_Rol.AutoSize = true;
-            this.Modificar_Rol.Location = new System.Drawing.Point(264, 173);
+            this.Modificar_Rol.Location = new System.Drawing.Point(226, 173);
             this.Modificar_Rol.Name = "Modificar_Rol";
             this.Modificar_Rol.Size = new System.Drawing.Size(88, 17);
             this.Modificar_Rol.TabIndex = 27;
@@ -254,7 +256,7 @@
             // Eliminar_Rol
             // 
             this.Eliminar_Rol.AutoSize = true;
-            this.Eliminar_Rol.Location = new System.Drawing.Point(264, 196);
+            this.Eliminar_Rol.Location = new System.Drawing.Point(226, 196);
             this.Eliminar_Rol.Name = "Eliminar_Rol";
             this.Eliminar_Rol.Size = new System.Drawing.Size(66, 17);
             this.Eliminar_Rol.TabIndex = 37;
@@ -263,6 +265,8 @@
             // 
             // groupBoxFuncionalidades
             // 
+            this.groupBoxFuncionalidades.Controls.Add(this.checkBox1);
+            this.groupBoxFuncionalidades.Controls.Add(this.Estadisticas);
             this.groupBoxFuncionalidades.Controls.Add(this.Habilitar_Rol);
             this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Rol);
             this.groupBoxFuncionalidades.Controls.Add(this.Crear_Empresa);
@@ -283,15 +287,35 @@
             this.groupBoxFuncionalidades.Controls.Add(this.Comprar);
             this.groupBoxFuncionalidades.Location = new System.Drawing.Point(17, 101);
             this.groupBoxFuncionalidades.Name = "groupBoxFuncionalidades";
-            this.groupBoxFuncionalidades.Size = new System.Drawing.Size(410, 230);
+            this.groupBoxFuncionalidades.Size = new System.Drawing.Size(410, 244);
             this.groupBoxFuncionalidades.TabIndex = 38;
             this.groupBoxFuncionalidades.TabStop = false;
             this.groupBoxFuncionalidades.Text = "Funcionalidades";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(226, 219);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(178, 17);
+            this.checkBox1.TabIndex = 40;
+            this.checkBox1.Text = "Modificar Contraseña de usuario";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // Estadisticas
+            // 
+            this.Estadisticas.AutoSize = true;
+            this.Estadisticas.Location = new System.Drawing.Point(3, 196);
+            this.Estadisticas.Name = "Estadisticas";
+            this.Estadisticas.Size = new System.Drawing.Size(82, 17);
+            this.Estadisticas.TabIndex = 39;
+            this.Estadisticas.Text = "Estadisticas";
+            this.Estadisticas.UseVisualStyleBackColor = true;
+            // 
             // Habilitar_Rol
             // 
             this.Habilitar_Rol.AutoSize = true;
-            this.Habilitar_Rol.Location = new System.Drawing.Point(2, 196);
+            this.Habilitar_Rol.Location = new System.Drawing.Point(3, 219);
             this.Habilitar_Rol.Name = "Habilitar_Rol";
             this.Habilitar_Rol.Size = new System.Drawing.Size(94, 17);
             this.Habilitar_Rol.TabIndex = 38;
@@ -342,5 +366,7 @@
         public System.Windows.Forms.TextBox textBoxNombreRol;
         public System.Windows.Forms.GroupBox groupBoxFuncionalidades;
         private System.Windows.Forms.CheckBox Habilitar_Rol;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox Estadisticas;
     }
 }

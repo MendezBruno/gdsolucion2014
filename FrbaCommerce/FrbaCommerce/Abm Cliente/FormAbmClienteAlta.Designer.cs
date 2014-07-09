@@ -59,6 +59,7 @@
             this.checkBoxHabilitacion = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.monthCalendarCliente = new System.Windows.Forms.MonthCalendar();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxNombre
@@ -160,9 +161,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Telefono";
+            this.label3.Text = "*Telefono";
             // 
             // label2
             // 
@@ -194,9 +195,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(13, 69);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(28, 13);
+            this.label13.Size = new System.Drawing.Size(32, 13);
             this.label13.TabIndex = 46;
-            this.label13.Text = "Tipo";
+            this.label13.Text = "*Tipo";
             // 
             // textBoxDNI
             // 
@@ -210,9 +211,9 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(13, 96);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(62, 13);
+            this.label14.Size = new System.Drawing.Size(66, 13);
             this.label14.TabIndex = 48;
-            this.label14.Text = "Documento";
+            this.label14.Text = "*Documento";
             // 
             // label1
             // 
@@ -322,11 +323,21 @@
             this.monthCalendarCliente.Visible = false;
             this.monthCalendarCliente.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarCliente_DateChanged);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(20, 413);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(114, 13);
+            this.label9.TabIndex = 62;
+            this.label9.Text = "(*) Campos obligatorios";
+            // 
             // FormAbmClienteAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 480);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.monthCalendarCliente);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxHabilitacion);
@@ -398,6 +409,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MonthCalendar monthCalendarCliente;
         public System.Windows.Forms.CheckBox checkBoxHabilitacion;
+        private System.Windows.Forms.Label label9;
 
     }
 }
