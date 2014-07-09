@@ -40,7 +40,7 @@
             this.Modificar_Visibilidad = new System.Windows.Forms.Button();
             this.Modificar_Rol = new System.Windows.Forms.Button();
             this.Eliminar_Visibilidad = new System.Windows.Forms.Button();
-            this.buttonCambiarContraseña = new System.Windows.Forms.Button();
+            this.ModificarContrasenia = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Crear_Cliente
@@ -163,22 +163,22 @@
             this.Eliminar_Visibilidad.UseVisualStyleBackColor = true;
             this.Eliminar_Visibilidad.Click += new System.EventHandler(this.buttonBajaVisibilidad_Click);
             // 
-            // buttonCambiarContraseña
+            // ModificarContrasenia
             // 
-            this.buttonCambiarContraseña.Location = new System.Drawing.Point(18, 254);
-            this.buttonCambiarContraseña.Name = "buttonCambiarContraseña";
-            this.buttonCambiarContraseña.Size = new System.Drawing.Size(119, 32);
-            this.buttonCambiarContraseña.TabIndex = 13;
-            this.buttonCambiarContraseña.Text = "Modificar Contraseña";
-            this.buttonCambiarContraseña.UseVisualStyleBackColor = true;
-            this.buttonCambiarContraseña.Click += new System.EventHandler(this.buttonCambiarContraseña_Click);
+            this.ModificarContrasenia.Location = new System.Drawing.Point(18, 254);
+            this.ModificarContrasenia.Name = "ModificarContrasenia";
+            this.ModificarContrasenia.Size = new System.Drawing.Size(119, 32);
+            this.ModificarContrasenia.TabIndex = 13;
+            this.ModificarContrasenia.Text = "Modificar Contraseña";
+            this.ModificarContrasenia.UseVisualStyleBackColor = true;
+            this.ModificarContrasenia.Click += new System.EventHandler(this.buttonCambiarContraseña_Click);
             // 
             // FormModificaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 325);
-            this.Controls.Add(this.buttonCambiarContraseña);
+            this.Controls.Add(this.ModificarContrasenia);
             this.Controls.Add(this.Eliminar_Visibilidad);
             this.Controls.Add(this.Modificar_Rol);
             this.Controls.Add(this.Modificar_Visibilidad);
@@ -211,6 +211,6 @@
         private System.Windows.Forms.Button Modificar_Visibilidad;
         private System.Windows.Forms.Button Modificar_Rol;
         private System.Windows.Forms.Button Eliminar_Visibilidad;
-        private System.Windows.Forms.Button buttonCambiarContraseña;
+        private System.Windows.Forms.Button ModificarContrasenia;
     }
 }

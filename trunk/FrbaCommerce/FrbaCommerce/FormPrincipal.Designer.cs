@@ -31,7 +31,7 @@
             this.BotonComprar = new System.Windows.Forms.Button();
             this.buttonModificaciones = new System.Windows.Forms.Button();
             this.buttonPublicaciones = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonEstadisticas = new System.Windows.Forms.Button();
             this.buttonCalificar = new System.Windows.Forms.Button();
             this.buttonHistorial = new System.Windows.Forms.Button();
             this.buttonFacturar = new System.Windows.Forms.Button();
@@ -68,15 +68,15 @@
             this.buttonPublicaciones.UseVisualStyleBackColor = true;
             this.buttonPublicaciones.Click += new System.EventHandler(this.buttonPublicaciones_Click);
             // 
-            // button2
+            // buttonEstadisticas
             // 
-            this.button2.Location = new System.Drawing.Point(165, 23);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 44);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Estadisticas";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonEstadisticas.Location = new System.Drawing.Point(165, 23);
+            this.buttonEstadisticas.Name = "buttonEstadisticas";
+            this.buttonEstadisticas.Size = new System.Drawing.Size(137, 44);
+            this.buttonEstadisticas.TabIndex = 5;
+            this.buttonEstadisticas.Text = "Estadisticas";
+            this.buttonEstadisticas.UseVisualStyleBackColor = true;
+            this.buttonEstadisticas.Click += new System.EventHandler(this.button2_Click);
             // 
             // buttonCalificar
             // 
@@ -127,7 +127,7 @@
             this.Controls.Add(this.buttonFacturar);
             this.Controls.Add(this.buttonHistorial);
             this.Controls.Add(this.buttonCalificar);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonEstadisticas);
             this.Controls.Add(this.buttonPublicaciones);
             this.Controls.Add(this.buttonModificaciones);
             this.Controls.Add(this.BotonComprar);
@@ -142,7 +142,7 @@
         private System.Windows.Forms.Button BotonComprar;
         private System.Windows.Forms.Button buttonModificaciones;
         private System.Windows.Forms.Button buttonPublicaciones;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonEstadisticas;
         private System.Windows.Forms.Button buttonCalificar;
         private System.Windows.Forms.Button buttonHistorial;
         private System.Windows.Forms.Button buttonFacturar;

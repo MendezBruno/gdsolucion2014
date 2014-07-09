@@ -68,7 +68,6 @@ namespace FrbaCommerce.Editar_Publicacion
 
             }
 
-
             if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Borrador") || this.dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("Borrada"))
             {
                 
@@ -76,21 +75,24 @@ namespace FrbaCommerce.Editar_Publicacion
 
                 if (cliente != null)
                 {
-                    formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente,false);
+                    formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente.getUsuario(), false, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                    formGenerarPublicacion.Text = "Modificar Publicacion";
                     cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                     formGenerarPublicacion.ShowDialog();
                 }
                 else
                     if (empresa != null)
                     {
-                        formGenerarPublicacion = new FormGenerarPublicacion(cManager,empresa,false);
+                        formGenerarPublicacion = new FormGenerarPublicacion(cManager, empresa.getUsuario(), false, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        formGenerarPublicacion.Text = "Modificar Publicacion";
                         cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                         formGenerarPublicacion.ShowDialog();
                     }
                     else
                         if (empresa == null && cliente == null)
                         {
-                            formGenerarPublicacion = new FormGenerarPublicacion(cManager, administrador,false);
+                            formGenerarPublicacion = new FormGenerarPublicacion(cManager, administrador.getUsuario(), false, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
+                            formGenerarPublicacion.Text = "Modificar Publicacion";
                             cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
                             formGenerarPublicacion.ShowDialog();
                         }

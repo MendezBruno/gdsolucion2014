@@ -87,6 +87,12 @@ namespace FrbaCommerce
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; }
             if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
             
+            if(rol.getListaFuncionalidades().Contains("Estadisticas"))
+            {this.buttonEstadisticas.Visible=true;}
+            else
+            { this.buttonEstadisticas.Visible = false; }
+
+            
             if (existen_Modificaciones(rol)==true)
                 this.buttonModificaciones.Visible = true;
             else
@@ -160,6 +166,8 @@ namespace FrbaCommerce
             if(rol.getListaFuncionalidades().Contains("Modificar_Rol")){ return true; }
             else
             if (rol.getListaFuncionalidades().Contains("Eliminar_Rol")) { return true; }
+            else
+            if(rol.getListaFuncionalidades().Contains("ModificarContrasenia")){return true;}
             else return false;
             
 
@@ -361,9 +369,7 @@ namespace FrbaCommerce
                        formAgregarContraseña.ShowDialog();
 
                     }
-            
-            
-            
+
             this.Show();
         }
 
