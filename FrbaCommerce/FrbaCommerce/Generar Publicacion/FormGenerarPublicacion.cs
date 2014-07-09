@@ -21,8 +21,10 @@ namespace FrbaCommerce.Generar_Publicacion
         string usuario;
         bool salir;
         bool modificacion;
+        bool esUpdate = false;
         public string stock_Inicial{get;set;}
         public string public_Codigo;
+
 
         public FormGenerarPublicacion(SistemManager cManager, string usuario,bool modificacion,string public_Codigo)
         {
@@ -36,6 +38,7 @@ namespace FrbaCommerce.Generar_Publicacion
             this.public_Codigo = public_Codigo;
             cargarForm();
             this.stock_Inicial = this.numericUpDownStockInicial.Value.ToString();
+            this.esUpdate = true;
         }
         
  
@@ -130,8 +133,8 @@ namespace FrbaCommerce.Generar_Publicacion
             else
             {
 
-
-                cManager.sqlPublicacion.ModificarPublic(cManager, this.numericUpDownStockInicial.Value.ToString(), textBoxDescripcion.Text,this.public_Codigo);
+                if (esUpdate) cManager.sqlPublicacion.modificarPublicacionCompleta(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems, this.Text, this.public_Codigo);
+                else cManager.sqlPublicacion.ModificarPublic(cManager, this.numericUpDownStockInicial.Value.ToString(), textBoxDescripcion.Text,this.public_Codigo);
 
               
             }
