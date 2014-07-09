@@ -100,8 +100,8 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void buscarUsuarios(SistemManager cManager, DataGridView dataGridViewUsuarios, string usuario)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Usuario_Nombre FROM NO_MORE_SQL.Usuario WHERE Cliente_Nombre LIKE '%"+ usuario +"%'", cManager.conexion.conn);
-            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewUsuarios, true, 5);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Usuario_Nombre FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre LIKE '%"+ usuario +"%'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewUsuarios, true, 1);
            
         }
     }

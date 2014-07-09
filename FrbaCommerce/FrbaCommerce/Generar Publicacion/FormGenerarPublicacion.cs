@@ -89,7 +89,7 @@ namespace FrbaCommerce.Generar_Publicacion
         
         private void buttonPublicar_Click(object sender, EventArgs e)
         {
-
+            
             if (this.modificacion == false)
             {
 
@@ -99,7 +99,7 @@ namespace FrbaCommerce.Generar_Publicacion
                     {
 
 
-                        cManager.sqlPublicacion.publicar(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+                        cManager.sqlPublicacion.publicar(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems,this.Text,this.public_Codigo);
  
                         this.publico = true;
 
@@ -108,7 +108,7 @@ namespace FrbaCommerce.Generar_Publicacion
                     {
 
 
-                        MessageBox.Show("No Es posible cargar la publicacion porque tiene mas de 3 publicaciones Gratis Activas, Pause o Fianlize alguna para poder continuar");
+                        MessageBox.Show("No Es posible cargar la publicacion porque tiene mas de 3 publicaciones Gratis Activas, Pausee o Fianlize alguna para poder continuar");
 
                     }
 
@@ -116,8 +116,10 @@ namespace FrbaCommerce.Generar_Publicacion
 
                 else
                 {
-
-                    cManager.sqlPublicacion.publicar(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+                    
+                    
+                    
+                    cManager.sqlPublicacion.publicar(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems,this.Text,this.public_Codigo);
 
                     this.publico = true;
 
@@ -133,6 +135,8 @@ namespace FrbaCommerce.Generar_Publicacion
 
               
             }
+         
+
             this.Hide();
         
         }

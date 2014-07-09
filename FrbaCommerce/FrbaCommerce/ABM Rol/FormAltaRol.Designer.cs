@@ -50,7 +50,7 @@
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.Eliminar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ModificarContrasenia = new System.Windows.Forms.CheckBox();
             this.Estadisticas = new System.Windows.Forms.CheckBox();
             this.Habilitar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades.SuspendLayout();
@@ -265,7 +265,7 @@
             // 
             // groupBoxFuncionalidades
             // 
-            this.groupBoxFuncionalidades.Controls.Add(this.checkBox1);
+            this.groupBoxFuncionalidades.Controls.Add(this.ModificarContrasenia);
             this.groupBoxFuncionalidades.Controls.Add(this.Estadisticas);
             this.groupBoxFuncionalidades.Controls.Add(this.Habilitar_Rol);
             this.groupBoxFuncionalidades.Controls.Add(this.Eliminar_Rol);
@@ -292,24 +292,25 @@
             this.groupBoxFuncionalidades.TabStop = false;
             this.groupBoxFuncionalidades.Text = "Funcionalidades";
             // 
-            // checkBox1
+            // ModificarContrasenia
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(226, 219);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(178, 17);
-            this.checkBox1.TabIndex = 40;
-            this.checkBox1.Text = "Modificar Contraseña de usuario";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ModificarContrasenia.AutoSize = true;
+            this.ModificarContrasenia.Location = new System.Drawing.Point(226, 219);
+            this.ModificarContrasenia.Name = "ModificarContrasenia";
+            this.ModificarContrasenia.Size = new System.Drawing.Size(178, 17);
+            this.ModificarContrasenia.TabIndex = 40;
+            this.ModificarContrasenia.Text = "Modificar Contraseña de usuario";
+            this.ModificarContrasenia.UseVisualStyleBackColor = true;
             // 
             // Estadisticas
             // 
             this.Estadisticas.AutoSize = true;
             this.Estadisticas.Location = new System.Drawing.Point(3, 196);
             this.Estadisticas.Name = "Estadisticas";
-            this.Estadisticas.Size = new System.Drawing.Size(82, 17);
+            this.Estadisticas.Size = new System.Drawing.Size(101, 17);
             this.Estadisticas.TabIndex = 39;
-            this.Estadisticas.Text = "Estadisticas";
+            this.Estadisticas.TabStop = false;
+            this.Estadisticas.Text = "Ver Estadisticas";
             this.Estadisticas.UseVisualStyleBackColor = true;
             // 
             // Habilitar_Rol
@@ -366,7 +367,7 @@
         public System.Windows.Forms.TextBox textBoxNombreRol;
         public System.Windows.Forms.GroupBox groupBoxFuncionalidades;
         private System.Windows.Forms.CheckBox Habilitar_Rol;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox ModificarContrasenia;
         private System.Windows.Forms.CheckBox Estadisticas;
     }
 }

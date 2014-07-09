@@ -89,6 +89,7 @@ namespace FrbaCommerce.Editar_Publicacion
             if(cliente!=null)
             {
                 FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(cManager, cliente.getUsuario(),true,this.publicCodigo);
+                formGenerarPublicacion.Text = "Modificar Stock y Descripcion";
                 cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, publicCodigo);
                 formGenerarPublicacion.comboBoxVisibilidad.Visible=false;
                 formGenerarPublicacion.comboBoxTipoPublicacion.Visible = false;
@@ -112,6 +113,7 @@ namespace FrbaCommerce.Editar_Publicacion
             if(empresa!=null)
             {
                 FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(cManager, empresa.getUsuario(), true, this.publicCodigo);
+                formGenerarPublicacion.Text = "Modificar Stock y Descripcion";
             cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, publicCodigo);
             formGenerarPublicacion.textBoxPrecio.ReadOnly = true;
             formGenerarPublicacion.comboBoxVisibilidad.Visible = false;
@@ -132,6 +134,7 @@ namespace FrbaCommerce.Editar_Publicacion
                 if (cliente == null && empresa == null)
                 {
                     FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(cManager, administrador.getUsuario(), true, this.publicCodigo);
+                    formGenerarPublicacion.Text = "Modificar Stock y Descripcion";
                     cManager.sqlPublicacion.cargarDatosGenerar(cManager, formGenerarPublicacion, publicCodigo);
                     formGenerarPublicacion.textBoxPrecio.ReadOnly = true;
                     formGenerarPublicacion.comboBoxVisibilidad.Visible = false;

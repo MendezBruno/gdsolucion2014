@@ -11,14 +11,16 @@ namespace FrbaCommerce.Modelo.Datos
 {
     public class SqlPublicacion
     {
-        internal void publicar(SistemManager cManager, string tipoPublicacion, string descripcion, string stockInicial, string precio, int visibilidad, string aceptaPregunta, string userName,CheckedListBox.CheckedItemCollection checkeados)
+        internal void publicar(SistemManager cManager, string tipoPublicacion, string descripcion, string stockInicial, string precio, int visibilidad, string aceptaPregunta, string userName,CheckedListBox.CheckedItemCollection checkeados,string accion,string public_Cod)
         {
             SqlCommand Cmd;
             SqlDataReader dr;
             string pub_codigo;
-            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
-            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-            Cmd.ExecuteNonQuery();
+            if(accion.Equals("Generar Publicacion"))
+            {
+                String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
+                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                Cmd.ExecuteNonQuery();
 
             Comando = "SELECT TOP 1 Publicacion_Codigo FROM NO_MORE_SQL.Publicacion ORDER BY Publicacion_Codigo DESC";
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
@@ -39,6 +41,44 @@ namespace FrbaCommerce.Modelo.Datos
             
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
+                return;
+            }
+            if(accion.Equals("Modificar Publicacion"))
+            {
+
+                String Comando = "UPDATE NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
+                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                Cmd.ExecuteNonQuery();
+
+                Comando = "SELECT TOP 1 Publicacion_Codigo FROM NO_MORE_SQL.Publicacion ORDER BY Publicacion_Codigo DESC";
+                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                dr = Cmd.ExecuteReader();
+                dr.Read();
+                pub_codigo = dr["Publicacion_Codigo"].ToString();
+                dr.Close();
+
+
+                foreach (string check in checkeados)
+                {
+                    Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + pub_codigo + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
+                    Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                    Cmd.ExecuteNonQuery();
+                }
+
+                Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod=" + visibilidad + " GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + pub_codigo;
+
+                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                Cmd.ExecuteNonQuery();
+                return;
+
+
+
+            }
+
+
+
+
+
 
         }
 
@@ -276,7 +316,7 @@ namespace FrbaCommerce.Modelo.Datos
         {
             string comando;
             SqlCommand cmd;
-            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='"+descripcion+"', Publicacion_Stock=" + valor+ "WHERE Publicacion_Codigo='" + public_Codigo+"'";
+            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='"+descripcion+"', Publicacion_Stock=" + valor+ "WHERE Publicacion_Codigo=" + public_Codigo;
                         cmd = new SqlCommand(comando, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 
@@ -336,6 +376,8 @@ namespace FrbaCommerce.Modelo.Datos
            }
 
            dr.Close();
+
+
 
 
 
