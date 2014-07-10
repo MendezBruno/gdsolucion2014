@@ -143,6 +143,12 @@ namespace FrbaCommerce.Modelo.Datos
             cmd.ExecuteNonQuery();
 
         }
+
+        internal void mostrarVendedor(SistemManager cManager, FormMostrarVendedor FormformOfertar, string usuario)
+        {
+
+
+        }
         
         internal void DeshabilitarPorCalificacion(SistemManager cManager,string usuario)
         {
