@@ -173,9 +173,6 @@ namespace FrbaCommerce.Comprar_Ofertar
             
             mostrarPublic.ShowDialog();
 
-
-
-
         }
 
 
