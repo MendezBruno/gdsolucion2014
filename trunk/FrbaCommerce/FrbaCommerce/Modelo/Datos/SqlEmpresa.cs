@@ -203,7 +203,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void BuscarEmpresaHabilitada(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM NO_MORE_SQL.Empresa INNER JOIN NO_MORE_SQL.Usuario ON NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre=NO_MORE_SQL.Usuario.Usuario_Nombre WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + cuit + "%'AND Empresa_Cuit LIKE'%" + cuit + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM NO_MORE_SQL.Empresa INNER JOIN NO_MORE_SQL.Usuario ON NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre=NO_MORE_SQL.Usuario.Usuario_Nombre WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + mail + "%'AND Empresa_Cuit LIKE'%" + cuit + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
 
 
@@ -264,48 +264,70 @@ namespace FrbaCommerce.Modelo.Datos
         internal void modificarEmpresa(SistemManager cManager, Sistema.Empresa empresa, string cuit, string razon, string mail, string telefono, string direccion, string nroDireccion, string depto, string localidad, string codPostal, string ciudad, string fechaCreacion, string piso, string usuario, bool habilitacion)
         {
 
-            SqlCommand cmd;
-            string comando;
-
-            string empresaId;
-
-            comando = "SELECT Empresa_Usuario_Nombre FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + cuit + "'";
-            cmd = new SqlCommand(comando, cManager.conexion.conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            empresaId = dr["Empresa_Usuario_Nombre"].ToString();
-            dr.Close();
-
-
-            comando = "UPDATE NO_MORE_SQL.Empresa SET Empresa_CUIT='" + cuit + "',Empresa_Razon_Social='" + razon + "',Empresa_Mail='" + mail + "',Empresa_Telefono=@telefono,Empresa_Dom_Calle='" + direccion + "',Empresa_Nro_Calle=@nrocalle,Empresa_Depto='" + depto + "',Empresa_Localidad='" + localidad + "',Empresa_Codigo_Postal='" + codPostal + "',Empresa_Ciudad='" + ciudad + "',Empresa_Fecha_Creacion='" + fechaCreacion + "',Empresa_Piso=@piso,Empresa_Nombre_Contacto='" + usuario + "' WHERE Empresa_Usuario_Nombre='" + empresaId+"'";
-            cmd = new SqlCommand(comando, cManager.conexion.conn);
-            if (telefono == "")
-                cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
-            else
-                cmd.Parameters.AddWithValue("@telefono", telefono);
-
-            if (piso == "")
-                cmd.Parameters.AddWithValue("@piso", DBNull.Value);
-            else
-                cmd.Parameters.AddWithValue("@piso", piso);
-
-            if (nroDireccion == "")
-                cmd.Parameters.AddWithValue("@nrocalle", DBNull.Value);
-            else
-                cmd.Parameters.AddWithValue("@nrocalle", nroDireccion);
-
-            cmd.ExecuteNonQuery();
-
-            if (habilitacion == true)
+            try
             {
-                comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='SI' WHERE Usuario_Nombre='" + empresaId + "'";
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-                cmd.ExecuteNonQuery();
-            }
-            MessageBox.Show("Cliente con CUIT: " + cuit + " fue modificado");
-            
-            cmd.ExecuteNonQuery();
+                SqlCommand cmd;
+                string comando;
+                string empresaId;
 
+                comando = "SELECT Empresa_Usuario_Nombre FROM NO_MORE_SQL.Empresa WHERE Empresa_Usuario_Nombre='" + empresa.getUsuario() + "'";
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                 dr.Read();
+                    empresaId = dr["Empresa_Usuario_Nombre"].ToString();
+                    dr.Close();
+                    comando = "UPDATE NO_MORE_SQL.Empresa SET Empresa_CUIT='" + cuit + "',Empresa_Razon_Social='" + razon + "',Empresa_Mail='" + mail + "',Empresa_Telefono=@telefono,Empresa_Dom_Calle='" + direccion + "',Empresa_Nro_Calle=@nrocalle,Empresa_Depto='" + depto + "',Empresa_Localidad='" + localidad + "',Empresa_Codigo_Postal='" + codPostal + "',Empresa_Ciudad='" + ciudad + "',Empresa_Fecha_Creacion='" + fechaCreacion + "',Empresa_Piso=@piso,Empresa_Nombre_Contacto='" + usuario + "' WHERE Empresa_Usuario_Nombre='" + empresaId + "'";
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+                    if (telefono == "")
+                        cmd.Parameters.AddWithValue("@telefono", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@telefono", telefono);
+
+                    if (piso == "")
+                        cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@piso", piso);
+
+                    if (nroDireccion == "")
+                        cmd.Parameters.AddWithValue("@nrocalle", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@nrocalle", nroDireccion);
+
+                    cmd.ExecuteNonQuery();
+
+                    if (habilitacion == true)
+                    {
+                        comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='SI' WHERE Usuario_Nombre='" + empresaId + "'";
+                        cmd = new SqlCommand(comando, cManager.conexion.conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Cliente con CUIT: " + cuit + " fue modificado");
+
+                    cmd.ExecuteNonQuery();
+                
+            }
+            catch (SqlException e)
+            {
+
+
+                if (e.Number.ToString().Equals("8114"))
+                {
+                    MessageBox.Show("Nro de calle, Nro de piso o Telefono Mal ingresados");
+
+                }
+                if (e.Number.ToString().Equals("207"))
+                {
+                    MessageBox.Show("Razon Social o Cuit mal ingresados");
+
+                }
+                if (e.Number.ToString().Equals("2627"))
+                {
+                    MessageBox.Show("Razon Social o Cuit ya ingresados");
+
+                }
+
+
+            }
 
 
 
@@ -323,7 +345,7 @@ namespace FrbaCommerce.Modelo.Datos
                 //BAJA LOGICA ACA
 
                 SqlCommand comando;
-                string bajastring = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE (SELECT Empresa_ID FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + p + "')=Usuario_Empresa_ID";
+                string bajastring = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE Usuario_Nombre=(SELECT Empresa_Usuario_Nombre FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='"+p+"')";
                 comando = new SqlCommand(bajastring, cManager.conexion.conn);
                 comando.ExecuteNonQuery();
 

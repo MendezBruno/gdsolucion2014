@@ -229,40 +229,72 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string nombre, string apellido, string tipo_doc, string dni, string tel, string mail, string direc, string nroCalle, string piso, string depto, string localidad, string cod_pos,string fech_nac,bool habilitacion)
         {
-            SqlCommand cmd;
-            string comando;
-            string clienteId;
 
-            comando = "SELECT Cliente_Usuario_Nombre FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni() + "'";
-            cmd = new SqlCommand(comando, cManager.conexion.conn);
-            SqlDataReader dr=cmd.ExecuteReader();
-            dr.Read();
-            clienteId = dr["Cliente_Usuario_Nombre"].ToString();
-            dr.Close();
-
-            comando = "UPDATE NO_MORE_SQL.Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono=" + tel + ",Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_Usuario_Nombre='" + clienteId+"'";
-            cmd = new SqlCommand(comando, cManager.conexion.conn);
-            
-            if (nroCalle == "")
-                 cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
-            else
-                 cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
-            if (piso == "")
-                 cmd.Parameters.AddWithValue("@piso", DBNull.Value);
-            else
-                 cmd.Parameters.AddWithValue("@piso", piso);
-            
-            cmd.ExecuteNonQuery();
-
-            if (habilitacion==true)
+            try
             {
-                comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='SI' WHERE Usuario_Nombre='" + clienteId + "'";
+
+
+                SqlCommand cmd;
+                string comando;
+                string clienteId;
+
+                comando = "SELECT Cliente_Usuario_Nombre FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni() + "'";
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                clienteId = dr["Cliente_Usuario_Nombre"].ToString();
+                dr.Close();
+
+                comando = "UPDATE NO_MORE_SQL.Cliente SET Cliente_Nombre='" + nombre + "',Cliente_Apellido='" + apellido + "',Cliente_Mail='" + mail + "',Cliente_Telefono=" + tel + ",Cliente_Dom_Calle='" + direc + "',Cliente_Numero_Calle=@numeroCalle,Cliente_Piso=@piso,Cliente_Departamento='" + depto + "',Cliente_Localidad='" + localidad + "',Cliente_Codigo_Postal='" + cod_pos + "',Cliente_Fecha_De_Nacimiento='" + fech_nac + "',Cliente_Tipo_Doc='" + tipo_doc + "', Cliente_DNI=" + dni + "WHERE Cliente_Usuario_Nombre='" + clienteId + "'";
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                if (nroCalle == "")
+                    cmd.Parameters.AddWithValue("@numeroCalle", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@numeroCalle", nroCalle);
+                if (piso == "")
+                    cmd.Parameters.AddWithValue("@piso", DBNull.Value);
+                else
+                    cmd.Parameters.AddWithValue("@piso", piso);
+
                 cmd.ExecuteNonQuery();
+
+                if (habilitacion == true)
+                {
+                    comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='SI' WHERE Usuario_Nombre='" + clienteId + "'";
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+                    cmd.ExecuteNonQuery();
+                }
+                MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado");
+
             }
-            MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado"); 
-            
-            
+            catch (SqlException e)
+            {
+
+                if (e.Number.ToString().Equals("8114"))
+                {
+                    MessageBox.Show("Nro de calle, Nro de piso Mal ingresados");
+
+                }
+                if (e.Number.ToString().Equals("207"))
+                {
+                    MessageBox.Show("DNI o Telefono mal ingresados");
+
+                }
+                if (e.Number.ToString().Equals("2627"))
+                {
+                    MessageBox.Show("DNI o Telefono ya ingresados");
+
+                }
+                if (e.Number.ToString().Equals("102"))
+                {
+
+                    MessageBox.Show("DNI Mal Ingresado");
+
+                }
+
+
+            }
             
            
         }

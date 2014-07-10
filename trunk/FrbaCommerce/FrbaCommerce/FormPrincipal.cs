@@ -85,7 +85,11 @@ namespace FrbaCommerce
         private void cargaManuSegunRol(Rol rol,bool puede_Comprar)
         {
             if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; }
-            if (!rol.getListaFuncionalidades().Contains("Vender")) {this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible=false;}
+
+            if (!rol.getListaFuncionalidades().Contains("Vender")) { this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible = false; }
+            
+            
+            
             
             if(rol.getListaFuncionalidades().Contains("Estadisticas"))
             {this.buttonEstadisticas.Visible=true;}
@@ -103,12 +107,12 @@ namespace FrbaCommerce
             else
                 this.buttonModificaciones.Visible = false;
 
-            if (puede_Comprar == true)
+            if (puede_Comprar == true && rol.getListaFuncionalidades().Contains("Comprar"))
                 this.BotonComprar.Visible = true;
             else
                 this.BotonComprar.Visible = false;
 
-
+            
 
 
             //if (!user.tipoUsuario.Equals("Administrador")) { this.buttonModificaciones.Visible = false; this.buttonCrearUsuario.Visible = false; }
@@ -117,19 +121,6 @@ namespace FrbaCommerce
 
         }
            
-
-        /*
-         * ESTO DESAPARECE ME PARECE JUEZ
-         * 
-        private void buttonLoggin_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormLoggin formLogin = new FormLoggin(cManager);
-            formLogin.ShowDialog();
-            this.Show();
-            //aca va la logica si pasa o no pasa
-        }
-        */
         private void buttonCrearUsuario_Click(object sender, EventArgs e)
         {
             this.Hide();

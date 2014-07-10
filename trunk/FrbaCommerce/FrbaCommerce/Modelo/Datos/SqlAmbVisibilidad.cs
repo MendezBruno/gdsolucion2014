@@ -13,6 +13,8 @@ namespace FrbaCommerce.Modelo.Datos
         {
 
             SqlCommand cmd;
+            porcentaje = porcentaje.Replace(',', '.');
+            precio = precio.Replace(',', '.');
             string sql_insert = "INSERT INTO NO_MORE_SQL.Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo + "','" + descripcion + "'," + precio + "," + porcentaje + ",'SI')";
             cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
