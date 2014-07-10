@@ -12,28 +12,84 @@ namespace FrbaCommerce.Modelo.Datos
         internal void Ingresar_Datos(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje)
         {
 
-            SqlCommand cmd;
-            porcentaje = porcentaje.Replace(',', '.');
-            precio = precio.Replace(',', '.');
-            string sql_insert = "INSERT INTO NO_MORE_SQL.Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo + "','" + descripcion + "'," + precio + "," + porcentaje + ",'SI')";
-            cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                SqlCommand cmd;
+                porcentaje = porcentaje.Replace(',', '.');
+                precio = precio.Replace(',', '.');
+                string sql_insert = "INSERT INTO NO_MORE_SQL.Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo + "','" + descripcion + "'," + precio + "," + porcentaje + ",'SI')";
+                cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch(SqlException e)
+            {
+
+                if (e.Number.ToString().Equals("8114"))
+                {
+                    MessageBox.Show("Precio Por Publicar o Porcentaje de la venta mal ingresados");
+
+                }
+                if (e.Number.ToString().Equals("207"))
+                {
+                    MessageBox.Show("Codigo Mal Ingresado");
+
+                }
+                if (e.Number.ToString().Equals("2627"))
+                {
+                    MessageBox.Show("Codigo Ya Ingresado");
+
+                }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
+
+            }
         }
 
         internal void Ingresar_Datos_Modificacion(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje,bool habilitado)
         {
 
-            SqlCommand cmd;
-            porcentaje=porcentaje.Replace(',','.');
-            precio=precio.Replace(',', '.');
-            string sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Descripcion='" + descripcion + "',Visibilidad_Precio=" + precio + ",Visibilidad_Porcentaje=" + porcentaje + " WHERE Visibilidad_Codigo=" + codigo;
-            cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
-            cmd.ExecuteNonQuery();
-            if(habilitado==true)
+            try
             {
-                sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='SI' WHERE Visibilidad_Codigo=" + codigo;
+
+                SqlCommand cmd;
+                porcentaje = porcentaje.Replace(',', '.');
+                precio = precio.Replace(',', '.');
+                string sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Descripcion='" + descripcion + "',Visibilidad_Precio=" + precio + ",Visibilidad_Porcentaje=" + porcentaje + " WHERE Visibilidad_Codigo=" + codigo;
                 cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
+                if (habilitado == true)
+                {
+                    sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Esta_Habilitada='SI' WHERE Visibilidad_Codigo=" + codigo;
+                    cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+
+                if (e.Number.ToString().Equals("8114"))
+                {
+                    MessageBox.Show("Precio Por Publicar o Porcentaje de la venta mal ingresados");
+
+                }
+                if (e.Number.ToString().Equals("207"))
+                {
+                    MessageBox.Show("Codigo Mal Ingresado");
+
+                }
+                if (e.Number.ToString().Equals("2627"))
+                {
+                    MessageBox.Show("Codigo Ya Ingresado");
+
+                }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
             }
         }
              

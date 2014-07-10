@@ -46,11 +46,9 @@ namespace FrbaCommerce.Modelo.Datos
             }
 
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.#AuxiliarCompra ORDER BY Visibilidad_Codigo", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.#AuxiliarCompra ORDER BY Visibilidad_Codigo", cManager.conexion.conn);    
             DataTable tabla = new DataTable();
             adapComando.Fill(tabla);
-
-
 
             comando = "IF OBJECT_ID(N'tempdb..#AuxiliarCompra', N'U') IS NOT NULL DROP TABLE #AuxiliarCompra;";
 
@@ -205,12 +203,6 @@ namespace FrbaCommerce.Modelo.Datos
                     formOfertar.label10.Text="";
                 }
 
-           
-
-
-
-
-            
             
             }
 

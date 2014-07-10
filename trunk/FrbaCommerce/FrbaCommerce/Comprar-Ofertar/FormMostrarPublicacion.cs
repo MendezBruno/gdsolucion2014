@@ -83,8 +83,16 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void numericUpDownCantComprar_ValueChanged(object sender, EventArgs e)
         {
+            
+           
             if (numericUpDownCantComprar.Value >= Convert.ToInt16(this.stock.Text))
                 numericUpDownCantComprar.Value = Convert.ToInt16(this.stock.Text);
+            if(numericUpDownCantComprar.Value <=1)
+                numericUpDownCantComprar.Value = 1;
+
+         
+
+
         }
 
         private void buttonPreguntar_Click(object sender, EventArgs e)

@@ -35,13 +35,22 @@ namespace FrbaCommerce.Listado_Estadistico
 
         private void listado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.buttonListado.Enabled = true;
 
-            if(listado.Text.Equals("Vendedores Mayor Cantidad Productos No Vendidos"))
+        }
+
+
+
+
+
+        private void buttonListado_Click(object sender, EventArgs e)
+        {
+            if (listado.Text.Equals("Vendedores Mayor Cantidad Productos No Vendidos"))
             {
                 cManager.sqlListado.CargarDatosMayorCantidadNoVendidos(cManager, dataGridViewListado, anio.Text.ToString(), trimestre.Text.ToString());
                 dataGridViewListado.Update();
-            
-            
+
+
             }
 
             if (listado.Text.Equals("Vendedores Mayor Facturacion"))
@@ -50,16 +59,16 @@ namespace FrbaCommerce.Listado_Estadistico
 
                 cManager.sqlListado.CargarDatosMayorFacturados(cManager, dataGridViewListado, anio.Text.ToString(), trimestre.Text.ToString());
                 dataGridViewListado.Update();
-                
+
             }
 
-            if(listado.Text.Equals("Vendedores Con Mayores Calificaciones"))
+            if (listado.Text.Equals("Vendedores Con Mayores Calificaciones"))
             {
                 cManager.sqlListado.CargarDatosMayorCalificacion(cManager, dataGridViewListado, trimestre.Text.ToString(), anio.Text.ToString());
                 dataGridViewListado.Update();
             }
 
-            if(listado.Text.Equals("Clientes Con Mayor Cantidad De Publicaciones Sin Clasificar"))
+            if (listado.Text.Equals("Clientes Con Mayor Cantidad De Publicaciones Sin Clasificar"))
             {
                 cManager.sqlListado.CargarDatosSinClasificar(cManager, dataGridViewListado, trimestre.Text.ToString(), anio.Text.ToString());
                 dataGridViewListado.Update();
@@ -70,7 +79,9 @@ namespace FrbaCommerce.Listado_Estadistico
             this.trimestre.Enabled = false;
             this.listado.Enabled = false;
 
-        
+
+
+
         }
 
 

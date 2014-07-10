@@ -59,6 +59,7 @@
             this.checkBoxHabilitacion = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.monthCalendarEmpresa = new System.Windows.Forms.MonthCalendar();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // botonAlta
@@ -109,9 +110,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(15, 49);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(32, 13);
+            this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 72;
-            this.label13.Text = "CUIT";
+            this.label13.Text = "*CUIT";
             // 
             // razon
             // 
@@ -125,9 +126,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(15, 23);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 13);
+            this.label12.Size = new System.Drawing.Size(77, 13);
             this.label12.TabIndex = 70;
-            this.label12.Text = "Razon Social ";
+            this.label12.Text = "*Razon Social ";
             // 
             // usuario
             // 
@@ -317,11 +318,21 @@
             this.monthCalendarEmpresa.Visible = false;
             this.monthCalendarEmpresa.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendarEmpresa_DateChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 353);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 13);
+            this.label5.TabIndex = 87;
+            this.label5.Text = "(*) Campos Obligatorios";
+            // 
             // FormAbmEmpresaAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(683, 419);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.monthCalendarEmpresa);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxHabilitacion);
@@ -393,5 +404,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MonthCalendar monthCalendarEmpresa;
         public System.Windows.Forms.CheckBox checkBoxHabilitacion;
+        private System.Windows.Forms.Label label5;
     }
 }

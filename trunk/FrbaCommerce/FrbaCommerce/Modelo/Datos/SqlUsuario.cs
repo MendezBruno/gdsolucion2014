@@ -19,12 +19,12 @@ namespace FrbaCommerce.Modelo.Datos
             if (esCliente == true)
 
 
-                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
 
             
             else
 
-                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
 
 
            
@@ -61,12 +61,12 @@ namespace FrbaCommerce.Modelo.Datos
                 if (esCliente == true)
 
 
-                    ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'))";
+                    ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
 
 
                 else
 
-                    ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'))";
+                    ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + user + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'),'SI')";
 
 
                 cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
@@ -92,7 +92,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void darAltaEmpresa(SistemManager cManager, String cuit)
         {
             SqlCommand cmd;
-            String ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID) VALUES('" + cuit + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa') )";
+            String ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + cuit + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'),'SI' )";
             cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 
