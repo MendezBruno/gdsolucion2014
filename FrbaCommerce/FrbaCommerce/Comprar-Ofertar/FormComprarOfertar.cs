@@ -151,6 +151,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
 
+            mostrarPublic.numericUpDownCantComprar.Value = 1;
 
             if (mostrarPublic.tipo.Text.Equals("Subasta"))
             {

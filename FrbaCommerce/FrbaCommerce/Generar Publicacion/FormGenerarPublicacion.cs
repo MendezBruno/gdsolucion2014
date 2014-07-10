@@ -228,21 +228,28 @@ namespace FrbaCommerce.Generar_Publicacion
         private void linkLabelSalir_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            if (publico == false)
+            if (this.modificacion == false)
             {
 
-                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                if (this.salir == false)
+                {
 
-                DialogResult confirmarGuardado = MessageBox.Show("Desea Guardar la publicacion no finalizada?", "Guardar Publicacion", buttons);
+                    if (publico == false)
+                    {
 
-                if (DialogResult.Yes == confirmarGuardado)
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
-                    cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+                        DialogResult confirmarGuardado = MessageBox.Show("Desea Guardar la publicacion no finalizada?", "Guardar Publicacion", buttons);
+
+                        if (DialogResult.Yes == confirmarGuardado)
+
+                            cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+                    }
+                    this.salir = true;
+
+                }
             }
-            this.salir = true;
-
             this.Hide();
-
         }
 
         private void comboBoxVisibilidad_SelectedIndexChanged(object sender, EventArgs e)

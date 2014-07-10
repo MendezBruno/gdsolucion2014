@@ -69,6 +69,12 @@ namespace FrbaCommerce.Modelo.Datos
                     MessageBox.Show("DNI o Telefono ya ingresados");
 
                 }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
+                return;
 
             }
             MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + numero + ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
@@ -141,8 +147,15 @@ namespace FrbaCommerce.Modelo.Datos
                     MessageBox.Show("DNI o Telefono ya ingresados");
 
                 }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
+                return;
 
             }
+            MessageBox.Show("Se dio de alta al Usuario: "+user+" con la contraseña:" +pass );
            
         }
 
@@ -265,7 +278,6 @@ namespace FrbaCommerce.Modelo.Datos
                     cmd = new SqlCommand(comando, cManager.conexion.conn);
                     cmd.ExecuteNonQuery();
                 }
-                MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado");
 
             }
             catch (SqlException e)
@@ -292,11 +304,16 @@ namespace FrbaCommerce.Modelo.Datos
                     MessageBox.Show("DNI Mal Ingresado");
 
                 }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
+                return;
 
 
             }
-            
-           
+            MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado");  
         }
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)
@@ -329,7 +346,7 @@ namespace FrbaCommerce.Modelo.Datos
                 cliente.localidad = (dr["Cliente_Localidad"].ToString());
                 if (!dr["Cliente_Codigo_Postal"].ToString().Equals("")) cliente.codigoPostal = (Convert.ToInt32((dr["Cliente_Codigo_Postal"])));
               //  cliente.ciudad = (dr["Cliente_Ciudad"].ToString());
-                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_DNI"))) cliente.numeroDoc = (Convert.ToInt32((dr["Cliente_DNI"])));
+                if (!dr.IsDBNull(dr.GetOrdinal("Cliente_DNI"))) cliente.numeroDoc = (Convert.ToInt64((dr["Cliente_DNI"])));
                 cliente.fechaDeNacimiento = dr.GetDateTime(dr.GetOrdinal("Cliente_Fecha_De_Nacimiento"));
                 //cliente.nombreDeContacto = (dr["Cliente_CUIT"].ToString());      
                 if (dr["Esta_Habilitado"].ToString().Equals("SI")) cliente.habilitado = true; else cliente.habilitado = false;

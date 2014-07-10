@@ -35,6 +35,7 @@
             this.Año = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonListado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewListado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,11 +106,23 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "listado";
             // 
+            // buttonListado
+            // 
+            this.buttonListado.Enabled = false;
+            this.buttonListado.Location = new System.Drawing.Point(187, 119);
+            this.buttonListado.Name = "buttonListado";
+            this.buttonListado.Size = new System.Drawing.Size(75, 23);
+            this.buttonListado.TabIndex = 7;
+            this.buttonListado.Text = "Ver Listado";
+            this.buttonListado.UseVisualStyleBackColor = true;
+            this.buttonListado.Click += new System.EventHandler(this.buttonListado_Click);
+            // 
             // FormListadoEstadistico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 479);
+            this.Controls.Add(this.buttonListado);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Año);
@@ -134,5 +147,6 @@
         public System.Windows.Forms.ComboBox listado;
         public System.Windows.Forms.TextBox trimestre;
         public System.Windows.Forms.TextBox anio;
+        private System.Windows.Forms.Button buttonListado;
     }
 }

@@ -111,6 +111,12 @@ namespace FrbaCommerce.Modelo.Datos
                     MessageBox.Show("Razon Social o Cuit ya ingresados");
 
                 }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
+                return;
 
 
             }
@@ -186,9 +192,16 @@ namespace FrbaCommerce.Modelo.Datos
                     MessageBox.Show("Razon Social o Cuit ya ingresados");
 
                 }
+                if (e.Number.ToString().Equals("8115"))
+                {
+
+                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                }
+                return;
 
 
             }
+            MessageBox.Show("Usuario con CUIT= " + cuit + " a sido modificado");
 
         }
 
@@ -203,7 +216,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void BuscarEmpresaHabilitada(SistemManager cManager, String razon_social, String mail, String cuit, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM NO_MORE_SQL.Empresa INNER JOIN NO_MORE_SQL.Usuario ON NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre=NO_MORE_SQL.Usuario.Usuario_Nombre WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + mail + "%'AND Empresa_Cuit LIKE'%" + cuit + "%' AND Esta_Habilitado='SI'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Empresa_Razon_Social,Empresa_CUIT,Empresa_Mail FROM NO_MORE_SQL.Empresa INNER JOIN NO_MORE_SQL.Usuario ON NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre=NO_MORE_SQL.Usuario.Usuario_Nombre WHERE Empresa_Razon_Social LIKE '%" + razon_social + "%' AND Empresa_Mail LIKE'%" + mail + "%'AND Empresa_Cuit LIKE'" + cuit + "' AND Esta_Habilitado='SI'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
 
 

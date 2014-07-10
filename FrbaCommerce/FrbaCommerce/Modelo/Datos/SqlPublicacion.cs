@@ -16,6 +16,7 @@ namespace FrbaCommerce.Modelo.Datos
             SqlCommand Cmd;
             SqlDataReader dr;
             string pub_codigo;
+            precio = precio.Replace(',', '.');
             if(accion.Equals("Generar Publicacion"))
             {
                 String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
@@ -41,6 +42,7 @@ namespace FrbaCommerce.Modelo.Datos
             
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
+            MessageBox.Show("Publicacion Creada con Exito");
                 return;
             }
             if(accion.Equals("Modificar Publicacion"))
@@ -65,6 +67,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                 Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                 Cmd.ExecuteNonQuery();
+                MessageBox.Show("Publicacion Modificada con Exito");
                 return;
 
 
