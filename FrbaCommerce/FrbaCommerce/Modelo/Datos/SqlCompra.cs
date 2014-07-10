@@ -144,9 +144,77 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
-        internal void mostrarVendedor(SistemManager cManager, FormMostrarVendedor FormformOfertar, string usuario)
+        internal void mostrarVendedor(SistemManager cManager, FormMostrarVendedor formOfertar, string public_Codigo)
         {
 
+            SqlCommand cmd;
+
+            SqlDataReader dr;
+
+            MessageBox.Show(public_Codigo);
+
+            string comando = "SELECT * FROM NO_MORE_SQL.Usuario LEFT JOIN NO_MORE_SQL.Cliente ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Cliente.Cliente_Usuario_Nombre LEFT JOIN NO_MORE_SQL.Empresa ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre INNER JOIN NO_MORE_SQL.Publicacion ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Publicacion.Publicacion_Usuario_Nombre WHERE Publicacion_Codigo='" + public_Codigo + "'";
+
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+            dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                
+                
+                if (!dr["Cliente_Usuario_Nombre"].ToString().Equals(""))
+                {
+
+                    formOfertar.label6.Text=dr["Cliente_Usuario_Nombre"].ToString();
+
+                    formOfertar.label7.Text =dr["Cliente_Nombre"].ToString();
+
+                    formOfertar.label8.Text =dr["Cliente_Apellido"].ToString();
+
+                    formOfertar.label10.Text =dr["Cliente_Telefono"].ToString();
+ 
+
+                }
+                else
+
+                if (!dr["Empresa_Usuario_Nombre"].ToString().Equals(""))
+                {
+
+                    formOfertar.label4.Text = "Razon_Social:";
+
+                    formOfertar.label5.Text = "Contacto:";
+                    
+                    formOfertar.label6.Text = dr["Empresa_Usuario_Nombre"].ToString();
+
+                    formOfertar.label7.Text = dr["Empresa_Razon_Social"].ToString();
+
+                    formOfertar.label8.Text = dr["Empresa_Nombre_Contacto"].ToString();
+
+                    formOfertar.label10.Text = dr["Empresa_Telefono"].ToString();
+
+                }
+                else
+                {
+                    formOfertar.label6.Text="";
+
+                    formOfertar.label7.Text="";
+
+                    formOfertar.label8.Text="";
+
+                    formOfertar.label10.Text="";
+                }
+
+           
+
+
+
+
+            
+            
+            }
+
+            
 
         }
         

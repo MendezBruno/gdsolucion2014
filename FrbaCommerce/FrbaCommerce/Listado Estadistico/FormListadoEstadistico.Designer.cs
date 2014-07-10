@@ -45,7 +45,8 @@
             this.listado.Items.AddRange(new object[] {
             "Vendedores Mayor Facturacion",
             "Vendedores Con Mayores Calificaciones",
-            "Clientes Con Mayor Cantidad De Publicaciones Sin Clasificar"});
+            "Clientes Con Mayor Cantidad De Publicaciones Sin Clasificar",
+            "Vendedores Mayor Cantidad Productos No Vendidos"});
             this.listado.Location = new System.Drawing.Point(106, 78);
             this.listado.Name = "listado";
             this.listado.Size = new System.Drawing.Size(340, 21);
