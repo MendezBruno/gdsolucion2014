@@ -51,7 +51,9 @@ namespace FrbaCommerce.Comprar_Ofertar
                  cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, this.public_Codigo);
    
                 FormMostrarVendedor formOfertar = new FormMostrarVendedor(cManager,this.public_Codigo,this.usuario,this.numericUpDownCantComprar.Value.ToString());
-             
+
+                cManager.sqlCompra.mostrarVendedor(cManager, formOfertar, usuario);
+                
                 formOfertar.ShowDialog();
 
                 this.Show();
