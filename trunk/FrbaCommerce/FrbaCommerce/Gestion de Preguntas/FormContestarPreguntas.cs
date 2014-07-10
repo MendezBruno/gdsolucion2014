@@ -61,15 +61,15 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             this.Hide();
             bool responder = true;
 
-            if (dataGridView1.Rows[e.RowIndex] != null)
+            if(!dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString().Equals(""))
             {
                 PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value), userName, responder);
                 preguntasyRespuestas.ShowDialog();
                 this.Close();
             }
-            else
+            else           
                 MessageBox.Show("No Hay preguntas para responder");
-
+           
 
             
             this.Show();
