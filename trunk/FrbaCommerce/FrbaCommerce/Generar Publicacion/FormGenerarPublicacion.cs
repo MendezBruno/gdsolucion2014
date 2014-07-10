@@ -120,7 +120,8 @@ namespace FrbaCommerce.Generar_Publicacion
 
 
                         MessageBox.Show("No Es posible cargar la publicacion porque tiene mas de 3 publicaciones Gratis Activas, Pausee o Fianlize alguna para poder continuar");
-
+                        return;
+                    
                     }
 
                 }
@@ -170,7 +171,6 @@ namespace FrbaCommerce.Generar_Publicacion
                     if (publico == false)
                     {
 
-                        MessageBox.Show(esUpdate.ToString());
                         if (esUpdate == false)
                         {
 

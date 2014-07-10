@@ -149,8 +149,6 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlDataReader dr;
 
-            MessageBox.Show(public_Codigo);
-
             string comando = "SELECT * FROM NO_MORE_SQL.Usuario LEFT JOIN NO_MORE_SQL.Cliente ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Cliente.Cliente_Usuario_Nombre LEFT JOIN NO_MORE_SQL.Empresa ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Empresa.Empresa_Usuario_Nombre INNER JOIN NO_MORE_SQL.Publicacion ON NO_MORE_SQL.Usuario.Usuario_Nombre=NO_MORE_SQL.Publicacion.Publicacion_Usuario_Nombre WHERE Publicacion_Codigo='" + public_Codigo + "'";
 
             cmd = new SqlCommand(comando, cManager.conexion.conn);
