@@ -37,6 +37,7 @@
             this.buttonFacturar = new System.Windows.Forms.Button();
             this.buttoncambiarContraseña = new System.Windows.Forms.Button();
             this.buttonGenerarFactura = new System.Windows.Forms.Button();
+            this.buttonVerRespuestas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BotonComprar
@@ -129,11 +130,21 @@
             this.buttonGenerarFactura.UseVisualStyleBackColor = true;
             this.buttonGenerarFactura.Click += new System.EventHandler(this.buttonGenerarFactura_Click);
             // 
+            // buttonVerRespuestas
+            // 
+            this.buttonVerRespuestas.Location = new System.Drawing.Point(321, 76);
+            this.buttonVerRespuestas.Name = "buttonVerRespuestas";
+            this.buttonVerRespuestas.Size = new System.Drawing.Size(136, 40);
+            this.buttonVerRespuestas.TabIndex = 16;
+            this.buttonVerRespuestas.Text = "Ver Respuestas";
+            this.buttonVerRespuestas.UseVisualStyleBackColor = true;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 231);
+            this.Controls.Add(this.buttonVerRespuestas);
             this.Controls.Add(this.buttonGenerarFactura);
             this.Controls.Add(this.buttoncambiarContraseña);
             this.Controls.Add(this.buttonFacturar);
@@ -160,6 +171,7 @@
         private System.Windows.Forms.Button buttonFacturar;
         private System.Windows.Forms.Button buttoncambiarContraseña;
         private System.Windows.Forms.Button buttonGenerarFactura;
+        private System.Windows.Forms.Button buttonVerRespuestas;
     }
 }
 
