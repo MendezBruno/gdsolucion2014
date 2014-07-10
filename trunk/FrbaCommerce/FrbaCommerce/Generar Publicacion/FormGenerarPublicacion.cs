@@ -22,11 +22,13 @@ namespace FrbaCommerce.Generar_Publicacion
         bool salir;
         bool modificacion;
         bool esUpdate = false;
+        bool esStock = false;
         public string stock_Inicial{get;set;}
         public string public_Codigo;
 
 
-        public FormGenerarPublicacion(SistemManager cManager, string usuario,bool modificacion,string public_Codigo)
+
+        public FormGenerarPublicacion(SistemManager cManager, string usuario,bool modificacion,string public_Codigo,bool esStock)
         {
             InitializeComponent();
             this.usuario = usuario;
@@ -38,7 +40,7 @@ namespace FrbaCommerce.Generar_Publicacion
             this.public_Codigo = public_Codigo;
             cargarForm();
             this.stock_Inicial = this.numericUpDownStockInicial.Value.ToString();
-            this.esUpdate = true;
+            if(!esStock) this.esUpdate = true;
         }
         
  
