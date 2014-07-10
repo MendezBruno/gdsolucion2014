@@ -46,26 +46,22 @@ namespace FrbaCommerce.Modelo.Datos
             if(accion.Equals("Modificar Publicacion"))
             {
 
-                String Comando = "UPDATE NO_MORE_SQL.Publicacion SET (Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
+                String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID='" + tipoPublicacion + "',Publicacion_Estado_Edicion='Publicada',Publicacion_Estado_Publicacion_ID='Activa',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO' WHERE Publicacion_Codigo=" + public_Cod;;
                 Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                 Cmd.ExecuteNonQuery();
 
-                Comando = "SELECT TOP 1 Publicacion_Codigo FROM NO_MORE_SQL.Publicacion ORDER BY Publicacion_Codigo DESC";
+                Comando = "DELETE FROM NO_MORE_SQL.Rubro_Publicacion WHERE Publicacion_Codigo=" + public_Cod;
                 Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                dr = Cmd.ExecuteReader();
-                dr.Read();
-                pub_codigo = dr["Publicacion_Codigo"].ToString();
-                dr.Close();
-
+                Cmd.ExecuteNonQuery();
 
                 foreach (string check in checkeados)
                 {
-                    Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + pub_codigo + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
+                    Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + public_Cod +",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
                     Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                     Cmd.ExecuteNonQuery();
                 }
 
-                Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod=" + visibilidad + " GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + pub_codigo;
+                Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod=" + visibilidad + " GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + public_Cod;
 
                 Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                 Cmd.ExecuteNonQuery();
@@ -200,7 +196,7 @@ namespace FrbaCommerce.Modelo.Datos
             SqlDataReader dr;
             string pub_codigo;
             MessageBox.Show(tipoPublicacion.ToString());
-            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",Null,'" + Configuracion.Default.FechaHoy.ToString() + "',@precio,@Tipo_Publica,'Borrador','" + aceptaPregunta + "','" + userName + "',@visibilidad)";
+            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",@precio,@Tipo_Publica,'Borrador','" + aceptaPregunta + "','" + userName + "',@visibilidad)";
             cmd = new SqlCommand(Comando, cManager.conexion.conn);
             if (precio == "")
                 cmd.Parameters.AddWithValue("@precio", DBNull.Value);
@@ -220,8 +216,6 @@ namespace FrbaCommerce.Modelo.Datos
 
             cmd.ExecuteNonQuery();
 
-            if (visibilidad != -1)
-            {
                 Comando = "SELECT TOP 1 Publicacion_Codigo FROM NO_MORE_SQL.Publicacion ORDER BY Publicacion_Codigo DESC";
                 cmd = new SqlCommand(Comando, cManager.conexion.conn);
                 dr = cmd.ExecuteReader();
@@ -238,7 +232,7 @@ namespace FrbaCommerce.Modelo.Datos
                 }
 
 
-            }
+            
 
         }
 
@@ -322,6 +316,55 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+        internal void pasarBorradorUpdate(SistemManager cManager, string tipoPublicacion, string descripcion, string stockInicial, string precio, int visibilidad, string aceptaPregunta, string userName, CheckedListBox.CheckedItemCollection checkeados,string public_Codigo)
+        {
+
+            SqlCommand cmd;
+            MessageBox.Show(tipoPublicacion.ToString());
+            String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Precio=@precio,Publicacion_Tipo_ID=@Tipo_Publica,Publicacion_Estado_Publicacion_ID='Borrador',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=@visibilidad WHERE Publicacion_Codigo="+public_Codigo;
+            cmd = new SqlCommand(Comando, cManager.conexion.conn);
+            if (precio == "")
+                cmd.Parameters.AddWithValue("@precio", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("@precio", Convert.ToDecimal(precio));
+            if (visibilidad == -1)
+                cmd.Parameters.AddWithValue("@visibilidad", DBNull.Value);
+            else
+                cmd.Parameters.AddWithValue("@visibilidad", visibilidad);
+
+            if (tipoPublicacion.Equals(""))
+            {
+                cmd.Parameters.AddWithValue("@Tipo_Publica", DBNull.Value);
+            }
+            else
+                cmd.Parameters.AddWithValue("@Tipo_Publica", tipoPublicacion);
+
+            cmd.ExecuteNonQuery();
+
+            Comando = "DELETE FROM NO_MORE_SQL.Rubro_Publicacion WHERE Publicacion_Codigo=" + public_Codigo;
+            cmd = new SqlCommand(Comando, cManager.conexion.conn);
+            cmd.ExecuteNonQuery();
+
+
+
+                
+                
+                foreach (string check in checkeados)
+                {
+                    Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + public_Codigo + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
+                    cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                    cmd.ExecuteNonQuery();
+                }
+
+
+           
+
+
+
+
+
+
+        }
 
         internal void cargarDatosGenerar(SistemManager cManager, FormGenerarPublicacion formGenerarPublicacion, string publicacion_cod)
         {
@@ -339,6 +382,8 @@ namespace FrbaCommerce.Modelo.Datos
            dr = cmd.ExecuteReader();
 
            dr.Read();
+
+
 
            formGenerarPublicacion.comboBoxTipoPublicacion.Text = dr["Publicacion_Tipo_ID"].ToString();
 

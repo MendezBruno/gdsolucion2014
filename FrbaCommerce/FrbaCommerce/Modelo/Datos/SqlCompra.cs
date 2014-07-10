@@ -62,6 +62,35 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+        public string Ver_Minimo(SistemManager cManager, string public_Codigo)
+        {
+
+            SqlCommand cmd;
+
+            SqlDataReader dr;
+
+            string monto;
+
+            string comando = "SELECT STR(MAX(Oferta_Monto),18,0) AS Monto FROM NO_MORE_SQL.Oferta INNER JOIN NO_MORE_SQL.Publicacion ON  NO_MORE_SQL.Oferta.Oferta_Publicacion_Codigo=NO_MORE_SQL.Publicacion.Publicacion_Codigo WHERE Publicacion_Codigo=" + public_Codigo;
+
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+            dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+
+                monto =dr["Monto"].ToString();
+                
+                dr.Close();
+
+                return monto;
+
+            }
+            else
+                return "0";
+
+        }
         public void BuscarPublicacion(SistemManager cManager, FormMostrarPublicacion publicacion, string public_Cod)
  
         {
@@ -70,7 +99,7 @@ namespace FrbaCommerce.Modelo.Datos
 
              SqlDataReader dr;
 
-             string comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,STR((Publicacion_Precio/Publicacion_Stock),18,2) as PrcioUni, Publicacion_Usuario_Nombre FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
+             string comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,STR(Publicacion_Precio,18,2) as PrcioUni, Publicacion_Usuario_Nombre FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
 
              cmd=new SqlCommand(comando,cManager.conexion.conn);
 
