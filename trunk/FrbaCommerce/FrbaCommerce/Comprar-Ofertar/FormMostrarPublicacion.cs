@@ -52,7 +52,7 @@ namespace FrbaCommerce.Comprar_Ofertar
    
                 FormMostrarVendedor formOfertar = new FormMostrarVendedor(cManager,this.public_Codigo,this.usuario,this.numericUpDownCantComprar.Value.ToString());
 
-                cManager.sqlCompra.mostrarVendedor(cManager, formOfertar, usuario);
+                cManager.sqlCompra.mostrarVendedor(cManager, formOfertar, public_Codigo);
                 
                 formOfertar.ShowDialog();
 

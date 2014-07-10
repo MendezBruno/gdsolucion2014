@@ -46,6 +46,20 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
+        internal void CargarDatosMayorCantidadNoVendidos(SistemManager cManager, DataGridView dataGridView, string anio, string trimestre)
+        {
+
+            SqlCommand cmd = new SqlCommand("NO_MORE_SQL.Vendedores_con_mayor_cantidad_de_publicaciones_no_vendidas", cManager.conexion.conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@trimestre", trimestre);
+            cmd.Parameters.AddWithValue("@anio", anio);
+            SqlDataAdapter adapComando = new SqlDataAdapter(cmd);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 1);
+
+
+
+
+        }
 
 
         

@@ -38,7 +38,8 @@ namespace FrbaCommerce.Listado_Estadistico
 
             if(listado.Text.Equals("Vendedores Mayor Cantidad Productos No Vendidos"))
             {
-
+                cManager.sqlListado.CargarDatosMayorCantidadNoVendidos(cManager, dataGridViewListado, anio.Text.ToString(), trimestre.Text.ToString());
+                dataGridViewListado.Update();
             
             
             }
