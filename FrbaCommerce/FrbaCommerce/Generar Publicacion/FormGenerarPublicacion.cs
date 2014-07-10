@@ -180,7 +180,7 @@ namespace FrbaCommerce.Generar_Publicacion
 
                             if (DialogResult.Yes == confirmarGuardado)
 
-                                cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+                            cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
 
                         }
                         else
