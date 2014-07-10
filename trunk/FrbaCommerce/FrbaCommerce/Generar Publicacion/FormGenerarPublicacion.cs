@@ -54,6 +54,8 @@ namespace FrbaCommerce.Generar_Publicacion
             this.salir = false;
             cargarForm();
             this.modificacion = modificacion;
+            numericUpDownStockInicial.Value = 1;
+            this.esUpdate = false;
         }
 
 
@@ -70,6 +72,8 @@ namespace FrbaCommerce.Generar_Publicacion
             cargarForm();
             this.stock_Inicial = this.numericUpDownStockInicial.Value.ToString();
             this.modificacion = modificacion;
+            numericUpDownStockInicial.Value = 1;
+            this.esUpdate = false;
 
         }
         public FormGenerarPublicacion(SistemManager cManager, Administrador administrador, bool modificacion)
@@ -82,6 +86,8 @@ namespace FrbaCommerce.Generar_Publicacion
             cargarForm();
             this.stock_Inicial = this.numericUpDownStockInicial.Value.ToString();
             this.modificacion = modificacion;
+            numericUpDownStockInicial.Value = 1;
+            this.esUpdate = false;
         }
 
         private void cargarForm()
@@ -135,8 +141,8 @@ namespace FrbaCommerce.Generar_Publicacion
             else
             {
 
-                if (esUpdate) cManager.sqlPublicacion.modificarPublicacionCompleta(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems, this.Text, this.public_Codigo);
-                else cManager.sqlPublicacion.ModificarPublic(cManager, this.numericUpDownStockInicial.Value.ToString(), textBoxDescripcion.Text,this.public_Codigo);
+             //  if (esUpdate) cManager.sqlPublicacion.modificarPublicacionCompleta(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems, this.Text, this.public_Codigo);
+                cManager.sqlPublicacion.ModificarPublic(cManager, this.numericUpDownStockInicial.Value.ToString(), textBoxDescripcion.Text,this.public_Codigo);
 
               
             }
@@ -164,13 +170,36 @@ namespace FrbaCommerce.Generar_Publicacion
                     if (publico == false)
                     {
 
-                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        MessageBox.Show(esUpdate.ToString());
+                        if (esUpdate == false)
+                        {
 
-                        DialogResult confirmarGuardado = MessageBox.Show("Desea Guardar la publicacion no finalizada?", "Guardar Publicacion", buttons);
+                            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
-                        if (DialogResult.Yes == confirmarGuardado)
+                            DialogResult confirmarGuardado = MessageBox.Show("Desea Guardar la publicacion no finalizada?", "Guardar Publicacion", buttons);
 
-                            cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+                            if (DialogResult.Yes == confirmarGuardado)
+
+                                cManager.sqlPublicacion.pasarBorrador(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems);
+
+                        }
+                        else
+                        {
+
+                            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+
+                            DialogResult confirmarGuardado = MessageBox.Show("Desea Guardar la publicacion no finalizada?", "Guardar Publicacion", buttons);
+
+                            if (DialogResult.Yes == confirmarGuardado)
+
+                                cManager.sqlPublicacion.pasarBorradorUpdate(cManager, this.comboBoxTipoPublicacion.Text, this.textBoxDescripcion.Text, this.numericUpDownStockInicial.Value.ToString(), this.textBoxPrecio.Text, cManager.sqlAbmVisibilidad.codigoSegunDescripcion(cManager, this.comboBoxVisibilidad.Text), this.comboBoxAceptaPregunta.Text, this.labelUserName.Text, this.checkedListBoxRubro.CheckedItems, this.public_Codigo);
+
+
+
+                        }
+
+                        
+                        
                     }
 
                 }
@@ -236,6 +265,15 @@ namespace FrbaCommerce.Generar_Publicacion
 
 
             }
+            if(this.modificacion==false)
+
+            if (numericUpDownStockInicial.Value < 1)
+            {
+
+                numericUpDownStockInicial.Value = 1;
+
+            }
+
 
 
         }

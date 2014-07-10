@@ -15,16 +15,20 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         SistemManager cManager;
 
-        int oferta_Inicial;
+  //      int oferta_Inicial;
 
         string usuario;
 
         string public_Codigo;
+
+        string valor_minimo;
         
         public FormOfertar()
         {
             InitializeComponent();
         }
+
+
         public FormOfertar(SistemManager cManager, string public_Codigo,string usuario)
         {
 
@@ -33,6 +37,13 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.cManager = cManager;
             this.usuario = usuario;
             this.public_Codigo = public_Codigo;
+            this.valor_minimo = cManager.sqlCompra.Ver_Minimo(cManager, public_Codigo);
+            if (!valor_minimo.Equals(""))
+                numericUpDownOfer.Value = Convert.ToInt32(valor_minimo)+1;
+            else
+                this.valor_minimo = "0";
+
+
 
         }
 
@@ -46,6 +57,9 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void numericUpDownOfer_ValueChanged(object sender, EventArgs e)
         {
+
+            if(numericUpDownOfer.Value<Convert.ToInt32(valor_minimo)+1)
+                numericUpDownOfer.Value = Convert.ToInt32(valor_minimo)+1;
 
         }
     }
