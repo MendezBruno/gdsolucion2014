@@ -19,7 +19,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             InitializeComponent();
             cManager.sqlCompra.confirmo_Compra(cManager, public_Codigo, usuario, cantidad);
             cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, usuario);
-            cManager.sqlCompra.MostrarVendedor(cManager, usuario);
+       //     cManager.sqlCompra.MostrarVendedor(cManager, usuario);
 
         }
 
