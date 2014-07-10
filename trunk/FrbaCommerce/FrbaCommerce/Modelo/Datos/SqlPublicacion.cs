@@ -46,7 +46,7 @@ namespace FrbaCommerce.Modelo.Datos
             if(accion.Equals("Modificar Publicacion"))
             {
 
-                String Comando = "UPDATE NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
+                String Comando = "UPDATE NO_MORE_SQL.Publicacion SET (Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),'" + Configuracion.Default.FechaHoy + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
                 Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                 Cmd.ExecuteNonQuery();
 

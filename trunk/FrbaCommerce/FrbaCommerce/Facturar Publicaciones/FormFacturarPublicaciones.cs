@@ -48,7 +48,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
             int j=0,i,n=0;
             
             this.tabla=cManager.sqlFactura.buscarFactura(cManager, this.usuario, textCantPubli.Text);
-          
+
             this.tablaCompras = cManager.sqlFactura.buscarCompras(cManager,this.usuario,textCantPubli.Text);
             
             DataRow fila;
