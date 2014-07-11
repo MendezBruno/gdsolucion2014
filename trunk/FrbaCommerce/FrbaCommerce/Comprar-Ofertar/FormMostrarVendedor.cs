@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaCommerce.Modelo;
+using FrbaCommerce.Login;
 
 namespace FrbaCommerce.Comprar_Ofertar
 {
@@ -18,7 +19,22 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             InitializeComponent();
             cManager.sqlCompra.confirmo_Compra(cManager, public_Codigo, usuario, cantidad);
-            cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, usuario);
+            bool deshabilito=cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, usuario);
+
+            if (deshabilito == true)
+            {
+
+
+                MessageBox.Show("No puede Comprar Mas, ingrese de nuevo y califique todas las publicaciones");
+                
+                this.Hide();
+
+                FormLoggin loggin = new FormLoggin(cManager);
+
+                loggin.ShowDialog();
+
+
+            }
 
         }
 

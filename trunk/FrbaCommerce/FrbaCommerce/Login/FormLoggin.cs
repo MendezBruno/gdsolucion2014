@@ -146,6 +146,11 @@ namespace FrbaCommerce.Login
 
 
         }
+
+        private void FormLoggin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
         
 
     }

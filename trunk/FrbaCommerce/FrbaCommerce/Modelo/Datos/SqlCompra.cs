@@ -230,11 +230,11 @@ namespace FrbaCommerce.Modelo.Datos
             
             }
 
-            
+            dr.Close();
 
         }
         
-        internal void DeshabilitarPorCalificacion(SistemManager cManager,string usuario)
+        internal bool DeshabilitarPorCalificacion(SistemManager cManager,string usuario)
         {
 
             Usuario user;
@@ -266,14 +266,20 @@ namespace FrbaCommerce.Modelo.Datos
                     cmd = new SqlCommand(comando, cManager.conexion.conn);
 
                     cmd.ExecuteNonQuery();
+                    return true;
 
                 }
                 else
                 {
                     dr.Close();
+                    return false;
                 }
+                dr.Close();
+                return false;
 
             }
+            dr.Close();
+            return false;
 
 
 

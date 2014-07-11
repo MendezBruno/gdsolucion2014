@@ -105,6 +105,7 @@
             this.Controls.Add(this.labelUsuario);
             this.Name = "FormLoggin";
             this.Text = "LOGIN";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLoggin_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

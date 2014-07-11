@@ -506,6 +506,16 @@ namespace FrbaCommerce.Modelo.Datos
             dataGridView.Columns["Pregunta_Respuesta_ID"].Visible = false;
             dataGridView.Columns["Respuesta_Fecha"].Visible = false;
         }
+
+        internal void volverLogin3Compras(SistemManager cManager, string usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void volverLogin5Compras(SistemManager cManager, string usuario)
+        {
+
+        }
     }
 
 }
