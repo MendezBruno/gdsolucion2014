@@ -28,7 +28,7 @@ namespace FrbaCommerce.Modelo.Datos
             foreach (string check in checkeados)
             {
 
-                comando = " INSERT INTO NO_MORE_SQL.#AuxiliarCompra(Visibilidad_descripcion,Rubro,Descripcion_Public,Publicacion_Cod,Visibilidad_codigo) SELECT Visibilidad_Descripcion, Rubro_Descripcion, Publicacion_Descripcion,Publicacion.Publicacion_Codigo,Visibilidad_Codigo FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo INNER JOIN NO_MORE_SQL.Rubro_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Rubro_Publicacion.Publicacion_Codigo INNER JOIN NO_MORE_SQL.Rubro ON NO_MORE_SQL.Rubro_Publicacion.Rubro_Codigo=NO_MORE_SQL.Rubro.Rubro_Codigo WHERE Rubro_Descripcion='" + check + "' AND Publicacion_Descripcion LIKE '%" + descripcion + "%' AND Publicacion_Usuario_Nombre <>'"+usuario+"'";
+                comando = " INSERT INTO NO_MORE_SQL.#AuxiliarCompra(Visibilidad_descripcion,Rubro,Descripcion_Public,Publicacion_Cod,Visibilidad_codigo) SELECT Visibilidad_Descripcion, Rubro_Descripcion, Publicacion_Descripcion,Publicacion.Publicacion_Codigo,Visibilidad_Codigo FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo INNER JOIN NO_MORE_SQL.Rubro_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Rubro_Publicacion.Publicacion_Codigo INNER JOIN NO_MORE_SQL.Rubro ON NO_MORE_SQL.Rubro_Publicacion.Rubro_Codigo=NO_MORE_SQL.Rubro.Rubro_Codigo WHERE Rubro_Descripcion='" + check + "' AND Publicacion_Descripcion LIKE '%" + descripcion + "%' AND Publicacion_Usuario_Nombre <>'" + usuario + "' AND Publicacion_Estado_Publicacion_ID<>'Borrador' AND Publicacion_Estado_Edicion<>'Borrada' AND Publicacion_Estado_Publicacion_ID<>'Finalizado'  ";
 
                 cmd=new SqlCommand(comando,cManager.conexion.conn);
 
@@ -38,7 +38,7 @@ namespace FrbaCommerce.Modelo.Datos
             if (checkeados.Count == 0)
             {
 
-                comando = " INSERT INTO NO_MORE_SQL.#AuxiliarCompra(Visibilidad_descripcion,Rubro,Descripcion_Public,Publicacion_Cod,Visibilidad_codigo) SELECT Visibilidad_Descripcion, Rubro_Descripcion, Publicacion_Descripcion,Publicacion.Publicacion_Codigo,Visibilidad_Codigo FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo INNER JOIN NO_MORE_SQL.Rubro_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Rubro_Publicacion.Publicacion_Codigo INNER JOIN NO_MORE_SQL.Rubro ON NO_MORE_SQL.Rubro_Publicacion.Rubro_Codigo=NO_MORE_SQL.Rubro.Rubro_Codigo WHERE Publicacion_Descripcion LIKE '%" + descripcion + "%' AND Publicacion_Usuario_Nombre <>'"+usuario+"'";
+                comando = " INSERT INTO NO_MORE_SQL.#AuxiliarCompra(Visibilidad_descripcion,Rubro,Descripcion_Public,Publicacion_Cod,Visibilidad_codigo) SELECT Visibilidad_Descripcion, Rubro_Descripcion, Publicacion_Descripcion,Publicacion.Publicacion_Codigo,Visibilidad_Codigo FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo INNER JOIN NO_MORE_SQL.Rubro_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Rubro_Publicacion.Publicacion_Codigo INNER JOIN NO_MORE_SQL.Rubro ON NO_MORE_SQL.Rubro_Publicacion.Rubro_Codigo=NO_MORE_SQL.Rubro.Rubro_Codigo WHERE Publicacion_Descripcion LIKE '%" + descripcion + "%' AND Publicacion_Usuario_Nombre <>'" + usuario + "'AND Publicacion_Estado_Publicacion_ID<>'Borrador' AND Publicacion_Estado_Edicion<>'Borrada' AND Publicacion_Estado_Publicacion_ID<>'Finalizado' ";
 
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -89,13 +89,15 @@ namespace FrbaCommerce.Modelo.Datos
                 return "0";
 
         }
-        public void BuscarPublicacion(SistemManager cManager, FormMostrarPublicacion publicacion, string public_Cod)
+        public string BuscarPublicacion(SistemManager cManager, FormMostrarPublicacion publicacion, string public_Cod)
  
         {
 
              SqlCommand cmd;
 
              SqlDataReader dr;
+
+             string publicacion_Estado_Publicacion_ID;
 
              string comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,STR(Publicacion_Precio,18,2) as PrcioUni, Publicacion_Usuario_Nombre,Publicacion_Puede_Preguntar FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
 
@@ -131,6 +133,25 @@ namespace FrbaCommerce.Modelo.Datos
              publicacion.stock.Text = dr["StockActual"].ToString();
 
              dr.Close();
+
+             comando = "SELECT Publicacion_Estado_Publicacion_ID FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
+
+             cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+             dr = cmd.ExecuteReader();
+
+             dr.Read();
+
+             publicacion_Estado_Publicacion_ID = dr["Publicacion_Estado_Publicacion_ID"].ToString();
+
+            dr.Close();
+
+            return publicacion_Estado_Publicacion_ID;
+
+
+
+
+
 
 
         }

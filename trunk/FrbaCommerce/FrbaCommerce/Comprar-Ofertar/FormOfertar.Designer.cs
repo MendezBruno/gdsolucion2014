@@ -56,6 +56,11 @@
             // numericUpDownOfer
             // 
             this.numericUpDownOfer.Location = new System.Drawing.Point(121, 46);
+            this.numericUpDownOfer.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
             this.numericUpDownOfer.Name = "numericUpDownOfer";
             this.numericUpDownOfer.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownOfer.TabIndex = 3;

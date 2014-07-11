@@ -333,12 +333,23 @@ namespace FrbaCommerce.Modelo.Datos
             string comando;
 
             SqlCommand cmd;
-           
-            comando="INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('"+Configuracion.Default.FechaHoy+"',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo="+ publicCodigo +" ORDER BY Oferta_Monto DESC),"+publicCodigo+",'NO'";
 
-            cmd = new SqlCommand(comando, cManager.conexion.conn);
+            try
+            {
 
-            cmd.ExecuteNonQuery();
+                comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO'";
+
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException e)
+            {
+                MessageBox.Show("No se regitro ninguna oferta");
+
+            }
+
 
 
         }
@@ -398,19 +409,12 @@ namespace FrbaCommerce.Modelo.Datos
 
                 
                 
-                foreach (string check in checkeados)
+            foreach (string check in checkeados)
                 {
                     Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + public_Codigo + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
                     cmd = new SqlCommand(Comando, cManager.conexion.conn);
                     cmd.ExecuteNonQuery();
                 }
-
-
-           
-
-
-
-
 
 
         }
