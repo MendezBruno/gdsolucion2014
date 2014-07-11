@@ -203,7 +203,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonPreguntar;
         public System.Windows.Forms.Label tipo;
         public System.Windows.Forms.Label descripcion;
         public System.Windows.Forms.Label precio;
@@ -215,5 +214,6 @@
         public System.Windows.Forms.NumericUpDown numericUpDownCantComprar;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label labelVendedor;
+        public System.Windows.Forms.Button buttonPreguntar;
     }
 }

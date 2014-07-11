@@ -26,7 +26,13 @@ namespace FrbaCommerce.Modelo.Datos
                 
                 else user.habilitado = false;
 
-                user.RolAsignado.idRol = Convert.ToInt32(dr["Usuario_Rol_ID"]);
+                if (!dr["Usuario_Rol_ID"].ToString().Equals(""))
+
+                    user.RolAsignado.idRol = Convert.ToInt32(dr["Usuario_Rol_ID"]);
+
+                else
+
+                    user.RolAsignado.idRol = -1;
 
                 user.setUsuario(dr["Usuario_Nombre"].ToString());
 

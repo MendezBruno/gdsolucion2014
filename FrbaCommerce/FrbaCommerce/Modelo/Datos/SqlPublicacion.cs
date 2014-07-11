@@ -17,60 +17,103 @@ namespace FrbaCommerce.Modelo.Datos
             SqlDataReader dr;
             string pub_codigo;
             precio = precio.Replace(',', '.');
-            if(accion.Equals("Generar Publicacion"))
-            {
-                String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
-                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                Cmd.ExecuteNonQuery();
-
-            Comando = "SELECT TOP 1 Publicacion_Codigo FROM NO_MORE_SQL.Publicacion ORDER BY Publicacion_Codigo DESC";
-            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-            dr=Cmd.ExecuteReader();
-            dr.Read();
-            pub_codigo=dr["Publicacion_Codigo"].ToString();
-            dr.Close();
-            
-            
-            foreach (string check in checkeados)
-            {
-                Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + pub_codigo + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
-                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                Cmd.ExecuteNonQuery();
-            }
-
-            Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod="+visibilidad+" GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + pub_codigo ;
-            
-            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-            Cmd.ExecuteNonQuery();
-            MessageBox.Show("Publicacion Creada con Exito");
-                return;
-            }
-            if(accion.Equals("Modificar Publicacion"))
+            if (!tipoPublicacion.Equals("") && !descripcion.Equals("") && !precio.Equals("") && !visibilidad.Equals("") && !aceptaPregunta.Equals(""))
             {
 
-                String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID='" + tipoPublicacion + "',Publicacion_Estado_Edicion='Publicada',Publicacion_Estado_Publicacion_ID='Activa',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO' WHERE Publicacion_Codigo=" + public_Cod;;
-                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                Cmd.ExecuteNonQuery();
-
-                Comando = "DELETE FROM NO_MORE_SQL.Rubro_Publicacion WHERE Publicacion_Codigo=" + public_Cod;
-                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                Cmd.ExecuteNonQuery();
-
-                foreach (string check in checkeados)
+                try
                 {
-                    Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + public_Cod +",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
-                    Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                    Cmd.ExecuteNonQuery();
+                    if (accion.Equals("Generar Publicacion"))
+                    {
+
+                        String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
+                        Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                        Cmd.ExecuteNonQuery();
+
+                        Comando = "SELECT TOP 1 Publicacion_Codigo FROM NO_MORE_SQL.Publicacion ORDER BY Publicacion_Codigo DESC";
+                        Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                        dr = Cmd.ExecuteReader();
+                        dr.Read();
+                        pub_codigo = dr["Publicacion_Codigo"].ToString();
+                        dr.Close();
+
+
+                        foreach (string check in checkeados)
+                        {
+                            Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + pub_codigo + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
+                            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                            Cmd.ExecuteNonQuery();
+                        }
+
+                        Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod=" + visibilidad + " GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + pub_codigo;
+
+                        Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                        Cmd.ExecuteNonQuery();
+                        MessageBox.Show("Publicacion Creada con Exito");
+                        return;
+
+                    }
+                    if (accion.Equals("Modificar Publicacion"))
+                    {
+
+                        String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID='" + tipoPublicacion + "',Publicacion_Estado_Edicion='Publicada',Publicacion_Estado_Publicacion_ID='Activa',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO' WHERE Publicacion_Codigo=" + public_Cod; ;
+                        Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                        Cmd.ExecuteNonQuery();
+
+                        Comando = "DELETE FROM NO_MORE_SQL.Rubro_Publicacion WHERE Publicacion_Codigo=" + public_Cod;
+                        Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                        Cmd.ExecuteNonQuery();
+
+                        foreach (string check in checkeados)
+                        {
+                            Comando = "INSERT INTO NO_MORE_SQL.Rubro_Publicacion(Publicacion_Codigo,Rubro_Codigo) VALUES (" + public_Cod + ",(SELECT Rubro_Codigo FROM NO_MORE_SQL.Rubro WHERE Rubro_Descripcion='" + check.ToString() + "'))";
+                            Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                            Cmd.ExecuteNonQuery();
+                        }
+
+                        Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod=" + visibilidad + " GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + public_Cod;
+
+                        Cmd = new SqlCommand(Comando, cManager.conexion.conn);
+                        Cmd.ExecuteNonQuery();
+                        MessageBox.Show("Publicacion Publicada con Exito");
+                        return;
+
+
+
+                    }
                 }
 
-                Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Contador_Bonificacion=(SELECT COUNT(*)%10 FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON Publicacion_Visibilidad_Cod=Visibilidad_Codigo WHERE Publicacion_Usuario_Nombre='" + userName + "' AND Publicacion_Visibilidad_Cod=" + visibilidad + " GROUP BY Visibilidad_Descripcion HAVING COUNT(*)%10!=0) WHERE Publicacion_Codigo=" + public_Cod;
+                catch (SqlException e)
+                {
 
-                Cmd = new SqlCommand(Comando, cManager.conexion.conn);
-                Cmd.ExecuteNonQuery();
-                MessageBox.Show("Publicacion Modificada con Exito");
-                return;
+                    if (e.Number.ToString().Equals("207"))
+                    {
+                        MessageBox.Show("Precio Mal Ingresado");
+
+                    }
+
+                    if (e.Number.ToString().Equals("8115"))
+                    {
+
+                        MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                    }
+
+                    if (e.Number.ToString().Equals("1007"))
+                    {
+
+                        MessageBox.Show("El campo precio tiene mayores caracteres de los que puede ingresar");
+
+                    }
+
+                    return;
 
 
+
+                }
+            }
+            else
+            {
+
+                MessageBox.Show("No se puede publicar porque falta uno de los campos, llenelos y vuelva a intentarlo");
 
             }
 
