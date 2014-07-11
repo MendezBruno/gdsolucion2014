@@ -76,37 +76,40 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Hide();
-            if (verRespuestas)
+            if (dataGridView1.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
-                if (!dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString().Equals(""))
+                this.Hide();
+
+                if (verRespuestas)
                 {
-                    
-                    FormVerRespuestas formVerRespuestas = new FormVerRespuestas(cManager,dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Descripcion"].Value.ToString(),dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Usuario_Nombre"].Value.ToString(),  dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Tipo_ID"].Value.ToString());
-                    this.Close();
+                    if (!dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString().Equals(""))
+                    {
+
+                        FormVerRespuestas formVerRespuestas = new FormVerRespuestas(cManager, dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Descripcion"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Usuario_Nombre"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Tipo_ID"].Value.ToString());
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("No Hay Respuestas");
+
                 }
                 else
-                    MessageBox.Show("No Hay Respuestas");
-
-            }
-            else
-            {
-
-                bool responder = true;
-
-                if (!dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString().Equals(""))
                 {
-                    PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value), userName, responder);
-                    preguntasyRespuestas.ShowDialog();
-                    this.Close();
-                }
-                else
-                    MessageBox.Show("No Hay preguntas para responder");
-            }
 
-            
-            this.Show();
+                    bool responder = true;
+
+                    if (!dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString().Equals(""))
+                    {
+                        PreguntasyRespuestas preguntasyRespuestas = new PreguntasyRespuestas(cManager, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value), userName, responder);
+                        preguntasyRespuestas.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("No Hay preguntas para responder");
+                }
+
+
+                this.Show();
+            }
         }
-
     }
 }
