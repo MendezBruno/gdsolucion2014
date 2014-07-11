@@ -43,6 +43,8 @@
             // 
             // dataGridViewPreguntas
             // 
+            this.dataGridViewPreguntas.AllowUserToAddRows = false;
+            this.dataGridViewPreguntas.AllowUserToDeleteRows = false;
             this.dataGridViewPreguntas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPreguntas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnSeleccionar});
