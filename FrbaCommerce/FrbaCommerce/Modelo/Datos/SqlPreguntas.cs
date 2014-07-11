@@ -71,17 +71,22 @@ namespace FrbaCommerce.Modelo.Datos
 
         
 
-        internal string buscarRespuesta(SistemManager cManager, object p)
+        internal string buscarRespuesta(SistemManager cManager, string p)
         {
-            int idRespuesta = Convert.ToInt32(p);
+
+            string respuesta;
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Respuesta WHERE Respuesta_ID=" + idRespuesta.ToString();
+            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Respuesta WHERE Respuesta_ID=" + p;
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();
 
-            return dr["Respuesta_Respuesta"].ToString();
+            respuesta=dr["Respuesta_Respuesta"].ToString();
+
+            dr.Close();
+
+            return respuesta;
         }
     }
 }

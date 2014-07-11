@@ -74,9 +74,9 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.dataGridViewCompra.Rows.Clear();
             
-            int inicio = 50*this.paginaActual;
+            int inicio = 10*this.paginaActual;
 
-            int final = 50 *paginaActual+50;
+            int final = 10 *paginaActual+10;
             
             DataRow fila;
 
