@@ -48,9 +48,9 @@ namespace FrbaCommerce.Comprar_Ofertar
 
                 }
 
-                 cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, this.public_Codigo);
-
-                 MessageBox.Show("Compra_Realizadas_Con_Exito");
+                cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, this.public_Codigo);
+                
+                MessageBox.Show("Compra_Realizadas_Con_Exito");
                 
                 FormMostrarVendedor formOfertar = new FormMostrarVendedor(cManager,this.public_Codigo,this.usuario,this.numericUpDownCantComprar.Value.ToString());
 
@@ -58,7 +58,7 @@ namespace FrbaCommerce.Comprar_Ofertar
                 
                 formOfertar.ShowDialog();
 
-                this.Show();
+                this.Hide();
             
 
             }

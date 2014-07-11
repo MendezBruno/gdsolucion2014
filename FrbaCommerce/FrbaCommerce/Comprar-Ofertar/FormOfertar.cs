@@ -50,8 +50,11 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void boton_Confirmar_Oferta_Click(object sender, EventArgs e)
         {
 
+            
             cManager.sqlCompra.confirmo_oferta(cManager, this.usuario, this.public_Codigo,this.numericUpDownOfer.Value.ToString());
             this.Hide();
+
+            MessageBox.Show("Oferta realizada exitosamente");
             
             //    cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, this.usuario);
 

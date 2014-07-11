@@ -52,14 +52,26 @@ namespace FrbaCommerce.Modelo.Datos
         internal void IngresarClasificacion(SistemManager cManager, string compra_id,string calificacion, string descripcion)
         {
 
-            SqlCommand cmd;
-            string command = "INSERT INTO NO_MORE_SQL.Calificacion(Calificacion_Cantidad_Estrellas,Calificacion_Descripcion) VALUES( " + calificacion + ",'" + descripcion + "')";
-            cmd = new SqlCommand(command,cManager.conexion.conn);
-            cmd.ExecuteNonQuery();
+            try
+            {
 
-            command = "UPDATE NO_MORE_SQL.Compra SET Compra_Calificacion_Codigo=(SELECT TOP 1 Calificacion_Codigo FROM NO_MORE_SQL.Calificacion ORDER BY Calificacion_Codigo DESC) WHERE Compra_ID="+compra_id;
-            cmd = new SqlCommand(command,cManager.conexion.conn);
-            cmd.ExecuteNonQuery();
+                SqlCommand cmd;
+                string command = "INSERT INTO NO_MORE_SQL.Calificacion(Calificacion_Cantidad_Estrellas,Calificacion_Descripcion) VALUES( " + calificacion + ",'" + descripcion + "')";
+                cmd = new SqlCommand(command, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+
+                command = "UPDATE NO_MORE_SQL.Compra SET Compra_Calificacion_Codigo=(SELECT TOP 1 Calificacion_Codigo FROM NO_MORE_SQL.Calificacion ORDER BY Calificacion_Codigo DESC) WHERE Compra_ID=" + compra_id;
+                cmd = new SqlCommand(command, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+            }
+
+            catch (SqlException e)
+            {
+
+                MessageBox.Show("Calificacion mal ingresada o no ingresada");
+
+            }
+
 
 
         }
