@@ -106,7 +106,10 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.dataGridViewCompra.Columns.Add("Public_Cod", "Public_Cod");
 
+
+
             this.dataGridViewCompra.Columns.Add(seleccionar);
+
 
             this.dataGridViewCompra.Columns["Public_Cod"].Visible = false;
 
@@ -138,8 +141,12 @@ namespace FrbaCommerce.Comprar_Ofertar
                 this.dataGridViewCompra.Rows[indice].Cells["Descripcion"].Value = fila[2].ToString();
 
                 this.dataGridViewCompra.Rows[indice].Cells["Public_Cod"].Value = fila[3].ToString();
-
+            
             }
+
+            this.dataGridViewCompra.Columns["Seleccionar"].DisplayIndex = 4;
+
+            this.dataGridViewCompra.Update();
 
            // this.dataGridViewCompra.Columns.Insert(this.dataGridViewCompra.Columns.Count, seleccionar);
 
@@ -164,9 +171,11 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void dataGridViewCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+
             if (dataGridViewCompra.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
-                
+
                 this.Hide();
 
                 string estado;
@@ -207,9 +216,10 @@ namespace FrbaCommerce.Comprar_Ofertar
                 mostrarPublic.ShowDialog();
 
             }
-
-
         }
+
+
+        
         
 
 
