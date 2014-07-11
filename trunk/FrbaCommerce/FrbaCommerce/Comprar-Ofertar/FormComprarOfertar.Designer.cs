@@ -40,6 +40,7 @@
             this.buttonAnterior = new System.Windows.Forms.Button();
             this.buttonSiguiente = new System.Windows.Forms.Button();
             this.paginalbl = new System.Windows.Forms.Label();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompra)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,8 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewCompra.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCompra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Seleccionar});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -151,6 +154,11 @@
             this.paginalbl.TabIndex = 8;
             this.paginalbl.Text = "0";
             // 
+            // Seleccionar
+            // 
+            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.Name = "Seleccionar";
+            // 
             // FormComprarOfertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -184,5 +192,6 @@
         private System.Windows.Forms.Button buttonAnterior;
         private System.Windows.Forms.Button buttonSiguiente;
         private System.Windows.Forms.Label paginalbl;
+        private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
     }
 }
