@@ -449,6 +449,13 @@ namespace FrbaCommerce.Modelo.Datos
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
         }
+
+        internal void ObtenerPublicacionesSegunUsuarioYPreguntasConRespuestas(SistemManager cManager, string userName, DataGridView dataGridView)
+        {
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod WHERE Publicacion_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
+            dataGridView.Columns["Publicacion_Codigo"].Visible = true;
+        }
     }
 
 }

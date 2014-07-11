@@ -18,6 +18,7 @@ using FrbaCommerce.Listado_Estadistico;
 using FrbaCommerce.Calificar_Vendedor;
 using FrbaCommerce.Comprar_Ofertar;
 using FrbaCommerce.Facturar_Publicaciones;
+using FrbaCommerce.Gestion_de_Preguntas;
 
 namespace FrbaCommerce
 {
@@ -381,6 +382,36 @@ namespace FrbaCommerce
 
 
 
+        }
+
+        private void buttonVerRespuestas_Click(object sender, EventArgs e)
+        {
+            FormEncontrarPreguntas formEncontrarPreguntas; 
+                this.Hide();
+            bool respuesta=true;
+            if (empresa != null)
+            {
+                formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, empresa,respuesta);
+                formEncontrarPreguntas.ShowDialog();
+            }
+            else
+                if (cliente != null)
+                {
+
+                    formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, cliente,respuesta);
+                    formEncontrarPreguntas.ShowDialog();
+
+                }
+                else
+                    if (cliente == null && empresa == null)
+                    {
+
+                        formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, administrador,respuesta);
+                        formEncontrarPreguntas.ShowDialog();
+
+                    }
+
+            this.Show();
         }
 
         

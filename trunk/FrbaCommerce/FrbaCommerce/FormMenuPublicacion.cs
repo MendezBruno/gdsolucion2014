@@ -142,24 +142,24 @@ namespace FrbaCommerce
         private void linkLabelContestarPreguntas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            FormContestarPreguntas formConstestapreguntas;
+            FormEncontrarPreguntas formConstestapreguntas;
             if (cliente != null)
             {
-                formConstestapreguntas = new  FormContestarPreguntas(cManager, cliente);
+                formConstestapreguntas = new  FormEncontrarPreguntas(cManager, cliente,false);
                 formConstestapreguntas.ShowDialog();
                 
             }
             else
                 if (empresa != null)
                 {
-                    formConstestapreguntas = new FormContestarPreguntas(cManager, empresa);
+                    formConstestapreguntas = new FormEncontrarPreguntas(cManager, empresa,false);
                     formConstestapreguntas.ShowDialog();
                    
                 }
                 else
                     if (empresa == null && cliente == null)
                     {
-                        formConstestapreguntas = new FormContestarPreguntas(cManager, administrador);
+                        formConstestapreguntas = new FormEncontrarPreguntas(cManager, administrador,false);
                         formConstestapreguntas.ShowDialog();
                     }
 

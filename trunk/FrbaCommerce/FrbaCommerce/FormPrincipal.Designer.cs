@@ -138,6 +138,7 @@
             this.buttonVerRespuestas.TabIndex = 16;
             this.buttonVerRespuestas.Text = "Ver Respuestas";
             this.buttonVerRespuestas.UseVisualStyleBackColor = true;
+            this.buttonVerRespuestas.Click += new System.EventHandler(this.buttonVerRespuestas_Click);
             // 
             // FormPrincipal
             // 
