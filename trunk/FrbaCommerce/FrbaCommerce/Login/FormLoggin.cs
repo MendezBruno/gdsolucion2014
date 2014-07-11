@@ -32,7 +32,7 @@ namespace FrbaCommerce.Login
             bool res;
             FormPrincipal formPrincipal;
             user=cManager.sqlAbmLogin.ObtenerUsuario(this.textBoxUsuario.Text,cManager ,user);
-            if (user != null && user.habilitado)  //aca agrego si quiero si quiero chequear el rol
+            if (user != null && user.habilitado && user.RolAsignado.idRol!=-1)  //aca agrego si quiero si quiero chequear el rol
             {
                 if (user.secambioContrasena() != true)
                 {
@@ -106,6 +106,11 @@ namespace FrbaCommerce.Login
                     {
                         MessageBox.Show("Usuario Deshabilitado Contactar Con Sistemas");
                     }
+                    else
+                        if (user.RolAsignado.idRol == -1)
+                        {
+                            MessageBox.Show("Usuario No Tiene Asignado un Rol Dentro del Sistema, Contactar Con El Administrador");
+                        }
             }
         }
         

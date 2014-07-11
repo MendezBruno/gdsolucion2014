@@ -97,7 +97,7 @@ namespace FrbaCommerce.Modelo.Datos
 
              SqlDataReader dr;
 
-             string comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,STR(Publicacion_Precio,18,2) as PrcioUni, Publicacion_Usuario_Nombre FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
+             string comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,STR(Publicacion_Precio,18,2) as PrcioUni, Publicacion_Usuario_Nombre,Publicacion_Puede_Preguntar FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Codigo =" + public_Cod;
 
              cmd=new SqlCommand(comando,cManager.conexion.conn);
 
@@ -112,6 +112,11 @@ namespace FrbaCommerce.Modelo.Datos
              publicacion.precio.Text = dr["PrcioUni"].ToString();
 
              publicacion.labelVendedor.Text = dr["Publicacion_Usuario_Nombre"].ToString();
+
+             if (dr["Publicacion_Puede_Preguntar"].ToString().Equals("NO"))
+
+                 publicacion.buttonPreguntar.Visible = false;
+
 
              dr.Close();
 

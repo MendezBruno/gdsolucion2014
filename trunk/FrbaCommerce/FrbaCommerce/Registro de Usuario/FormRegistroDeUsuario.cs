@@ -34,7 +34,7 @@ namespace FrbaCommerce.Registro_de_Usuario
             MessageBox.Show("Contraseña no ingresada");
             else
             crearUsuarioConTalRol(this.comboBoxRol.Text,this.textBoxUser.Text,this.textBoxPass.Text);
-
+            this.Hide();
         }
 
         private void crearUsuarioConTalRol(string rol,string user,string pass)

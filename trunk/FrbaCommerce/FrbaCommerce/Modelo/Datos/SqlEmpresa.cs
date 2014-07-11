@@ -169,6 +169,7 @@ namespace FrbaCommerce.Modelo.Datos
                             Cmd.Parameters.AddWithValue("@nrocalle", nro_calle);
 
                         Cmd.ExecuteNonQuery();
+                        MessageBox.Show("Usuario con Nombre= " + user + "y Password= " + pass + " creado correctamente");
                     }
                 }
             }
@@ -201,7 +202,6 @@ namespace FrbaCommerce.Modelo.Datos
 
 
             }
-            MessageBox.Show("Usuario con CUIT= " + cuit + " a sido modificado");
 
         }
 

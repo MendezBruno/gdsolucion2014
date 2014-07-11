@@ -61,9 +61,13 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
             this.dataGridViewFacturar.Columns.Add("Codigo","Codigo");
 
+            this.dataGridViewFacturar.Columns["Codigo"].Visible = false;
+
             this.dataGridViewFacturar.Columns.Add("Tipo", "Tipo");
 
             this.dataGridViewFacturar.Columns.Add("Publicacion_Cod","Publicacion_Cod");
+
+            this.dataGridViewFacturar.Columns["Publicacion_Cod"].Visible = false;
 
             if (tabla.Rows.Count > 0 || tablaCompras.Rows.Count > 0)
             {

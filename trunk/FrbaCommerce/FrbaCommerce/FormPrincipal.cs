@@ -85,7 +85,7 @@ namespace FrbaCommerce
 
         private void cargaManuSegunRol(Rol rol,bool puede_Comprar)
         {
-            if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; }
+            if (!rol.getListaFuncionalidades().Contains("Comprar")) { this.BotonComprar.Visible = false; this.buttonCalificar.Visible = false; this.buttonVerRespuestas.Visible = false; }
 
             if (!rol.getListaFuncionalidades().Contains("Vender")) { this.buttonPublicaciones.Visible = false; this.buttonFacturar.Visible = false; }
             
@@ -318,6 +318,8 @@ namespace FrbaCommerce
                 formFacturar = new FormFacturarPublicaciones(cManager, empresa.getUsuario());
 
                 formFacturar.ShowDialog();
+
+                this.Show();
             }
             else
             if (cliente != null)
@@ -327,6 +329,8 @@ namespace FrbaCommerce
 
                 formFacturar.ShowDialog();
 
+                this.Show();
+
             }
             else
             if (cliente == null && empresa==null)
@@ -335,6 +339,8 @@ namespace FrbaCommerce
                 formFacturar = new FormFacturarPublicaciones(cManager, administrador.getUsuario());
 
                 formFacturar.ShowDialog();
+
+                this.Show();
 
             }
 
@@ -378,8 +384,7 @@ namespace FrbaCommerce
             FormCambiarContraseña formGenerarFactura = new FormCambiarContraseña(cManager);
             formGenerarFactura.Text = "Generar Factura";
             formGenerarFactura.ShowDialog();
-
-
+            this.Show();
 
 
         }
@@ -416,8 +421,5 @@ namespace FrbaCommerce
 
         
 
-        
-
-        
     }
 }

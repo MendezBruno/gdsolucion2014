@@ -124,6 +124,8 @@ namespace FrbaCommerce.Modelo.Datos
                             MyCmd.Parameters.AddWithValue("@piso", nPiso);
 
                         MyCmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Se dio de alta al Usuario: " + user + " con la contraseña:" + pass);
                     }
                 }
             }
@@ -155,7 +157,6 @@ namespace FrbaCommerce.Modelo.Datos
                 return;
 
             }
-            MessageBox.Show("Se dio de alta al Usuario: "+user+" con la contraseña:" +pass );
            
         }
 
