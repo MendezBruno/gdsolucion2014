@@ -73,6 +73,8 @@
             // 
             // dataGridViewListado
             // 
+            this.dataGridViewListado.AllowUserToAddRows = false;
+            this.dataGridViewListado.AllowUserToDeleteRows = false;
             this.dataGridViewListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewListado.Location = new System.Drawing.Point(21, 148);
             this.dataGridViewListado.Name = "dataGridViewListado";
