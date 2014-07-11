@@ -396,6 +396,7 @@ namespace FrbaCommerce
             bool respuesta=true;
             if (empresa != null)
             {
+
                 formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, empresa,respuesta);
                 formEncontrarPreguntas.ShowDialog();
             }
@@ -410,6 +411,7 @@ namespace FrbaCommerce
                 else
                     if (cliente == null && empresa == null)
                     {
+
 
                         formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, administrador,respuesta);
                         formEncontrarPreguntas.ShowDialog();

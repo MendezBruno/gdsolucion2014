@@ -23,12 +23,16 @@ namespace FrbaCommerce.Abm_Visibilidad
             if (this.Text.Equals("Modificacion Visibilidad"))
             {
                 cManager.sqlAbmVisibilidad.Buscar(cManager, this.dataGridViewModificacionVisibilidad);
+                this.seleccionar.HeaderText = "Seleccionar";
                 dataGridViewModificacionVisibilidad.Update();
+              
             }
             else
             {
                 cManager.sqlAbmVisibilidad.BuscarSinHabilitados(cManager, this.dataGridViewModificacionVisibilidad);
+                this.seleccionar.HeaderText = "Eliminar";
                 dataGridViewModificacionVisibilidad.Update();
+              
             }
             
         }
@@ -38,18 +42,19 @@ namespace FrbaCommerce.Abm_Visibilidad
         private void dataGridViewModificacionVisibilidad_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            this.Hide();
-            if (this.Text.Equals("Modificacion Visibilidad"))
+            if (dataGridViewModificacionVisibilidad.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
-
+                this.Hide();
                 FormAltaVisibilidad formAltaVisibilidad = new FormAltaVisibilidad(cManager, true);
                 cManager.sqlAbmVisibilidad.cargarDatosDeModificacion(cManager, formAltaVisibilidad, this.dataGridViewModificacionVisibilidad.Rows[e.RowIndex].Cells[1].Value.ToString());
                 formAltaVisibilidad.ShowDialog();
+                this.Close();
             }
-            else
+            if (dataGridViewModificacionVisibilidad.Columns[e.ColumnIndex].HeaderText.Equals("Eliminar"))
             {
+                this.Hide();
                 cManager.sqlAbmVisibilidad.cargarDatosDeBaja(cManager, this.dataGridViewModificacionVisibilidad.Rows[e.RowIndex].Cells[2].Value.ToString());
-              
+                this.Close();
             }
         }
 

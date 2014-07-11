@@ -41,28 +41,22 @@ namespace FrbaCommerce.ABM_Rol
         {
             
             
-            if (dataGridViewRolFuncion.Columns[e.ColumnIndex].Name == "Seleccionar")
+            if (dataGridViewRolFuncion.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
-
-                MessageBox.Show("Hola");
-
-            }
-            
-            this.Hide();
-            if (this.Text.Equals("Modificacion Rol"))   
-            {
-                
+                this.Hide();
                 FormAltaRol formAltaRol = new FormAltaRol(cManager, true);
                 cManager.sqlAbmRol.cargarDatosDeModificacion(cManager, formAltaRol, dataGridViewRolFuncion.Rows[e.RowIndex].Cells[1].Value.ToString());
                 formAltaRol.ShowDialog();
-            }
-            else
-            {
-                cManager.sqlAbmRol.cargarDatosDeBaja(cManager,dataGridViewRolFuncion.Rows[e.RowIndex].Cells[1].Value.ToString());
+                this.Close();
             }
 
-            this.Close();
-            //MessageBox.Show(dataGridViewRolFuncion.Rows[1].Cells[1].Value.ToString());
+            if (dataGridViewRolFuncion.Columns[e.ColumnIndex].HeaderText.Equals("Eliminar"))
+            {
+                this.Hide();
+                cManager.sqlAbmRol.cargarDatosDeBaja(cManager,dataGridViewRolFuncion.Rows[e.RowIndex].Cells[1].Value.ToString());
+                this.Close();
+            }
+
         }
 
         
