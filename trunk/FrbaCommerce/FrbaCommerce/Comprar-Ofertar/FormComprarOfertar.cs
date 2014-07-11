@@ -144,49 +144,50 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void dataGridViewCompra_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            this.Hide();
-
-            string estado;
-
-            FormMostrarPublicacion mostrarPublic = new FormMostrarPublicacion(cManager, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString(),this.usuario);
-
-            estado= cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
-
-            mostrarPublic.numericUpDownCantComprar.Value = 1;
-
-            if (mostrarPublic.tipo.Text.Equals("Subasta"))
+            if (dataGridViewCompra.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
+                this.Hide();
+
+                string estado;
+
+                FormMostrarPublicacion mostrarPublic = new FormMostrarPublicacion(cManager, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString(), this.usuario);
+
+                estado = cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
+
+                mostrarPublic.numericUpDownCantComprar.Value = 1;
+
+                if (mostrarPublic.tipo.Text.Equals("Subasta"))
+                {
 
 
-                mostrarPublic.stock.Visible = false;
+                    mostrarPublic.stock.Visible = false;
 
-                mostrarPublic.label4.Visible = false;
+                    mostrarPublic.label4.Visible = false;
 
-                mostrarPublic.label4.Text = "Precio";
+                    mostrarPublic.label4.Text = "Precio";
 
-                mostrarPublic.buttonComprar.Text = "Ofertar";
+                    mostrarPublic.buttonComprar.Text = "Ofertar";
 
-                mostrarPublic.label5.Visible = false;
+                    mostrarPublic.label5.Visible = false;
 
-                mostrarPublic.numericUpDownCantComprar.Visible = false;
+                    mostrarPublic.numericUpDownCantComprar.Visible = false;
+
+                }
+
+                if (estado.Equals("Pausada"))
+                {
+
+                    mostrarPublic.buttonComprar.Visible = false;
+
+                    mostrarPublic.buttonPreguntar.Visible = false;
+
+                }
+
+                mostrarPublic.ShowDialog();
 
             }
-
-            if (estado.Equals("Pausada"))
-            {
-
-                mostrarPublic.buttonComprar.Visible = false;
-
-                mostrarPublic.buttonPreguntar.Visible = false;
-
-            }
-            
-            mostrarPublic.ShowDialog();
 
         }
-
-
 
     }
 
