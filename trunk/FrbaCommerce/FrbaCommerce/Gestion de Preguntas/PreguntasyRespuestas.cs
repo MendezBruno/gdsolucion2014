@@ -16,6 +16,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
         SistemManager cManager;
         int codigoPublicacion;
         string usuario;
+        string preguntaIdCurrent;
         public PreguntasyRespuestas(SistemManager cManager, int codigoPublicacion, string usuario)
         {
             InitializeComponent();
@@ -55,7 +56,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
 
         private void buttonResponder_Click(object sender, EventArgs e)
         {
-            bool cargo=cManager.sqlPreguntas.insertarRespuesta(cManager, richTextBoxRespuesta.Text, codigoPublicacion);
+            bool cargo = cManager.sqlPreguntas.insertarRespuesta(cManager, richTextBoxRespuesta.Text, codigoPublicacion, preguntaIdCurrent);
             if (cargo)
             {
                 MessageBox.Show("Respuesta Cargada Correctamente");
@@ -69,6 +70,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             richTextBoxRespuesta.Enabled = true;
             richTextBoxPregunta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells[2].Value.ToString();
             richTextBoxRespuesta.Text = dataGridViewPreguntas.Rows[e.RowIndex].Cells["Respuesta_Respuesta"].Value.ToString();
+            preguntaIdCurrent = dataGridViewPreguntas.Rows[e.RowIndex].Cells["Pregunta_ID"].Value.ToString();
             richTextBoxPregunta.Enabled = false;
             richTextBoxRespuesta.Enabled = false;
         }

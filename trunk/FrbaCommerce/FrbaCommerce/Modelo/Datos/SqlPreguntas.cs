@@ -18,7 +18,7 @@ namespace FrbaCommerce.Modelo.Datos
             }
             else
             {
-                string comandoInsert = "INSERT INTO NO_MORE_SQL.Pregunta(Pregunta_descripcion,Pregunta_Publicacion_Cod,Pregunta_Respuesta_ID,Pregunta_Usuario_Nombre) VALUES ('" + p + "'," + codigoPublicacion.ToString() + ",null,"+usuarioNombre+")";
+                string comandoInsert = "INSERT INTO NO_MORE_SQL.Pregunta(Pregunta_descripcion,Pregunta_Publicacion_Cod,Pregunta_Respuesta_ID,Pregunta_Usuario_Nombre) VALUES ('" + p + "'," + codigoPublicacion.ToString() + ",null,'"+usuarioNombre+"')";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
                 return true;
@@ -31,11 +31,12 @@ namespace FrbaCommerce.Modelo.Datos
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewPreguntas, true, 5);
         }
 
-        internal bool insertarRespuesta(SistemManager cManager, string p, int codigoPublicacion)
+        internal bool insertarRespuesta(SistemManager cManager, string p, int codigoPublicacion,string preguntaId)
         {
-            if (p.Length>255)
+            if (p.Length>255 || p.Length==0)
             {
-                MessageBox.Show("Maximo de caracteres exedidos");
+                if (p.Length > 255) MessageBox.Show("Maximo de caracteres exedidos");
+                else MessageBox.Show("Debe escribir una respuesta para poder responder");
                 return false;
             }
             else
@@ -43,13 +44,13 @@ namespace FrbaCommerce.Modelo.Datos
                 string comandoInsert = "INSERT INTO NO_MORE_SQL.Respuesta(Respuesta_Fecha,Respuesta_Respuesta) VALUES ('"+Configuracion.Default.FechaHoy.ToShortDateString()+"','" + p + "')";
                 SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
-                ActualizarPregunta(cManager, codigoPublicacion);
+                ActualizarPregunta(cManager, codigoPublicacion, preguntaId);
                 return true;
                 
             }
         }
 
-        void ActualizarPregunta(SistemManager cManager,int codigoPublicacion)
+        void ActualizarPregunta(SistemManager cManager,int codigoPublicacion, string preguntaId)
         {
 
             SqlCommand cmd;
@@ -61,7 +62,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand MyCmd2;
             string ComandoInsertar;
-            ComandoInsertar = @"UPDATE NO_MORE_SQL.Pregunta set Pregunta_Respuesta_ID='"+ dr["Respuesta_ID"].ToString() +"' WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString();
+            ComandoInsertar = @"UPDATE NO_MORE_SQL.Pregunta set Pregunta_Respuesta_ID='"+ dr["Respuesta_ID"].ToString() +"' WHERE Pregunta_Publicacion_cod=" + codigoPublicacion.ToString()+"AND Pregunta_ID="+preguntaId;
             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
             //tal vez necesito cerra el dr
             dr.Close();
