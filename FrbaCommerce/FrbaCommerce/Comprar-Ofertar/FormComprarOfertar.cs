@@ -23,6 +23,8 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         string usuario;
 
+        DataGridViewColumn seleccionar;
+
         public FormComprarOfertar(SistemManager cManager,string usuario)
         {
             InitializeComponent();
@@ -40,13 +42,29 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void botonBuscar_Click(object sender, EventArgs e)
         {
-
+            /*for(int i=0; i==this.dataGridViewCompra.Columns.Count; i++)
+            {
+                 if(this.dataGridViewCompra.Columns[i].Name.Equals("Seleccionar")) 
+            
+                 }*/
+            this.seleccionar = guardarColumnaSeleccionar(this.dataGridViewCompra);
             this.dataGridViewCompra.Columns.Clear();
             this.tabla = cManager.sqlCompra.buscarCompras(cManager, this.checkedListBoxRubro.CheckedItems, this.textBoxDescripcion.Text, this.dataGridViewCompra,this.usuario);
             this.paginaActual = 0;
             this.paginalbl.Text = "0";
             mostrar_Pagina();
             this.dataGridViewCompra.Update();
+            
+        }
+
+        private DataGridViewColumn guardarColumnaSeleccionar(DataGridView dataGridView)
+        {
+            for(int i=0; i<=dataGridView.Columns.Count; i++)
+            {
+                 if(dataGridView.Columns[i].Name.Equals("Seleccionar")) return dataGridView.Columns[i];
+                 }
+
+            return null;
         }
 
         private void buttonAnterior_Click(object sender, EventArgs e)
@@ -88,7 +106,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.dataGridViewCompra.Columns.Add("Public_Cod", "Public_Cod");
 
-            this.dataGridViewCompra.Columns.Add("Seleccionar","Seleccionar");
+            this.dataGridViewCompra.Columns.Add(seleccionar);
 
             this.dataGridViewCompra.Columns["Public_Cod"].Visible = false;
 
@@ -122,8 +140,8 @@ namespace FrbaCommerce.Comprar_Ofertar
                 this.dataGridViewCompra.Rows[indice].Cells["Public_Cod"].Value = fila[3].ToString();
 
             }
-              
 
+           // this.dataGridViewCompra.Columns.Insert(this.dataGridViewCompra.Columns.Count, seleccionar);
 
         }
 
