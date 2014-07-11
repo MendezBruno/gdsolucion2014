@@ -115,7 +115,7 @@ namespace FrbaCommerce.Abm_Empresa
 
         private void monthCalendarEmpresa_DateChanged(object sender, DateRangeEventArgs e)
         {
-            this.fechaCreacion.Text = this.monthCalendarEmpresa.SelectionRange.Start.ToString();
+            this.fechaCreacion.Text = this.monthCalendarEmpresa.SelectionRange.Start.ToShortDateString();
 
 
         }

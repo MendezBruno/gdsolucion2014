@@ -21,8 +21,7 @@ namespace FrbaCommerce
         {
             
            // SistemManagerSingleton classManagerSingleton = SistemManagerSingleton.Instance;
-            SistemManager classManager = new SistemManager(); 
-           
+            SistemManager classManager = new SistemManager();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            // Application.Run(new FormPrincipal(classManager));   Lo dejo por si quiero probar allguna funcionalidad pues

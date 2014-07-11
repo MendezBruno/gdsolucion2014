@@ -125,7 +125,7 @@ namespace FrbaCommerce.Abm_Cliente
         private void monthCalendarCliente_DateChanged(object sender, DateRangeEventArgs e)
         {
 
-            textBoxFecNac.Text = this.monthCalendarCliente.SelectionRange.Start.ToString();
+            textBoxFecNac.Text = this.monthCalendarCliente.SelectionRange.Start.ToShortDateString();
 
         }
 
