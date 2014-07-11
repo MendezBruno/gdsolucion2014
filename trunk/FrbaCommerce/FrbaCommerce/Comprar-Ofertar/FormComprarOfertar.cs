@@ -88,6 +88,8 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.dataGridViewCompra.Columns.Add("Public_Cod", "Public_Cod");
 
+            this.dataGridViewCompra.Columns.Add("Seleccionar","Seleccionar");
+
             this.dataGridViewCompra.Columns["Public_Cod"].Visible = false;
 
             if (this.tabla.Rows.Count < final)
@@ -146,6 +148,7 @@ namespace FrbaCommerce.Comprar_Ofertar
         {
             if (dataGridViewCompra.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
+                
                 this.Hide();
 
                 string estado;
@@ -187,7 +190,10 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             }
 
+
         }
+        
+
 
     }
 

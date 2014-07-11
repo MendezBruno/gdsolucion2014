@@ -300,7 +300,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void ObtenerPublicacionesSegunUsuario(SistemManager cManager, string userName, DataGridView dataGridView)
         {
             SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Publicacion_Estado_Edicion FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Usuario_Nombre= '" + userName + "'", cManager.conexion.conn);
-            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 5);
             dataGridView.Columns["Publicacion_Codigo"].Visible = true;
 
         }
@@ -337,7 +337,7 @@ namespace FrbaCommerce.Modelo.Datos
             try
             {
 
-                comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO'";
+                comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO')";
 
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -499,7 +499,8 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerPublicacionesSegunUsuarioYPreguntasConRespuestas(SistemManager cManager, string userName, DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod WHERE Publicacion_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
+
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion,Publicacion_Usuario_Nombre FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod  WHERE Pregunta_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
             dataGridView.Columns["Publicacion_Codigo"].Visible = true;
         }

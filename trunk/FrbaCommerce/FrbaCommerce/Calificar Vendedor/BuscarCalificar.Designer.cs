@@ -29,17 +29,28 @@
         private void InitializeComponent()
         {
             this.dataGridViewClasificar = new System.Windows.Forms.DataGridView();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClasificar)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewClasificar
             // 
+            this.dataGridViewClasificar.AllowUserToAddRows = false;
+            this.dataGridViewClasificar.AllowUserToDeleteRows = false;
             this.dataGridViewClasificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewClasificar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Seleccionar});
             this.dataGridViewClasificar.Location = new System.Drawing.Point(12, 45);
             this.dataGridViewClasificar.Name = "dataGridViewClasificar";
             this.dataGridViewClasificar.Size = new System.Drawing.Size(359, 209);
             this.dataGridViewClasificar.TabIndex = 5;
             this.dataGridViewClasificar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClasificar_CellContentClick);
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.Name = "Seleccionar";
+            this.Seleccionar.Visible = false;
             // 
             // BuscarCalificar
             // 
@@ -57,6 +68,7 @@
         #endregion
 
         public System.Windows.Forms.DataGridView dataGridViewClasificar;
+        private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
 
     }
 }

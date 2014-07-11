@@ -40,10 +40,17 @@ namespace FrbaCommerce.Calificar_Vendedor
         private void dataGridViewClasificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            this.Hide();
+           
 
-            FormCalificacion formcalificacion = new FormCalificacion(cManager, dataGridViewClasificar.Rows[e.RowIndex].Cells[0].Value.ToString(),usuario);
+            if (dataGridViewClasificar.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
+            {
+                this.Hide();
+                FormCalificacion formcalificacion = new FormCalificacion(cManager, dataGridViewClasificar.Rows[e.RowIndex].Cells[0].Value.ToString(), usuario);
                 formcalificacion.ShowDialog();
+                this.Close();
+            }
+
+            
             
           
 

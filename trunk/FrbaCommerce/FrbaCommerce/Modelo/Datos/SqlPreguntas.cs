@@ -76,7 +76,7 @@ namespace FrbaCommerce.Modelo.Datos
             int idRespuesta = Convert.ToInt32(p);
             SqlCommand cmd;
             SqlDataReader dr;
-            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Pregunta WHERE Respuesta_ID=" + idRespuesta.ToString();
+            string insertDataMod = "SELECT Respuesta_Respuesta FROM NO_MORE_SQL.Respuesta WHERE Respuesta_ID=" + idRespuesta.ToString();
             cmd = new SqlCommand(insertDataMod, cManager.conexion.conn);
             dr = cmd.ExecuteReader();
             dr.Read();

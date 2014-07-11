@@ -30,6 +30,7 @@ namespace FrbaCommerce.Calificar_Vendedor
 
             cManager.sqlClasificar.IngresarClasificacion(cManager, compra_id, comboBoxCalificacion.Text.ToString(), descripcionClasificacion.Text.ToString());
             cManager.sqlClasificar.permitirComprar(cManager, usuario);
+            this.Hide();
 
         }
 

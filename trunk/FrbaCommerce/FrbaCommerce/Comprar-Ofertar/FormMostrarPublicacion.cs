@@ -72,7 +72,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
                 formOfertar.ShowDialog();
 
-                this.Show();
+                this.Hide();
                 
 
             }

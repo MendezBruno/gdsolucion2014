@@ -29,9 +29,11 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             this.cManager = cManager;
             this.cliente = cliente;
             this.verRespuestas = verRespuestas;
+            this.userName = cliente.getUsuario();
             if (verRespuestas) cargarPublicacionesVerRespuestas(cliente.getUsuario());
             else cargarPublicacionesResponderPreguntas(cliente.getUsuario());
-            this.userName = cliente.getUsuario();
+
+
         }
 
         
@@ -42,9 +44,9 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             this.cManager = cManager;
             this.empresa = empresa;
             this.verRespuestas = verRespuestas;
+            this.userName = empresa.getUsuario();
             if (verRespuestas) cargarPublicacionesVerRespuestas(empresa.getUsuario());
             else cargarPublicacionesResponderPreguntas(empresa.getUsuario());
-            this.userName = empresa.getUsuario();
 
         }
 
@@ -54,20 +56,22 @@ namespace FrbaCommerce.Gestion_de_Preguntas
             this.cManager = cManager;
             this.administrador=administrador;
             this.verRespuestas = verRespuestas;
+            this.userName = administrador.getUsuario();
             if (verRespuestas) cargarPublicacionesVerRespuestas(administrador.getUsuario());
             else cargarPublicacionesResponderPreguntas(administrador.getUsuario());
-            this.userName = administrador.getUsuario();
 
         }
 
         private void cargarPublicacionesVerRespuestas(string p)
         {
-            cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuarioYPreguntasConRespuestas(cManager, userName, this.dataGridView1);
+            cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuarioYPreguntasConRespuestas(cManager, this.userName, this.dataGridView1);
+        
         }
 
         private void cargarPublicacionesResponderPreguntas(string userName)
         {
-            cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuarioYPreguntasSinResponder(cManager, userName, this.dataGridView1);
+            cManager.sqlPublicacion.ObtenerPublicacionesSegunUsuarioYPreguntasSinResponder(cManager, this.userName, this.dataGridView1);
+          
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
