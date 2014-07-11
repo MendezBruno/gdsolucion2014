@@ -500,9 +500,11 @@ namespace FrbaCommerce.Modelo.Datos
         internal void ObtenerPublicacionesSegunUsuarioYPreguntasConRespuestas(SistemManager cManager, string userName, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion,Publicacion_Usuario_Nombre FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod  WHERE Pregunta_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Pregunta_Usuario_Nombre,Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion,Publicacion_Usuario_Nombre,Pregunta_Respuesta_ID,Respuesta_Fecha FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod INNER JOIN NO_MORE_SQL.Respuesta ON NO_MORE_SQL.Pregunta.Pregunta_Respuesta_ID=NO_MORE_SQL.Respuesta.Respuesta_ID WHERE Pregunta_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
-            dataGridView.Columns["Publicacion_Codigo"].Visible = true;
+            dataGridView.Columns["Publicacion_Codigo"].Visible = false;
+            dataGridView.Columns["Pregunta_Respuesta_ID"].Visible = false;
+            dataGridView.Columns["Respuesta_Fecha"].Visible = false;
         }
     }
 
