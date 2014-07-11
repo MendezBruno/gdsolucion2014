@@ -40,6 +40,7 @@ namespace FrbaCommerce.Abm_Cliente
 
         private void dataGridViewModificacionCliente_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             this.Hide();
             if (this.Text.Equals("Modificacion Cliente"))
             {

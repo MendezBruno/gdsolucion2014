@@ -35,9 +35,9 @@ namespace FrbaCommerce.Modelo.Datos
               empresa.Direccion = (dr["Empresa_Dom_Calle"].ToString());
               if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Nro_Calle"))) empresa.numeroCalle = (Convert.ToInt32(dr["Empresa_Nro_Calle"]));
               if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Piso"))) empresa.NroPiso = (Convert.ToInt32(dr["Empresa_Piso"]));
-              empresa.Depto = (Convert.ToChar(dr["Empresa_Depto"]));
+              if (!dr["Empresa_Depto"].ToString().Equals("")) empresa.Depto = (Convert.ToChar(dr["Empresa_Depto"]));
               empresa.localidad = (dr["Empresa_Localidad"].ToString());
-              if (!dr.IsDBNull(dr.GetOrdinal("Empresa_Codigo_Postal"))) empresa.codigoPostal = (Convert.ToInt32((dr["Empresa_Codigo_Postal"])));
+              if (!dr["Empresa_Codigo_Postal"].ToString().Equals("")) empresa.codigoPostal = (Convert.ToInt32((dr["Empresa_Codigo_Postal"])));
               empresa.ciudad = (dr["Empresa_Ciudad"].ToString());
               empresa.CUIT = (dr["Empresa_CUIT"].ToString());
               empresa.fechaDeCreacion = dr.GetDateTime(dr.GetOrdinal("Empresa_Fecha_Creacion"));

@@ -39,7 +39,15 @@ namespace FrbaCommerce.ABM_Rol
 
         private void dataGridViewRolFuncion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+            
+            if (dataGridViewRolFuncion.Columns[e.ColumnIndex].Name == "Seleccionar")
+            {
 
+                MessageBox.Show("Hola");
+
+            }
+            
             this.Hide();
             if (this.Text.Equals("Modificacion Rol"))   
             {

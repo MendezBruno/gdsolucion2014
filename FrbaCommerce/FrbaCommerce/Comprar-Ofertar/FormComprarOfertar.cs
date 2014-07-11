@@ -147,9 +147,11 @@ namespace FrbaCommerce.Comprar_Ofertar
 
             this.Hide();
 
+            string estado;
+
             FormMostrarPublicacion mostrarPublic = new FormMostrarPublicacion(cManager, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString(),this.usuario);
 
-            cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
+            estado= cManager.sqlCompra.BuscarPublicacion(cManager, mostrarPublic, this.dataGridViewCompra.Rows[e.RowIndex].Cells[3].Value.ToString());
 
             mostrarPublic.numericUpDownCantComprar.Value = 1;
 
@@ -168,6 +170,15 @@ namespace FrbaCommerce.Comprar_Ofertar
                 mostrarPublic.label5.Visible = false;
 
                 mostrarPublic.numericUpDownCantComprar.Visible = false;
+
+            }
+
+            if (estado.Equals("Pausada"))
+            {
+
+                mostrarPublic.buttonComprar.Visible = false;
+
+                mostrarPublic.buttonPreguntar.Visible = false;
 
             }
             

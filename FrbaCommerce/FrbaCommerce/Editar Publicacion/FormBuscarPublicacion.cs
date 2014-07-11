@@ -60,7 +60,7 @@ namespace FrbaCommerce.Editar_Publicacion
 
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
 
-                DialogResult confirmarBaja = MessageBox.Show("Desea deshabilitar al cliente con ", "Baja de Rol", buttons);
+                DialogResult confirmarBaja = MessageBox.Show("Desea dar de baja la publicacion? ", "Baja de Publicacion", buttons);
                 
                 if(DialogResult.Yes==confirmarBaja)
                 cManager.sqlPublicacion.eliminarPublicacion(cManager, dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());

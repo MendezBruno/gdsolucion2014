@@ -140,6 +140,11 @@
             // numericUpDownCantComprar
             // 
             this.numericUpDownCantComprar.Location = new System.Drawing.Point(124, 221);
+            this.numericUpDownCantComprar.Maximum = new decimal(new int[] {
+            1316134912,
+            2328,
+            0,
+            0});
             this.numericUpDownCantComprar.Name = "numericUpDownCantComprar";
             this.numericUpDownCantComprar.Size = new System.Drawing.Size(127, 20);
             this.numericUpDownCantComprar.TabIndex = 10;
