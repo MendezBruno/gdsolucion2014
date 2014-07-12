@@ -54,6 +54,8 @@ namespace FrbaCommerce.Modelo.Datos
 
                 cManager.sqlUsuario.eliminar(cManager, esCliente, numero);
 
+                
+
                 if (e.Number.ToString().Equals("8114"))
                 {
                     MessageBox.Show("Nro de calle, Nro de piso Mal ingresados");
@@ -74,6 +76,12 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
                 }
+                if (e.Number.ToString().Equals("241"))
+                {
+
+                    MessageBox.Show("La fecha no tiene el formato correcto");
+                }
+                
                 return;
 
             }

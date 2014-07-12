@@ -198,6 +198,11 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
                 }
+                if (e.Number.ToString().Equals("241"))
+                {
+
+                    MessageBox.Show("La fecha no tiene el formato correcto");
+                }
                 return;
 
 
