@@ -153,6 +153,7 @@
             // comboBoxTipoPublicacion
             // 
             this.comboBoxTipoPublicacion.FormattingEnabled = true;
+            this.comboBoxTipoPublicacion.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.comboBoxTipoPublicacion.Items.AddRange(new object[] {
             "Subasta",
             "Compra Inmediata"});
