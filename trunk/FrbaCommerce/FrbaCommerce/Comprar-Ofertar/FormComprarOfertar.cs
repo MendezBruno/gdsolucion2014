@@ -25,13 +25,18 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         DataGridViewColumn seleccionar;
 
+        bool botonapretado;
+
         public FormComprarOfertar(SistemManager cManager,string usuario)
         {
             InitializeComponent();
             this.cManager = cManager;
             this.cargarForm();
             this.usuario = usuario;
+
+            botonapretado = false;
             this.seleccionar = guardarColumnaSeleccionar(this.dataGridViewCompra);
+
         }
 
         private void cargarForm()
@@ -51,6 +56,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.paginalbl.Text = "0";
             mostrar_Pagina();
             this.dataGridViewCompra.Update();
+            this.botonapretado = true;
             
         }
 
@@ -67,18 +73,23 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void buttonAnterior_Click(object sender, EventArgs e)
         {
 
-            if (this.paginaActual != 0)
+            if (botonapretado)
             {
+                if (this.paginaActual != 0)
+                {
 
-                this.paginaActual--;
+                    this.paginaActual--;
 
-                this.paginalbl.Text = paginaActual.ToString();
+                    this.paginalbl.Text = paginaActual.ToString();
 
-                this.dataGridViewCompra.Columns.Clear();
-                
-                this.mostrar_Pagina();
+                    this.dataGridViewCompra.Columns.Clear();
 
-            }           
+                    this.mostrar_Pagina();
+
+                }
+            }
+
+            
 
 
         }
@@ -152,16 +163,20 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void buttonSiguiente_Click(object sender, EventArgs e)
         {
 
-            if (this.paginaUltima == false)
+            if (botonapretado)
             {
-                this.paginaActual++;
+                if (this.paginaUltima == false)
+                {
+                    this.paginaActual++;
 
-                this.paginalbl.Text = paginaActual.ToString();
-                
-                this.dataGridViewCompra.Columns.Clear();
+                    this.paginalbl.Text = paginaActual.ToString();
 
-                this.mostrar_Pagina();
+                    this.dataGridViewCompra.Columns.Clear();
+
+                    this.mostrar_Pagina();
+                }
             }
+            
 
 
         }
