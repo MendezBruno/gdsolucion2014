@@ -220,7 +220,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlDataReader dr;
 
-            string command = "SELECT COUNT(*) AS contadorGratis FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Usuario_Nombre='"+usuario+"' AND Publicacion_Estado_Edicion='Publicada' AND Publicacion_Estado_Publicacion_ID='Activa'";
+            string command = "SELECT COUNT(*) AS contadorGratis FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo  WHERE Publicacion_Usuario_Nombre='" + usuario + "' AND Publicacion_Estado_Edicion='Publicada' AND Publicacion_Estado_Publicacion_ID='Activa' AND Visibilidad_Descripcion='Gratis'";
 
             cmd = new SqlCommand(command, cManager.conexion.conn);
 
@@ -228,7 +228,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             dr.Read();
 
-            if (Convert.ToInt16(dr["contadorGratis"].ToString()) <= 3)
+            if (Convert.ToInt16(dr["contadorGratis"].ToString()) < 3)
             {
                 dr.Close();
                 return true;

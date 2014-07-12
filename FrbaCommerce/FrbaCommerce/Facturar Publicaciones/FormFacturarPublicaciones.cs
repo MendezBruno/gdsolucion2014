@@ -221,12 +221,12 @@ namespace FrbaCommerce.Facturar_Publicaciones
             if (dataGridViewFacturar.Rows.Count > 1)
             {
 
-                monto_Total = this.dataGridViewFacturar.Rows[this.dataGridViewFacturar.Rows.Count - 2].Cells["Precio"].Value.ToString();
+                monto_Total = this.dataGridViewFacturar.Rows[this.dataGridViewFacturar.Rows.Count - 1].Cells["Precio"].Value.ToString();
 
                 nro_Factura = cManager.sqlFactura.Cargar_Factura(cManager, monto_Total, comboBoxMedio.Text);
 
 
-                for (i = 0; i < this.dataGridViewFacturar.RowCount - 2; i++)
+                for (i = 0; i < this.dataGridViewFacturar.RowCount - 1; i++)
                 {
 
 
