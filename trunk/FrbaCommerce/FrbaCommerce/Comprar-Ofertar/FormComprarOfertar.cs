@@ -31,6 +31,7 @@ namespace FrbaCommerce.Comprar_Ofertar
             this.cManager = cManager;
             this.cargarForm();
             this.usuario = usuario;
+            this.seleccionar = guardarColumnaSeleccionar(this.dataGridViewCompra);
         }
 
         private void cargarForm()
@@ -42,11 +43,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
         private void botonBuscar_Click(object sender, EventArgs e)
         {
-            /*for(int i=0; i==this.dataGridViewCompra.Columns.Count; i++)
-            {
-                 if(this.dataGridViewCompra.Columns[i].Name.Equals("Seleccionar")) 
             
-                 }*/
             this.seleccionar = guardarColumnaSeleccionar(this.dataGridViewCompra);
             this.dataGridViewCompra.Columns.Clear();
             this.tabla = cManager.sqlCompra.buscarCompras(cManager, this.checkedListBoxRubro.CheckedItems, this.textBoxDescripcion.Text, this.dataGridViewCompra,this.usuario);
