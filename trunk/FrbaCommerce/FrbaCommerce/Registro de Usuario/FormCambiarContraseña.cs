@@ -10,6 +10,7 @@ using FrbaCommerce.Modelo;
 using Sistema;
 using FrbaCommerce.Generar_Publicacion;
 using FrbaCommerce.Facturar_Publicaciones;
+using System.Data.SqlClient;
 
 namespace FrbaCommerce.Registro_de_Usuario
 {
@@ -34,27 +35,37 @@ namespace FrbaCommerce.Registro_de_Usuario
 
         private void dataGridViewUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Hide();
-            if (this.Text.Equals("FormCambiarContraseña"))
+            if (this.dataGridViewUsuarios.Columns[e.ColumnIndex].HeaderText.Equals("Seleccionar"))
             {
-                Usuario user = new Usuario();
-                user.setUsuario(dataGridViewUsuarios.Rows[e.RowIndex].Cells["Usuario_Nombre"].Value.ToString());
-                FormAgregarContraseña formAgregarContraseña = new FormAgregarContraseña(cManager, user);
-                formAgregarContraseña.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                Usuario user = new Usuario();
-                user.setUsuario(dataGridViewUsuarios.Rows[e.RowIndex].Cells["Usuario_Nombre"].Value.ToString());
-                FormFacturarPublicaciones formFactura = new FormFacturarPublicaciones(cManager, user.getUsuario());
-                formFactura.textCantPubli.Visible = false;
-                formFactura.label1.Visible = false;
-                formFactura.buttonGenerarFactura.Visible = false;
-                formFactura.mostrarItems();
-                formFactura.ShowDialog();
+                this.Hide();
 
+                if (this.Text.Equals("FormCambiarContraseña"))
+                {
+                    Usuario user = new Usuario();
+                    user.setUsuario(dataGridViewUsuarios.Rows[e.RowIndex].Cells["Usuario_Nombre"].Value.ToString());
+                    FormAgregarContraseña formAgregarContraseña = new FormAgregarContraseña(cManager, user);
+                    formAgregarContraseña.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    try 
+                    {
+                        Usuario user = new Usuario();
+                        user.setUsuario(dataGridViewUsuarios.Rows[e.RowIndex].Cells["Usuario_Nombre"].Value.ToString());
+                        FormFacturarPublicaciones formFactura = new FormFacturarPublicaciones(cManager, user.getUsuario());
+                        formFactura.textCantPubli.Visible = false;
+                        formFactura.label1.Visible = false;
+                        formFactura.buttonGenerarFactura.Visible = false;
+                        formFactura.mostrarItems();
+                        formFactura.ShowDialog();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("No hay ningun usuario seleccionnado");
+                    }
 
+                }
 
             }
         }
