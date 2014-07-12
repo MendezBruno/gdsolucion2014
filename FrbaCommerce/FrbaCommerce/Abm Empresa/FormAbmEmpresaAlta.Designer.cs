@@ -367,7 +367,7 @@
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAbmEmpresaAlta";
-            this.Text = "FormAbmEmpresaAlta";
+            this.Text = "Alta Empresa";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -199,7 +199,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMostrarPublicacion";
-            this.Text = "FormMostrarPublicacion";
+            this.Text = "Publicacion Mostrada";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCantComprar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -61,7 +61,7 @@
             this.Controls.Add(this.dataGridViewClasificar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BuscarCalificar";
-            this.Text = "BuscarCalificar";
+            this.Text = "Buscar Publicacion a Calificar";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClasificar)).EndInit();
             this.ResumeLayout(false);
 

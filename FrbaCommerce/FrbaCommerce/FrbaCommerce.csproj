@@ -198,12 +198,6 @@
     <Compile Include="Gestion de Preguntas\PreguntasyRespuestas.Designer.cs">
       <DependentUpon>PreguntasyRespuestas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Gestion de Preguntas\SubPreguntas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gestion de Preguntas\SubPreguntas.Designer.cs">
-      <DependentUpon>SubPreguntas.cs</DependentUpon>
-    </Compile>
     <Compile Include="Historial Cliente\FormHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,9 +332,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gestion de Preguntas\PreguntasyRespuestas.resx">
       <DependentUpon>PreguntasyRespuestas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gestion de Preguntas\SubPreguntas.resx">
-      <DependentUpon>SubPreguntas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\FormHistorialCliente.resx">
       <DependentUpon>FormHistorialCliente.cs</DependentUpon>
