@@ -186,7 +186,7 @@ namespace FrbaCommerce.Facturar_Publicaciones
 
                     float precio_Total = 0;
 
-                    for (i = 0; i < this.dataGridViewFacturar.RowCount - 1; i++)
+                    for (i = 0; i < this.dataGridViewFacturar.RowCount ; i++)
                     {
 
                         cantidad_Total = cantidad_Total + int.Parse(dataGridViewFacturar.Rows[i].Cells[1].Value.ToString());
