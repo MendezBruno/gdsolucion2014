@@ -187,8 +187,6 @@ namespace FrbaCommerce.Modelo.Datos
 
            dr.Read();
 
-           MessageBox.Show(dr["Cuenta"].ToString());
-
            if (Convert.ToInt16(dr["Cuenta"].ToString()) == 10)
            {
 
