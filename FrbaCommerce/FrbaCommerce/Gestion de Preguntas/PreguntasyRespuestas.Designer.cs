@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreguntasyRespuestas));
             this.dataGridViewPreguntas = new System.Windows.Forms.DataGridView();
             this.ColumnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonPreguntarResponder = new System.Windows.Forms.Button();
@@ -146,6 +147,7 @@
             this.Controls.Add(this.richTextBoxRespuesta);
             this.Controls.Add(this.buttonPreguntarResponder);
             this.Controls.Add(this.dataGridViewPreguntas);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreguntasyRespuestas";
             this.Text = "Preguntas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPreguntas)).EndInit();

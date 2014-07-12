@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFacturarPublicaciones));
             this.dataGridViewFacturar = new System.Windows.Forms.DataGridView();
             this.textCantPubli = new System.Windows.Forms.TextBox();
             this.buttonGenerarFactura = new System.Windows.Forms.Button();
@@ -133,6 +134,7 @@
             this.Controls.Add(this.buttonGenerarFactura);
             this.Controls.Add(this.textCantPubli);
             this.Controls.Add(this.dataGridViewFacturar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFacturarPublicaciones";
             this.Text = "Facturar Publicaciones";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFacturar)).EndInit();

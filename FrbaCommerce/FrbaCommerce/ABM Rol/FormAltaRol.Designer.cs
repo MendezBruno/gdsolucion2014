@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaRol));
             this.labelNombre = new System.Windows.Forms.Label();
             this.textBoxNombreRol = new System.Windows.Forms.TextBox();
             this.Comprar = new System.Windows.Forms.CheckBox();
@@ -50,10 +51,10 @@
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.Eliminar_Rol = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades = new System.Windows.Forms.GroupBox();
+            this.GenerarFacturaUsuario = new System.Windows.Forms.CheckBox();
             this.ModificarContrasenia = new System.Windows.Forms.CheckBox();
             this.Estadisticas = new System.Windows.Forms.CheckBox();
             this.Habilitar_Rol = new System.Windows.Forms.CheckBox();
-            this.GenerarFacturaUsuario = new System.Windows.Forms.CheckBox();
             this.groupBoxFuncionalidades.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -294,6 +295,16 @@
             this.groupBoxFuncionalidades.TabStop = false;
             this.groupBoxFuncionalidades.Text = "Funcionalidades";
             // 
+            // GenerarFacturaUsuario
+            // 
+            this.GenerarFacturaUsuario.AutoSize = true;
+            this.GenerarFacturaUsuario.Location = new System.Drawing.Point(3, 219);
+            this.GenerarFacturaUsuario.Name = "GenerarFacturaUsuario";
+            this.GenerarFacturaUsuario.Size = new System.Drawing.Size(172, 17);
+            this.GenerarFacturaUsuario.TabIndex = 41;
+            this.GenerarFacturaUsuario.Text = "Generar Factura de un Usuario";
+            this.GenerarFacturaUsuario.UseVisualStyleBackColor = true;
+            // 
             // ModificarContrasenia
             // 
             this.ModificarContrasenia.AutoSize = true;
@@ -325,16 +336,6 @@
             this.Habilitar_Rol.Text = "Rol Hablilitado";
             this.Habilitar_Rol.UseVisualStyleBackColor = true;
             // 
-            // GenerarFacturaUsuario
-            // 
-            this.GenerarFacturaUsuario.AutoSize = true;
-            this.GenerarFacturaUsuario.Location = new System.Drawing.Point(3, 219);
-            this.GenerarFacturaUsuario.Name = "GenerarFacturaUsuario";
-            this.GenerarFacturaUsuario.Size = new System.Drawing.Size(172, 17);
-            this.GenerarFacturaUsuario.TabIndex = 41;
-            this.GenerarFacturaUsuario.Text = "Generar Factura de un Usuario";
-            this.GenerarFacturaUsuario.UseVisualStyleBackColor = true;
-            // 
             // FormAltaRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +346,7 @@
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.textBoxNombreRol);
             this.Controls.Add(this.labelNombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAltaRol";
             this.Text = "Alta Rol";
             this.groupBoxFuncionalidades.ResumeLayout(false);

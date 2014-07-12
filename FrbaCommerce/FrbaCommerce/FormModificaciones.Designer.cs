@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormModificaciones));
             this.Crear_Cliente = new System.Windows.Forms.Button();
             this.Modificar_Cliente = new System.Windows.Forms.Button();
             this.Modificar_Empresa = new System.Windows.Forms.Button();
@@ -191,6 +192,7 @@
             this.Controls.Add(this.Modificar_Empresa);
             this.Controls.Add(this.Modificar_Cliente);
             this.Controls.Add(this.Crear_Cliente);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormModificaciones";
             this.Text = "FormModificaciones";
             this.ResumeLayout(false);

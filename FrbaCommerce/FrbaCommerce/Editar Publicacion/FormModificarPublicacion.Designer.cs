@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormModificarPublicacion));
             this.label1 = new System.Windows.Forms.Label();
             this.Pausar = new System.Windows.Forms.Button();
             this.Activar = new System.Windows.Forms.Button();
@@ -94,6 +95,7 @@
             this.Controls.Add(this.Activar);
             this.Controls.Add(this.Pausar);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormModificarPublicacion";
             this.Text = "FormModificarPublicacion";
             this.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Modificacion_Rol));
             this.dataGridViewRolFuncion = new System.Windows.Forms.DataGridView();
             this.SeleccionarColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRolFuncion)).BeginInit();
@@ -61,6 +62,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 295);
             this.Controls.Add(this.dataGridViewRolFuncion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Modificacion_Rol";
             this.Text = "Modificacion Rol";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRolFuncion)).EndInit();

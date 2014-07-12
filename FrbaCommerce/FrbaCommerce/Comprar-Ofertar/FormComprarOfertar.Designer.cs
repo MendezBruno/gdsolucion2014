@@ -31,16 +31,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormComprarOfertar));
             this.checkedListBoxRubro = new System.Windows.Forms.CheckedListBox();
             this.textBoxDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewCompra = new System.Windows.Forms.DataGridView();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.botonBuscar = new System.Windows.Forms.Button();
             this.buttonAnterior = new System.Windows.Forms.Button();
             this.buttonSiguiente = new System.Windows.Forms.Button();
             this.paginalbl = new System.Windows.Forms.Label();
-            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompra)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,6 +116,11 @@
             this.dataGridViewCompra.TabIndex = 4;
             this.dataGridViewCompra.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCompra_CellContentClick);
             // 
+            // Seleccionar
+            // 
+            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.Name = "Seleccionar";
+            // 
             // botonBuscar
             // 
             this.botonBuscar.Location = new System.Drawing.Point(174, 152);
@@ -154,11 +160,6 @@
             this.paginalbl.TabIndex = 8;
             this.paginalbl.Text = "0";
             // 
-            // Seleccionar
-            // 
-            this.Seleccionar.HeaderText = "Seleccionar";
-            this.Seleccionar.Name = "Seleccionar";
-            // 
             // FormComprarOfertar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,6 +174,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxDescripcion);
             this.Controls.Add(this.checkedListBoxRubro);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormComprarOfertar";
             this.Text = "Comprar/Ofertar";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCompra)).EndInit();
