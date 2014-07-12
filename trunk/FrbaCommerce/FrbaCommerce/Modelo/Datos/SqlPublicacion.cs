@@ -199,7 +199,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                cmd.ExecuteNonQuery();
 
-               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Pubicacion_Usuario_Nombre='" + usuario_publico + "'";
+               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "'";
 
                cmd = new SqlCommand(comando, cManager.conexion.conn);
 
