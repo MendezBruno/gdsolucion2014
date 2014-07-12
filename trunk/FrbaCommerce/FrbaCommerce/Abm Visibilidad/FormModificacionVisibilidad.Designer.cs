@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormModificacionVisibilidad));
             this.dataGridViewModificacionVisibilidad = new System.Windows.Forms.DataGridView();
             this.seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewModificacionVisibilidad)).BeginInit();
@@ -58,6 +59,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Controls.Add(this.dataGridViewModificacionVisibilidad);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormModificacionVisibilidad";
             this.Text = "Modificacion Visibilidad";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewModificacionVisibilidad)).EndInit();

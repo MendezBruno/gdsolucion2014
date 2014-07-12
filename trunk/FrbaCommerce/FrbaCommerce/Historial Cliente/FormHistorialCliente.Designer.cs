@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHistorialCliente));
             this.dataGridViewHistorial = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorial)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(509, 316);
             this.Controls.Add(this.dataGridViewHistorial);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormHistorialCliente";
             this.Text = "Historial";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistorial)).EndInit();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGenerarPublicacion));
             this.comboBoxAceptaPregunta = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBoxVisibilidad = new System.Windows.Forms.ComboBox();
@@ -252,6 +253,7 @@
             this.Controls.Add(this.labelprecio);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelstock);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGenerarPublicacion";
             this.Text = "Generar Publicacion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGenerarPublicacion_FormClosing);

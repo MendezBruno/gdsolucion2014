@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOfertar));
             this.label1 = new System.Windows.Forms.Label();
             this.boton_Confirmar_Oferta = new System.Windows.Forms.Button();
             this.numericUpDownOfer = new System.Windows.Forms.NumericUpDown();
@@ -74,6 +75,7 @@
             this.Controls.Add(this.numericUpDownOfer);
             this.Controls.Add(this.boton_Confirmar_Oferta);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormOfertar";
             this.Text = "Ingresar Monto";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOfer)).EndInit();

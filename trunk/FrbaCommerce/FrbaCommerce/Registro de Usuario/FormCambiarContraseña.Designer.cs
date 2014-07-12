@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCambiarContraseña));
             this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.ColumnSeleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.buttonBuscar = new System.Windows.Forms.Button();
@@ -99,6 +100,7 @@
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.buttonBuscar);
             this.Controls.Add(this.dataGridViewUsuarios);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCambiarContraseña";
             this.Text = "FormCambiarContraseña";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).EndInit();

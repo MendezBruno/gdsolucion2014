@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SubPreguntas));
             this.buttonResponder = new System.Windows.Forms.Button();
             this.buttonVer = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -59,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Controls.Add(this.buttonVer);
             this.Controls.Add(this.buttonResponder);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SubPreguntas";
             this.Text = "SubPreguntas";
             this.ResumeLayout(false);
