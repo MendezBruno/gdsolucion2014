@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbmClienteAlta));
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.textBoxCodPos = new System.Windows.Forms.TextBox();
             this.textBoxLocalidad = new System.Windows.Forms.TextBox();
@@ -369,6 +370,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAbmClienteAlta";
             this.Text = "Alta Cliente";
             this.ResumeLayout(false);

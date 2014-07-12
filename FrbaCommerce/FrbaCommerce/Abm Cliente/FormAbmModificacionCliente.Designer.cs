@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbmModificacionCliente));
             this.textBoxMail = new System.Windows.Forms.TextBox();
             this.labelMail = new System.Windows.Forms.Label();
             this.textBoxDni = new System.Windows.Forms.TextBox();
@@ -190,6 +191,7 @@
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAbmModificacionCliente";
             this.Text = "Modificacion Cliente";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewModificacionCliente)).EndInit();
