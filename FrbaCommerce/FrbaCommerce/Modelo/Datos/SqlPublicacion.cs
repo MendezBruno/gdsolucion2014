@@ -178,8 +178,8 @@ namespace FrbaCommerce.Modelo.Datos
            usuario_publico=dr["Publicacion_Usuario_Nombre"].ToString();
 
             dr.Close();
-   
-           comando="SELECT COUNT(*) AS Cuenta FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Compra.Compra_Publicacion WHERE Publicacion_Usuario_Nombre='"+usuario_publico+"'";
+
+            comando = "SELECT COUNT(*) AS Cuenta FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Compra.Compra_Publicacion WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Compra_Cobrada='NO'";
 
            cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -187,9 +187,12 @@ namespace FrbaCommerce.Modelo.Datos
 
            dr.Read();
 
+           MessageBox.Show(dr["Cuenta"].ToString());
+
            if (Convert.ToInt16(dr["Cuenta"].ToString()) == 10)
            {
 
+               
                dr.Close();
 
                comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE Usuario_Nombre='" + usuario_publico+"'";
@@ -198,7 +201,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                cmd.ExecuteNonQuery();
 
-               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Usuario_Nombre='" + usuario_publico + "'";
+               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Pubicacion_Usuario_Nombre='" + usuario_publico + "'";
 
                cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -350,7 +353,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             }
 
-
+            cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, publicCodigo);
 
         }
         
