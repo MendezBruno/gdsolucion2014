@@ -17,7 +17,7 @@ namespace FrbaCommerce.Modelo.Datos
             SqlDataReader dr;
             string pub_codigo;
             precio = precio.Replace(',', '.');
-            if (!tipoPublicacion.Equals("") && !descripcion.Equals("") && !precio.Equals("") && !visibilidad.Equals("") && !aceptaPregunta.Equals(""))
+            if (!tipoPublicacion.Equals("") && !descripcion.Equals("") && !precio.Equals("") && !visibilidad.Equals("") && !aceptaPregunta.Equals("") && !(checkeados.Count==0))
             {
 
                 try
@@ -116,10 +116,6 @@ namespace FrbaCommerce.Modelo.Datos
                 MessageBox.Show("No se puede publicar porque falta uno de los campos, llenelos y vuelva a intentarlo");
 
             }
-
-
-
-
 
 
         }
