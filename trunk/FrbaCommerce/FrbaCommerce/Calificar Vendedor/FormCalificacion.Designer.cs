@@ -109,7 +109,7 @@
             this.Controls.Add(this.comboBoxCalificacion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCalificacion";
-            this.Text = "Calificacion";
+            this.Text = "Calificar";
             this.ResumeLayout(false);
             this.PerformLayout();
 

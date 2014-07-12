@@ -62,7 +62,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEncontrarPreguntas";
-            this.Text = "FormContestarPreguntas";
+            this.Text = "Contestar Preguntas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
