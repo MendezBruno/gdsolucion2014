@@ -334,7 +334,7 @@ namespace FrbaCommerce.Modelo.Datos
             try
             {
 
-                comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO')";
+                comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy.ToShortDateString() + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO')";
 
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -489,7 +489,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void modificarPublicacionCompleta(SistemManager cManager, string tipoPublicacion, string descripcion, string stockInicial, string precio, int visibilidad, string aceptaPregunta, string userName, CheckedListBox.CheckedItemCollection checkeados, string accion, string public_Cod)
         {
             SqlCommand Cmd;
-            String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID='" + tipoPublicacion + "',Publicacion_Estado_Edicion='Publicada',Publicacion_Estado_Publicacion_ID='Activa',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO') WHERE Publicacion_Codigo=" + public_Cod; 
+            String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy.ToShortDateString() + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID='" + tipoPublicacion + "',Publicacion_Estado_Edicion='Publicada',Publicacion_Estado_Publicacion_ID='Activa',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO') WHERE Publicacion_Codigo=" + public_Cod; 
             Cmd = new SqlCommand(Comando, cManager.conexion.conn);
             Cmd.ExecuteNonQuery();
         }
