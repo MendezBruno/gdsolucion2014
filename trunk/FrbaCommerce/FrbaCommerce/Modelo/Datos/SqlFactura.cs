@@ -149,7 +149,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             monto_Total=monto_Total.Replace(',', '.');
 
-            string comando = "INSERT INTO NO_MORE_SQL.Factura(Factura_Fecha,Factura_Total,Factura_Forma_De_Pago_ID) VALUES ('" + Configuracion.Default.FechaHoy + "'," + monto_Total + ",(SELECT Forma_DE_Pago_ID FROM NO_MORE_SQL.Forma_De_Pago WHERE Forma_DE_Pago_Desc='"+forma+"'))";
+            string comando = "INSERT INTO NO_MORE_SQL.Factura(Factura_Fecha,Factura_Total,Factura_Forma_De_Pago_ID) VALUES ('" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + monto_Total + ",(SELECT Forma_DE_Pago_ID FROM NO_MORE_SQL.Forma_De_Pago WHERE Forma_DE_Pago_Desc='"+forma+"'))";
 
             MessageBox.Show(comando);
             

@@ -160,7 +160,7 @@ namespace FrbaCommerce.Modelo.Datos
         {
             SqlCommand cmd;
 
-            string comando = "INSERT INTO NO_MORE_SQL.Oferta(Oferta_Fecha,Oferta_Monto,Oferta_Publicacion_Codigo,Oferta_Usuario_Nombre) VALUES ('" + Configuracion.Default.FechaHoy + "'," + monto + "," + publicCod + ",'" + usuario + "')";
+            string comando = "INSERT INTO NO_MORE_SQL.Oferta(Oferta_Fecha,Oferta_Monto,Oferta_Publicacion_Codigo,Oferta_Usuario_Nombre) VALUES ('" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + monto + "," + publicCod + ",'" + usuario + "')";
 
             cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -290,7 +290,7 @@ namespace FrbaCommerce.Modelo.Datos
             
             SqlCommand cmd;
 
-            string comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy + "'," + cantidad + ",'" + usuario + "'," + public_Codigo + ",'NO')";
+            string comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + cantidad + ",'" + usuario + "'," + public_Codigo + ",'NO')";
 
             cmd = new SqlCommand(comando, cManager.conexion.conn);
 
