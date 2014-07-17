@@ -49,40 +49,26 @@ namespace FrbaCommerce.Abm_Empresa
         
         {
 
+            bool dioAlta=false;
+            
             if (modificacion)
             {
 
                 cManager.sqlEmpresa.modificarEmpresa(cManager, empresa, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text,checkBoxHabilitacion.Checked);
-
+                this.Hide();
             
             }
             else
             if(this.registro== false)
             {
-                cManager.sqlEmpresa.darAlta(cManager,esCliente, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
+                dioAlta=cManager.sqlEmpresa.darAlta(cManager, esCliente, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
+                this.Hide();
             }
                 else
             {
-                cManager.sqlEmpresa.darAlta(cManager,esCliente, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text, this.user, this.pass);
+                dioAlta=cManager.sqlEmpresa.darAlta(cManager, esCliente, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text, this.user, this.pass);
             }
-            /*
-                if (cuit.Text.Equals("") || razon.Text.Equals(""))
-                {
-
-                    if (cuit.Text.Equals(""))
-                        MessageBox.Show("Cuit No Ingresado");
-                    if (razon.Text.Equals(""))
-                        MessageBox.Show("Razon Social No ingresada");
-
-                }
-                else
-                {
-                    cManager.sqlUsuario.darAltaEmpresa(cManager, cuit.Text);
-                    cManager.sqlEmpresa.darAlta(cManager, cuit.Text, razon.Text, mail.Text, telefono.Text, direccion.Text, nroDireccion.Text, departamento.Text, localidad.Text, codPostal.Text, ciudad.Text, fechaCreacion.Text, piso.Text, usuario.Text);
-                    MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + cuit.Text + ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
-                }
-             
-             */
+            if(dioAlta==true)
             this.Hide();
         }
         

@@ -119,7 +119,7 @@ namespace FrbaCommerce.Generar_Publicacion
                     {
 
 
-                        MessageBox.Show("No Es posible cargar la publicacion porque tiene mas de 3 publicaciones Gratis Activas, Pausee o Fianlize alguna para poder continuar");
+                        MessageBox.Show("No Es posible cargar la publicacion porque tiene mas de 3 publicaciones Gratis Activas o Pausadas finalize alguna para continuar");
                         return;
                     
                     }
@@ -252,10 +252,6 @@ namespace FrbaCommerce.Generar_Publicacion
             this.Hide();
         }
 
-        private void comboBoxVisibilidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void numericUpDownStockInicial_ValueChanged(object sender, EventArgs e)
         {

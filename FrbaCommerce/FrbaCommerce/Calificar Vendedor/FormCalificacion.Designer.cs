@@ -29,27 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCalificacion));
-            this.comboBoxCalificacion = new System.Windows.Forms.ComboBox();
             this.descripcionClasificacion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonClasificar = new System.Windows.Forms.Button();
+            this.numericUpDownCalificacion = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCalificacion)).BeginInit();
             this.SuspendLayout();
-            // 
-            // comboBoxCalificacion
-            // 
-            this.comboBoxCalificacion.FormattingEnabled = true;
-            this.comboBoxCalificacion.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.comboBoxCalificacion.Location = new System.Drawing.Point(221, 62);
-            this.comboBoxCalificacion.Name = "comboBoxCalificacion";
-            this.comboBoxCalificacion.Size = new System.Drawing.Size(66, 21);
-            this.comboBoxCalificacion.TabIndex = 0;
             // 
             // descripcionClasificacion
             // 
@@ -62,7 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 62);
+            this.label1.Location = new System.Drawing.Point(79, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 3;
@@ -96,20 +83,34 @@
             this.buttonClasificar.UseVisualStyleBackColor = true;
             this.buttonClasificar.Click += new System.EventHandler(this.buttonClasificar_Click);
             // 
+            // numericUpDownCalificacion
+            // 
+            this.numericUpDownCalificacion.Location = new System.Drawing.Point(221, 45);
+            this.numericUpDownCalificacion.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownCalificacion.Name = "numericUpDownCalificacion";
+            this.numericUpDownCalificacion.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownCalificacion.TabIndex = 7;
+            this.numericUpDownCalificacion.ValueChanged += new System.EventHandler(this.numericUpDownCalificacion_ValueChanged);
+            // 
             // FormCalificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 253);
+            this.Controls.Add(this.numericUpDownCalificacion);
             this.Controls.Add(this.buttonClasificar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.descripcionClasificacion);
-            this.Controls.Add(this.comboBoxCalificacion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCalificacion";
             this.Text = "Calificar";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCalificacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,12 +118,12 @@
 
         #endregion
 
-        public System.Windows.Forms.ComboBox comboBoxCalificacion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonClasificar;
         public System.Windows.Forms.TextBox descripcionClasificacion;
+        private System.Windows.Forms.NumericUpDown numericUpDownCalificacion;
 
     }
 }

@@ -36,6 +36,8 @@ namespace FrbaCommerce.Comprar_Ofertar
         private void buttonComprar_Click(object sender, EventArgs e)
         {
 
+            bool estado;
+            
             if(buttonComprar.Text.Equals("Comprar"))
             {
 
@@ -48,7 +50,7 @@ namespace FrbaCommerce.Comprar_Ofertar
 
                 }
 
-                cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, this.public_Codigo);
+                cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, this.public_Codigo);              
                 
                 MessageBox.Show("Compra_Realizadas_Con_Exito");
                 

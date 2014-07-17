@@ -19,11 +19,11 @@ namespace FrbaCommerce.Modelo.Datos
             {
                 SqlCommand MyCmd2;
                 string ComandoInsertar;
-                String ComandoInsert = @"INSERT INTO NO_MORE_SQL.Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
+                String ComandoInsert = "INSERT INTO NO_MORE_SQL.Rol(Rol_Nombre) VALUES('" + nombreRol + "')";
                 SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
 
-                ComandoInsertar = @"UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='NO' WHERE Rol_Nombre='" + nombreRol + "'";
+                ComandoInsertar = "UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='NO' WHERE Rol_Nombre='" + nombreRol + "'";
                 MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                 MyCmd2.ExecuteNonQuery();
 
@@ -33,26 +33,24 @@ namespace FrbaCommerce.Modelo.Datos
                     {
                         if (chekBox.Name == "Habilitar_Rol")
                         {
-                            ComandoInsertar = @"UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
+                            ComandoInsertar = "UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
                             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                             MyCmd2.ExecuteNonQuery();
                         }
- 
-                        else
-                        {
 
-                            ComandoInsertar = @"INSERT INTO NO_MORE_SQL.Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
+                            ComandoInsertar = "INSERT INTO NO_MORE_SQL.Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
                             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                             //   MyCmd2.ExecuteScalar();
                             MyCmd2.ExecuteNonQuery();
 
-                        }
+                        
                     }
                 }
                 MessageBox.Show("Rol creado exitosamente");
             }
             catch (SqlException ex)
             {
+
                 switch (ex.Number)
                 {
                  

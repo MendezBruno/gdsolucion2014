@@ -27,14 +27,18 @@ namespace FrbaCommerce.Registro_de_Usuario
         //  cManager.conexion.registrarUsuario(this.textBoxUser.Text, this.textBoxPass.Text,this.comboBoxRol.Text , this.textBoxTipo.Text, this.textBoxNumero.Text);
 
 
+            bool usuarioExiste=false;
+            
             if (this.textBoxUser.Text.Equals(""))
             MessageBox.Show("Nombre de Usuario no ingresado");
             else
             if(this.textBoxPass.Text.Equals(""))
             MessageBox.Show("Contraseña no ingresada");
             else
+                usuarioExiste = cManager.sqlUsuario.existe_Usuario(cManager, textBoxUser.Text, textBoxPass.Text);
+            if (usuarioExiste== false)
             crearUsuarioConTalRol(this.comboBoxRol.Text,this.textBoxUser.Text,this.textBoxPass.Text);
-            this.Hide();
+
         }
 
         private void crearUsuarioConTalRol(string rol,string user,string pass)
@@ -45,15 +49,14 @@ namespace FrbaCommerce.Registro_de_Usuario
                     this.Hide();
                     FormAbmClienteAlta formAbmCliente = new FormAbmClienteAlta(user,pass,cManager, true);
                     formAbmCliente.ShowDialog();
-                    this.Show();
+                    this.Hide();
                     break;
                 case "Empresa":
                     this.Hide();
                     FormAbmEmpresaAlta formAbmEmpresa = new FormAbmEmpresaAlta(user,pass,cManager, false);
                     formAbmEmpresa.ShowDialog();
-                    this.Show();
+                    this.Hide();
                     break;
-                    //TODO case de administrador
             }
         }
       
