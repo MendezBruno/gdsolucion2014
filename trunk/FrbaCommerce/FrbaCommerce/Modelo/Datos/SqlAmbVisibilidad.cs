@@ -9,52 +9,181 @@ namespace FrbaCommerce.Modelo.Datos
 {
     public class SqlAmbVisibilidad
     {
-        internal void Ingresar_Datos(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje)
+        internal bool Ingresar_Datos(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje)
         {
 
+            bool dio_Alta = false;
+            
             try
             {
+
+
                 SqlCommand cmd;
+                string comando;
+                SqlDataReader dr;
+
+                if (descripcion.Equals("") || precio.Equals("") || porcentaje.Equals(""))
+                {
+                    
+                    if(codigo.Equals(""))
+                        MessageBox.Show("Codigo no ingresado");
+                    if (descripcion.Equals(""))
+                        MessageBox.Show("Descripcion no ingresada");
+                    if (precio.Equals(""))
+                        MessageBox.Show("Precio no ingresado");
+                    if (porcentaje.Equals(""))
+                        MessageBox.Show("Porcentaje No Ingresado");
+                    return dio_Alta;
+                }
+
+
+
+                comando = "SELECT * FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Codigo=" + codigo + " AND Visibilidad_Descripcion='"+descripcion+"'" ;
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    
+                    dr.Close();
+
+                    MessageBox.Show("Codigo y visibilidad de una Publicacion erroneos");
+
+                    return dio_Alta;
+
+                }
+                dr.Close();
+
+                comando = "SELECT * FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Codigo=" + codigo ;
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+
+                    dr.Close();
+
+                    MessageBox.Show("Codigo de una Publicacion erroneo");
+
+                    return dio_Alta;
+
+                }
+                dr.Close();
+
+
+                comando = "SELECT * FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Descripcion='" + descripcion + "'";
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+
+                    dr.Close();
+
+                    MessageBox.Show("Descripcion de una publicacion erroneo");
+
+                    return dio_Alta;
+
+                }
+                dr.Close();
+
                 porcentaje = porcentaje.Replace(',', '.');
                 precio = precio.Replace(',', '.');
                 string sql_insert = "INSERT INTO NO_MORE_SQL.Publicacion_Visibilidad(Visibilidad_Codigo,Visibilidad_Descripcion,Visibilidad_Precio,Visibilidad_Porcentaje,Visibilidad_Esta_Habilitada) VALUES ('" + codigo + "','" + descripcion + "'," + precio + "," + porcentaje + ",'SI')";
                 cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Visibilidad dada de alta correctamente");
+
+                dio_Alta = true;
+
+                return dio_Alta;
+
+
+
             }
             catch(SqlException e)
             {
 
+              
                 if (e.Number.ToString().Equals("8114"))
                 {
                     MessageBox.Show("Precio Por Publicar o Porcentaje de la venta mal ingresados");
 
                 }
                 if (e.Number.ToString().Equals("207"))
-                {
+                {          
+                    
                     MessageBox.Show("Codigo Mal Ingresado");
 
                 }
                 if (e.Number.ToString().Equals("2627"))
                 {
-                    MessageBox.Show("Codigo Ya Ingresado");
 
+                    if (e.Message.ToString().Contains("Visibilidad_Codigo"))
+                    {
+
+                        MessageBox.Show("Codigo de Visibilidad ya ingresado, Intentelo de nuevo");
+                    }
+                    if (e.Message.ToString().Contains("Visibilidad_Descripcion"))
+                    {
+                        MessageBox.Show("Descripcion de Visibilidad ya ingresado, Intentelo de nuevo");
+
+                    }
                 }
-                if (e.Number.ToString().Equals("8115"))
-                {
 
-                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
-                }
 
-            }
+                    if (e.Number.ToString().Equals("8115"))
+                    {
+
+                        MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                    }
+                    return dio_Alta;
+                
+               }
+
+            
         }
 
-        internal void Ingresar_Datos_Modificacion(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje,bool habilitado)
+        internal bool Ingresar_Datos_Modificacion(SistemManager cManager, string codigo, string descripcion, string precio, string porcentaje,bool habilitado)
         {
 
+            bool dio_Alta = false;
+
+            SqlCommand cmd;
+            string comando;
+            SqlDataReader dr;
+            
             try
             {
+                if (descripcion.Equals("") || precio.Equals("") || porcentaje.Equals(""))
+                {
+                    if (descripcion.Equals(""))
+                        MessageBox.Show("Descripcion no ingresada");
+                    if (precio.Equals(""))
+                        MessageBox.Show("Precio no ingresado");
+                    if (porcentaje.Equals(""))
+                        MessageBox.Show("Porcentaje No Ingresado");
+                    return dio_Alta;
+                }
 
-                SqlCommand cmd;
+                comando = "SELECT * FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Descripcion='" + descripcion + "' AND Visibilidad_Codigo<>" + codigo;
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+
+                    dr.Close();
+
+                    MessageBox.Show("Descripcion de una publicacion erroneo");
+
+                    return dio_Alta;
+
+                }
+                dr.Close();
+                
                 porcentaje = porcentaje.Replace(',', '.');
                 precio = precio.Replace(',', '.');
                 string sql_insert = "UPDATE NO_MORE_SQL.Publicacion_Visibilidad SET Visibilidad_Descripcion='" + descripcion + "',Visibilidad_Precio=" + precio + ",Visibilidad_Porcentaje=" + porcentaje + " WHERE Visibilidad_Codigo=" + codigo;
@@ -66,6 +195,11 @@ namespace FrbaCommerce.Modelo.Datos
                     cmd = new SqlCommand(sql_insert, cManager.conexion.conn);
                     cmd.ExecuteNonQuery();
                 }
+
+                MessageBox.Show("Visibilidad modificada correctamente");
+                dio_Alta = true;
+                return dio_Alta;
+
             }
             catch (SqlException e)
             {
@@ -90,6 +224,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
                 }
+                return dio_Alta;
             }
         }
              
@@ -157,7 +292,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void listaDeVisibilidades(SistemManager cManager, ComboBox.ObjectCollection objectCollection)
         {
-            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Descripcion FROM NO_MORE_SQL.Publicacion_Visibilidad", cManager.conexion.conn);
+            SqlCommand cmd = new SqlCommand("SELECT Visibilidad_Descripcion FROM NO_MORE_SQL.Publicacion_Visibilidad WHERE Visibilidad_Esta_Habilitada='SI'", cManager.conexion.conn);
 
             SqlDataReader dr = cmd.ExecuteReader();
 

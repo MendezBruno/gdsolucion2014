@@ -84,7 +84,7 @@ namespace FrbaCommerce.Gestion_de_Preguntas
                 {
 
 
-                    FormVerRespuestas formVerRespuestas = new FormVerRespuestas(cManager, dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Descripcion"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Usuario_Nombre"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Tipo_ID"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Usuario_Nombre"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Respuesta_ID"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Respuesta_Fecha"].Value.ToString());
+                    FormVerRespuestas formVerRespuestas = new FormVerRespuestas(cManager, dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Descripcion"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Codigo"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Publicacion_Usuario_Nombre"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Tipo_Publicacion_Desc"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Usuario_Nombre"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Pregunta_Respuesta_ID"].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["Respuesta_Fecha"].Value.ToString());
                     formVerRespuestas.ShowDialog();
                     
                     this.Close();

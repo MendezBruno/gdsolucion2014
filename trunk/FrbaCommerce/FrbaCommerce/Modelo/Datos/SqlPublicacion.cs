@@ -19,13 +19,13 @@ namespace FrbaCommerce.Modelo.Datos
             precio = precio.Replace(',', '.');
             if (!tipoPublicacion.Equals("") && !descripcion.Equals("") && !precio.Equals("") && !visibilidad.Equals("") && !aceptaPregunta.Equals("") && !(checkeados.Count==0))
             {
-
+/*
                 try
-                {
+                {*/
                     if (accion.Equals("Generar Publicacion"))
                     {
 
-                        String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Edicion,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + precio.ToString() + ",'" + tipoPublicacion + "','Publicada','Activa','" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
+                        String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Fecha_Vencimiento,Publicacion_Fecha_Inicio,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod,Publicacion_Visibilidad_Cobrada) VALUES ('" + descripcion + "'," + stockInicial + ",NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'," + precio.ToString() + ",(SELECT Tipo_Publicacion_ID FROM NO_MORE_SQL.Tipo_Publicacion WHERE Tipo_Publicacion_Desc='" + tipoPublicacion + "'),(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Publicada'),'" + aceptaPregunta + "','" + userName + "'," + visibilidad.ToString() + ",'NO')";
                         Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                         Cmd.ExecuteNonQuery();
 
@@ -54,8 +54,8 @@ namespace FrbaCommerce.Modelo.Datos
                     }
                     if (accion.Equals("Modificar Publicacion"))
                     {
-
-                        String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy.ToShortDateString() + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID='" + tipoPublicacion + "',Publicacion_Estado_Edicion='Publicada',Publicacion_Estado_Publicacion_ID='Activa',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO' WHERE Publicacion_Codigo=" + public_Cod; ;
+                        
+                        String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Fecha_Vencimiento=NO_MORE_SQL.fecha_segun_publicacion(" + visibilidad.ToString() + ",'" + Configuracion.Default.FechaHoy.ToShortDateString() + "'),Publicacion_Fecha_Inicio='" + Configuracion.Default.FechaHoy.ToShortDateString() + "',Publicacion_Precio=" + precio.ToString() + ",Publicacion_Tipo_ID=(SELECT Tipo_Publicacion_ID FROM NO_MORE_SQL.Tipo_Publicacion WHERE Tipo_Publicacion_Desc='" + tipoPublicacion + "'),Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Publicada'),Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=" + visibilidad.ToString() + ",Publicacion_Visibilidad_Cobrada='NO' WHERE Publicacion_Codigo=" + public_Cod;
                         Cmd = new SqlCommand(Comando, cManager.conexion.conn);
                         Cmd.ExecuteNonQuery();
 
@@ -80,11 +80,13 @@ namespace FrbaCommerce.Modelo.Datos
 
 
                     }
-                }
-
+            /*    }
+            
                 catch (SqlException e)
                 {
 
+               
+                    
                     if (e.Number.ToString().Equals("207"))
                     {
                         MessageBox.Show("Precio Mal Ingresado");
@@ -108,7 +110,7 @@ namespace FrbaCommerce.Modelo.Datos
 
 
 
-                }
+                }*/
             }
             else
             {
@@ -132,14 +134,14 @@ namespace FrbaCommerce.Modelo.Datos
         internal void buscarModificar(SistemManager cManager, string usuario, DataGridView dataGridViewModificar)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Publicacion JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID WHERE Estado='Activa' AND Publicacion_Usuario_Nombre ='" + usuario + "'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID WHERE Estado='Activa' AND Publicacion_Usuario_Nombre ='" + usuario + "'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewModificar, true, 3);
 
         }
 
         internal void buscarPausada(SistemManager cManager, string usuario, DataGridView dataGridPausada)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Publicacion JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID WHERE Estado='Activa' AND Publicacion_Usuario_Nombre ='" + usuario + "'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID WHERE Estado='Activa' AND Publicacion_Usuario_Nombre ='" + usuario + "'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridPausada, true, 3);
 
 
@@ -147,10 +149,9 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void buscarFinalizada(SistemManager cManager, string usuario, DataGridView dataGridViewFinalizada)
         {
+    
             SqlDataAdapter adapComando = new SqlDataAdapter("SELECT * FROM NO_MORE_SQL.Publicacion JOIN Estado_Publicacion ON Publicacion.Publicacion_Estado_Publicacion_ID=Estado_Publicacion.Estado_Publicacion_ID WHERE Estado='Activa' AND Publicacion_Usuario_Nombre ='" + usuario + "'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewFinalizada, true, 3);
-
-
 
         }
 
@@ -173,9 +174,9 @@ namespace FrbaCommerce.Modelo.Datos
 
            usuario_publico=dr["Publicacion_Usuario_Nombre"].ToString();
 
-            dr.Close();
+           dr.Close();
 
-            comando = "SELECT COUNT(*) AS Cuenta FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Compra.Compra_Publicacion WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Compra_Cobrada='NO'";
+           comando = "SELECT COUNT(*) AS Cuenta FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Compra.Compra_Publicacion WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Compra_Cobrada='NO'";
 
            cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -186,26 +187,29 @@ namespace FrbaCommerce.Modelo.Datos
            if (Convert.ToInt16(dr["Cuenta"].ToString()) == 10)
            {
 
-               
+
                dr.Close();
 
-               comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE Usuario_Nombre='" + usuario_publico+"'";
+               comando = "UPDATE NO_MORE_SQL.Usuario SET Esta_Habilitado='NO' WHERE Usuario_Nombre='" + usuario_publico + "'";
 
                cmd = new SqlCommand(comando, cManager.conexion.conn);
 
                cmd.ExecuteNonQuery();
 
-               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Publicacion_Estado_Publicacion_ID='Activa'";
+               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Pausada') WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Publicacion_Estado_Publicacion_ID='Activa'";
 
                cmd = new SqlCommand(comando, cManager.conexion.conn);
 
                cmd.ExecuteNonQuery();
-               
-               return;
-           
-           
+
+
            }
-           dr.Close();
+           else
+           {
+
+               dr.Close();
+
+           }
 
 
         }
@@ -216,18 +220,19 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlDataReader dr;
 
-            string command = "SELECT COUNT(*) AS contadorGratis FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo  WHERE Publicacion_Usuario_Nombre='" + usuario + "' AND Publicacion_Estado_Edicion='Publicada' AND Publicacion_Estado_Publicacion_ID='Activa' AND Visibilidad_Descripcion='Gratis'";
+            string command = "SELECT COUNT(*) AS contadorGratis FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo  WHERE Publicacion_Usuario_Nombre='" + usuario + "' AND Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Activa') AND Visibilidad_Descripcion='Gratis'";
 
             cmd = new SqlCommand(command, cManager.conexion.conn);
 
             dr = cmd.ExecuteReader();
 
-            dr.Read();
-
-            if (Convert.ToInt16(dr["contadorGratis"].ToString()) < 3)
+            if (dr.Read())
             {
-                dr.Close();
-                return true;
+                if (Convert.ToInt16(dr["contadorGratis"].ToString()) < 3)
+                {
+                    dr.Close();
+                    return true;
+                }
             }
             dr.Close();
             return false;
@@ -242,7 +247,7 @@ namespace FrbaCommerce.Modelo.Datos
             SqlDataReader dr;
             string pub_codigo;
             MessageBox.Show(tipoPublicacion.ToString());
-            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",@precio,@Tipo_Publica,'Borrador','" + aceptaPregunta + "','" + userName + "',@visibilidad)";
+            String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",@precio,(SELECT Tipo_Publicacion_ID FROM NO_MORE_SQL.Tipo_Publicacion WHERE Tipo_Publicacion_Desc=@Tipo_Publica),(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Borrador'),'" + aceptaPregunta + "','" + userName + "',@visibilidad)";
             cmd = new SqlCommand(Comando, cManager.conexion.conn);
             if (precio == "")
                 cmd.Parameters.AddWithValue("@precio", DBNull.Value);
@@ -287,7 +292,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             string comando;
             SqlCommand cmd;
-            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Edicion='Borrada' WHERE Publicacion_Codigo=" + cod_Public;
+            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc= 'Borrador') WHERE Publicacion_Codigo=" + cod_Public;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
         
@@ -296,8 +301,8 @@ namespace FrbaCommerce.Modelo.Datos
         
         internal void ObtenerPublicacionesSegunUsuario(SistemManager cManager, string userName, DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Publicacion_Estado_Edicion FROM NO_MORE_SQL.Publicacion WHERE Publicacion_Usuario_Nombre= '" + userName + "'", cManager.conexion.conn);
-            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 5);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Tipo_Publicacion_Desc,Publicacion_Descripcion,Estado_Publicacion_Desc FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID INNER JOIN NO_MORE_SQL.Tipo_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Tipo_ID=NO_MORE_SQL.Tipo_Publicacion.Tipo_Publicacion_ID WHERE Publicacion_Usuario_Nombre='" + userName + "'", cManager.conexion.conn);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 4);
             dataGridView.Columns["Publicacion_Codigo"].Visible = true;
 
         }
@@ -307,7 +312,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             string comando;
             SqlCommand cmd;
-            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Activa' WHERE Publicacion_Codigo=" + public_Codigo;
+            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc ='Publicada') WHERE Publicacion_Codigo=" + public_Codigo;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 
@@ -318,18 +323,22 @@ namespace FrbaCommerce.Modelo.Datos
         {
             string comando;
             SqlCommand cmd;
-            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Pausada' WHERE Publicacion_Codigo=" + public_Codigo;
+            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc ='Pausada') WHERE Publicacion_Codigo=" + public_Codigo;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
 
 
         }
 
-        internal void RegistrarSubasta(SistemManager cManager, string publicCodigo, string tipo_public)
+        internal string RegistrarSubasta(SistemManager cManager, string publicCodigo, string tipo_public)
         {
             string comando;
 
             SqlCommand cmd;
+
+            SqlDataReader dr;
+
+            string usuario;
 
             try
             {
@@ -339,27 +348,49 @@ namespace FrbaCommerce.Modelo.Datos
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
 
                 cmd.ExecuteNonQuery();
+
+                comando = "SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC";
+
+                cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                dr=cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+
+                    usuario = dr["Oferta_Usuario_Nombre"].ToString();
+                    dr.Close();
+                    cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, publicCodigo);
+                    return usuario;
+                }
+                dr.Close();
+
+                MessageBox.Show("No se registro ninguna oferta");
+
+                return "-1";
+
+
             }
 
             catch (SqlException e)
             {
-                MessageBox.Show("No se regitro ninguna oferta");
-
+                MessageBox.Show("No se registro ninguna oferta");
+                return "-1";
             }
+        
 
-            cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, publicCodigo);
+         
 
         }
         
         internal void CambiarAFinalizada(SistemManager cManager, string public_Codigo)
         {
+
             string comando;
             SqlCommand cmd;
-            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID='Finalizado' WHERE Publicacion_Codigo=" + public_Codigo;
+            comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Finalizado') WHERE Publicacion_Codigo=" + public_Codigo;
             cmd = new SqlCommand(comando, cManager.conexion.conn);
             cmd.ExecuteNonQuery();
-
-         
 
         }
 
@@ -378,7 +409,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlCommand cmd;
             MessageBox.Show(tipoPublicacion.ToString());
-            String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Precio=@precio,Publicacion_Tipo_ID=@Tipo_Publica,Publicacion_Estado_Publicacion_ID='Borrador',Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=@visibilidad WHERE Publicacion_Codigo="+public_Codigo;
+            String Comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Descripcion='" + descripcion + "',Publicacion_Stock=" + stockInicial + ",Publicacion_Precio=@precio,Publicacion_Tipo_ID=(SELECT Tipo_Publicacion_ID FROM NO_MORE_SQL.Tipo_Publicacion WHERE Tipo_Publicacion_Desc=@Tipo_Publica),Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Borrador'),Publicacion_Puede_Preguntar='" + aceptaPregunta + "',Publicacion_Usuario_Nombre='" + userName + "',Publicacion_Visibilidad_Cod=@visibilidad WHERE Publicacion_Codigo="+public_Codigo;
             cmd = new SqlCommand(Comando, cManager.conexion.conn);
             if (precio == "")
                 cmd.Parameters.AddWithValue("@precio", DBNull.Value);
@@ -425,7 +456,7 @@ namespace FrbaCommerce.Modelo.Datos
 
            SqlDataReader dr;
 
-           comando = "SELECT Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Precio,Publicacion_Stock,Publicacion_Puede_Preguntar,Visibilidad_Descripcion FROM NO_MORE_SQL.Publicacion LEFT JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo WHERE Publicacion_Codigo=" + publicacion_cod;
+           comando = "SELECT Tipo_Publicacion_Desc,Publicacion_Descripcion,Publicacion_Precio,Publicacion_Stock,Publicacion_Puede_Preguntar,Visibilidad_Descripcion FROM NO_MORE_SQL.Publicacion LEFT JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo LEFT JOIN NO_MORE_SQL.Tipo_Publicacion ON Publicacion_Tipo_ID=Tipo_Publicacion_ID WHERE Publicacion_Codigo=" + publicacion_cod;
 
            cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -433,9 +464,7 @@ namespace FrbaCommerce.Modelo.Datos
 
            dr.Read();
 
-
-
-           formGenerarPublicacion.comboBoxTipoPublicacion.Text = dr["Publicacion_Tipo_ID"].ToString();
+           formGenerarPublicacion.comboBoxTipoPublicacion.Text = dr["Tipo_Publicacion_Desc"].ToString();
 
            formGenerarPublicacion.comboBoxAceptaPregunta.Text = dr["Publicacion_Puede_Preguntar"].ToString();
 
@@ -481,7 +510,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void ObtenerPublicacionesSegunUsuarioYPreguntasSinResponder(SistemManager cManager, string userName, DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Publicacion_Estado_Edicion FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod WHERE Publicacion_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NULL", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Tipo_Publicacion_Desc,Publicacion_Descripcion,Estado_Publicacion_Desc FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod INNER JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID INNER JOIN NO_MORE_SQL.Tipo_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Tipo_ID=NO_MORE_SQL.Tipo_Publicacion.Tipo_Publicacion_ID  WHERE Publicacion_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NULL", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
             dataGridView.Columns["Publicacion_Codigo"].Visible = true;
         }
@@ -497,7 +526,7 @@ namespace FrbaCommerce.Modelo.Datos
         internal void ObtenerPublicacionesSegunUsuarioYPreguntasConRespuestas(SistemManager cManager, string userName, DataGridView dataGridView)
         {
 
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Pregunta_Usuario_Nombre,Publicacion_Codigo,Publicacion_Tipo_ID,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion,Publicacion_Usuario_Nombre,Pregunta_Respuesta_ID,Respuesta_Fecha FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod INNER JOIN NO_MORE_SQL.Respuesta ON NO_MORE_SQL.Pregunta.Pregunta_Respuesta_ID=NO_MORE_SQL.Respuesta.Respuesta_ID WHERE Pregunta_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Pregunta_Usuario_Nombre,Publicacion_Codigo,Tipo_Publicacion_Desc,Publicacion_Descripcion,Publicacion_Estado_Publicacion_ID,Pregunta_Descripcion,Publicacion_Usuario_Nombre,Pregunta_Respuesta_ID,Respuesta_Fecha FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Pregunta ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Pregunta.Pregunta_Publicacion_Cod INNER JOIN NO_MORE_SQL.Respuesta ON NO_MORE_SQL.Pregunta.Pregunta_Respuesta_ID=NO_MORE_SQL.Respuesta.Respuesta_ID INNER JOIN NO_MORE_SQL.Tipo_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Tipo_ID=NO_MORE_SQL.Tipo_Publicacion.Tipo_Publicacion_ID WHERE Pregunta_Usuario_Nombre= '" + userName + "' AND Pregunta_Respuesta_ID IS NOT NULL", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 3);
             dataGridView.Columns["Publicacion_Codigo"].Visible = false;
             dataGridView.Columns["Pregunta_Respuesta_ID"].Visible = false;

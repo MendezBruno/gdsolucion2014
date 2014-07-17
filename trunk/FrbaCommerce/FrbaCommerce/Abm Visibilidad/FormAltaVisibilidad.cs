@@ -31,13 +31,18 @@ namespace FrbaCommerce.Abm_Visibilidad
         private void buttonAlta_Click(object sender, EventArgs e)
         {
 
+            bool dioAlta = false;
+            
             if (modificacion)
             {
-                cManager.sqlAbmVisibilidad.Ingresar_Datos_Modificacion(cManager, textBoxCodigo.Text, textBoxDescripcion.Text, textBoxPPP.Text, textBoxPorcentaje.Text, checkBoxHabilitado.Checked);
+                dioAlta=cManager.sqlAbmVisibilidad.Ingresar_Datos_Modificacion(cManager, textBoxCodigo.Text, textBoxDescripcion.Text, textBoxPPP.Text, textBoxPorcentaje.Text, checkBoxHabilitado.Checked);
             }
 
             else
-            cManager.sqlAbmVisibilidad.Ingresar_Datos(cManager, textBoxCodigo.Text, textBoxDescripcion.Text, textBoxPPP.Text, textBoxPorcentaje.Text);
+            dioAlta=cManager.sqlAbmVisibilidad.Ingresar_Datos(cManager, textBoxCodigo.Text, textBoxDescripcion.Text, textBoxPPP.Text, textBoxPorcentaje.Text);
+
+            if (dioAlta==true)
+                this.Hide();
         }
 
     }

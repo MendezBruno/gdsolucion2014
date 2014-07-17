@@ -10,8 +10,19 @@ namespace FrbaCommerce.Modelo.Datos
     public class SqlCliente
     {
         
-        internal void darAlta(SistemManager cManager,bool esCliente,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string fecNac)
+        internal bool darAlta(SistemManager cManager,bool esCliente,string nombre, string ape, string tipo, string numero, string tel, string mail, string dir,string calleNum ,string nPiso,string depto ,string localidad, string codPostal, string fecNac)
         {
+
+            SqlCommand MyCmd;
+
+            SqlDataReader dr;
+
+            string comandoInsert;
+
+            string comando;
+
+            bool dio_alta=false;
+            
             try
             {
                 if (numero.Equals("") || tipo.Equals("") || tel.Equals(""))
@@ -22,17 +33,61 @@ namespace FrbaCommerce.Modelo.Datos
                         MessageBox.Show("Tipo Documento no ingresados");
                     if (tel.Equals(""))
                         MessageBox.Show("Telefono No Ingresado");
-                    return;
+                    return dio_alta;
 
                 }
                 else
                 {
 
 
-                    cManager.sqlUsuario.darAlta(cManager, esCliente, numero, tipo);
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Telefono=" + tel + " AND Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI ='" + numero + "'";
 
-                    string comandoInsert = "INSERT INTO NO_MORE_SQL.Cliente(Cliente_Usuario_Nombre,Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + numero + "','" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
-                    SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
+                    MyCmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                    dr = MyCmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Documento y telefono ya ingresados");
+                        return dio_alta;
+                    }
+
+                    dr.Close();
+
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI ='" + numero + "'";
+
+                    MyCmd = new SqlCommand(comando, cManager.conexion.conn);
+                    
+                    dr = MyCmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Documento ya ingresado");
+                        return dio_alta;
+                    }
+
+                    dr.Close();
+
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Telefono="+tel;
+
+                    MyCmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                    dr = MyCmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Telefono ya ingresado");
+                        return dio_alta;
+                    }
+                    dr.Close();
+
+                    cManager.sqlUsuario.darAlta(cManager, true, numero);
+
+                    comandoInsert = "INSERT INTO NO_MORE_SQL.Cliente(Cliente_Usuario_Nombre,Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + numero + "','" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
+                    MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                     if (calleNum == "")
                         MyCmd.Parameters.AddWithValue("@callenum", DBNull.Value);
                     else
@@ -45,6 +100,12 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MyCmd.ExecuteNonQuery();
 
+                    MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + numero + ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
+
+                    dio_alta = true;
+
+                    return dio_alta;
+
                   
                 }
 
@@ -52,49 +113,47 @@ namespace FrbaCommerce.Modelo.Datos
             catch (SqlException e)
             {
 
-                cManager.sqlUsuario.eliminar(cManager, esCliente, numero);
 
-                
 
                 if (e.Number.ToString().Equals("8114"))
                 {
                     MessageBox.Show("Nro de calle, Nro de piso Mal ingresados");
 
                 }
+                
                 if (e.Number.ToString().Equals("207"))
                 {
                     MessageBox.Show("DNI o Telefono mal ingresados");
 
                 }
-                if (e.Number.ToString().Equals("2627"))
-                {
-                    MessageBox.Show("DNI o Telefono ya ingresados");
-
-                }
                 if (e.Number.ToString().Equals("8115"))
                 {
 
-                    MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
+                    MessageBox.Show("Uno o mas campos tienen mas caracteres de los que se pueden ingresar");
                 }
                 if (e.Number.ToString().Equals("241"))
                 {
 
                     MessageBox.Show("La fecha no tiene el formato correcto");
                 }
-                
-                return;
+
+                return dio_alta;
 
             }
-            MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + numero + ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
             
           
         }
 
-        internal void darAlta(SistemManager cManager, bool esCliente, string nombre, string ape, string tipo, string numero, string tel, string mail, string dir, string calleNum, string nPiso, string depto, string localidad, string codPostal, string fecNac,string user, string pass)
+        internal bool darAlta(SistemManager cManager, bool esCliente, string nombre, string ape, string tipo, string numero, string tel, string mail, string dir, string calleNum, string nPiso, string depto, string localidad, string codPostal, string fecNac,string user, string pass)
         {
 
-            bool dioAltaUsuario;
-            
+            SqlCommand myCmd;
+
+            SqlDataReader dr;
+
+            string comando;
+
+            bool dar_Alta=false;
             
             try
             {
@@ -107,18 +166,59 @@ namespace FrbaCommerce.Modelo.Datos
                         MessageBox.Show("Tipo Documento no ingresados");
                     if (tel.Equals(""))
                         MessageBox.Show("Telefono No Ingresado");
-                    return;
+                    return dar_Alta;
 
                 }
                 else
                 {
 
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Telefono=" + tel + " AND Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI ='" + numero + "'";
 
-                    dioAltaUsuario=cManager.sqlUsuario.darAltaUsuario(cManager, esCliente, user, pass);
+                    myCmd = new SqlCommand(comando, cManager.conexion.conn);
 
-                    if (dioAltaUsuario == true)
+                    dr = myCmd.ExecuteReader();
+
+                    if (dr.Read())
                     {
+                        dr.Close();
+                        MessageBox.Show("Documento y telefono ya ingresados");
+                        return dar_Alta;
+                    }
 
+                    dr.Close();
+
+                    comando = "SELECT *  FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo + "' AND Cliente_DNI ='" + numero + "'";
+
+                    myCmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                    dr = myCmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Documento ya ingresado");
+                        return dar_Alta;
+                    }
+
+                    dr.Close();
+
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Telefono=" + tel;
+
+                    myCmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                    dr = myCmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Telefono ya ingresado");
+                        return dar_Alta;
+                    }
+                    dr.Close();
+
+
+                    cManager.sqlUsuario.darAltaUsuario(cManager, esCliente, user, pass);
+                    
                         string comandoInsert = "INSERT INTO NO_MORE_SQL.Cliente(Cliente_Usuario_Nombre,Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + user + "','" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
                         SqlCommand MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                         if (calleNum == "")
@@ -134,14 +234,35 @@ namespace FrbaCommerce.Modelo.Datos
                         MyCmd.ExecuteNonQuery();
 
                         MessageBox.Show("Se dio de alta al Usuario: " + user + " con la contraseña:" + pass);
-                    }
+                        dar_Alta = true;
+
+                        return dar_Alta;
+                
+                
                 }
             }
             catch (SqlException e)
             {
 
-                cManager.sqlUsuario.eliminar(cManager, esCliente, user);
+                MessageBox.Show(e.Errors[0].ToString());
 
+                cManager.sqlUsuario.eliminar(cManager, esCliente, user);
+                
+                if (e.Number.ToString().Equals("2627"))
+                {
+                    if (e.Message.Contains("dni"))
+                    {
+
+                        MessageBox.Show("Dni Duplicado, Corregir");
+                    }
+
+                    if (e.Message.Contains("telefono,Corregir"))
+                    {
+
+                        MessageBox.Show("Telefono ya ingresado");
+                    }
+                }
+  
                 if (e.Number.ToString().Equals("8114"))
                 {
                     MessageBox.Show("Nro de calle, Nro de piso Mal ingresados");
@@ -149,12 +270,9 @@ namespace FrbaCommerce.Modelo.Datos
                 }
                 if (e.Number.ToString().Equals("207"))
                 {
+                    MessageBox.Show(e.Message.ToString());
+                    
                     MessageBox.Show("DNI o Telefono mal ingresados");
-
-                }
-                if (e.Number.ToString().Equals("2627"))
-                {
-                    MessageBox.Show("DNI o Telefono ya ingresados");
 
                 }
                 if (e.Number.ToString().Equals("8115"))
@@ -162,7 +280,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
                 }
-                return;
+                return dar_Alta;
 
             }
            
@@ -249,20 +367,92 @@ namespace FrbaCommerce.Modelo.Datos
             }
         }
 
-        internal void modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string nombre, string apellido, string tipo_doc, string dni, string tel, string mail, string direc, string nroCalle, string piso, string depto, string localidad, string cod_pos,string fech_nac,bool habilitacion)
+        internal bool modificarCliente(SistemManager cManager, Sistema.Cliente cliente, string nombre, string apellido, string tipo_doc, string dni, string tel, string mail, string direc, string nroCalle, string piso, string depto, string localidad, string cod_pos,string fech_nac,bool habilitacion)
         {
 
+            SqlDataReader dr;
+
+            string comando;
+
+            SqlCommand cmd;
+            string clienteId;
+
+            bool dar_Alta = false;
+            
             try
             {
 
+                if (dni.Equals("") || tipo_doc.Equals("") || tel.Equals(""))
+                {
+                    if (dni.Equals(""))
+                        MessageBox.Show("Nro Documento no ingresado");
+                    if (tipo_doc.Equals(""))
+                        MessageBox.Show("Tipo Documento no ingresados");
+                    if (tel.Equals(""))
+                        MessageBox.Show("Telefono No Ingresado");
+                    return dar_Alta;
 
-                SqlCommand cmd;
-                string comando;
-                string clienteId;
+                }
+                else
+                {
 
+                    comando = "SELECT Cliente_Usuario_Nombre FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni() + "'";
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+                    dr = cmd.ExecuteReader();
+                    dr.Read();
+                    clienteId = dr["Cliente_Usuario_Nombre"].ToString();
+                    dr.Close();
+
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Telefono=" + tel + " AND Cliente_Tipo_Doc='" + tipo_doc + "' AND Cliente_DNI ='" + dni + "' AND Cliente_Usuario_Nombre<>'" + clienteId + "'";
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+                    dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Documento y telefono ya ingresados");
+                        return dar_Alta;
+                    }
+
+                    dr.Close();
+
+                    comando = "SELECT *  FROM NO_MORE_SQL.Cliente WHERE Cliente_Tipo_Doc='" + tipo_doc + "' AND Cliente_DNI ='" + dni + "' AND Cliente_Usuario_Nombre<>'" + clienteId + "'";
+
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                    dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Documento ya ingresado");
+                        return dar_Alta;
+                    }
+
+                    dr.Close();
+
+                    comando = "SELECT * FROM NO_MORE_SQL.Cliente WHERE Cliente_Telefono=" + tel + " AND Cliente_Usuario_Nombre<>'" + clienteId + "'";
+
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+
+                    dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        dr.Close();
+                        MessageBox.Show("Telefono ya ingresado");
+                        return dar_Alta;
+                    }
+                    dr.Close();
+
+                }
+
+
+
+                
                 comando = "SELECT Cliente_Usuario_Nombre FROM NO_MORE_SQL.Cliente WHERE Cliente_DNI=" + cliente.getDNI() + "AND Cliente_Tipo_Doc='" + cliente.getTipoDni() + "'";
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
-                SqlDataReader dr = cmd.ExecuteReader();
+                dr = cmd.ExecuteReader();
                 dr.Read();
                 clienteId = dr["Cliente_Usuario_Nombre"].ToString();
                 dr.Close();
@@ -287,6 +477,13 @@ namespace FrbaCommerce.Modelo.Datos
                     cmd = new SqlCommand(comando, cManager.conexion.conn);
                     cmd.ExecuteNonQuery();
                 }
+                MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado");
+
+                dar_Alta = true;
+
+                return dar_Alta;
+
+                
 
             }
             catch (SqlException e)
@@ -318,11 +515,10 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MessageBox.Show("Uno o mas campos tienen mayores caracteres de los que se pueden ingresar");
                 }
-                return;
+                return dar_Alta;
 
 
             }
-            MessageBox.Show("Cliente con: " + tipo_doc + " nro: " + dni + " fue modificado");  
         }
 
         internal void ObtenerCliente(Sistema.Cliente cliente, Sistema.Usuario user, SistemManager cManager)

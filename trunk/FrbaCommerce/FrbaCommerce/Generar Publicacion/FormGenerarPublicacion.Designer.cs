@@ -78,7 +78,6 @@
             this.comboBoxVisibilidad.Name = "comboBoxVisibilidad";
             this.comboBoxVisibilidad.Size = new System.Drawing.Size(212, 21);
             this.comboBoxVisibilidad.TabIndex = 22;
-            this.comboBoxVisibilidad.SelectedIndexChanged += new System.EventHandler(this.comboBoxVisibilidad_SelectedIndexChanged);
             // 
             // numericUpDownStockInicial
             // 

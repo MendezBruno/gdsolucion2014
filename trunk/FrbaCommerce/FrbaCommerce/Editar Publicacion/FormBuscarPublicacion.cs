@@ -71,9 +71,11 @@ namespace FrbaCommerce.Editar_Publicacion
 
                 }
 
-                if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Borrador") || this.dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("Borrada"))
+                if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Borrador"))
                 {
 
+                    
+                    
                     FormGenerarPublicacion formGenerarPublicacion;
 
                     if (cliente != null)
@@ -103,9 +105,8 @@ namespace FrbaCommerce.Editar_Publicacion
                     this.Hide();
 
                 }
-                if (this.dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString().Equals("Publicada"))
-                {
-                    if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Activa"))
+
+                    if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Publicada"))
                     {
 
                         this.Hide();
@@ -182,7 +183,7 @@ namespace FrbaCommerce.Editar_Publicacion
                         this.Hide();
 
                     }
-                }
+                
 
 
 

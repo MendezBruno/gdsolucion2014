@@ -9,7 +9,7 @@ namespace FrbaCommerce.Modelo.Datos
 {
      public class SqlUsuario
     {
-        internal void darAlta(SistemManager cManager,bool esCliente,String dni,String tipo)
+        internal void darAlta(SistemManager cManager,bool esCliente,string nombre)
         {
            
            SqlCommand cmd;
@@ -19,12 +19,12 @@ namespace FrbaCommerce.Modelo.Datos
             if (esCliente == true)
 
 
-                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + nombre + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
 
             
             else
 
-                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + dni + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
+                ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + nombre + "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Empresa'),'SI')";
 
 
            
@@ -37,7 +37,7 @@ namespace FrbaCommerce.Modelo.Datos
 
         internal void eliminar(SistemManager cManager,bool esCliente,string usuario)
         {
-
+            
             SqlCommand cmd;
 
             string comando = "DELETE FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre='"+usuario+"'";
@@ -49,15 +49,12 @@ namespace FrbaCommerce.Modelo.Datos
 
         }
 
-        internal bool darAltaUsuario(SistemManager cManager, bool esCliente, string user, string pass)
+        internal void darAltaUsuario(SistemManager cManager, bool esCliente, string user, string pass)
         {
 
             SqlCommand cmd;
-            String ComandoInsert;
-
-            try
-            {
-
+            String ComandoInsert; 
+                
                 if (esCliente == true)
 
 
@@ -72,19 +69,10 @@ namespace FrbaCommerce.Modelo.Datos
                 cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
                 cManager.sqlAbmLogin.agregarContraseñaPorPrimerIngreso(cManager, pass, user);
-                return true;
-            }
-            catch (SqlException e)
-            {
-
-                if (e.Number.ToString().Equals("2627"))
-                {
-                    MessageBox.Show("Usuario ya ingresado");
-
-                }
-                return false;
-
-            }
+            
+           
+            
+         
         }
 
 
@@ -103,6 +91,30 @@ namespace FrbaCommerce.Modelo.Datos
             SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Usuario_Nombre FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre LIKE '%"+ usuario +"%'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridViewUsuarios, true, 1);
            
+        }
+
+        internal bool existe_Usuario(SistemManager cManager, string usuario, string password)
+        {
+            SqlCommand cmd;
+            string comando;
+            SqlDataReader dr;
+            comando= "SELECT * FROM NO_MORE_SQL.Usuario WHERE Usuario_Nombre='"+usuario+"'";
+            cmd = new SqlCommand(comando, cManager.conexion.conn);
+            dr=cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                dr.Close();
+
+                MessageBox.Show("Usuario ya ingresado, Ingresar otro nombre");
+
+                return true; 
+
+            }
+
+                dr.Close();
+
+               return false;
         }
     }
 }

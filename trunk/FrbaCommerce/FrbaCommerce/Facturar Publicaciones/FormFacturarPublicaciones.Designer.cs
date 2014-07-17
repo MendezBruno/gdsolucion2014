@@ -107,7 +107,8 @@
             // 
             this.comboBoxMedio.FormattingEnabled = true;
             this.comboBoxMedio.Items.AddRange(new object[] {
-            "Efectivo"});
+            "Efectivo",
+            "Tarjeta De Credito"});
             this.comboBoxMedio.Location = new System.Drawing.Point(119, 297);
             this.comboBoxMedio.Name = "comboBoxMedio";
             this.comboBoxMedio.Size = new System.Drawing.Size(121, 21);

@@ -75,11 +75,18 @@ namespace FrbaCommerce.Editar_Publicacion
 
         private void Finalizar_Click(object sender, EventArgs e)
         {
+
+            string usuario;
             cManager.sqlPublicacion.CambiarAFinalizada(cManager, publicCodigo);
             if(tipo_public.Equals("Subasta"))
             {
-                cManager.sqlPublicacion.RegistrarSubasta(cManager, publicCodigo, tipo_public);
+                
+                usuario=cManager.sqlPublicacion.RegistrarSubasta(cManager, publicCodigo, tipo_public);
+                if(!usuario.Equals("-1"))   
+                cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, usuario);
+
             }
+            
             this.Hide();
         }
 

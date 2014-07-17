@@ -13,7 +13,7 @@ namespace FrbaCommerce.Modelo.Datos
         {
 
             SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Compra_ID,Publicacion_Usuario_Nombre,Publicacion_Descripcion FROM NO_MORE_SQL.Publicacion JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo= NO_MORE_SQL.Compra.Compra_Publicacion WHERE Compra_Usuario='" + usuario + "' AND Compra_Calificacion_Codigo IS NULL", cManager.conexion.conn);
-            cManager.conexion.adaptarTablaAlComando(adapComando, dataGrid, true, 2);
+            cManager.conexion.adaptarTablaAlComando(adapComando, dataGrid, true, 3);
             dataGrid.Columns["Compra_ID"].Visible = false;
 
         }
@@ -63,6 +63,8 @@ namespace FrbaCommerce.Modelo.Datos
                 command = "UPDATE NO_MORE_SQL.Compra SET Compra_Calificacion_Codigo=(SELECT TOP 1 Calificacion_Codigo FROM NO_MORE_SQL.Calificacion ORDER BY Calificacion_Codigo DESC) WHERE Compra_ID=" + compra_id;
                 cmd = new SqlCommand(command, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
+
+
             }
 
             catch (SqlException e)
