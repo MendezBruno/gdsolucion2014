@@ -368,7 +368,7 @@ namespace FrbaCommerce.Modelo.Datos
             fromAbmEmpresaAlta.codPostal.Text = dr["Empresa_Codigo_Postal"].ToString();
             fromAbmEmpresaAlta.ciudad.Text = dr["Empresa_Ciudad"].ToString();
             fromAbmEmpresaAlta.cuit.Text = dr["Empresa_CUIT"].ToString();
-            fromAbmEmpresaAlta.fechaCreacion.Text = dr["Empresa_Fecha_Creacion"].ToString();
+            fromAbmEmpresaAlta.fechaCreacion.Text = Convert.ToDateTime(dr["Empresa_Fecha_Creacion"]).ToShortDateString();
             fromAbmEmpresaAlta.usuario.Text = dr["Empresa_Nombre_Contacto"].ToString();
     //        fromAbmEmpresaAlta.empresa.idEmpresa = dr["Empresa_Usuario_Nombre"].ToString();
             fromAbmEmpresaAlta.empresa.setUsuario(dr["Empresa_Usuario_Nombre"].ToString());
