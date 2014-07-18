@@ -183,7 +183,16 @@ namespace FrbaCommerce.Editar_Publicacion
                         this.Hide();
 
                     }
-                
+
+                    if (this.dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString().Equals("Finalizado"))
+                    {
+
+                        MessageBox.Show("No Se Puede Modificar Una Publicacion Finalizada");
+
+                        this.Hide();
+
+
+                    }
 
 
 

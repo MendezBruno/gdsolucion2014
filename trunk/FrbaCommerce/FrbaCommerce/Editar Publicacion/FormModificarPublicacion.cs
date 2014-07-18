@@ -61,6 +61,7 @@ namespace FrbaCommerce.Editar_Publicacion
         {
 
             cManager.sqlPublicacion.CambiarAActiva(cManager, publicCodigo);
+            MessageBox.Show("Se Ha Activado la Publicacion");
             this.Hide();
 
 
@@ -70,6 +71,7 @@ namespace FrbaCommerce.Editar_Publicacion
         {
 
             cManager.sqlPublicacion.CambiarAPausada(cManager, publicCodigo);
+            MessageBox.Show("Se Ha Pausado la Publicacion");
             this.Hide();
         }
 
@@ -86,7 +88,7 @@ namespace FrbaCommerce.Editar_Publicacion
                 cManager.sqlCompra.DeshabilitarPorCalificacion(cManager, usuario);
 
             }
-            
+            MessageBox.Show("Se Ha Finalizado la Publicacion");
             this.Hide();
         }
 

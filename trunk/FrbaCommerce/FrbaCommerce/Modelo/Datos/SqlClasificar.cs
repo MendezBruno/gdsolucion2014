@@ -56,20 +56,24 @@ namespace FrbaCommerce.Modelo.Datos
             {
 
                 SqlCommand cmd;
-                string command = "INSERT INTO NO_MORE_SQL.Calificacion(Calificacion_Cantidad_Estrellas,Calificacion_Descripcion) VALUES( " + calificacion + ",'" + descripcion + "')";
+                string command;
+
+                command = "UPDATE NO_MORE_SQL.Usuario SET Usuario_Reputacion=((ISNULL(NO_MORE_SQL.Usuario.Usuario_Reputacion,0) + " + calificacion + ")/2) WHERE Usuario_Nombre=(SELECT Publicacion_Usuario_Nombre FROM  NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Compra ON NO_MORE_SQL.Publicacion.Publicacion_Codigo=NO_MORE_SQL.Compra.Compra_Publicacion WHERE Compra_ID=" + compra_id + ")";
+                cmd = new SqlCommand(command, cManager.conexion.conn);
+                cmd.ExecuteNonQuery();
+
+                command = "INSERT INTO NO_MORE_SQL.Calificacion(Calificacion_Cantidad_Estrellas,Calificacion_Descripcion) VALUES( " + calificacion + ",'" + descripcion + "')";
                 cmd = new SqlCommand(command, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
 
                 command = "UPDATE NO_MORE_SQL.Compra SET Compra_Calificacion_Codigo=(SELECT TOP 1 Calificacion_Codigo FROM NO_MORE_SQL.Calificacion ORDER BY Calificacion_Codigo DESC) WHERE Compra_ID=" + compra_id;
                 cmd = new SqlCommand(command, cManager.conexion.conn);
                 cmd.ExecuteNonQuery();
-
-
             }
 
             catch (SqlException e)
             {
-
+                
                 MessageBox.Show("Calificacion mal ingresada o no ingresada");
 
             }

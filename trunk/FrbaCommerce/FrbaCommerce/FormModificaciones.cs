@@ -79,6 +79,7 @@ namespace FrbaCommerce
         {
             this.Hide();
             FormAbmClienteAlta formClienteAlta = new FormAbmClienteAlta(cManager, false,false);
+            formClienteAlta.checkBoxHabilitacion.Visible = false;
             formClienteAlta.ShowDialog();
             this.Show();
         }
@@ -126,6 +127,7 @@ namespace FrbaCommerce
         {
             this.Hide();
             FormAltaVisibilidad formAltaVisibilidad = new FormAltaVisibilidad(cManager);
+            formAltaVisibilidad.checkBoxHabilitado.Visible = false;
             formAltaVisibilidad.ShowDialog();
             this.Show();
         }
@@ -145,6 +147,7 @@ namespace FrbaCommerce
         {
             this.Hide();
             FormAbmEmpresaAlta formEmpresaAlta = new FormAbmEmpresaAlta(cManager, false);
+            formEmpresaAlta.checkBoxHabilitacion.Visible = false;
             formEmpresaAlta.ShowDialog();
             this.Show();
         }
@@ -177,6 +180,7 @@ namespace FrbaCommerce
         {
             this.Hide();
             FormAltaRol formAltaRol = new FormAltaRol(cManager);
+            formAltaRol.Habilitar_Rol.Visible = false;
             formAltaRol.ShowDialog();
             this.Show();
         }

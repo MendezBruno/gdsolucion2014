@@ -19,9 +19,9 @@ namespace FrbaCommerce.Modelo.Datos
             precio = precio.Replace(',', '.');
             if (!tipoPublicacion.Equals("") && !descripcion.Equals("") && !precio.Equals("") && !visibilidad.Equals("") && !aceptaPregunta.Equals("") && !(checkeados.Count==0))
             {
-/*
+
                 try
-                {*/
+                {
                     if (accion.Equals("Generar Publicacion"))
                     {
 
@@ -80,7 +80,7 @@ namespace FrbaCommerce.Modelo.Datos
 
 
                     }
-            /*    }
+                }
             
                 catch (SqlException e)
                 {
@@ -110,7 +110,7 @@ namespace FrbaCommerce.Modelo.Datos
 
 
 
-                }*/
+                }
             }
             else
             {
@@ -246,7 +246,6 @@ namespace FrbaCommerce.Modelo.Datos
             SqlCommand cmd;
             SqlDataReader dr;
             string pub_codigo;
-            MessageBox.Show(tipoPublicacion.ToString());
             String Comando = "INSERT INTO NO_MORE_SQL.Publicacion(Publicacion_Descripcion,Publicacion_Stock,Publicacion_Precio,Publicacion_Tipo_ID,Publicacion_Estado_Publicacion_ID,Publicacion_Puede_Preguntar,Publicacion_Usuario_Nombre,Publicacion_Visibilidad_Cod) VALUES ('" + descripcion + "'," + stockInicial + ",@precio,(SELECT Tipo_Publicacion_ID FROM NO_MORE_SQL.Tipo_Publicacion WHERE Tipo_Publicacion_Desc=@Tipo_Publica),(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Borrador'),'" + aceptaPregunta + "','" + userName + "',@visibilidad)";
             cmd = new SqlCommand(Comando, cManager.conexion.conn);
             if (precio == "")
@@ -301,7 +300,7 @@ namespace FrbaCommerce.Modelo.Datos
         
         internal void ObtenerPublicacionesSegunUsuario(SistemManager cManager, string userName, DataGridView dataGridView)
         {
-            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Tipo_Publicacion_Desc,Publicacion_Descripcion,Estado_Publicacion_Desc FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID INNER JOIN NO_MORE_SQL.Tipo_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Tipo_ID=NO_MORE_SQL.Tipo_Publicacion.Tipo_Publicacion_ID WHERE Publicacion_Usuario_Nombre='" + userName + "'", cManager.conexion.conn);
+            SqlDataAdapter adapComando = new SqlDataAdapter("SELECT Publicacion_Codigo,Tipo_Publicacion_Desc,Publicacion_Descripcion,Estado_Publicacion_Desc FROM NO_MORE_SQL.Publicacion LEFT JOIN NO_MORE_SQL.Estado_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Estado_Publicacion_ID=NO_MORE_SQL.Estado_Publicacion.Estado_Publicacion_ID LEFT JOIN NO_MORE_SQL.Tipo_Publicacion ON NO_MORE_SQL.Publicacion.Publicacion_Tipo_ID=NO_MORE_SQL.Tipo_Publicacion.Tipo_Publicacion_ID WHERE Publicacion_Usuario_Nombre='" + userName + "'", cManager.conexion.conn);
             cManager.conexion.adaptarTablaAlComando(adapComando, dataGridView, true, 4);
             dataGridView.Columns["Publicacion_Codigo"].Visible = true;
 

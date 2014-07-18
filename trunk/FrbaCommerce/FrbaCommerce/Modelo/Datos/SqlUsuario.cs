@@ -93,6 +93,24 @@ namespace FrbaCommerce.Modelo.Datos
            
         }
 
+        internal void darAltaCliente(SistemManager cManager,bool esCliente, string dni, string tipo_doc)
+        {
+
+
+            SqlCommand cmd;
+            String ComandoInsert;
+
+            ComandoInsert = "INSERT INTO NO_MORE_SQL.Usuario(Usuario_Nombre,Esta_Habilitado,Usuario_Rol_ID,Puede_Comprar) VALUES('" + dni + tipo_doc+ "','SI',(SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre='Cliente'),'SI')";
+
+            cmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
+            cmd.ExecuteNonQuery();
+
+
+
+
+
+        }
+
         internal bool existe_Usuario(SistemManager cManager, string usuario, string password)
         {
             SqlCommand cmd;

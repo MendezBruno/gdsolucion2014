@@ -45,5 +45,24 @@ namespace FrbaCommerce.Abm_Visibilidad
                 this.Hide();
         }
 
+        private void buttonLimpiar_Click(object sender, EventArgs e)
+        {
+
+            if (modificacion)
+            {
+                textBoxDescripcion.Text = "";
+                textBoxPorcentaje.Text = "";
+                textBoxPPP.Text = "";
+            }
+            else
+            {
+                textBoxCodigo.Text = "";
+                textBoxDescripcion.Text = "";
+                textBoxPorcentaje.Text = "";
+                textBoxPPP.Text = "";
+            }
+
+        }
+
     }
 }
