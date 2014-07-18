@@ -408,7 +408,7 @@ namespace FrbaCommerce.Modelo.Datos
                 bool dioAlta = false;
 
 
-
+            
                 try
                 {
                     if (cuit.Equals("") || razon.Equals(""))
@@ -434,7 +434,7 @@ namespace FrbaCommerce.Modelo.Datos
                         empresaId = dr["Empresa_Usuario_Nombre"].ToString();
                         dr.Close();
 
-                        comando = "SELECT * FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT=" + cuit + " AND Empresa_Razon_Social='" + razon + "' AND Empresa_Usuario_Nombre<>'" + empresaId + "'";
+                        comando = "SELECT * FROM NO_MORE_SQL.Empresa WHERE Empresa_CUIT='" + cuit + "' AND Empresa_Razon_Social='" + razon + "' AND Empresa_Usuario_Nombre<>'" + empresaId + "'";
 
                         cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -513,11 +513,14 @@ namespace FrbaCommerce.Modelo.Datos
                         return dioAlta;
 
                     }
+                
                 }
                 catch (SqlException e)
                 {
 
 
+                    MessageBox.Show(e.Errors[0].ToString());
+                    
                     if (e.Number.ToString().Equals("8114"))
                     {
                         MessageBox.Show("Nro de calle, Nro de piso o Telefono Mal ingresados");

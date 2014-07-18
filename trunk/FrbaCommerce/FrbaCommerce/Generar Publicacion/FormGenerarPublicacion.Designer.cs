@@ -82,6 +82,11 @@
             // numericUpDownStockInicial
             // 
             this.numericUpDownStockInicial.Location = new System.Drawing.Point(91, 298);
+            this.numericUpDownStockInicial.Maximum = new decimal(new int[] {
+            -1486618624,
+            232830643,
+            0,
+            0});
             this.numericUpDownStockInicial.Name = "numericUpDownStockInicial";
             this.numericUpDownStockInicial.Size = new System.Drawing.Size(212, 20);
             this.numericUpDownStockInicial.TabIndex = 20;
