@@ -313,7 +313,7 @@ namespace FrbaCommerce.Modelo.Datos
             formAltaCliente.textBoxDepto.Text = dr["Cliente_Departamento"].ToString();
             formAltaCliente.textBoxDirec.Text = dr["Cliente_Dom_Calle"].ToString();
             formAltaCliente.textBoxDNI.Text = dr["Cliente_DNI"].ToString();
-            formAltaCliente.textBoxFecNac.Text = dr["Cliente_Fecha_De_Nacimiento"].ToString();
+            formAltaCliente.textBoxFecNac.Text = Convert.ToDateTime(dr["Cliente_Fecha_De_Nacimiento"]).ToShortDateString();
             formAltaCliente.textBoxLocalidad.Text = dr["Cliente_Localidad"].ToString();
             formAltaCliente.textBoxMail.Text = dr["Cliente_Mail"].ToString();
             formAltaCliente.textBoxNroPiso.Text = dr["Cliente_Piso"].ToString();
