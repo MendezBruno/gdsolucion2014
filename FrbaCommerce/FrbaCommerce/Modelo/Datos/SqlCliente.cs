@@ -84,9 +84,9 @@ namespace FrbaCommerce.Modelo.Datos
                     }
                     dr.Close();
 
-                    cManager.sqlUsuario.darAlta(cManager, true, numero);
+                    cManager.sqlUsuario.darAltaCliente(cManager, true, numero,tipo);
 
-                    comandoInsert = "INSERT INTO NO_MORE_SQL.Cliente(Cliente_Usuario_Nombre,Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + numero + "','" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
+                    comandoInsert = "INSERT INTO NO_MORE_SQL.Cliente(Cliente_Usuario_Nombre,Cliente_Nombre,Cliente_Apellido,Cliente_Tipo_Doc,Cliente_DNI,Cliente_Mail,Cliente_Telefono,Cliente_Dom_Calle,Cliente_Numero_Calle,Cliente_Piso,Cliente_Departamento,Cliente_Localidad,Cliente_Codigo_Postal,Cliente_Fecha_De_Nacimiento) VALUES('" + numero +tipo+ "','" + nombre + "','" + ape + "','" + tipo + "'," + numero + ",'" + mail + "'," + tel + ",'" + dir + "',@callenum,@piso,'" + depto + "','" + localidad + "','" + codPostal + "','" + fecNac + "')";
                     MyCmd = new SqlCommand(comandoInsert, cManager.conexion.conn);
                     if (calleNum == "")
                         MyCmd.Parameters.AddWithValue("@callenum", DBNull.Value);
@@ -100,7 +100,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                     MyCmd.ExecuteNonQuery();
 
-                    MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + numero + ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
+                    MessageBox.Show("El nombre de usuario para ingresar al sistema es:" + numero +tipo+ ".\nIngresar al sistema sin password y le pedira que cambie la contraseña");
 
                     dio_alta = true;
 
@@ -112,7 +112,6 @@ namespace FrbaCommerce.Modelo.Datos
             }
             catch (SqlException e)
             {
-
 
 
                 if (e.Number.ToString().Equals("8114"))

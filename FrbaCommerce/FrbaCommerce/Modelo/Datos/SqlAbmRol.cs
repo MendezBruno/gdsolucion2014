@@ -23,7 +23,7 @@ namespace FrbaCommerce.Modelo.Datos
                 SqlCommand MyCmd = new SqlCommand(ComandoInsert, cManager.conexion.conn);
                 MyCmd.ExecuteNonQuery();
 
-                ComandoInsertar = "UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='NO' WHERE Rol_Nombre='" + nombreRol + "'";
+                ComandoInsertar = "UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
                 MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
                 MyCmd2.ExecuteNonQuery();
 
@@ -31,12 +31,6 @@ namespace FrbaCommerce.Modelo.Datos
                 {
                     if (chekBox.Checked)
                     {
-                        if (chekBox.Name == "Habilitar_Rol")
-                        {
-                            ComandoInsertar = "UPDATE NO_MORE_SQL.Rol set Esta_Habilitada='SI' WHERE Rol_Nombre='" + nombreRol + "'";
-                            MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);
-                            MyCmd2.ExecuteNonQuery();
-                        }
 
                             ComandoInsertar = "INSERT INTO NO_MORE_SQL.Funcionalidad_Rol(Rol_ID,Funcionalidad_Tipo) VALUES((SELECT Rol_ID FROM NO_MORE_SQL.Rol WHERE Rol_Nombre ='" + nombreRol + "'),'" + chekBox.Name + "')";
                             MyCmd2 = new SqlCommand(ComandoInsertar, cManager.conexion.conn);

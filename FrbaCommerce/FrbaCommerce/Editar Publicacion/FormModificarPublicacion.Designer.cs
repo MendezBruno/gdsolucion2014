@@ -79,9 +79,9 @@
             // 
             this.modifStock.Location = new System.Drawing.Point(12, 123);
             this.modifStock.Name = "modifStock";
-            this.modifStock.Size = new System.Drawing.Size(141, 23);
+            this.modifStock.Size = new System.Drawing.Size(177, 23);
             this.modifStock.TabIndex = 4;
-            this.modifStock.Text = "Modificar Stock";
+            this.modifStock.Text = "Modificar Stock y Descripcion";
             this.modifStock.UseVisualStyleBackColor = true;
             this.modifStock.Click += new System.EventHandler(this.modifStock_Click);
             // 

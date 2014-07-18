@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenuPublicacion));
             this.botonGenerarPublicacion = new System.Windows.Forms.Button();
             this.buttonEditarPublicacion = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.linkLabelContestarPreguntas = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -55,20 +54,10 @@
             this.buttonEditarPublicacion.UseVisualStyleBackColor = true;
             this.buttonEditarPublicacion.Click += new System.EventHandler(this.buttonEditarPublicacion_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(69, 130);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 48);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Borrar Publicacion";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // linkLabelContestarPreguntas
             // 
             this.linkLabelContestarPreguntas.AutoSize = true;
-            this.linkLabelContestarPreguntas.Location = new System.Drawing.Point(83, 195);
+            this.linkLabelContestarPreguntas.Location = new System.Drawing.Point(82, 134);
             this.linkLabelContestarPreguntas.Name = "linkLabelContestarPreguntas";
             this.linkLabelContestarPreguntas.Size = new System.Drawing.Size(103, 13);
             this.linkLabelContestarPreguntas.TabIndex = 8;
@@ -81,9 +70,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 227);
+            this.ClientSize = new System.Drawing.Size(263, 171);
             this.Controls.Add(this.linkLabelContestarPreguntas);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEditarPublicacion);
             this.Controls.Add(this.botonGenerarPublicacion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -98,7 +86,6 @@
 
         private System.Windows.Forms.Button botonGenerarPublicacion;
         private System.Windows.Forms.Button buttonEditarPublicacion;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabelContestarPreguntas;
     }
 }

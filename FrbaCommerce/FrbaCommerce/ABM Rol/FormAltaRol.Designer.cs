@@ -380,9 +380,9 @@
         private System.Windows.Forms.CheckBox Eliminar_Rol;
         public System.Windows.Forms.TextBox textBoxNombreRol;
         public System.Windows.Forms.GroupBox groupBoxFuncionalidades;
-        private System.Windows.Forms.CheckBox Habilitar_Rol;
         private System.Windows.Forms.CheckBox ModificarContrasenia;
         private System.Windows.Forms.CheckBox Estadisticas;
         private System.Windows.Forms.CheckBox GenerarFacturaUsuario;
+        public System.Windows.Forms.CheckBox Habilitar_Rol;
     }
 }

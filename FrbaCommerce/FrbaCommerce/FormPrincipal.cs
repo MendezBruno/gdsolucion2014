@@ -398,6 +398,7 @@ namespace FrbaCommerce
             {
 
                 formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, empresa,respuesta);
+                formEncontrarPreguntas.Text = "Respuestas";
                 formEncontrarPreguntas.ShowDialog();
             }
             else
@@ -405,6 +406,7 @@ namespace FrbaCommerce
                 {
 
                     formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, cliente,respuesta);
+                    formEncontrarPreguntas.Text = "Respuestas";
                     formEncontrarPreguntas.ShowDialog();
 
                 }
@@ -414,6 +416,7 @@ namespace FrbaCommerce
 
 
                         formEncontrarPreguntas = new FormEncontrarPreguntas(cManager, administrador,respuesta);
+                        formEncontrarPreguntas.Text = "Respuestas";
                         formEncontrarPreguntas.ShowDialog();
 
                     }
