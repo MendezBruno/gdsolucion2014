@@ -196,7 +196,7 @@ namespace FrbaCommerce.Modelo.Datos
 
                cmd.ExecuteNonQuery();
 
-               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Pausada') WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Publicacion_Estado_Publicacion_ID='Activa'";
+               comando = "UPDATE NO_MORE_SQL.Publicacion SET Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Pausada') WHERE Publicacion_Usuario_Nombre='" + usuario_publico + "' AND Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Publicada')";
 
                cmd = new SqlCommand(comando, cManager.conexion.conn);
 
@@ -220,7 +220,7 @@ namespace FrbaCommerce.Modelo.Datos
 
             SqlDataReader dr;
 
-            string command = "SELECT COUNT(*) AS contadorGratis FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo  WHERE Publicacion_Usuario_Nombre='" + usuario + "' AND Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Activa') AND Visibilidad_Descripcion='Gratis'";
+            string command = "SELECT COUNT(*) AS contadorGratis FROM NO_MORE_SQL.Publicacion INNER JOIN NO_MORE_SQL.Publicacion_Visibilidad ON NO_MORE_SQL.Publicacion.Publicacion_Visibilidad_Cod=NO_MORE_SQL.Publicacion_Visibilidad.Visibilidad_Codigo  WHERE Publicacion_Usuario_Nombre='" + usuario + "' AND Publicacion_Estado_Publicacion_ID=(SELECT Estado_Publicacion_ID FROM NO_MORE_SQL.Estado_Publicacion WHERE Estado_Publicacion_Desc='Publicada') AND Visibilidad_Descripcion='Gratis'";
 
             cmd = new SqlCommand(command, cManager.conexion.conn);
 
@@ -343,12 +343,6 @@ namespace FrbaCommerce.Modelo.Datos
             try
             {
 
-                comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy.ToShortDateString() + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO')";
-
-                cmd = new SqlCommand(comando, cManager.conexion.conn);
-
-                cmd.ExecuteNonQuery();
-
                 comando = "SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC";
 
                 cmd = new SqlCommand(comando, cManager.conexion.conn);
@@ -360,8 +354,12 @@ namespace FrbaCommerce.Modelo.Datos
 
                     usuario = dr["Oferta_Usuario_Nombre"].ToString();
                     dr.Close();
+                    comando = "INSERT INTO NO_MORE_SQL.Compra(Compra_Fecha,Compra_Cantidad,Compra_Usuario,Compra_Publicacion,Compra_Cobrada) VALUES ('" + Configuracion.Default.FechaHoy.ToShortDateString() + "',1,(SELECT TOP 1 Oferta_Usuario_Nombre FROM NO_MORE_SQL.Oferta WHERE Oferta_Publicacion_Codigo=" + publicCodigo + " ORDER BY Oferta_Monto DESC)," + publicCodigo + ",'NO')";
+                    cmd = new SqlCommand(comando, cManager.conexion.conn);
+                    cmd.ExecuteNonQuery();
                     cManager.sqlPublicacion.DeshabilitarDiezCompras(cManager, publicCodigo);
                     return usuario;
+
                 }
                 dr.Close();
 
@@ -369,11 +367,12 @@ namespace FrbaCommerce.Modelo.Datos
 
                 return "-1";
 
-
             }
 
             catch (SqlException e)
             {
+                MessageBox.Show(e.Errors[0].ToString());
+                
                 MessageBox.Show("No se registro ninguna oferta");
                 return "-1";
             }
